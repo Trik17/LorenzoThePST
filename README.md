@@ -46,4 +46,4 @@ then, you can safely remove the 'template' remote by typing `git remote rm templ
   git commit -am "customize project"
   git push origin master
   ```
-  GC_04ghj
+  GC_04
