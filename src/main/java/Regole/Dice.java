@@ -19,7 +19,7 @@ public class Dice {
 			Random rand = new Random();
 			this.value = 1 + rand.nextInt(6);
 		}
-		public void ciao(){}
+		
 	}
 	
 
