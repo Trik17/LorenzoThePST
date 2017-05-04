@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:PapyrusJava="http://www.eclipse.org/papyrus/PapyrusJava/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_0VU4kDCwEeeki9JlbCi6Xg" name="RootElement">
+    <packagedElement xmi:type="uml:Package" xmi:id="_2mV48DCwEeeki9JlbCi6Xg" name="LorenzoProva">
+      <packagedElement xmi:type="uml:Package" xmi:id="_2rgs0DCwEeeki9JlbCi6Xg" name="Regole">
+        <packagedElement xmi:type="uml:Class" xmi:id="_2rllUDCwEeeki9JlbCi6Xg" name="Dice" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_2rsTADCwEeeki9JlbCi6Xg" name="color" visibility="public" type="_24_IIDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_2sT-EDCwEeeki9JlbCi6Xg" name="value" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_2xuCgDCwEeeki9JlbCi6Xg" name="Dice" specification="_2skcwDCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    if (color == DiceColor.NONE) {
+        this.color = color;
+        value = 0;
+    } else {
+        this.color = color;
+        //associa a value un numero random tra 1 e 6
+        Random rand = new Random();
+        this.value = 1 + rand.nextInt(6);
+    }
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_2skcwDCwEeeki9JlbCi6Xg" name="Dice" visibility="public" method="_2xuCgDCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2xk4kDCwEeeki9JlbCi6Xg" name="color" type="_24_IIDCwEeeki9JlbCi6Xg"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Enumeration" xmi:id="_24_IIDCwEeeki9JlbCi6Xg" name="DiceColor" visibility="public">
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25A9UDCwEeeki9JlbCi6Xg" name="ORANGE"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25BkYDCwEeeki9JlbCi6Xg" name="BLACK"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25BkYTCwEeeki9JlbCi6Xg" name="WHITE"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25CLcDCwEeeki9JlbCi6Xg" name="NONE"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Enumeration" xmi:id="_2xv3sDCwEeeki9JlbCi6Xg" name="FamilyColor" visibility="public">
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_2xwewDCwEeeki9JlbCi6Xg" name="RED"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_2xwewTCwEeeki9JlbCi6Xg" name="BLUE"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_2xxF0DCwEeeki9JlbCi6Xg" name="YELLOW"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_2xxF0TCwEeeki9JlbCi6Xg" name="GREEN"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_2xxF0jCwEeeki9JlbCi6Xg" name="NEUTRAL"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_25EnsDCwEeeki9JlbCi6Xg" name="Game" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25FOwTCwEeeki9JlbCi6Xg" name="victoryTrack" visibility="public" type="_25FOwDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25F10DCwEeeki9JlbCi6Xg" name="militaryTrack" visibility="public" type="_25FOwDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25F10TCwEeeki9JlbCi6Xg" name="faithTrack" visibility="public" type="_25FOwDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25Gc4DCwEeeki9JlbCi6Xg" name="orderTrack" visibility="public" type="_25FOwDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25Gc4TCwEeeki9JlbCi6Xg" name="blackDice" visibility="public" type="_2rllUDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25HD8DCwEeeki9JlbCi6Xg" name="whiteDice" visibility="public" type="_2rllUDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25HrADCwEeeki9JlbCi6Xg" name="orangeDice" visibility="public" type="_2rllUDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_25LVYDCwEeeki9JlbCi6Xg" name="Game" specification="_25HrATCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    this.victoryTrack = new Track(NameTrack.VictoryPoints);
+    this.militaryTrack = new Track(NameTrack.MilitaryPoints);
+    this.faithTrack = new Track(NameTrack.FaithPoints);
+    this.orderTrack = new Track(NameTrack.TurnOrder);
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_25HrATCwEeeki9JlbCi6Xg" name="Game" visibility="public" method="_25LVYDCwEeeki9JlbCi6Xg"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_25FOwDCwEeeki9JlbCi6Xg" name="Track" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27axEDCwEeeki9JlbCi6Xg" name="name" visibility="public" type="_27H2IDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27cmQDCwEeeki9JlbCi6Xg" name="totalPos" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_27kiEDCwEeeki9JlbCi6Xg" name="Track" specification="_27g3sDCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    this.name = name;
+    switch(name) {
+        case VictoryPoints:
+            this.totalPos = 99;
+            break;
+        case FaithPoints:
+            this.totalPos = 15;
+            break;
+        case MilitaryPoints:
+            this.totalPos = 25;
+            break;
+        case TurnOrder:
+            this.totalPos = 4;
+            break;
+    }
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_27g3sDCwEeeki9JlbCi6Xg" name="Track" visibility="public" method="_27kiEDCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_27j7ADCwEeeki9JlbCi6Xg" name="name" type="_27H2IDCwEeeki9JlbCi6Xg"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Enumeration" xmi:id="_25MjgDCwEeeki9JlbCi6Xg" name="Resource" visibility="public">
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25NKkDCwEeeki9JlbCi6Xg" name="COIN"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25NKkTCwEeeki9JlbCi6Xg" name="WOOD"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25NxoDCwEeeki9JlbCi6Xg" name="STONE"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25NxoTCwEeeki9JlbCi6Xg" name="SERVANT"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_25SqIDCwEeeki9JlbCi6Xg" name="Player" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25TRMDCwEeeki9JlbCi6Xg" name="game" visibility="public" type="_25EnsDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25T4QDCwEeeki9JlbCi6Xg" name="color" visibility="public" type="_2xv3sDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25UfUDCwEeeki9JlbCi6Xg" name="turn" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25VGYDCwEeeki9JlbCi6Xg" name="board" visibility="public" type="_25UfUTCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25VtcTCwEeeki9JlbCi6Xg" name="discV" visibility="public" type="_25VtcDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25WUgDCwEeeki9JlbCi6Xg" name="discM" visibility="public" type="_25VtcDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25W7kDCwEeeki9JlbCi6Xg" name="discF" visibility="public" type="_25VtcDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25XioDCwEeeki9JlbCi6Xg" name="discO" visibility="public" type="_25VtcDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25YJsTCwEeeki9JlbCi6Xg" name="fMemberB" visibility="public" type="_25YJsDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25bNADCwEeeki9JlbCi6Xg" name="fMemberO" visibility="public" type="_25YJsDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25bNATCwEeeki9JlbCi6Xg" name="fMemberW" visibility="public" type="_25YJsDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25b0EDCwEeeki9JlbCi6Xg" name="fMemberN" visibility="public" type="_25YJsDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_25sSwDCwEeeki9JlbCi6Xg" name="Player" specification="_25cbIDCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    this.game = game;
+    this.color = color;
+    this.turn = turn;
+    this.board = new PersonalBoard(turn);
+    this.discV = new MarkerDisc(color, game.victoryTrack);
+    this.discM = new MarkerDisc(color, game.militaryTrack);
+    this.discF = new MarkerDisc(color, game.faithTrack);
+    this.discO = new MarkerDisc(color, game.orderTrack);
+    discO.position = turn;
+    this.fMemberB = new FamilyMember(color, game.blackDice);
+    this.fMemberO = new FamilyMember(color, game.orangeDice);
+    this.fMemberW = new FamilyMember(color, game.whiteDice);
+    this.fMemberN = new FamilyMember();
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_25s50TCwEeeki9JlbCi6Xg" name="RollTheDice" specification="_25s50DCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    Dice black = new Dice(DiceColor.BLACK);
+    game.blackDice = black;
+    Dice white = new Dice(DiceColor.WHITE);
+    game.whiteDice = white;
+    Dice orange = new Dice(DiceColor.ORANGE);
+    game.orangeDice = orange;
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_25uH8TCwEeeki9JlbCi6Xg" name="takeACard" specification="_25tg4TCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    if (card.type == CardType.TERRITORY) {
+        if (board.requestedMilitaryPoints &lt;= discM.position) {
+            board.territory.add(card);
+            //TODO: si prende gli effetti immediati
+            if (board.territory.size() >= 3)
+                board.requestedMilitaryPoints += board.territory.size();
+        } else {
+            System.out.println(&quot;Non puoi prendere la carta&quot;);
+        }
+    } else {
+    //Controlla se hai abbastanza risorse
+    }
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_25cbIDCwEeeki9JlbCi6Xg" name="Player" visibility="public" method="_25sSwDCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_25jI0DCwEeeki9JlbCi6Xg" name="game" type="_25EnsDCwEeeki9JlbCi6Xg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_25jI0TCwEeeki9JlbCi6Xg" name="color" type="_2xv3sDCwEeeki9JlbCi6Xg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_25rrsDCwEeeki9JlbCi6Xg" name="turn">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_25s50DCwEeeki9JlbCi6Xg" name="RollTheDice" visibility="public" method="_25s50TCwEeeki9JlbCi6Xg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_25tg4TCwEeeki9JlbCi6Xg" name="takeACard" visibility="public" method="_25uH8TCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_25uH8DCwEeeki9JlbCi6Xg" name="card" type="_25tg4DCwEeeki9JlbCi6Xg"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_25UfUTCwEeeki9JlbCi6Xg" name="PersonalBoard" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27KSYDCwEeeki9JlbCi6Xg" name="territory" visibility="public" type="_25tg4DCwEeeki9JlbCi6Xg" isUnique="false">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_27K5cDCwEeeki9JlbCi6Xg"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_27K5cTCwEeeki9JlbCi6Xg" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27LggDCwEeeki9JlbCi6Xg" name="requestedMilitaryPoints" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27LggTCwEeeki9JlbCi6Xg" name="building" visibility="public" type="_25tg4DCwEeeki9JlbCi6Xg" isUnique="false">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_27MHkDCwEeeki9JlbCi6Xg"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_27MHkTCwEeeki9JlbCi6Xg" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27MHkjCwEeeki9JlbCi6Xg" name="venture" visibility="public" type="_25tg4DCwEeeki9JlbCi6Xg" isUnique="false">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_27MHkzCwEeeki9JlbCi6Xg"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_27MuoDCwEeeki9JlbCi6Xg" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27MuoTCwEeeki9JlbCi6Xg" name="character" visibility="public" type="_25tg4DCwEeeki9JlbCi6Xg" isUnique="false">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_27MuojCwEeeki9JlbCi6Xg"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_27MuozCwEeeki9JlbCi6Xg" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27Oj0DCwEeeki9JlbCi6Xg" name="nrOfCoins" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27PK4DCwEeeki9JlbCi6Xg" name="nrOfWoods" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27PK4TCwEeeki9JlbCi6Xg" name="nrOfStones" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_27PK4jCwEeeki9JlbCi6Xg" name="nrOfServants" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_27XGsTCwEeeki9JlbCi6Xg" name="PersonalBoard" specification="_27Px8DCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    nrOfCoins = turnOrder + 4;
+    nrOfWoods = 2;
+    nrOfStones = 2;
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_27Px8DCwEeeki9JlbCi6Xg" name="PersonalBoard" visibility="public" method="_27XGsTCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_27XGsDCwEeeki9JlbCi6Xg" name="turnOrder">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_25VtcDCwEeeki9JlbCi6Xg" name="MarkerDisc" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_263-gDCwEeeki9JlbCi6Xg" name="color" visibility="public" type="_2xv3sDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_263-gTCwEeeki9JlbCi6Xg" name="track" visibility="public" type="_25FOwDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_264lkDCwEeeki9JlbCi6Xg" name="position" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_26_TQDCwEeeki9JlbCi6Xg" name="MarkerDisc" specification="_265MoDCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    this.color = color;
+    this.track = track;
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_27HPEDCwEeeki9JlbCi6Xg" name="advancePos" specification="_27GA8DCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    int finalPos = position + pos;
+    if (finalPos > this.track.totalPos) {
+        System.out.println(&quot;C'è stato un errore&quot;);
+        return;
+    }
+    this.position = finalPos;
+    return;
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_265MoDCwEeeki9JlbCi6Xg" name="MarkerDisc" visibility="public" method="_26_TQDCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26-sMDCwEeeki9JlbCi6Xg" name="color" type="_2xv3sDCwEeeki9JlbCi6Xg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26-sMTCwEeeki9JlbCi6Xg" name="track" type="_25FOwDCwEeeki9JlbCi6Xg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_27GA8DCwEeeki9JlbCi6Xg" name="advancePos" visibility="public" method="_27HPEDCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_27GoADCwEeeki9JlbCi6Xg" name="pos">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_25YJsDCwEeeki9JlbCi6Xg" name="FamilyMember" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25zAcDCwEeeki9JlbCi6Xg" name="familyColor" visibility="public" type="_2xv3sDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_25zAcTCwEeeki9JlbCi6Xg" name="dice" visibility="public" type="_2rllUDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_252q0DCwEeeki9JlbCi6Xg" name="FamilyMember" specification="_25zngDCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    this.familyColor = FamilyColor.NEUTRAL;
+    this.dice = new Dice(DiceColor.NONE);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_26F7YTCwEeeki9JlbCi6Xg" name="FamilyMember" specification="_253R4DCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    this.familyColor = familyColor;
+    this.dice = dice;
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_25zngDCwEeeki9JlbCi6Xg" name="FamilyMember" visibility="public" method="_252q0DCwEeeki9JlbCi6Xg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_253R4DCwEeeki9JlbCi6Xg" name="FamilyMember" visibility="public" method="_26F7YTCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26FUUDCwEeeki9JlbCi6Xg" name="familyColor" type="_2xv3sDCwEeeki9JlbCi6Xg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26F7YDCwEeeki9JlbCi6Xg" name="dice" type="_2rllUDCwEeeki9JlbCi6Xg"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_25tg4DCwEeeki9JlbCi6Xg" name="DevelopementCard" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26IXoDCwEeeki9JlbCi6Xg" name="period" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26I-sDCwEeeki9JlbCi6Xg" name="type" visibility="public" type="_25v9IDCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26TWwDCwEeeki9JlbCi6Xg" name="name" visibility="public" type="_26Kz4jCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26VL8DCwEeeki9JlbCi6Xg" name="cost" visibility="public" type="_26T90DCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26argTCwEeeki9JlbCi6Xg" name="immediateEffect" visibility="public" type="_26VzADCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26e88DCwEeeki9JlbCi6Xg" name="permanentEffect" visibility="public" type="_26VzADCwEeeki9JlbCi6Xg" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26e88TCwEeeki9JlbCi6Xg" name="cardtype" visibility="public" type="_25v9IDCwEeeki9JlbCi6Xg" isUnique="false"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Enumeration" xmi:id="_25v9IDCwEeeki9JlbCi6Xg" name="CardType" visibility="public">
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25wkMDCwEeeki9JlbCi6Xg" name="TERRITORY"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25wkMTCwEeeki9JlbCi6Xg" name="BUILDING"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25wkMjCwEeeki9JlbCi6Xg" name="VENTURE"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_25wkMzCwEeeki9JlbCi6Xg" name="CHARACTER"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_26T90DCwEeeki9JlbCi6Xg" name="Cost" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26iAQDCwEeeki9JlbCi6Xg" name="woods" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26iAQTCwEeeki9JlbCi6Xg" name="stones" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26inUDCwEeeki9JlbCi6Xg" name="servants" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26inUTCwEeeki9JlbCi6Xg" name="coins" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26ot8DCwEeeki9JlbCi6Xg" name="faithPenality" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26pVADCwEeeki9JlbCi6Xg" name="victoryPenality" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26p8EDCwEeeki9JlbCi6Xg" name="militaryPenality" visibility="public" isUnique="false">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+          </ownedAttribute>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_26xQ0DCwEeeki9JlbCi6Xg" name="Cost" specification="_26p8ETCwEeeki9JlbCi6Xg">
+            <language>JAVA</language>
+            <body>
+    this.woods = woods;
+    this.stones = stones;
+    this.servants = servants;
+    this.coins = coins;
+    this.faithPenality = faithPenality;
+    this.victoryPenality = victoryPenality;
+    this.militaryPenality = militaryPenality;
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_26p8ETCwEeeki9JlbCi6Xg" name="Cost" visibility="public" method="_26xQ0DCwEeeki9JlbCi6Xg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26s_YDCwEeeki9JlbCi6Xg" name="woods">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26tmcDCwEeeki9JlbCi6Xg" name="stones">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26uNgDCwEeeki9JlbCi6Xg" name="servants">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26u0kDCwEeeki9JlbCi6Xg" name="coins">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26u0kTCwEeeki9JlbCi6Xg" name="faithPenality">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26wCsDCwEeeki9JlbCi6Xg" name="victoryPenality">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_26wpwDCwEeeki9JlbCi6Xg" name="militaryPenality">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusJava_LIBRARIES/JavaLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_26VzADCwEeeki9JlbCi6Xg" name="undefined"/>
+        <packagedElement xmi:type="uml:Enumeration" xmi:id="_27H2IDCwEeeki9JlbCi6Xg" name="NameTrack" visibility="public">
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_27IdMDCwEeeki9JlbCi6Xg" name="VictoryPoints"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_27IdMTCwEeeki9JlbCi6Xg" name="MilitaryPoints"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_27IdMjCwEeeki9JlbCi6Xg" name="FaithPoints"/>
+          <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_27IdMzCwEeeki9JlbCi6Xg" name="TurnOrder"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_26KM0DCwEeeki9JlbCi6Xg" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_26Kz4DCwEeeki9JlbCi6Xg" name="java">
+        <packagedElement xmi:type="uml:Package" xmi:id="_26Kz4TCwEeeki9JlbCi6Xg" name="lang">
+          <packagedElement xmi:type="uml:Class" xmi:id="_26Kz4jCwEeeki9JlbCi6Xg" name="String"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2pxncDCwEeeki9JlbCi6Xg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2pzcoDCwEeeki9JlbCi6Xg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/PapyrusJava/1#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PapyrusJava_PROFILES/PapyrusJava.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2qQvoDCwEeeki9JlbCi6Xg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2qR9wDCwEeeki9JlbCi6Xg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/Codegen/1#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://Codegen_PROFILES/Codegen.profile.uml#_fPDsIBa-EearhdjjJ6cVzQ"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2qmG0DCwEeeki9JlbCi6Xg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2qmG0TCwEeeki9JlbCi6Xg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Create xmi:id="_2xjqcDCwEeeki9JlbCi6Xg" base_BehavioralFeature="_2skcwDCwEeeki9JlbCi6Xg"/>
+  <standard:Create xmi:id="_25KHQDCwEeeki9JlbCi6Xg" base_BehavioralFeature="_25HrATCwEeeki9JlbCi6Xg"/>
+  <standard:Create xmi:id="_25e3YDCwEeeki9JlbCi6Xg" base_BehavioralFeature="_25cbIDCwEeeki9JlbCi6Xg"/>
+  <standard:Create xmi:id="_252DwDCwEeeki9JlbCi6Xg" base_BehavioralFeature="_25zngDCwEeeki9JlbCi6Xg"/>
+  <standard:Create xmi:id="_26EtQDCwEeeki9JlbCi6Xg" base_BehavioralFeature="_253R4DCwEeeki9JlbCi6Xg"/>
+  <PapyrusJava:External xmi:id="_26RhkDCwEeeki9JlbCi6Xg" name="java.lang.String" base_Classifier="_26Kz4jCwEeeki9JlbCi6Xg"/>
+  <PapyrusJava:External xmi:id="_26argDCwEeeki9JlbCi6Xg" name="undefined" base_Classifier="_26VzADCwEeeki9JlbCi6Xg"/>
+  <standard:Create xmi:id="_26sYUDCwEeeki9JlbCi6Xg" base_BehavioralFeature="_26p8ETCwEeeki9JlbCi6Xg"/>
+  <standard:Create xmi:id="_26-FIDCwEeeki9JlbCi6Xg" base_BehavioralFeature="_265MoDCwEeeki9JlbCi6Xg"/>
+  <standard:Create xmi:id="_27WfoDCwEeeki9JlbCi6Xg" base_BehavioralFeature="_27Px8DCwEeeki9JlbCi6Xg"/>
+  <standard:Create xmi:id="_27jT8DCwEeeki9JlbCi6Xg" base_BehavioralFeature="_27g3sDCwEeeki9JlbCi6Xg"/>
+</xmi:XMI>
