@@ -1,9 +1,10 @@
-package it.polimi.ingsw.GC_04;
+/*  CLASSE INVENTATA CHE STAVA NEL REPOSITORY SCARICATO, VA CANCELLATA DA QUI E DAI TEST!
+ 
+  package it.polimi.ingsw.GC_04;
+ 
 
-/**
- * Hello world!
- *
- */
+// Hello world!
+ 
 public class App 
 {
     public static void main( String[] args )
@@ -11,3 +12,4 @@ public class App
         System.out.println( "Hello World!" );
     }
 }
+*/
