@@ -16,4 +16,9 @@ public class Game {
 		this.faithTrack = new Track(NameTrack.FaithPoints);
 		this.orderTrack = new Track(NameTrack.TurnOrder);
 	}
+	public void maiun(){
+		Dice a=new Dice(DiceColor.BLACK);
+		a.ciao();
+		
+	}
 }
