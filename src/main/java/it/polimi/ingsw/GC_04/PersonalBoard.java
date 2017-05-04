@@ -1,4 +1,4 @@
-package Regole;
+package it.polimi.ingsw.GC_04;
 
 import java.util.ArrayList;
 

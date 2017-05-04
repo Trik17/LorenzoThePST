@@ -1,4 +1,4 @@
-package Regole;
+package it.polimi.ingsw.GC_04;
 
 public class Cost {
 	
@@ -6,6 +6,10 @@ public class Cost {
 	 * ALTERNATIVA: faccio una lista di risorse/punti richiesti, potrebbe essere più comodo se volessi usare
 	 * questa classe anche per gli effetti delle carte. In questo caso però dovrei cambiare anche la PersonalBoard credo.
 	 * 
+	 */
+	
+	/* ALTERNATIVA SUGGERITA DA SERGIO: PER GLI EFFETTI PERMANENTI salvarli sui vari player
+	 * a cui si applicano
 	 */
 	
 	public int woods;
