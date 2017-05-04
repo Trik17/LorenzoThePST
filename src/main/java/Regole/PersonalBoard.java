@@ -18,6 +18,7 @@ public class PersonalBoard {
 		nrOfCoins = turnOrder + 4;
 		nrOfWoods = 2;
 		nrOfStones = 2;
+		nrOfServants = 3;
 	}
 	
 	

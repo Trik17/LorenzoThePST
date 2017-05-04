@@ -8,9 +8,11 @@ public class DevelopementCard {
 	public CardType type;
 	public String name;
 	public Cost cost;
-	public undefined immediateEffect;
-	public undefined permanentEffect;
-	public CardType cardtype;
+	//public undefined immediateEffect;
+	//public undefined permanentEffect;
+	
+	private void immediateEffect(){};
+	private void permanentEffect(){};
 	
 }
 

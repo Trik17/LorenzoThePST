@@ -3,10 +3,10 @@ package Regole;
 public class MarkerDisc {
 	
 	public FamilyColor color;
-	public Track track;
+	public NameTrack track; //abbiamo eliminato la classe TRACK ma rivediamola quando facciamo la GUI
 	public int position;
 	
-	public MarkerDisc(FamilyColor color, Track track){
+	public MarkerDisc(FamilyColor color, NameTrack track){
 		this.color = color;
 		this.track = track;
 		
@@ -14,15 +14,9 @@ public class MarkerDisc {
 	
 	
 	public void advancePos(int pos){
-		int finalPos = position + pos;
 		
-		if(finalPos > this.track.totalPos){
-			
-			System.out.println("C'è stato un errore");
-			return;
-		}
-		
-		this.position = finalPos;
+		this.position += pos;
+
 		return;
 	}
 
