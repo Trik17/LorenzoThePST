@@ -6,9 +6,9 @@ public class Game {
 	public Track militaryTrack;
 	public Track faithTrack;
 	public Track orderTrack;*/
-	public Dice blackDice;
-	public Dice whiteDice;
-	public Dice orangeDice;
+	private Dice blackDice;
+	private Dice whiteDice;
+	private Dice orangeDice;
 	private Player player1;
 	private Player player2;
 	private Player player3;
@@ -27,8 +27,9 @@ public class Game {
 		
 	}
 	
-
-	public void rollTheDices(){
+	
+	
+	public void rollTheDices(){  //public?? o lo fa automaticamente game stesso?
 		
 		blackDice.roll();
 		whiteDice.roll();

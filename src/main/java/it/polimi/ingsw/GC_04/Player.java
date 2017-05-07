@@ -2,19 +2,28 @@ package it.polimi.ingsw.GC_04;
 
 public class Player {
 	
-	public Game game;
+	private Game game;
+	private FamilyColor color;
+	private int turn;
+	private PersonalBoard personalBoard;
+	private MarkerDisc discV;
+	private MarkerDisc discM;
+	private MarkerDisc discF;
+	private MarkerDisc discO;
+	private FamilyMember fMemberB;
+	private FamilyMember fMemberO;
+	private FamilyMember fMemberW;
+	private FamilyMember fMemberN;
+	/* per bonus e malus permanenti dati da scomuniche o carte:
+	 * metto degli attributi private che registrano questi bonus/malus
+	 * e metodi pubblici per visualizzarli e un' altri metodi publici per editarli
+	 */
 	
-	public FamilyColor color;
-	public int turn;
-	public PersonalBoard personalBoard;
-	public MarkerDisc discV;
-	public MarkerDisc discM;
-	public MarkerDisc discF;
-	public MarkerDisc discO;
-	public FamilyMember fMemberB;
-	public FamilyMember fMemberO;
-	public FamilyMember fMemberW;
-	public FamilyMember fMemberN;
+	//caso dei bonus /malus dadi:  deve avere in ingresso il tipo di azione come enum
+	public int extraValueDice(DiceAction action){
+		
+	}// diventa troppo grossa come funzione?
+	
 	
 	public Player(Game game, FamilyColor color, int turn){
 		this.game = game;
@@ -33,6 +42,8 @@ public class Player {
 		this.fMemberW = new FamilyMember(color, game.whiteDice);
 		this.fMemberN = new FamilyMember();
 	}
+	
+	
 		
 		
 	public void refreshFMemberValue(){
