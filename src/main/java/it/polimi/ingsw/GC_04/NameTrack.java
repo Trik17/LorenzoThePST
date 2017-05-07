@@ -2,5 +2,5 @@ package it.polimi.ingsw.GC_04;
 
 public enum NameTrack {
 
-	VictoryPoints, MilitaryPoints, FaithPoints, TurnOrder; 
+	VICTORYPOINTS, MILITARYPOINTS, FAITHPOINTS, TURNORDER; 
 }
