@@ -2,8 +2,8 @@ package it.polimi.ingsw.GC_04;
 
 public class FamilyMember {
 	
-	public FamilyColor familyColor;
-	public Dice dice;
+	private FamilyColor familyColor;
+	private Dice dice;
 	private int value;
 	private int extra;
 	
