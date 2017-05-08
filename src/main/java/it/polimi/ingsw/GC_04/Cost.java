@@ -12,13 +12,13 @@ public class Cost {
 	 * a cui si applicano
 	 */
 	
-	public int woods;
-	public int stones;
-	public int servants;
-	public int coins;
-	public int faithPenality;
-	public int victoryPenality;
-	public int militaryPenality;
+	private int woods;
+	private int stones;
+	private int servants;
+	private int coins;
+	private int faithPenality;
+	private int victoryPenality;
+	private int militaryPenality;
 
 	public Cost(int woods, int stones, int servants, int coins, int faithPenality, int victoryPenality, int militaryPenality){
 		
