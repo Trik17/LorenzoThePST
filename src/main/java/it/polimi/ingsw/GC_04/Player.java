@@ -4,12 +4,12 @@ public class Player {
 	
 	private Game game;
 	private FamilyColor color;
-	private int turn;
+	//private int turn;// classe a parte?!
 	private PersonalBoard pBoard;
-	private MarkerDisc discV;
+	/*private MarkerDisc discV;
 	private MarkerDisc discM;
 	private MarkerDisc discF;
-	private MarkerDisc discO;
+	private MarkerDisc discO;*/
 	private FamilyMember fMemberB;
 	private FamilyMember fMemberO;
 	private FamilyMember fMemberW;
