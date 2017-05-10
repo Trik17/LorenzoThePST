@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_04;
 
 import java.util.*;
 
-public class DevelopementCard {
+public class DevelopementCard extends Card{
 	
 	private int period;
 	private CardType type;
