@@ -2,15 +2,14 @@ package it.polimi.ingsw.GC_04;
 
 public class ActionSpace {
 	
-	private Area areaName;
 	private int activationCost;//valore necessario del dado
-	//private effettoo immediato con fantomatica classe cost
+	private Effect effect;
 	private FamilyMember fMember;
 	
 	
-	public ActionSpace(Area areaName, int activationCost, //effetto immediato){
-		this.areaName = areaName;
+	public ActionSpace(int activationCost, Effect effect){
+		
 		this.activationCost = activationCost;
-		//l'altro
+		this.effect = effect;
 	}
 }

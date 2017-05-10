@@ -4,12 +4,6 @@ public class Player {
 	
 	private Game game;
 	private FamilyColor color;
-	//private int turn;// classe a parte?!
-	private PersonalBoard pBoard;
-	/*private MarkerDisc discV;
-	private MarkerDisc discM;
-	private MarkerDisc discF;
-	private MarkerDisc discO;*/
 	private FamilyMember fMemberB;
 	private FamilyMember fMemberO;
 	private FamilyMember fMemberW;
@@ -21,7 +15,7 @@ public class Player {
 	 */
 	
 	//caso dei bonus /malus dadi:  deve avere in ingresso il tipo di azione come enum
-	public int extraValueDice(DiceAction action){
+	public void extraValueDice(DiceAction action){
 		
 	}// diventa troppo grossa come funzione?
 
@@ -55,6 +49,13 @@ public class Player {
 		
 	}
 	
+	public void runProduction(){}
+	public void runHarvest(){}
+	public void takeACard(){}
+	public void goToTheMarket(){}
+	public void getExcommunication(){}
+	public void goToTheCouncilPalace(){}
+	
 	/*public void takeACard(DevelopementCard card){
 		if(card.type == CardType.TERRITORY){
 			
@@ -73,9 +74,6 @@ public class Player {
 	}*/
 	
 	
-	public void runProduction(FamilyMember fMember, ActionSpace aSpace, PersonalBoard pBoard){
-		
-		result= this.rProduction.make(FamilyMember fMember, ActionSpace aSpace, PersonalBoard personalBoard);
-	}
+	
 	
 }

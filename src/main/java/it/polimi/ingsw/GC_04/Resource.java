@@ -1,6 +1,19 @@
 package it.polimi.ingsw.GC_04;
 
-public enum Resource {
+public class Resource {
 	
-	COIN, WOOD, STONE, SERVANT;
+	protected int quantity;
+	
+	public Resource(int quantity){
+		
+		this.quantity = quantity;
+	}
+	
+	public void modifyQuantity(int nrOfResources){
+		this.quantity += nrOfResources;
+	}
+	
+	public int getQuantity(){
+		return quantity;
+	}
 }

@@ -5,14 +5,14 @@ import java.util.*;
 public class DevelopementCard extends Card{
 	
 	private int period;
-	private CardType type;
 	private String name;
 	private Cost cost;
-	//public undefined immediateEffect;
-	//public undefined permanentEffect;
+	public ArrayList<Effect> immediateEffects;
+	public ArrayList<Effect> permanentEffects;
 	
-	private void immediateEffect(){};
-	private void permanentEffect(){};
+	
+	private void immediateEffect(ArrayList<Effect> effects){};
+	private void permanentEffect(ArrayList<Effect> effects){};
 	
 }
 

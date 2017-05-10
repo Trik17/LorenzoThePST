@@ -16,12 +16,12 @@ public class FamilyMember {
 	public FamilyMember(FamilyColor familyColor, Dice dice){
 		this.familyColor = familyColor;
 		this.dice = dice;
-		this.value = dice.value;
+		this.value = dice.getValue();
 		
 	}
 	
 	public void updateValue(){
-		this.value = dice.value + extra;
+		this.value = dice.getValue() + extra;
 	}
 	
 	public void updateExtra(int extraValue){ //bonus/malus for permanent effects
