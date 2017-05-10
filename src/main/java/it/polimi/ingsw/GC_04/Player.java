@@ -4,16 +4,17 @@ public class Player {
 	
 	private Game game;
 	private FamilyColor color;
-	private int turn;
-	private PersonalBoard personalBoard;
-	private MarkerDisc discV;
+	//private int turn;// classe a parte?!
+	private PersonalBoard pBoard;
+	/*private MarkerDisc discV;
 	private MarkerDisc discM;
 	private MarkerDisc discF;
-	private MarkerDisc discO;
+	private MarkerDisc discO;*/
 	private FamilyMember fMemberB;
 	private FamilyMember fMemberO;
 	private FamilyMember fMemberW;
 	private FamilyMember fMemberN;
+	private Action actions;
 	/* per bonus e malus permanenti dati da scomuniche o carte:
 	 * metto degli attributi private che registrano questi bonus/malus
 	 * e metodi pubblici per visualizzarli e un' altri metodi publici per editarli
@@ -30,7 +31,7 @@ public class Player {
 		this.game = game;
 		this.color = color;
 		this.turn = turn;
-		this.personalBoard = new PersonalBoard(turn);
+		this.pBoard = new PersonalBoard(turn);
 		 
 		this.discV = new MarkerDisc(color,game.victoryTrack);
 		this.discM = new MarkerDisc(color,game.militaryTrack);
@@ -54,14 +55,14 @@ public class Player {
 		
 	}
 	
-	public void takeACard(DevelopementCard card){
+	/*public void takeACard(DevelopementCard card){
 		if(card.type == CardType.TERRITORY){
 			
-			if(personalBoard.requestedMilitaryPoints <= discM.position){
-				personalBoard.territory.add(card);
+			if(pBoard.requestedMilitaryPoints <= discM.position){
+				pBoard.territory.add(card);
 				//TODO: si prende gli effetti immediati
-				if(personalBoard.territory.size() >= 2)
-					personalBoard.requestedMilitaryPoints += personalBoard.territory.size() + 1;
+				if(pBoard.territory.size() >= 2)
+					pBoard.requestedMilitaryPoints += pBoard.territory.size() + 1;
 			}else{
 				System.out.println("Non puoi prendere la carta");
 			}
@@ -69,6 +70,12 @@ public class Player {
 			//Controlla se hai abbastanza risorse
 		}
 		
+	}*/
+	
+	
+	public void runProduction(FamilyMember fMember, ActionSpace aSpace, PersonalBoard pBoard){
+		
+		result= this.rProduction.make(FamilyMember fMember, ActionSpace aSpace, PersonalBoard personalBoard);
 	}
 	
 }

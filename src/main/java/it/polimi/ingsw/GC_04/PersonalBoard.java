@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class PersonalBoard {
 	
-	public ArrayList<DevelopementCard> territory;
-	public int requestedMilitaryPoints;
-	public ArrayList<DevelopementCard> building;
-	public ArrayList<DevelopementCard> venture;
-	public ArrayList<DevelopementCard> character;
-	public int nrOfCoins;
-	public int nrOfWoods;
-	public int nrOfStones;
-	public int nrOfServants;
+	private ArrayList<DevelopementCard> territory;
+	private int requestedMilitaryPoints;
+	private ArrayList<DevelopementCard> building;
+	private ArrayList<DevelopementCard> venture;
+	private ArrayList<DevelopementCard> character;
+	private int nrOfCoins;
+	private int nrOfWoods;
+	private int nrOfStones;
+	private int nrOfServants;
 	
 	public PersonalBoard(int turnOrder){
 		nrOfCoins = turnOrder + 4;

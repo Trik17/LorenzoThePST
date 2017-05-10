@@ -2,22 +2,34 @@ package it.polimi.ingsw.GC_04;
 
 public class MarkerDisc {
 	
-	public FamilyColor color;
-	public NameTrack track; //abbiamo eliminato la classe TRACK ma rivediamola quando facciamo la GUI
-	public int position;
+	private int victoryPoints;
+	private int militaryPoints;
+	private int faithPoints;
+	private boolean result;
+	//public int turnOrder;// ???
 	
-	public MarkerDisc(FamilyColor color, NameTrack track){
-		this.color = color;
-		this.track = track;
+	
+	
+	
+	public void changeVPoints(int points){
 		
+		//this.position += pos;
+		//si potrebbe fare un return boolean per mandare un false se l'operazione va male (es si sottraggono punti ancora arrivati a zero)
+		return result;
 	}
 	
-	
-	public void advancePos(int pos){
+	public void changeMPoints(int points){
 		
-		this.position += pos;
-
-		return;
+		//this.position += pos;
+		//si potrebbe fare un return boolean per mandare un false se l'operazione va male (es si sottraggono punti ancora arrivati a zero)
+		return result;
+	}
+	
+	public void changeFPoints(int points){
+		
+		//this.position += pos;
+		//si potrebbe fare un return boolean per mandare un false se l'operazione va male (es si sottraggono punti ancora arrivati a zero)
+		return result;
 	}
 
 }
