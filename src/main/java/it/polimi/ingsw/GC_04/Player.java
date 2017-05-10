@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_04;
 
+import java.util.ArrayList;
+
 public class Player {
 	
 	private Game game;
@@ -8,7 +10,7 @@ public class Player {
 	private FamilyMember fMemberO;
 	private FamilyMember fMemberW;
 	private FamilyMember fMemberN;
-	private Action actions;
+	private ArrayList<Effect> permanentEffects;
 	/* per bonus e malus permanenti dati da scomuniche o carte:
 	 * metto degli attributi private che registrano questi bonus/malus
 	 * e metodi pubblici per visualizzarli e un' altri metodi publici per editarli
@@ -21,17 +23,9 @@ public class Player {
 
 	
 	
-	public Player(Game game, FamilyColor color, int turn){
+	public Player(Game game, FamilyColor color){
 		this.game = game;
 		this.color = color;
-		this.turn = turn;
-		this.pBoard = new PersonalBoard(turn);
-		 
-		this.discV = new MarkerDisc(color,game.victoryTrack);
-		this.discM = new MarkerDisc(color,game.militaryTrack);
-		this.discF = new MarkerDisc(color,game.faithTrack);
-		this.discO = new MarkerDisc(color,game.orderTrack);
-		discO.position = turn;
 		
 		this.fMemberB = new FamilyMember(color, game.blackDice);
 		this.fMemberO = new FamilyMember(color, game.orangeDice);
