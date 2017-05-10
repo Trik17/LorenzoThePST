@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_04;
-
 import java.util.ArrayList;
 
-public class Tower {
+
+public class Tower extends Area{
 	
 	private CardType cardType;
 	private ArrayList<DevelopementCard> cardTower;
@@ -10,6 +10,7 @@ public class Tower {
 	private ActionSpace actSpaceT2;
 	private ActionSpace actSpaceT3;
 	private ActionSpace actSpaceT4;
+	
 	
 	
 	private Tower(CardType cardType, ArrayList<DevelopementCard> cardTower){
