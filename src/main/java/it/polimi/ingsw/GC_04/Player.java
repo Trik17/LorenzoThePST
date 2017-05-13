@@ -11,6 +11,7 @@ public class Player {
 	private FamilyMember fMemberW;
 	private FamilyMember fMemberN;
 	private ArrayList<Effect> permanentEffects;
+	
 	/* per bonus e malus permanenti dati da scomuniche o carte:
 	 * metto degli attributi private che registrano questi bonus/malus
 	 * e metodi pubblici per visualizzarli e un' altri metodi publici per editarli
