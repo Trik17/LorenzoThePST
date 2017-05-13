@@ -36,10 +36,9 @@ public class Game {
 	
 	}
 	
-	public void getDice(){
+	public int getDice(Dice dice){
 		
-		blackDice.getValue();
-		whiteDice.getValue();
-		orangeDice.getValue();
+		return
+		dice.getValue();
 	}
 }
