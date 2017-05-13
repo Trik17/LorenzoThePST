@@ -18,15 +18,16 @@ public class Player {
 	
 	public void modifyResource(HashMap<ResourceType, Resource> resources){
 		
+		//per ogni coppia nome-risorsa presente nel parametro, prende la quantità di quella risorsa
+		//e la aggiunge/sottrae alla corrispettiva risorsa del player
+		
 		resources.forEach((resType,res)-> this.resources.get(resType).modifyQuantity(resources.get(resType).getQuantity()));
 		
-		
-		/*
-		 * per ogni coppia nome-risorsa presente nel parametro, prende la quantità di quella risorsa
-		 * e la aggiunge/sottrae alla corrispettiva risorsa del player
-		 */
-		
 	}
+	
+	
+	
+	
 		
 	
 	/* per bonus e malus permanenti dati da scomuniche o carte:
