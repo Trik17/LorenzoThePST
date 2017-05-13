@@ -48,13 +48,21 @@ public class Player {
 		this.game = game;
 		this.color = color;
 		
-		this.fMemberB = new FamilyMember(color, game.blackDice);
+		this.fMemberB = new FamilyMember(color, game.blackDice());
 		this.fMemberO = new FamilyMember(color, game.orangeDice);
 		this.fMemberW = new FamilyMember(color, game.whiteDice);
 		this.fMemberN = new FamilyMember();
 	}
 	
-	
+	public void takeATerritory(){
+		
+		
+		
+		/*final CommandFactory cf = CommandFactory.init();
+		
+		cf.executeCommand("Light on");*/
+		
+	}
 		
 		
 	public void refreshFMemberValue(){
