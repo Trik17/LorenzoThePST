@@ -40,4 +40,11 @@ public class Game {
 		player4.refreshFMemberValue();
 	
 	}
+	
+	public void getDice(){
+		
+		blackDice.getValue();
+		whiteDice.getValue();
+		orangeDice.getValue();
+	}
 }
