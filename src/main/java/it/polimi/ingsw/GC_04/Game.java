@@ -16,11 +16,6 @@ public class Game {
 	
 	public Game(){
 		
-		/*this.victoryTrack = new Track(NameTrack.VictoryPoints);
-		this.militaryTrack = new Track(NameTrack.MilitaryPoints);
-		this.faithTrack = new Track(NameTrack.FaithPoints);
-		this.orderTrack = new Track(NameTrack.TurnOrder);*/
-		
 		this.blackDice = new Dice(DiceColor.BLACK);
 		this.whiteDice = new Dice(DiceColor.WHITE);
 		this.orangeDice = new Dice(DiceColor.ORANGE);
@@ -39,5 +34,12 @@ public class Game {
 		player3.refreshFMemberValue();
 		player4.refreshFMemberValue();
 	
+	}
+	
+	public void getDice(){
+		
+		blackDice.getValue();
+		whiteDice.getValue();
+		orangeDice.getValue();
 	}
 }
