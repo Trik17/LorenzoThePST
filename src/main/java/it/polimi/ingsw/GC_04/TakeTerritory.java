@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_04;
 
-public class takeTerritory implements Action {
+public class TakeTerritory implements Action {
 	private int extraDice;
 	
 	public boolean tTerritory(FamilyMember fMember, ActionSpace aSpace){

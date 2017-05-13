@@ -11,6 +11,26 @@ public class Player {
 	private FamilyMember fMemberW;
 	private FamilyMember fMemberN;
 	private ArrayList<Effect> permanentEffects;
+	private Coins coins;
+	private Woods woods;
+	private Stones stones;
+	private Servants servants;
+	private FaithPoints faithPoints;
+	private MilitaryPoints militaryPoints;
+	private VictoryPoints victoryPoints;
+	
+	
+	
+	public void modifyResource(Coins coins, Woods woods, Stones stones,Servants servants,FaithPoints fp,MilitaryPoints mp,VictoryPoints vp ){
+		this.coins.modifyQuantity(coins.getQuantity());
+		this.woods.modifyQuantity(woods.getQuantity());
+		this.stones.modifyQuantity(stones.getQuantity());
+		this.servants.modifyQuantity(servants.getQuantity());
+		this.faithPoints.modifyQuantity(fp.getQuantity());
+		this.militaryPoints.modifyQuantity(mp.getQuantity());
+		this.victoryPoints.modifyQuantity(vp.getQuantity());
+		
+	}
 	
 	/* per bonus e malus permanenti dati da scomuniche o carte:
 	 * metto degli attributi private che registrano questi bonus/malus
@@ -44,12 +64,16 @@ public class Player {
 		
 	}
 	
+	
+	
 	public void runProduction(){}
 	public void runHarvest(){}
 	public void takeACard(){}
 	public void goToTheMarket(){}
 	public void getExcommunication(){}
 	public void goToTheCouncilPalace(){}
+	
+	
 	
 	/*public void takeACard(DevelopementCard card){
 		if(card.type == CardType.TERRITORY){
