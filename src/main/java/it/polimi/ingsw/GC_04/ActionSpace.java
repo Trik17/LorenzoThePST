@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_04;
 
 public class ActionSpace {
 	
-	private int activationCost;//valore necessario del dado
+	private int activationCost;//necessary dice's value
 	private Effect effect;
 	private FamilyMember fMember;
 	

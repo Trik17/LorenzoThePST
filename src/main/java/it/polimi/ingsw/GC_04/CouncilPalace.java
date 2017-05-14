@@ -12,6 +12,7 @@ public class CouncilPalace extends Area{
 	
 	private CouncilPalace(){
 		
+		
 	}
 	
 	

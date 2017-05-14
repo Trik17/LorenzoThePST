@@ -8,7 +8,7 @@ public class Cost {
 	 * 
 	 */
 	
-	/* ALTERNATIVA SUGGERITA DA SERGIO: PER GLI EFFETTI PERMANENTI salvarli sui vari player
+	/* ALTERNATIVA: PER GLI EFFETTI PERMANENTI salvarli sui vari player
 	 * a cui si applicano
 	 */
 	
