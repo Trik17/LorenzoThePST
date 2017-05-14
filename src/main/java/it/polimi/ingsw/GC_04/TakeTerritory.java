@@ -37,7 +37,10 @@ public class TakeTerritory extends Action{
 	
 	public boolean isApplicable(){
 		
-		return aSpace.checkDiceValue(fMember) && checkRequestedMilitaryPoints() && checkColorInTower(player.game.TerritoryTower, fMember.getFamilyColor());
+		return aSpace.checkDiceValue(fMember) && 
+				checkRequestedMilitaryPoints() && 
+				checkColorInTower(player.game.TerritoryTower, fMember.getFamilyColor()) &&
+				aSpace.isFree();
 		
 		
 		

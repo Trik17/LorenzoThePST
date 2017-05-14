@@ -28,4 +28,9 @@ public class ActionSpace {
 		if (fMember == null) return null;
 		return this.fMember.getFamilyColor();
 	}
+	
+	public boolean isFree(){
+		if(familyMember == null) return true;
+		return false;
+	}
 }

@@ -18,7 +18,25 @@ public class Player {
 	private ArrayList<VentureCard> vCards;
 	private ArrayList<BuildingCard> bCards;
 	private ArrayList<CharacterCard> cCards;
-	private HashMap<ResourceType, Resource> resources;
+	private Map<ResourceType, Resource> resources;
+	
+	public Player(FamilyColor color){
+
+		this.color = color;
+		resources = new HashMap<ResourceType,Resource>();
+		resources.put(ResourceType.COIN, new Coins(5));//questo è da modificare perché non hanno tutti 5 monete
+		resources.put(ResourceType.WOOD, new Woods(2));
+		resources.put(ResourceType.STONE, new Stones(2));
+		resources.put(ResourceType.SERVANT, new Servants(3));
+		resources.put(ResourceType.MILITARYP, new MilitaryPoints(0));
+		resources.put(ResourceType.VICTORYP, new VictoryPoints(0));
+		resources.put(ResourceType.FAITHP, new FaithPoints(0));
+		
+		this.fMemberB = new FamilyMember(color, game.blackDice);
+		this.fMemberO = new FamilyMember(color, game.orangeDice);
+		this.fMemberW = new FamilyMember(color, game.whiteDice);
+		this.fMemberN = new FamilyMember();
+	}
 	
 	public List<TerritoryCard> getTCards(){
 		return tCards;
@@ -54,22 +72,7 @@ public class Player {
 
 	
 	
-	public Player(FamilyColor color){
-
-		this.color = color;
-		resources.put(ResourceType.COIN, new Coins(5));//questo è da modificare perché non hanno tutti 5 monete
-		resources.put(ResourceType.WOOD, new Woods(2));
-		resources.put(ResourceType.STONE, new Stones(2));
-		resources.put(ResourceType.SERVANT, new Servants(3));
-		resources.put(ResourceType.MILITARYP, new MilitaryPoints(0));
-		resources.put(ResourceType.VICTORYP, new VictoryPoints(0));
-		resources.put(ResourceType.FAITHP, new FaithPoints(0));
-		
-		this.fMemberB = new FamilyMember(color, game.blackDice());
-		this.fMemberO = new FamilyMember(color, game.orangeDice);
-		this.fMemberW = new FamilyMember(color, game.whiteDice);
-		this.fMemberN = new FamilyMember();
-	}
+	
 	
 	public void takeATerritory(){
 		
