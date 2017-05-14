@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_04;
 
-import java.util.*;
+/*import java.util.*;
 import java.util.stream.Collectors;
 
 public final class CommandFactory {
@@ -25,15 +25,15 @@ public final class CommandFactory {
 	}
 
 	/* Factory pattern */
-	public static CommandFactory init() {
+	/*public static CommandFactory init() {
 		final CommandFactory cf = new CommandFactory();
 
 		// commands are added here using lambdas. It is also possible to dynamically add commands without editing the code.
-				cf.addCommand("Take a Territory", () -> System.out.println("Light turned on"));
+				cf.addCommand("Take a Card", () -> );
 				cf.addCommand("Light off", () -> System.out.println("Light turned off"));
 
 				return cf;
 	}
 	
 	
-}
+}*/

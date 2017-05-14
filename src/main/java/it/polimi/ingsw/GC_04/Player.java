@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_04;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Player {
 	
@@ -12,9 +14,19 @@ public class Player {
 	private FamilyMember fMemberW;
 	private FamilyMember fMemberN;
 	private ArrayList<Effect> permanentEffects;
+	private ArrayList<TerritoryCard> tCards;
+	private ArrayList<VentureCard> vCards;
+	private ArrayList<BuildingCard> bCards;
+	private ArrayList<CharacterCard> cCards;
 	private HashMap<ResourceType, Resource> resources;
 	
+	public List<TerritoryCard> getTCards(){
+		return tCards;
+	}
 	
+	public Map<ResourceType, Resource> getResources(){
+		return resources;
+	}
 	
 	public void modifyResource(HashMap<ResourceType, Resource> resources){
 		
@@ -78,32 +90,21 @@ public class Player {
 	}
 	
 	
+
 	
+	public void takeACard(DevelopementCard card){
+		card.takeCard(this);
+	}
 	public void runProduction(){}
 	public void runHarvest(){}
-	public void takeACard(){}
+	
 	public void goToTheMarket(){}
 	public void getExcommunication(){}
 	public void goToTheCouncilPalace(){}
 	
 	
 	
-	/*public void takeACard(DevelopementCard card){
-		if(card.type == CardType.TERRITORY){
-			
-			if(pBoard.requestedMilitaryPoints <= discM.position){
-				pBoard.territory.add(card);
-				//TODO: si prende gli effetti immediati
-				if(pBoard.territory.size() >= 2)
-					pBoard.requestedMilitaryPoints += pBoard.territory.size() + 1;
-			}else{
-				System.out.println("Non puoi prendere la carta");
-			}
-		}else{
-			//Controlla se hai abbastanza risorse
-		}
-		
-	}*/
+	
 	
 	
 	

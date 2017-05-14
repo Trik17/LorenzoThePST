@@ -12,4 +12,13 @@ public class ActionSpace {
 		this.activationCost = activationCost;
 		this.effect = effect;
 	}
+	
+	public int getActivationCost(){
+		return activationCost;
+	}
+	
+	public FamilyColor getPresentColor(){
+		if (fMember == null) return null;
+		return this.fMember.getFamilyColor();
+	}
 }

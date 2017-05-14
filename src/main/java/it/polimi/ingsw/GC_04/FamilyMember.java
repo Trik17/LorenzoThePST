@@ -26,4 +26,12 @@ public class FamilyMember {
 	public void updateExtra(int extraValue){ //bonus/malus for permanent effects
 		this.extra += extraValue;
 	}
+	
+	public int getValue(){
+		return value;
+	}
+	
+	public FamilyColor getFamilyColor(){
+		return familyColor;
+	}
 }
