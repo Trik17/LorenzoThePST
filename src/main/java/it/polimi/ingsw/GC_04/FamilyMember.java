@@ -5,6 +5,7 @@ public class FamilyMember {
 	private FamilyColor familyColor;
 	private Dice dice;
 	private int value;
+	private int extra;
 	
 	
 	public FamilyMember(){

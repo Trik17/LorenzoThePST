@@ -12,7 +12,7 @@ public class Effect {
 		
 	}
 	
-	public void activateImmediateE(HashMap<ResourceType,Resource> effect){
+	public void activateImmediateE(HashMap<ResourceType,Resource> effect,Player player){
 		player.modifyResource(effect);
 		//e come glielo passi il player?????
 	}
