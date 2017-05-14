@@ -13,7 +13,7 @@ public class Player {
 	private FamilyMember fMemberO;
 	private FamilyMember fMemberW;
 	private FamilyMember fMemberN;
-	private ArrayList<Effect> permanentEffects;
+	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
 	private ArrayList<TerritoryCard> tCards;
 	private ArrayList<VentureCard> vCards;
 	private ArrayList<BuildingCard> bCards;
