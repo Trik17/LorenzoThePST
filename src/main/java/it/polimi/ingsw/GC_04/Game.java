@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_04;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 	
 	/*public Track victoryTrack;
@@ -13,12 +16,15 @@ public class Game {
 	private Player player2;
 	private Player player3;
 	private Player player4;
+	private ArrayList<Area> areas;
 	
 	public Game(){
 		
 		this.blackDice = new Dice(DiceColor.BLACK);
 		this.whiteDice = new Dice(DiceColor.WHITE);
 		this.orangeDice = new Dice(DiceColor.ORANGE);
+		
+		/*this.areas.add(territoryTower);*/
 		
 	}
 	

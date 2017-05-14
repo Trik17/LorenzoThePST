@@ -92,8 +92,8 @@ public class Player {
 	
 
 	
-	public void takeACard(DevelopementCard card){
-		card.takeCard(this);
+	public void takeACard(DevelopementCard card,ActionSpace aSpace, FamilyMember fMember){
+		card.takeCard(this,aSpace,fMember);
 	}
 	public void runProduction(){}
 	public void runHarvest(){}

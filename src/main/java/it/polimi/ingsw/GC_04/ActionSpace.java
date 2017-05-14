@@ -13,6 +13,13 @@ public class ActionSpace {
 		this.effect = effect;
 	}
 	
+	public boolean checkDiceValue(FamilyMember fMember){
+		
+		if (fMember.getValue() >= getActivationCost())
+			return true;
+		return false;
+	}
+	
 	public int getActivationCost(){
 		return activationCost;
 	}

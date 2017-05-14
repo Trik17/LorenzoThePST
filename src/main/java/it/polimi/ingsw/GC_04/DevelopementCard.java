@@ -10,7 +10,7 @@ public abstract class DevelopementCard extends Card{
 	public ArrayList<Effect> immediateEffects;
 	public ArrayList<Effect> permanentEffects;
 	
-	public abstract void takeCard(Player player);
+	public abstract void takeCard(Player player,ActionSpace aSpace, FamilyMember fMember);
 	
 	private void immediateEffect(ArrayList<Effect> effects){};
 	private void permanentEffect(ArrayList<Effect> effects){};
