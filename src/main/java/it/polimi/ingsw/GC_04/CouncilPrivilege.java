@@ -1,35 +1,43 @@
 package it.polimi.ingsw.GC_04;
-import java.util.HashMap;
-import java.util.Map;
 
-public class CouncilPrivilege {
+import java.util.HashMap;
+
+public class CouncilPrivilege extends Effect {
+	private ResourceType rT;
 	
 	public CouncilPrivilege(){
-				
+						
 		}
+	@Override
+	public void apply(Player player){
 		
-	public void takeCP(ResourceType rT, HashMap<ResourceType,Resource> effect){
-	
+		rT=choosePrivilege();
+		
 		switch (rT){
 		case WOOD:    //to take a stone and a wood: the constructor takes WOOD or STONE indifferently
 		case STONE:
-			effect.get(ResourceType.WOOD).modifyQuantity(1);			
-			effect.get(ResourceType.STONE).modifyQuantity(1);			
+			player.getResources().get(ResourceType.WOOD).modifyQuantity(1);			
+			player.getResources().get(ResourceType.STONE).modifyQuantity(1);			
 			break;
 		case SERVANT:
-			effect.get(ResourceType.SERVANT).modifyQuantity(2);
+			player.getResources().get(ResourceType.SERVANT).modifyQuantity(2);
 			break;
 		case COIN:
-			effect.get(ResourceType.COIN).modifyQuantity(2);
+			player.getResources().get(ResourceType.COIN).modifyQuantity(2);
 			break;
 		case MILITARYP:
-			effect.get(ResourceType.MILITARYP).modifyQuantity(2);
+			player.getResources().get(ResourceType.MILITARYP).modifyQuantity(2);
 			break;
 		case FAITHP:
-			effect.get(ResourceType.FAITHP).modifyQuantity(1);
+			player.getResources().get(ResourceType.FAITHP).modifyQuantity(1);
 			break;
 				
 	}
+	}
+	
+	private ResourceType choosePrivilege(){
+		//cerca interazione con giocatore per decidere rT
+		return rT;
 	}
 	
 	
