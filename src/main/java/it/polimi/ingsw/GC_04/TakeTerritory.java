@@ -38,16 +38,17 @@ public class TakeTerritory extends TakeACard{
 		return true;
 	}
 	
+	
+		
 	public boolean isApplicable(){
 		
 		return isValueEnough() && 
 				checkRequestedMilitaryPoints() && 
 				isColorAvailable(player.game.TerritoryTower, fMember.getFamilyColor()) &&
-				aSpace.isAvailable();
+				aSpace.isAvailable() &&
+				
 		
 		
-		
-	}
 	
 	
 

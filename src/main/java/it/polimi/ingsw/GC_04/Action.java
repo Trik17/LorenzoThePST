@@ -10,6 +10,7 @@ public abstract class Action {
 	protected int value;
 	
 	
+	public abstract boolean isApplicable();
 	
 	public boolean isValueEnough(){
 		

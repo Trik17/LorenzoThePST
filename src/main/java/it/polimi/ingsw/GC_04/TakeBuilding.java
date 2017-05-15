@@ -7,4 +7,10 @@ public class TakeBuilding extends TakeACard{
 		this.value = fMember.getDice().getValue() + servants + player.getExtraDice().getExtraBuilding();
 	}
 
+	@Override
+	public boolean isApplicable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

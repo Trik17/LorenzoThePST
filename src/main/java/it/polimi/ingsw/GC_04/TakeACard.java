@@ -16,6 +16,9 @@ public abstract class TakeACard extends Action{
 		
 	}
 	
+	public boolean isPBoardNotFull(){
+		if 
+	}
 
 	public boolean isColorAvailable(Tower tower,FamilyMember fMember){
 		return tower.isColorAvailable(fMember.getFamilyColor());

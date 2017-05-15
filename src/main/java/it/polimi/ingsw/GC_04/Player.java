@@ -48,9 +48,11 @@ public class Player {
 		return extraDice;
 	}
 	
-	public List<TerritoryCard> getTCards(){
+	
+	public List<TerritoryCard> getCards(){
 		return tCards;
 	}
+	
 	
 	public Map<ResourceType, Resource> getResources(){
 		return resources;
@@ -64,44 +66,6 @@ public class Player {
 		resources.forEach((resType,res)-> this.resources.get(resType).modifyQuantity(resources.get(resType).getQuantity()));
 		
 	}
-	
-	
-	
-	
-		
-	
-	/* per bonus e malus permanenti dati da scomuniche o carte:
-	 * metto degli attributi private che registrano questi bonus/malus
-	 * e metodi pubblici per visualizzarli e un' altri metodi publici per editarli
-	 */
-	
-	//caso dei bonus /malus dadi:  deve avere in ingresso il tipo di azione come enum
-	public void extraValueDice(DiceAction action){
-		
-	}// diventa troppo grossa come funzione?
-
-	
-	
-	
-	
-	public void takeATerritory(){
-		
-		
-		
-		/*final CommandFactory cf = CommandFactory.init();
-		
-		cf.executeCommand("Light on");*/
-		
-	}
-		
-		
-	public void refreshFMemberValue(){
-		fMemberB.updateValue();
-		fMemberW.updateValue();
-		fMemberO.updateValue();
-		
-	}
-	
 	
 
 	
