@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_04;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Modificato nome del metodo ColorIsntThere
 public class Tower extends Area{
 	
 	private ArrayList<DevelopementCard> cardTower;
@@ -31,7 +31,7 @@ public class Tower extends Area{
 		return actSpaceT;
 	}
 	
-	public boolean colorIsntThere(FamilyColor color){
+	public boolean isColorAvailable(FamilyColor color){
 		if (color == FamilyColor.NEUTRAL) return true;
 		
 		for(ActionSpace aSpace:actSpaceT) {

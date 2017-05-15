@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_04;
 
 public class ActionSpace {
+	//eliminato metodo checkDiceValue() modificato isFree() in isAvailable()
 	
 	private int activationCost;//necessary dice's value
 	private Effect effect;
@@ -13,12 +14,7 @@ public class ActionSpace {
 		this.effect = effect;
 	}
 	
-	public boolean checkDiceValue(FamilyMember fMember){
-		
-		if (fMember.getValue() >= getActivationCost())
-			return true;
-		return false;
-	}
+	
 	
 	public int getActivationCost(){
 		return activationCost;
@@ -29,8 +25,8 @@ public class ActionSpace {
 		return this.fMember.getFamilyColor();
 	}
 	
-	public boolean isFree(){
-		if(familyMember == null) return true;
+	public boolean isAvailable(){
+		if(fMember == null) return true;
 		return false;
 	}
 }

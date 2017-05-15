@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_04;
 
+//cambiati parametri di takeACard()
+//aggiunto metodo getExtraDice() e attributo extraDice
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +16,7 @@ public class Player {
 	private FamilyMember fMemberO;
 	private FamilyMember fMemberW;
 	private FamilyMember fMemberN;
+	private ExtraDice extraDice;
 	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
 	private ArrayList<TerritoryCard> tCards;
 	private ArrayList<VentureCard> vCards;
@@ -36,6 +40,12 @@ public class Player {
 		this.fMemberO = new FamilyMember(color, game.orangeDice);
 		this.fMemberW = new FamilyMember(color, game.whiteDice);
 		this.fMemberN = new FamilyMember();
+		this.extraDice = new ExtraDice();
+	}
+	
+	
+	public ExtraDice getExtraDice(){
+		return extraDice;
 	}
 	
 	public List<TerritoryCard> getTCards(){
@@ -95,8 +105,8 @@ public class Player {
 	
 
 	
-	public void takeACard(DevelopementCard card,ActionSpace aSpace, FamilyMember fMember){
-		card.takeCard(this,aSpace,fMember);
+	public void takeACard(DevelopementCard card,ActionSpace aSpace, FamilyMember fMember, int servants){
+		card.takeCard(this,aSpace,fMember,servants);
 	}
 	public void runProduction(){}
 	public void runHarvest(){}

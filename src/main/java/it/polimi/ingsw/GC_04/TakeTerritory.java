@@ -2,16 +2,19 @@ package it.polimi.ingsw.GC_04;
 
 import java.util.Map;
 
-public class TakeTerritory extends Action{
+//prima estendeva Action, ora estende TakeACard
+
+public class TakeTerritory extends TakeACard{
 	
-	private TerritoryCard tCard;
 	
-	public TakeTerritory(Player player, TerritoryCard tCard, ActionSpace aSpace, FamilyMember fMember){
-		this.player = player;
-		this.tCard = tCard;
-		this.aSpace = aSpace;
-		this.fMember = fMember;
+	//eliminato l'attributo tCard
+	
+	public TakeTerritory(Player player, DevelopementCard card, ActionSpace aSpace, FamilyMember fMember,int servants) {
+		super(player, card, aSpace, fMember, servants);
+		this.value = fMember.getDice().getValue() + servants + player.getExtraDice().getExtraTerritory();
 	}
+
+	
 	
 	public boolean checkRequestedMilitaryPoints(){
 		if(player.getTCards().size() < 2) return true; //se ho meno di due carte va bene sempre
@@ -37,10 +40,10 @@ public class TakeTerritory extends Action{
 	
 	public boolean isApplicable(){
 		
-		return aSpace.checkDiceValue(fMember) && 
+		return isValueEnough() && 
 				checkRequestedMilitaryPoints() && 
-				checkColorInTower(player.game.TerritoryTower, fMember.getFamilyColor()) &&
-				aSpace.isFree();
+				isColorAvailable(player.game.TerritoryTower, fMember.getFamilyColor()) &&
+				aSpace.isAvailable();
 		
 		
 		

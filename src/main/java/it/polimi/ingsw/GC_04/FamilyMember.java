@@ -1,11 +1,12 @@
 package it.polimi.ingsw.GC_04;
 
+//eliminato metodi updateExtra(), updateValue() e attributi extraValue e value
+//aggiunto metodo getDice()
+
 public class FamilyMember {
 	
 	private FamilyColor familyColor;
 	private Dice dice;
-	private int value;
-	private int extra;
 	
 	
 	public FamilyMember(){
@@ -16,20 +17,12 @@ public class FamilyMember {
 	public FamilyMember(FamilyColor familyColor, Dice dice){
 		this.familyColor = familyColor;
 		this.dice = dice;
-		this.value = dice.getValue();
 		
 	}
 	
-	public void updateValue(){
-		this.value = dice.getValue() + extra;
-	}
 	
-	public void updateExtra(int extraValue){ //bonus/malus for permanent effects
-		this.extra += extraValue;
-	}
-	
-	public int getValue(){
-		return value;
+	public Dice getDice(){
+		return dice;
 	}
 	
 	public FamilyColor getFamilyColor(){
