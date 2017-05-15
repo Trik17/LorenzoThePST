@@ -1,30 +1,36 @@
 package it.polimi.ingsw.GC_04;
+import java.util.HashMap;
+import java.util.Map;
 
-public class CouncilPrivilege extends Effect{
+public class CouncilPrivilege {
 	
-	public CouncilPrivilege(ResourceType rT){
+	public CouncilPrivilege(){
+				
+		}
 		
+	public void takeCP(ResourceType rT, HashMap<ResourceType,Resource> effect){
+	
 		switch (rT){
 		case WOOD:    //to take a stone and a wood: the constructor takes WOOD or STONE indifferently
 		case STONE:
-			effect.put(rT, new Woods(1));
-			effect.put(rT, new Stones(1));
+			effect.get(ResourceType.WOOD).modifyQuantity(1);			
+			effect.get(ResourceType.STONE).modifyQuantity(1);			
 			break;
 		case SERVANT:
-			effect.put(rT, new Servants(2));
+			effect.get(ResourceType.SERVANT).modifyQuantity(2);
 			break;
 		case COIN:
-			effect.put(rT, new Coins(2));
+			effect.get(ResourceType.COIN).modifyQuantity(2);
 			break;
 		case MILITARYP:
-			effect.put(rT, new MilitaryPoints(2));
+			effect.get(ResourceType.MILITARYP).modifyQuantity(2);
 			break;
 		case FAITHP:
-			effect.put(rT, new FaithPoints(1));
+			effect.get(ResourceType.FAITHP).modifyQuantity(1);
 			break;
-		}
 				
+	}
 	}
 	
 	
-}
+} 
