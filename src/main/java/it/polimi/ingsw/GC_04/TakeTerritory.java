@@ -12,15 +12,16 @@ public class TakeTerritory extends TakeACard{
 	public TakeTerritory(Player player, DevelopementCard card, ActionSpace aSpace, FamilyMember fMember,int servants) {
 		super(player, card, aSpace, fMember, servants);
 		this.value = fMember.getDice().getValue() + servants + player.getExtraDice().getExtraTerritory();
+		this.cT = CardType.TERRITORY;
 	}
 
 	
 	
 	public boolean checkRequestedMilitaryPoints(){
-		if(player.getTCards().size() < 2) return true; //se ho meno di due carte va bene sempre
+		if(player.getCards(CardType.TERRITORY).size() < 2) return true; //se ho meno di due carte va bene sempre
 		
 		int requestedMP;
-		int nrOfCards = player.getTCards().size();
+		int nrOfCards = player.getCards(CardType.TERRITORY).size();
 		int myMP = player.getResources().get(ResourceType.MILITARYP).getQuantity(); //numero di punti militari accumulati dal player
 		
 		switch(nrOfCards){
@@ -39,13 +40,14 @@ public class TakeTerritory extends TakeACard{
 	}
 	
 	
-		
+	@Override	
 	public boolean isApplicable(){
 		
-		return isValueEnough() && 
+		return isPBoardNotFull() &&
+				isValueEnough() && 
 				checkRequestedMilitaryPoints() && 
 				isColorAvailable(player.game.TerritoryTower, fMember.getFamilyColor()) &&
-				aSpace.isAvailable() &&
+				aSpace.isAvailable();
 				
 		
 		
@@ -54,3 +56,6 @@ public class TakeTerritory extends TakeACard{
 
 
 }
+
+
+

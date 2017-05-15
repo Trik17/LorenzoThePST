@@ -18,10 +18,10 @@ public class Player {
 	private FamilyMember fMemberN;
 	private ExtraDice extraDice;
 	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
-	private ArrayList<TerritoryCard> tCards;
-	private ArrayList<VentureCard> vCards;
-	private ArrayList<BuildingCard> bCards;
-	private ArrayList<CharacterCard> cCards;
+	private ArrayList<DevelopementCard> tCards;
+	private ArrayList<DevelopementCard> vCards;
+	private ArrayList<DevelopementCard> bCards;
+	private ArrayList<DevelopementCard> cCards;
 	private Map<ResourceType, Resource> resources;
 	
 	public Player(FamilyColor color){
@@ -49,8 +49,13 @@ public class Player {
 	}
 	
 	
-	public List<TerritoryCard> getCards(){
-		return tCards;
+	public ArrayList<DevelopementCard> getCards(CardType cT){
+		switch(cT){
+		case TERRITORY: return tCards;
+		case BUILDING: return bCards;
+		case VENTURE: return vCards;
+		default: return cCards;
+		}
 	}
 	
 	
