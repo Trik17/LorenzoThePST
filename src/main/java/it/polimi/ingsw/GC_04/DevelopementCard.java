@@ -2,8 +2,7 @@ package it.polimi.ingsw.GC_04;
 
 import java.util.*;
 
-//cambiati i parametri di takeCard() modificato attributo Cost
-
+//aggiunto getCost()
 public abstract class DevelopementCard extends Card{
 	
 	private int period;
@@ -17,6 +16,9 @@ public abstract class DevelopementCard extends Card{
 	private void immediateEffect(ArrayList<Effect> effects){};
 	private void permanentEffect(ArrayList<Effect> effects){};
 	
+	public HashMap<ResourceType,Resource> getCost(){
+		return cost;
+	}
 }
 
 

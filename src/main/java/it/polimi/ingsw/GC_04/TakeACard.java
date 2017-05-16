@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_04;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class TakeACard extends Action{
 	
 	//ora questa classe è astratta ed estende Action, aggiunto l'attributo card, metodo isColorAvailable
@@ -7,10 +10,17 @@ public abstract class TakeACard extends Action{
 
 	private DevelopementCard card;
 	protected CardType cT;
+	protected boolean affordable = true;
 	
 	
-	public boolean isTheCostCovered(){ //fallo
-		return false;
+	public boolean isAffordable(){
+		Map<ResourceType,Resource> cost = card.getCost();
+		Map<ResourceType,Resource> myResources = player.getResources();
+		
+		cost.forEach((resType,res)-> {if(myResources.get(resType).getQuantity() < cost.get(resType).getQuantity()) affordable = false;} );
+	
+	return affordable;
+	
 		
 	}
 				
@@ -51,7 +61,7 @@ public abstract class TakeACard extends Action{
 		
 		return isPBoardNotFull() &&
 				isValueEnough() && 
-				isTheCostCovered() && 
+				isAffordable() && 
 				isColorAvailable(player.game.TerritoryTower, fMember.getFamilyColor()) &&
 				aSpace.isAvailable();
 	}
