@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_04;
 
 import java.util.*;
 
-//aggiunto getCost()
+
 public abstract class DevelopementCard extends Card{
 	
 	private int period;

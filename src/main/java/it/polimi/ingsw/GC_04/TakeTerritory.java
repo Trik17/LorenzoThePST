@@ -2,12 +2,8 @@ package it.polimi.ingsw.GC_04;
 
 import java.util.Map;
 
-//prima estendeva Action, ora estende TakeACard
 
 public class TakeTerritory extends TakeACard{
-	
-	
-	//eliminato l'attributo tCard
 	
 	public TakeTerritory(Player player, DevelopementCard card, ActionSpace aSpace, FamilyMember fMember,int servants) {
 		super(player, card, aSpace, fMember, servants);
