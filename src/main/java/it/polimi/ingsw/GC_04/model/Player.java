@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
-//cambiati parametri di takeACard()
+//resource è diventato un Arraylist
 //aggiunto metodo getExtraDice() e attributo extraDice
 
 import java.util.ArrayList;
@@ -22,19 +22,19 @@ public class Player {
 	private ArrayList<DevelopementCard> vCards;
 	private ArrayList<DevelopementCard> bCards;
 	private ArrayList<DevelopementCard> cCards;
-	private Map<ResourceType, Resource> resources;
+	private List<Resource> resources;
 	
 	public Player(FamilyColor color){
 
 		this.color = color;
-		resources = new HashMap<ResourceType,Resource>();
-		resources.put(ResourceType.COIN, new Coins(5));//questo è da modificare perché non hanno tutti 5 monete
-		resources.put(ResourceType.WOOD, new Woods(2));
-		resources.put(ResourceType.STONE, new Stones(2));
-		resources.put(ResourceType.SERVANT, new Servants(3));
-		resources.put(ResourceType.MILITARYP, new MilitaryPoints(0));
-		resources.put(ResourceType.VICTORYP, new VictoryPoints(0));
-		resources.put(ResourceType.FAITHP, new FaithPoints(0));
+		resources = new ArrayList<Resource>();
+		resources.add(new Coins(5));//questo è da modificare perché non hanno tutti 5 monete
+		resources.add(new Woods(2));
+		resources.add(new Stones(2));
+		resources.add(new Servants(3));
+		resources.add(new MilitaryPoints(0));
+		resources.add(new VictoryPoints(0));
+		resources.add(new FaithPoints(0));
 		
 		this.fMemberB = new FamilyMember(color, game.blackDice);
 		this.fMemberO = new FamilyMember(color, game.orangeDice);
