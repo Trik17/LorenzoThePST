@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CouncilPrivilege extends Effect {
@@ -31,6 +32,13 @@ public class CouncilPrivilege extends Effect {
 		case FAITHP:
 			player.getResources().get(ResourceType.FAITHP).modifyQuantity(1);
 			break;
+			/*public ArrayList<DevelopementCard> getCards(DevelopementCard dC){
+			if (dC instanceof TerritoryCard) return tCards;
+			if (dC instanceof BuildingCard) return bCards;
+			if (dC instanceof VentureCard) return vCards;
+			if (dC instanceof CharacterCard) return cCards;
+			else return null;*/
+		}
 				
 	}
 	}

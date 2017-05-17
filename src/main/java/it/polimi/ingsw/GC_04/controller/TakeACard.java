@@ -17,8 +17,7 @@ public abstract class TakeACard extends Action{
 	//ora questa classe è astratta ed estende Action, aggiunto l'attributo card, metodo isColorAvailable
 	
 
-	private DevelopementCard card;
-	protected CardType cT;
+	protected DevelopementCard card;
 	protected boolean affordable = true;
 	
 	
@@ -43,19 +42,8 @@ public abstract class TakeACard extends Action{
 	
 	public boolean isPBoardNotFull(){
 		final int maxSize = 6;
-		int size = 0;
-
-		switch(cT){
-		case TERRITORY: size = player.getCards(CardType.TERRITORY).size();
-			break;
-		case BUILDING: size = player.getCards(CardType.BUILDING).size();
-			break;
-		case VENTURE: size = player.getCards(CardType.VENTURE).size();
-			break;
-		case CHARACTER: size = player.getCards(CardType.CHARACTER).size();
-			break;
-		}
-		
+		int size = player.getCards(card).size();
+	
 		if(size < maxSize) return true;
 		return false;
 		

@@ -47,15 +47,14 @@ public class Player {
 	public ExtraDice getExtraDice(){
 		return extraDice;
 	}
+
 	
-	
-	public ArrayList<DevelopementCard> getCards(CardType cT){
-		switch(cT){
-		case TERRITORY: return tCards;
-		case BUILDING: return bCards;
-		case VENTURE: return vCards;
-		default: return cCards;
-		}
+	public ArrayList<DevelopementCard> getCards(DevelopementCard dC){
+		if (dC instanceof TerritoryCard) return tCards;
+		if (dC instanceof BuildingCard) return bCards;
+		if (dC instanceof VentureCard) return vCards;
+		if (dC instanceof CharacterCard) return cCards;
+		else return null;
 	}
 	
 	
