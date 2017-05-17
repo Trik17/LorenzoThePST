@@ -1,16 +1,9 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.CardType;
-import it.polimi.ingsw.GC_04.model.DevelopementCard;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.Resource;
-import it.polimi.ingsw.GC_04.model.ResourceType;
-import it.polimi.ingsw.GC_04.model.Tower;
 
 public abstract class TakeACard extends Action{
 	

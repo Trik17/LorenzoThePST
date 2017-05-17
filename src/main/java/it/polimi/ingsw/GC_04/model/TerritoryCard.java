@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_04.model;
 
-import it.polimi.ingsw.GC_04.controller.TakeTerritory;
-
 public class TerritoryCard extends DevelopementCard {
 
 	@Override

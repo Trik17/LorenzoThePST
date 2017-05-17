@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_04.model;
 
-import it.polimi.ingsw.GC_04.controller.TakeBuilding;
-
 public class BuildingCard extends DevelopementCard {
 	
 	
