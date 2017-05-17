@@ -1,10 +1,6 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.model;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.CardType;
-import it.polimi.ingsw.GC_04.model.DevelopementCard;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Player;
 
 public class TakeBuilding extends TakeACard{
 

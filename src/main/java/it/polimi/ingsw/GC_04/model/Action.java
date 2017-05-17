@@ -1,8 +1,4 @@
-package it.polimi.ingsw.GC_04.controller;
-
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Player;
+package it.polimi.ingsw.GC_04.model;
 
 public abstract class Action {
 	
