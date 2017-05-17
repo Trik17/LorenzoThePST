@@ -58,8 +58,8 @@ public class Player {
 	}
 	
 	
-	public Map<ResourceType, Resource> getResources(){
-		return resources;
+	public ArrayList <Resource> getResources(){
+		return (ArrayList<Resource>) resources;
 	}
 	
 	public void modifyResource(HashMap<ResourceType, Resource> resources){

@@ -1,9 +1,8 @@
 package it.polimi.ingsw.GC_04.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.List;
+import java.util.ArrayList;
 
-import it.polimi.ingsw.GC_04.model.CardType;
 
 public abstract class TakeACard extends Action{
 	
@@ -15,12 +14,14 @@ public abstract class TakeACard extends Action{
 	
 	
 	public boolean isAffordable(){
-		Map<ResourceType,Resource> cost = card.getCost();
-		Map<ResourceType,Resource> myResources = player.getResources();
+		ArrayList<Resource> cost = card.getCost();
+		ArrayList<Resource> myRes = player.getResources();
 		
-		cost.forEach((resType,res)-> {if(myResources.get(resType).getQuantity() < cost.get(resType).getQuantity()) affordable = false;} );
-	
-	return affordable;
+		cost.forEach((c)-> 
+		{myRes.forEach(mR -> {if(c.getClass().equals(mR.getClass()) && 
+		mR.getQuantity() < c.getQuantity()) affordable = false;}));
+
+return affordable;
 	
 		
 	}

@@ -41,6 +41,7 @@ public class TakeTerritory extends TakeACard{
 	public boolean isApplicable(){
 		
 		return isPBoardNotFull() &&
+				isAffordable() &&
 				isValueEnough() && 
 				checkRequestedMilitaryPoints() && 
 				isColorAvailable(player.game.TerritoryTower, fMember.getFamilyColor()) &&

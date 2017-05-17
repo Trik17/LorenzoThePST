@@ -7,7 +7,7 @@ public abstract class DevelopementCard extends Card{
 	
 	private int period;
 	private String name;
-	private HashMap<ResourceType,Resource> cost;
+	private ArrayList<Resource> cost;
 	public ArrayList<Effect> immediateEffects;
 	public ArrayList<Effect> permanentEffects;
 	
@@ -16,9 +16,11 @@ public abstract class DevelopementCard extends Card{
 	private void immediateEffect(ArrayList<Effect> effects){};
 	private void permanentEffect(ArrayList<Effect> effects){};
 	
-	public HashMap<ResourceType,Resource> getCost(){
+	public ArrayList<Resource> getCost(){
 		return cost;
 	}
+	
+	
 }
 
 
