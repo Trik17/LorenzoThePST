@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_04.model;
 
+
+//aggiunto metodo isColorAvailable
 public abstract class Action {
 	
 	protected Player player;
@@ -17,5 +19,9 @@ public abstract class Action {
 		return false;
 	}
 	
+	public boolean isColorAvailable(Area area,FamilyMember fMember){
+		return area.isColorAvailable(fMember.getFamilyColor());
+		
+	}
 	
 }

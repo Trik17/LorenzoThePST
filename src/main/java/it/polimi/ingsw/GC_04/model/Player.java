@@ -1,8 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
-//resource è diventato un Arraylist
-//aggiunto metodo getExtraDice() e attributo extraDice
-
+//cambiata funzione RunProduction
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,7 +74,10 @@ public class Player {
 	public void takeACard(DevelopementCard card,ActionSpace aSpace, FamilyMember fMember, int servants){
 		card.takeCard(this,aSpace,fMember,servants);
 	}
-	public void runProduction(){}
+	public void runProduction(FamilyMember fMember, int servants){
+		RunProduction check = new RunProduction(this, fMember, servants);
+		
+	}
 	public void runHarvest(){}
 	
 	public void goToTheMarket(){}
