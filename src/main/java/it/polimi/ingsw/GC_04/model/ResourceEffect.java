@@ -1,12 +1,13 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ResourceEffect extends Effect {
-	private HashMap<ResourceType,Resource> effect; //non abbiamo fatto la new
+	private ArrayList<Resource> effect;
 	
 	public ResourceEffect(){
-		//da file
+		//da file e dovrà prendere la carta in ingresso?
 	}
 	
 	@Override

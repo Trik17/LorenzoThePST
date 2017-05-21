@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_04.model;
 
 public class EndVictoryP extends Effect {
-	private int endVictoryP; //only for venture's card in the original game
+	private int endVictoryP; //Victory Points that must be added at the end of the game
 	
 	public EndVictoryP(){
 		
@@ -10,7 +10,10 @@ public class EndVictoryP extends Effect {
 	@Override
 	public void apply(Player player){
 		
-	((VictoryPoints) player.getResources().get(ResourceType.VICTORYP)).addEndPoints(endVictoryP);
-	
+	player.getResources().forEach(r->{if(r.getClass().equals(VictoryPoints.class)){((VictoryPoints) r).addEndPoints(this.endVictoryP);}});
+		
 	}
 }
+/*
+
+*/

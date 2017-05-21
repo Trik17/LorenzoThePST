@@ -60,13 +60,9 @@ public class Player {
 		return (ArrayList<Resource>) resources;
 	}
 	
-	public void modifyResource(HashMap<ResourceType, Resource> resources){
-		
-		//per ogni coppia nome-risorsa presente nel parametro, prende la quantità di quella risorsa
-		//e la aggiunge/sottrae alla corrispettiva risorsa del player
-		
-		resources.forEach((resType,res)-> this.resources.get(resType).modifyQuantity(resources.get(resType).getQuantity()));
-		
+	public void modifyResource(ArrayList<Resource> resources){
+		//for each resource in input it take the correspondent resource in player and modify it
+		resources.forEach(r->this.resources.forEach(tr->{if(tr.getClass().equals(r.getClass())){tr.modifyQuantity(r.getQuantity());}}));
 	}
 	
 
