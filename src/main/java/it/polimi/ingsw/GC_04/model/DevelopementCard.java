@@ -8,8 +8,8 @@ public abstract class DevelopementCard extends Card{
 	private int period;
 	private String name;
 	private ArrayList<Resource> cost;
-	public ArrayList<Effect> immediateEffects;
-	public ArrayList<Effect> permanentEffects;
+	private ArrayList<Effect> immediateEffects;
+	private ArrayList<Effect> permanentEffects;
 	
 	public abstract void takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants);
 	
@@ -18,6 +18,14 @@ public abstract class DevelopementCard extends Card{
 	
 	public ArrayList<Resource> getCost(){
 		return cost;
+	}
+	
+	public ArrayList<Effect> getImmediateE(){
+		return immediateEffects;
+	}
+	
+	public ArrayList<Effect> getPermanentE(){
+		return permanentEffects;
 	}
 	
 	
