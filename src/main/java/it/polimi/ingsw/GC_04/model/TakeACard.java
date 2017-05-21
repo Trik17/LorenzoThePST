@@ -5,21 +5,19 @@ import java.util.ArrayList;
 
 
 public abstract class TakeACard extends Action{
-	
-	//ora questa classe è astratta ed estende Action, aggiunto l'attributo card, metodo isColorAvailable
-	
 
 	protected DevelopementCard card;
 	protected boolean affordable = true;
 	
 	
 	public boolean isAffordable(){
-		ArrayList<Resource> cost = card.getCost();
-		ArrayList<Resource> myRes = player.getResources();
+		ArrayList<Resource> cost = card.getCost(); //card's cost
+		ArrayList<Resource> myRes = player.getResources(); //player's resources
 		
-		cost.forEach((c)-> 
-		{myRes.forEach(mR -> {if(c.getClass().equals(mR.getClass()) && 
-		mR.getQuantity() < c.getQuantity()) affordable = false;}));
+		cost.forEach((c)->  //for all resource type in cost
+		{myRes.forEach(mR -> {if(c.getClass().equals(mR.getClass()) && //it scrolls through all types of player's resources and if the type coincides
+		mR.getQuantity() < c.getQuantity()) affordable = false;});});
+		//it checks that the player's quantity of that resource is enough to buy the card. if it's not, set affordable = false.
 
 return affordable;
 	
