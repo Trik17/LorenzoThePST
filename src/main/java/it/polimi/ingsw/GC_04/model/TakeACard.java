@@ -3,8 +3,8 @@ package it.polimi.ingsw.GC_04.model;
 import java.awt.List;
 import java.util.ArrayList;
 
-
-public abstract class TakeACard extends Action{
+//non è più abstract
+public class TakeACard extends Action{
 
 	protected DevelopementCard card;
 	protected boolean affordable = true;

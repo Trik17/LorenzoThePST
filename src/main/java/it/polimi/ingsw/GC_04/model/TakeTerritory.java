@@ -1,11 +1,12 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.util.ArrayList;
 import java.util.Map;
 
-import it.polimi.ingsw.GC_04.model.CardType;
-
-
+//aggiunto attributo accumulatedMP
 public class TakeTerritory extends TakeACard{
+	
+	int accumulatedMP;
 	
 	public TakeTerritory(Player player, DevelopementCard card, ActionSpace aSpace, FamilyMember fMember,int servants) {
 		super(player, card, aSpace, fMember, servants);
@@ -15,11 +16,13 @@ public class TakeTerritory extends TakeACard{
 	
 	
 	public boolean checkRequestedMilitaryPoints(){
-		if(player.getCards(card).size() < 2) return true; //se ho meno di due carte va bene sempre
+		if(player.getCards(card).size() < 2) return true; //if player has less than two territory cards return true
 		
 		int requestedMP;
 		int nrOfCards = player.getCards(card).size();
-		int myMP = player.getResources().get(card).getQuantity(); //numero di punti militari accumulati dal player
+		ArrayList<Resource> myRes = player.getResources(); //player's Resources
+		// scroll through player's resources and store in the variable accumulatedMP the quantity of military points accumulated by the player
+		myRes.forEach(res -> {if(res.getClass() == MilitaryPoints.class) accumulatedMP = res.getQuantity();});
 		
 		switch(nrOfCards){
 			case 2: requestedMP = 3;
@@ -31,7 +34,7 @@ public class TakeTerritory extends TakeACard{
 			default: requestedMP = 18;
 		}
 		
-		if (requestedMP > myMP) return false;
+		if (requestedMP > accumulatedMP) return false;
 		
 		return true;
 	}
@@ -47,7 +50,7 @@ public class TakeTerritory extends TakeACard{
 				isColorAvailable(player.game.TerritoryTower, fMember.getFamilyColor()) &&
 				aSpace.isAvailable();
 				
-		
+	}
 		
 	
 	

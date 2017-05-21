@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
 public class ActionSpace {
-	//eliminato metodo checkDiceValue() modificato isFree() in isAvailable()
 	
 	private int activationCost;//necessary dice's value
 	private Effect effect;
