@@ -17,6 +17,10 @@ public class CouncilPrivilege extends Effect {
 		switch (rT){
 		case WOOD:    //to take a stone and a wood: the constructor takes WOOD or STONE indifferently
 		case STONE:
+			ArrayList<Resource> pRes=player.getResources();
+			pRes.forEach(r ->{if(r instanceof Woods)	r.modifyQuantity(2);	});
+			
+			
 			player.getResources().get(ResourceType.WOOD).modifyQuantity(1);			
 			player.getResources().get(ResourceType.STONE).modifyQuantity(1);			
 			break;
