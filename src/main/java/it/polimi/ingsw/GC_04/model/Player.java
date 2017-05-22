@@ -74,7 +74,10 @@ public class Player {
 		RunProduction check = new RunProduction(this, fMember, servants);
 		
 	}
-	public void runHarvest(){}
+	public void runHarvest(FamilyMember fMember, int servants){
+		RunHarvest check = new RunHarvest(this, fMember, servants);
+		
+	}
 	
 	public void goToTheMarket(){}
 	public void getExcommunication(){}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //è un Singleton
-public class Market {
+public class Market extends Area{
 	private static Market instance;
 	
 	
@@ -14,6 +14,7 @@ public class Market {
 	}
 	
 	private Market(){
+		aSpaces = new ArrayList<ActionSpace>();
 		
 	}
 	

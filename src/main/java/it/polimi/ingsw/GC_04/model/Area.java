@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_04.model;
 
 import java.util.ArrayList;
-
+//aggiunti setter e getter
 //cambiato nome attributo e messo static
 //aggiunto metodo
 public abstract class Area {
@@ -16,6 +16,13 @@ public abstract class Area {
 					return false;}
 		
 		return true;
+	}
+	
+	public static void setASpace() {
+		aSpaces.add(new ActionSpace(1, null));
 		
+	}
+	public static ArrayList<ActionSpace> getASpace() {
+		return aSpaces;
 	}
 }

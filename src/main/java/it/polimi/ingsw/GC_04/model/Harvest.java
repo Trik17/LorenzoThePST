@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.util.ArrayList;
+
 //è un Singleton
 public class Harvest extends Area {
 	private static Harvest instance;
@@ -11,6 +13,7 @@ public class Harvest extends Area {
 	}
 	
 	private Harvest(){
+		aSpaces = new ArrayList<ActionSpace>();
 		
 	}
 	
