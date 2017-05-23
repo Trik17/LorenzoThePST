@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 import java.util.ArrayList;
-import java.util.List;
+
 
 //eliminato attributi aSpaceT e getter modificata tutta
 public class Tower extends Area{
@@ -10,7 +10,7 @@ public class Tower extends Area{
 	private static Tower buildingTower; 
 	private static Tower ventureTower; 
 	private static Tower characterTower; 
-	private ArrayList<DevelopmentCard> cardTower;
+	private ArrayList<DevelopmentCard> cardTower; //verranno prese da file
 
 	
 	public static void createTowers(ArrayList<DevelopmentCard> cardT,ArrayList<DevelopmentCard> cardB,ArrayList<DevelopmentCard> cardV,ArrayList<DevelopmentCard> cardC) {

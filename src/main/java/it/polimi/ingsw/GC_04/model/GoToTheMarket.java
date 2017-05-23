@@ -10,8 +10,8 @@ public class GoToTheMarket extends Action {
 
 	@Override
 	public boolean isApplicable() {
-		// TODO Auto-generated method stub
-		return false;
+		return isPlaceAvailable() &&
+				isValueEnough();
 	}
 	
 

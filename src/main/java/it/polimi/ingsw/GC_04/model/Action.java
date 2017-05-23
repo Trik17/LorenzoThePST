@@ -7,13 +7,12 @@ public abstract class Action {
 	protected Player player;
 	protected ActionSpace aSpace;
 	protected FamilyMember fMember;
-	protected int value; //value of the dice with which the action is performed plus servants and any permanent effects
+	protected int value; //TODO: calcolarlo nel costruttore//value of the dice with which the action is performed plus servants and any permanent effects
 	protected Area area;
 	
 	public Action(Player player, FamilyMember fMember, int servants) {
 		this.player = player;
 		this.fMember = fMember;
-		// TODO Auto-generated constructor stub
 	}
 	
 	public abstract boolean isApplicable();
