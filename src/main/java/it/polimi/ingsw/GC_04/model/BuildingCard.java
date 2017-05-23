@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
-public class BuildingCard extends DevelopementCard {
+public class BuildingCard extends DevelopmentCard {
 	
 	
 

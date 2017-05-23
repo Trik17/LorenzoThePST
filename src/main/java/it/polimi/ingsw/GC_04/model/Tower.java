@@ -10,10 +10,10 @@ public class Tower extends Area{
 	private static Tower buildingTower; 
 	private static Tower ventureTower; 
 	private static Tower characterTower; 
-	private ArrayList<DevelopementCard> cardTower;
+	private ArrayList<DevelopmentCard> cardTower;
 
 	
-	public static void createTowers(ArrayList<DevelopementCard> cardT,ArrayList<DevelopementCard> cardB,ArrayList<DevelopementCard> cardV,ArrayList<DevelopementCard> cardC) {
+	public static void createTowers(ArrayList<DevelopmentCard> cardT,ArrayList<DevelopmentCard> cardB,ArrayList<DevelopmentCard> cardV,ArrayList<DevelopmentCard> cardC) {
 		if (created == false) {
 			territoryTower = new Tower(cardT);
 			buildingTower = new Tower(cardB);
@@ -37,7 +37,7 @@ public class Tower extends Area{
 		return characterTower;
 	}
 	
-	public Tower(ArrayList<DevelopementCard> cardTower){//TODO
+	public Tower(ArrayList<DevelopmentCard> cardTower){//TODO
 		
 		this.cardTower = cardTower;
 		

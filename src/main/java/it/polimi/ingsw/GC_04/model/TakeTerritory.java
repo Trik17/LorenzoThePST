@@ -8,7 +8,7 @@ public class TakeTerritory extends TakeACard{
 	
 	int accumulatedMP;
 	
-	public TakeTerritory(Player player, DevelopementCard card, ActionSpace aSpace, FamilyMember fMember,int servants) {
+	public TakeTerritory(Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants) {
 		super(player, card, aSpace, fMember, servants);
 		this.value = fMember.getDice().getValue() + servants + player.getExtraDice().getExtraTerritory();
 	}

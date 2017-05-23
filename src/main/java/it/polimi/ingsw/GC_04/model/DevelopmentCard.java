@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_04.model;
 import java.util.*;
 
 
-public abstract class DevelopementCard extends Card{
+public abstract class DevelopmentCard extends Card{
 	
 	private int period;
 	private String name;

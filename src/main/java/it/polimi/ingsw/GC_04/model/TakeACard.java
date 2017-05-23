@@ -7,7 +7,7 @@ import java.util.ArrayList;
 //eliminata isColorAvailable() ELIMINATA DI NUOVO
 public class TakeACard extends Action{
 
-	protected DevelopementCard card;
+	protected DevelopmentCard card;
 	protected boolean affordable = true;
 	
 	
@@ -25,7 +25,7 @@ return affordable;
 		
 	}
 				
-	public TakeACard(Player player, DevelopementCard card, ActionSpace aSpace, FamilyMember fMember,int servants){
+	public TakeACard(Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants){
 		super(player, fMember, servants);
 		this.card = card;
 		if(card instanceof TerritoryCard) this.area = Tower.territoryTower();
