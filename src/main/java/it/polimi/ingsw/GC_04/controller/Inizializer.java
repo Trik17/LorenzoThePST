@@ -1,4 +1,5 @@
-package it.polimi.ingsw.GC_04.model;
+package it.polimi.ingsw.GC_04.controller;
+
 
 /*import java.awt.List;
 import java.util.ArrayList;
