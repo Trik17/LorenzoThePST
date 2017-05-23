@@ -22,7 +22,9 @@ public class Player {
 	private ArrayList<DevelopementCard> cCards;
 	private List<Resource> resources;
 	
-	public Player(FamilyColor color){
+	
+	//TODO costruttore
+	/*public Player(FamilyColor color){
 
 		this.color = color;
 		resources = new ArrayList<Resource>();
@@ -39,7 +41,7 @@ public class Player {
 		this.fMemberW = new FamilyMember(color, game.whiteDice);
 		this.fMemberN = new FamilyMember();
 		this.extraDice = new ExtraDice();
-	}
+	}*/
 	
 	
 	public ExtraDice getExtraDice(){

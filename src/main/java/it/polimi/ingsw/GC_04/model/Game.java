@@ -2,27 +2,17 @@ package it.polimi.ingsw.GC_04.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//modificata completamente
 public class Game {
 	
 	private Dice blackDice;
 	private Dice whiteDice;
 	private Dice orangeDice;
-	private Player player1;
-	private Player player2;
-	private Player player3;
-	private Player player4;
+	private Player[] players;
 	private ArrayList<Area> areas;
 	
-	public Game(){
-		
-		this.blackDice = new Dice(DiceColor.BLACK);
-		this.whiteDice = new Dice(DiceColor.WHITE);
-		this.orangeDice = new Dice(DiceColor.ORANGE);
-		
-		/*this.areas.add(territoryTower);*/
-		
-	}
+	
+    //manca costruttore
 	
 	
 	
@@ -31,10 +21,6 @@ public class Game {
 		blackDice.roll();
 		whiteDice.roll();
 		orangeDice.roll();
-		player1.refreshFMemberValue();
-		player2.refreshFMemberValue();
-		player3.refreshFMemberValue();
-		player4.refreshFMemberValue();
 	
 	}
 	

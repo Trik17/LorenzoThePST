@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_04.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CouncilPrivilege extends Effect {
+/*public class CouncilPrivilege extends Effect {
 	private ResourceType rT;
 	
 	public CouncilPrivilege(){
@@ -41,7 +41,7 @@ public class CouncilPrivilege extends Effect {
 			if (dC instanceof BuildingCard) return bCards;
 			if (dC instanceof VentureCard) return vCards;
 			if (dC instanceof CharacterCard) return cCards;
-			else return null;*/
+			else return null;
 		}
 				
 	}
@@ -54,3 +54,4 @@ public class CouncilPrivilege extends Effect {
 	
 	
 } 
+*/

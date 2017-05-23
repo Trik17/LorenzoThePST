@@ -4,8 +4,8 @@ package it.polimi.ingsw.GC_04.model;
 public class GoToTheCouncilPalace extends Action{
 
 	public GoToTheCouncilPalace(Player player, FamilyMember fMember, int servants) {
-		this.player = player;
-		this.fMember = fMember;
+		super(player, fMember, servants);
+		this.area = CouncilPalace.instance();
 		
 		
 	}

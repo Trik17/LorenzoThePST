@@ -4,7 +4,7 @@ import java.awt.List;
 import java.util.ArrayList;
 
 //non è più abstract
-//eliminata isColorAvailable() 
+//eliminata isColorAvailable() ELIMINATA DI NUOVO
 public class TakeACard extends Action{
 
 	protected DevelopementCard card;
@@ -26,11 +26,12 @@ return affordable;
 	}
 				
 	public TakeACard(Player player, DevelopementCard card, ActionSpace aSpace, FamilyMember fMember,int servants){
-		this.player = player;
+		super(player, fMember, servants);
 		this.card = card;
-		this.aSpace = aSpace;
-		this.fMember = fMember;
-		
+		if(card instanceof TerritoryCard) this.area = Tower.territoryTower();
+		if(card instanceof BuildingCard) this.area = Tower.buildingTower();
+		if(card instanceof VentureCard) this.area = Tower.ventureTower();
+		if(card instanceof CharacterCard) this.area = Tower.characterTower();
 	}
 	
 	public boolean isPBoardNotFull(){
@@ -42,9 +43,6 @@ return affordable;
 		
 	}
 
-	public boolean isColorAvailable() {
-		return isColorAvailable(player.game.TerritoryTower, fMember.getFamilyColor());
-	}
 	
 	
 	

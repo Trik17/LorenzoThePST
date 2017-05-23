@@ -2,34 +2,53 @@ package it.polimi.ingsw.GC_04.model;
 import java.util.ArrayList;
 import java.util.List;
 
-//eliminato isColorAvailable
+//eliminato attributi aSpaceT e getter modificata tutta
 public class Tower extends Area{
 	
+	private static boolean created;
+	private static Tower territoryTower; 
+	private static Tower buildingTower; 
+	private static Tower ventureTower; 
+	private static Tower characterTower; 
 	private ArrayList<DevelopementCard> cardTower;
-	private ArrayList<ActionSpace> actSpaceT;
 
 	
-	public Tower(ArrayList<DevelopementCard> cardTower){
+	public static void createTowers(ArrayList<DevelopementCard> cardT,ArrayList<DevelopementCard> cardB,ArrayList<DevelopementCard> cardV,ArrayList<DevelopementCard> cardC) {
+		if (created == false) {
+			territoryTower = new Tower(cardT);
+			buildingTower = new Tower(cardB);
+			ventureTower = new Tower(cardV);
+			characterTower = new Tower(cardC);
+		}
 
+	}
+	
+
+	public static Tower territoryTower() {
+		return territoryTower;
+	}
+	public static Tower buildingTower() {
+		return buildingTower;
+	}
+	public static Tower ventureTower() {
+		return ventureTower;
+	}
+	public static Tower characterTower() {
+		return characterTower;
+	}
+	
+	public Tower(ArrayList<DevelopementCard> cardTower){//TODO
+		
 		this.cardTower = cardTower;
 		
-		Effect effect = new Effect();		
-		//in realtà gli effetti sono diversi ma vengono presi da file
-		//quindi non so come minchia si faccia
-		actSpaceT.add(new ActionSpace(7, effect)); 
-		actSpaceT.add(new ActionSpace(5, effect)); 
-		actSpaceT.add(new ActionSpace(0, effect)); 
-		actSpaceT.add(new ActionSpace(0, effect)); 
+		//TODO: associare nell'initializer ad ogni torre i suoi act spaces compresi di effetti
 		
 				
-		/*Decidere se le carte le sceglie o no la torre ad ogni turno e non il game , anche caricare da file
-		*/	 
+		 
 		
 	}
 	
-	public List<ActionSpace> getActSpaceT(){
-		return actSpaceT;
-	}
+
 	
 	
 }

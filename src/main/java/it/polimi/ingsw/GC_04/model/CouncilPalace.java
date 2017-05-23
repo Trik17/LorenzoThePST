@@ -55,12 +55,11 @@ public class CouncilPalace extends Area{
 				turnOrder[turn] = nextTurnOrder[turn];
 			}else {
 				/*if not every player has placed a family member in the council palace this fills the empty positions
-				 with the players in the first positions in the previous turn */
+				 with the players that were in the first positions in the previous turn */
 				turnOrder[turn] = prevTurnOrder[pos]; 
 				pos++; 
 			}	
 		}
-		
 		//it empties the array for the next turn
 		for(Player p:nextTurnOrder) p=null;	
 		

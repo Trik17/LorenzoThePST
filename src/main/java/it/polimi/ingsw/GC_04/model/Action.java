@@ -8,7 +8,13 @@ public abstract class Action {
 	protected ActionSpace aSpace;
 	protected FamilyMember fMember;
 	protected int value; //value of the dice with which the action is performed plus servants and any permanent effects
+	protected Area area;
 	
+	public Action(Player player, FamilyMember fMember, int servants) {
+		this.player = player;
+		this.fMember = fMember;
+		// TODO Auto-generated constructor stub
+	}
 	
 	public abstract boolean isApplicable();
 	
@@ -19,7 +25,7 @@ public abstract class Action {
 		return false;
 	}
 	
-	public boolean isColorAvailable(Area area,FamilyMember fMember){
+	public boolean isColorAvailable(){
 		return area.isColorAvailable(fMember.getFamilyColor());
 		
 	}
