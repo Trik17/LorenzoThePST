@@ -5,16 +5,16 @@ import java.util.ArrayList;
 //eliminato attributi aSpaceT e getter modificata tutta
 public class Tower extends Area{
 	
-	private static boolean created;
+	private static boolean TowersCreated;
 	private static Tower territoryTower; 
 	private static Tower buildingTower; 
 	private static Tower ventureTower; 
 	private static Tower characterTower; 
 	private ArrayList<DevelopmentCard> cardTower; //verranno prese da file
 
-	
+	//it allows to create only 4 towers because if the static attribute towersCreated is true it does nothing
 	public static void createTowers(ArrayList<DevelopmentCard> cardT,ArrayList<DevelopmentCard> cardB,ArrayList<DevelopmentCard> cardV,ArrayList<DevelopmentCard> cardC) {
-		if (created == false) {
+		if (TowersCreated == false) {
 			territoryTower = new Tower(cardT);
 			buildingTower = new Tower(cardB);
 			ventureTower = new Tower(cardV);
