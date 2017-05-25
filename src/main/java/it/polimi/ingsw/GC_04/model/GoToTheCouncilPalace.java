@@ -20,4 +20,10 @@ public class GoToTheCouncilPalace extends Action{
 		return isValueEnough();
 	}
 
+	@Override
+	public void apply() {
+		applyActionSpaceEffect();
+		
+	}
+
 }

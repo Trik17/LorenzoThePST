@@ -14,12 +14,17 @@ public class RunProduction extends Action {
 		else prodValue = value - prodPenality;
 	}
 	
-	
 	@Override
 	public boolean isApplicable() {
 		return isColorAvailable() &&
 				isValueEnough() &&
 				isPlaceAvailable();
+	}
+
+	@Override
+	public void apply() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

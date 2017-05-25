@@ -54,6 +54,12 @@ return affordable;
 				isColorAvailable() &&
 				isPlaceAvailable();
 	}
+
+	@Override
+	public void apply() {
+		applyActionSpaceEffect();
+	
+	}
 }	
 
 	

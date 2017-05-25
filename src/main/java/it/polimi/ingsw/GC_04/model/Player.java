@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jdk.internal.org.objectweb.asm.util.CheckAnnotationAdapter;
+
 public class Player {
 	
 	private Game game;
@@ -74,18 +76,25 @@ public class Player {
 	}
 	public void runProduction(FamilyMember fMember, int servants){
 		RunProduction check = new RunProduction(this, fMember, servants);
+		if (check.isApplicable()) check.apply();
 		
 	}
 	public void runHarvest(FamilyMember fMember, int servants){
 		RunHarvest check = new RunHarvest(this, fMember, servants);
-		
+		if (check.isApplicable()) check.apply();
 	}
 	
-	public void goToTheMarket(){}
+	public void goToTheMarket(FamilyMember fMember, int servants,ActionSpace aSpace){
+		GoToTheMarket check = new GoToTheMarket(this, fMember, servants, aSpace);
+		if (check.isApplicable()) check.apply();
+	}
+	
+	public void goToTheCouncilPalace(FamilyMember fMember, int servants){
+		GoToTheCouncilPalace check = new GoToTheCouncilPalace(this, fMember, servants);
+		if (check.isApplicable()) check.apply();
+	}
+	
 	public void getExcommunication(){}
-	public void goToTheCouncilPalace(){}
-	
-	
 	
 	
 	

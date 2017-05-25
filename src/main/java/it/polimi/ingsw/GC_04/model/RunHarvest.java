@@ -20,6 +20,12 @@ public class RunHarvest extends Action{
 				isValueEnough() &&
 				isPlaceAvailable();
 	}
+
+	@Override
+	public void apply() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

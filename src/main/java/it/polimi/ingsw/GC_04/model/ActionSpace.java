@@ -19,6 +19,10 @@ public class ActionSpace {
 		return activationCost;
 	}
 	
+	public Effect getEffect() {
+		return effect;
+	}
+	
 	public FamilyColor getPresentColor(){
 		if (fMember == null) return null;
 		return this.fMember.getFamilyColor();

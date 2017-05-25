@@ -13,9 +13,12 @@ public abstract class Action {
 	public Action(Player player, FamilyMember fMember, int servants) {
 		this.player = player;
 		this.fMember = fMember;
+		
 	}
 	
 	public abstract boolean isApplicable();
+	public abstract void apply();
+	
 	
 	public boolean isValueEnough(){
 		
@@ -31,5 +34,9 @@ public abstract class Action {
 	public boolean isPlaceAvailable() {
 		return aSpace.isAvailable();
 		
+	}
+	
+	public void applyActionSpaceEffect() {
+		aSpace.getEffect().apply(player);
 	}
 }

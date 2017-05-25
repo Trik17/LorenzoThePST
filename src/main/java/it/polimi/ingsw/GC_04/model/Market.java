@@ -1,21 +1,21 @@
 package it.polimi.ingsw.GC_04.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 //è un Singleton
 public class Market extends Area{
-	private static Market instance;
-	
-	
-	public static Market instance(){
-		if (instance==null) instance = new Market();
-		return instance;
-	}
-	
-	private Market(){
-		aSpaces = new ArrayList<ActionSpace>();
+	private static Market market;
+
+	public static void instance(ArrayList<ActionSpace> aSpaces){
+		if (market == null) market = new Market(aSpaces);	
 		
 	}
 	
+	public Market(ArrayList<ActionSpace> aSpaces) {
+		this.aSpaces = aSpaces;
+	}
+	
+	public static Market getMarket() {
+		return market;
+	}
 }
