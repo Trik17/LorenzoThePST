@@ -4,8 +4,12 @@ public class CharacterCard extends DevelopmentCard {
 
 	@Override
 	public void takeCard(Player player, ActionSpace aSpace, FamilyMember fMember, int servants) {
-		// TODO Auto-generated method stub
+		TakeACard check = new TakeACard(player, this, aSpace, fMember,servants);
+		
+		if (check.isApplicable()){check.apply();}
 		
 	}
+		
+	
 
 }

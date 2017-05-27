@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class Dice {
 	
-	private static boolean dicesCreated;
-	
 	private static Dice blackDice;
 	private static Dice whiteDice;
 	private static Dice orangeDice;
@@ -15,17 +13,21 @@ public class Dice {
 	
 	
 	public static void createDices() {
-		//it allows to create only 3 dices because if the static attribute dicesCreated is true it does nothing
-		if (dicesCreated == false) {
 			blackDice = new Dice(DiceColor.BLACK);
 			whiteDice = new Dice(DiceColor.WHITE);
 			orangeDice = new Dice(DiceColor.ORANGE);	
 			neutralDice = new Dice(DiceColor.NONE);
-		}
 	}
+	
+	
 	
 	private Dice(DiceColor color){
 			this.color = color;	
+	}
+	
+	public Dice(int value) { //it is needed to initialize TakeACardEffect
+		this.color = DiceColor.NONE;
+		this.value = value;
 	}
 	
 	public static void rollTheDices(){

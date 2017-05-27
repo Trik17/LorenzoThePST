@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_04.model;
 
+
+
 //aggiunto createFamily()
 //eliminato metodi updateExtra(), updateValue() e attributi extraValue e value
 //aggiunto metodo getDice()
@@ -29,6 +31,11 @@ public class FamilyMember {
 		this.familyColor = familyColor;
 		this.dice = dice;
 		
+	}
+	
+	public FamilyMember(Dice dice) {	//it is needed to initialize TakeACardEffect
+		this.familyColor = FamilyColor.NEUTRAL;
+		this.dice = dice;
 	}
 	
 	

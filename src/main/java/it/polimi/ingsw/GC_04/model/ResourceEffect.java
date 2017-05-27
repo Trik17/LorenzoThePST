@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ResourceEffect extends Effect {
-	private ArrayList<Resource> effect;
+	protected ArrayList<Resource> effect;
 	
 	public ResourceEffect(){
 		//da file e dovrà prendere la carta in ingresso?
@@ -15,7 +15,7 @@ public class ResourceEffect extends Effect {
 		player.modifyResource(effect);
 	}
 
-
+	
 	
 		
 }
