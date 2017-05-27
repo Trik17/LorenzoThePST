@@ -10,7 +10,7 @@ public class EndVictoryP extends Effect {
 	@Override
 	public void apply(Player player){
 		
-	player.getResources().forEach(r->{if(r.getClass().equals(VictoryPoints.class)){((VictoryPoints) r).addEndPoints(this.endVictoryP);}});
+	//player.getResources().forEach(r->{if(r.getClass().equals(VictoryPoints.class)){((VictoryPoints) r).addEndPoints(this.endVictoryP);}});
 		
 	}
 }
