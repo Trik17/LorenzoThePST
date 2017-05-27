@@ -4,7 +4,11 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
+
+//DA CENCELLARE, MI SERVE SOLO DA ESMPIO PER APPTEST
+
+
+/*
  * Unit test for simple App.
  */
 public class AppTest 
