@@ -2,8 +2,6 @@ package it.polimi.ingsw.GC_04.model;
 
 import java.util.ArrayList;
 
-import com.sun.jndi.url.iiopname.iiopnameURLContextFactory;
-
 public class VictoryPointPerResourceEffect extends ResourceEffect {
 	private Resource resource;
 	private int bonusVPoints;
