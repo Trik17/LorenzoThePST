@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_04.model.Card.DevelopmentCard;
 //eliminato attributi aSpaceT e getter modificata tutta
 public class Tower extends Area{
 	
-	private static boolean TowersCreated;
+	private static boolean towersCreated;
 	private static Tower territoryTower; 
 	private static Tower buildingTower; 
 	private static Tower ventureTower; 
@@ -16,11 +16,12 @@ public class Tower extends Area{
 
 	//it allows to create only 4 towers because if the static attribute towersCreated is true it does nothing
 	public static void createTowers(ArrayList<DevelopmentCard> cardT,ArrayList<DevelopmentCard> cardB,ArrayList<DevelopmentCard> cardV,ArrayList<DevelopmentCard> cardC) {
-		if (TowersCreated == false) {
+		if (towersCreated == false) {
 			territoryTower = new Tower(cardT);
 			buildingTower = new Tower(cardB);
 			ventureTower = new Tower(cardV);
 			characterTower = new Tower(cardC);
+			towersCreated = true;
 		}
 
 	}
