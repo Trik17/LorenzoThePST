@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.model;
+package it.polimi.ingsw.GC_04.controller;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
