@@ -1,0 +1,24 @@
+{
+  "type" : "BuildingCard",
+  "period" : 1,
+  "name" : "forest",
+  "cost" : [ {
+    "type" : "Coins",
+    "quantity" : 3
+  }, {
+    "type" : "Woods",
+    "quantity" : 99
+  }, {
+    "type" : "FaithPoints",
+    "quantity" : 4
+  }, {
+    "type" : "MilitaryPoints",
+    "quantity" : 0
+  }, {
+    "type" : "Stones",
+    "quantity" : 22
+  }, {
+    "type" : "Servants",
+    "quantity" : 1
+  } ]
+}
