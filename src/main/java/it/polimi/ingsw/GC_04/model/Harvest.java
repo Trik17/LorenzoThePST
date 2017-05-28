@@ -2,19 +2,20 @@ package it.polimi.ingsw.GC_04.model;
 
 import java.util.ArrayList;
 
-//è un Singleton
-public class Harvest extends Area {
-	private static Harvest instance;
-	
-	
-	public static Harvest instance(){
-		if (instance==null) instance = new Harvest();
-		return instance;
+public class Harvest {
+	int diceValue;
+	ArrayList<Effect> effects;
+
+	public Harvest() {
+		// TODO Auto-generated constructor stub
 	}
 	
-	private Harvest(){
-		aSpaces = new ArrayList<ActionSpace>();
-		
+	public int getDiceValue() {
+		return diceValue;	
 	}
 	
+	public ArrayList<Effect> getEffects() {
+		return effects;
+	}
+
 }

@@ -5,23 +5,23 @@ import java.util.ArrayList;
 
 //cambiato per forza lo schema del singleton, ma rimane cmq un singleton
 //attributo e set e get turnOrder e nextTurn
-public class CouncilPalace extends Area{ 
-	private static CouncilPalace instance;
+public class CouncilPalaceArea extends Area{ 
+	private static CouncilPalaceArea instance;
 	private static Player[] turnOrder; 
 	private static Player[] nextTurnOrder; 
 	
 	
-	public static CouncilPalace instance() {
+	public static CouncilPalaceArea instance() {
 		//un'eccezione che faccia inserire il parametro se councilPalace non è stato creato, o forse lo collego al game e prende il numero di giocatori da lì, ora vediamo
 		return instance;
 		
 	}
-	public static CouncilPalace instance(int nrOfPlayers){
-		if (instance==null) instance = new CouncilPalace(nrOfPlayers);
+	public static CouncilPalaceArea instance(int nrOfPlayers){
+		if (instance==null) instance = new CouncilPalaceArea(nrOfPlayers);
 		return instance;
 	}
 	
-	private CouncilPalace(int nrOfPlayers){  //dovrò passare anche i player in realtà
+	private CouncilPalaceArea(int nrOfPlayers){  //dovrò passare anche i player in realtà
 		aSpaces = new ArrayList<ActionSpace>();
 		turnOrder = new Player[nrOfPlayers];
 		nextTurnOrder = new Player[nrOfPlayers];

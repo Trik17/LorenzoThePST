@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ResourceEffect extends Effect {
 	protected ArrayList<Resource> effect;

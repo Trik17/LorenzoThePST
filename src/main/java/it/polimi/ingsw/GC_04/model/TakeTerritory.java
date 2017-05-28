@@ -3,14 +3,12 @@ package it.polimi.ingsw.GC_04.model;
 import java.util.ArrayList;
 import java.util.Map;
 
-//aggiunto attributo accumulatedMP
 public class TakeTerritory extends TakeACard{
 	
 	int accumulatedMP;
 	
 	public TakeTerritory(Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants) {
 		super(player, card, aSpace, fMember, servants);
-		this.value = fMember.getDice().getValue() + servants + player.getExtraDice().getExtraTerritory();
 	}
 
 	

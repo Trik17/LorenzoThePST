@@ -18,10 +18,10 @@ public class Player {
 	private FamilyMember fMemberN;
 	private ExtraDice extraDice;
 	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
-	private ArrayList<DevelopmentCard> tCards;
-	private ArrayList<DevelopmentCard> vCards;
-	private ArrayList<DevelopmentCard> bCards;
-	private ArrayList<DevelopmentCard> cCards;
+	private ArrayList<TerritoryCard> tCards;
+	private ArrayList<VentureCard> vCards;
+	private ArrayList<BuildingCard> bCards;
+	private ArrayList<CharacterCard> cCards;
 	private List<Resource> resources;
 	
 	
@@ -51,11 +51,11 @@ public class Player {
 	}
 
 	
-	public ArrayList<DevelopmentCard> getCards(DevelopmentCard dC){
-		if (dC instanceof TerritoryCard) return tCards;
-		if (dC instanceof BuildingCard) return bCards;
-		if (dC instanceof VentureCard) return vCards;
-		if (dC instanceof CharacterCard) return cCards;
+	public ArrayList<? extends DevelopmentCard> getCards(DevelopmentCard dC){
+		if (dC instanceof TerritoryCard) return (ArrayList<TerritoryCard>) tCards;
+		if (dC instanceof BuildingCard) return (ArrayList<BuildingCard>) bCards;
+		if (dC instanceof VentureCard) return (ArrayList<VentureCard>) vCards;
+		if (dC instanceof CharacterCard) return (ArrayList<CharacterCard>) cCards;
 		else return null;
 	}
 	

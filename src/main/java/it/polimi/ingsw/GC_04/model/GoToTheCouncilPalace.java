@@ -5,13 +5,13 @@ public class GoToTheCouncilPalace extends Action{
 
 	public GoToTheCouncilPalace(Player player, FamilyMember fMember, int servants) {
 		super(player, fMember, servants);
-		this.area = CouncilPalace.instance();
+		this.area = CouncilPalaceArea.instance();
 		
 		
 	}
 	
 	private void setNextTurnOrder() {
-		CouncilPalace.instance().setNextTurnOrder(player);
+		CouncilPalaceArea.instance().setNextTurnOrder(player);
 		
 	}
 	

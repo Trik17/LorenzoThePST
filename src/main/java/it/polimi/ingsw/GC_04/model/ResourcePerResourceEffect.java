@@ -2,12 +2,12 @@ package it.polimi.ingsw.GC_04.model;
 
 import java.util.ArrayList;
 
-public class VictoryPointPerResourceEffect extends ResourceEffect {
-	private Resource resource;
-	private int bonusVPoints;
+public class ResourcePerResourceEffect extends ResourceEffect {
+	private Resource playerResource;//player's resource type that must be counted
+	private Resource bonusResource;
 	
 
-	public VictoryPointPerResourceEffect() {
+	public ResourcePerResourceEffect() {
 		effect = new ArrayList<Resource>();
 	}
 	
@@ -15,11 +15,11 @@ public class VictoryPointPerResourceEffect extends ResourceEffect {
 	@Override
 	public void apply(Player player) {
 		
-		int addedVPoints;
+		int bonus = bonusResource.getQuantity();
 		int myQuantity = 0;
 		
 		ArrayList<Resource> myResources = player.getResources();
-		Class<? extends Resource> resourceType = resource.getClass();
+		Class<? extends Resource> resourceType = playerResource.getClass();
 		
 		for(Resource res:myResources) {
 			if (resourceType.equals(res.getClass())){ 
@@ -28,8 +28,8 @@ public class VictoryPointPerResourceEffect extends ResourceEffect {
 			}
 		}
 		
-		addedVPoints = myQuantity*bonusVPoints;
-		this.effect.add(new VictoryPoints(addedVPoints));
+		bonus *= myQuantity;
+		this.effect.add(bonusResource);
 		
 		super.apply(player);
 	}

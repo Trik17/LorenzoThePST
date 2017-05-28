@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BuildingCard extends DevelopmentCard {
+	private Production production;
 	
 	
 	@JsonCreator
@@ -25,4 +26,8 @@ public class BuildingCard extends DevelopmentCard {
 		
 	}
 
+	public Production getProduction() {
+		return production;
+		
+	}
 }

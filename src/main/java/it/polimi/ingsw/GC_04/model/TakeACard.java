@@ -27,11 +27,13 @@ return affordable;
 				
 	public TakeACard(Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants){
 		super(player, fMember, servants);
+		this.value = fMember.getDice().getValue() + player.getExtraDice().getExtra(card) + servants; 
 		this.card = card;
 		if(card instanceof TerritoryCard) this.area = Tower.territoryTower();
 		if(card instanceof BuildingCard) this.area = Tower.buildingTower();
 		if(card instanceof VentureCard) this.area = Tower.ventureTower();
 		if(card instanceof CharacterCard) this.area = Tower.characterTower();
+		
 	}
 	
 	public boolean isPBoardNotFull(){

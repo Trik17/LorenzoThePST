@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TerritoryCard extends DevelopmentCard {
+	
+	private Harvest harvest;
+	
 	@JsonCreator
 	public TerritoryCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost") ArrayList<Resource> cost) {
 		super(period, name, cost);
@@ -23,6 +26,8 @@ public class TerritoryCard extends DevelopmentCard {
 		
 	}
 
-	
+	public Harvest getHarvest() {
+		return harvest;
+	}
 
 }
