@@ -3,11 +3,11 @@ package it.polimi.ingsw.GC_04.controller;
 import java.io.File;
 import java.util.ArrayList;
 
-import it.polimi.ingsw.GC_04.model.BuildingCard;
-import it.polimi.ingsw.GC_04.model.CharacterCard;
 import it.polimi.ingsw.GC_04.model.Game;
-import it.polimi.ingsw.GC_04.model.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.VentureCard;
+import it.polimi.ingsw.GC_04.model.Card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.Card.CharacterCard;
+import it.polimi.ingsw.GC_04.model.Card.TerritoryCard;
+import it.polimi.ingsw.GC_04.model.Card.VentureCard;
 
 public class Inizializer {
 	

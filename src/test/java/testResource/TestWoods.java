@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.model.Resource;
-import it.polimi.ingsw.GC_04.model.Woods;
+import it.polimi.ingsw.GC_04.model.Resource.Resource;
+import it.polimi.ingsw.GC_04.model.Resource.Woods;
 
 public class TestWoods {
 	Resource w;

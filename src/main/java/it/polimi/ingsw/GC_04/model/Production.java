@@ -2,9 +2,11 @@ package it.polimi.ingsw.GC_04.model;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.GC_04.model.Effect.Effect;
+
 public class Production {
-	int diceValue;
-	ArrayList<Effect> effects;
+	private int diceValue;
+	private ArrayList<Effect> effects;
 
 	public Production() {
 		// TODO Auto-generated constructor stub

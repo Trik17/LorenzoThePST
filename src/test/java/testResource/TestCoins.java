@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.model.Coins;
-import it.polimi.ingsw.GC_04.model.Resource;
+import it.polimi.ingsw.GC_04.model.Resource.Coins;
+import it.polimi.ingsw.GC_04.model.Resource.Resource;
 
 public class TestCoins {
 	Resource c;
