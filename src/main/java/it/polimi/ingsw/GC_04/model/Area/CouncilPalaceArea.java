@@ -37,7 +37,7 @@ public class CouncilPalaceArea extends Area{
 		
 	}
 	
-	public void setNextTurnOrder(Player player){
+	public static void setNextTurnOrder(Player player){
 		for(int pos = 0; pos<turnOrder.length; pos++) {
 			if (turnOrder[pos].equals(player)) return;
 			if (turnOrder[pos] == null) {
