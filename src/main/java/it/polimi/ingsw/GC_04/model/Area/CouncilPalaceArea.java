@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.model.Area;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
@@ -39,17 +38,17 @@ public class CouncilPalaceArea extends Area{
 	}
 	
 	public void setNextTurnOrder(Player player){
-		for(Player p:turnOrder) {
-			if (p == player) return;
-			if (p == null) {
-				p = player;
+		for(int pos = 0; pos<turnOrder.length; pos++) {
+			if (turnOrder[pos].equals(player)) return;
+			if (turnOrder[pos] == null) {
+				turnOrder[pos] = player;
 				return;
 			}
 			continue; 
 		}
 	}
 	
-	public void setTurnOrder() {
+	public static void setTurnOrder() {
 		Player[] prevTurnOrder = turnOrder;
 		int pos = 0; 
 		
@@ -64,7 +63,7 @@ public class CouncilPalaceArea extends Area{
 			}	
 		}
 		//it empties the array for the next turn
-		for(Player p:nextTurnOrder) p=null;	
+		for(pos=0; pos<nextTurnOrder.length; pos++) nextTurnOrder[pos]=null;	
 		
 	}
 	
