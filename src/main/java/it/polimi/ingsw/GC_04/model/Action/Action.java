@@ -44,4 +44,6 @@ public abstract class Action {
 	public void applyActionSpaceEffect() {
 		aSpace.getEffect().apply(player);
 	}
+	
+	
 }

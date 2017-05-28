@@ -28,6 +28,7 @@ public class GoToTheCouncilPalace extends Action{
 	public void apply() {
 		applyActionSpaceEffect();
 		
+		
 	}
 
 }
