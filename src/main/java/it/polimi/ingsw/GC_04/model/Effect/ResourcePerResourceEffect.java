@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_04.model.Effect;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.Resource.Resource;
@@ -21,7 +22,7 @@ public class ResourcePerResourceEffect extends ResourceEffect {
 		int bonus = bonusResource.getQuantity();
 		int myQuantity = 0;
 		
-		ArrayList<Resource> myResources = player.getResources();
+		List<Resource> myResources = player.getResources();
 		Class<? extends Resource> resourceType = playerResource.getClass();
 		
 		for(Resource res:myResources) {
@@ -31,7 +32,8 @@ public class ResourcePerResourceEffect extends ResourceEffect {
 			}
 		}
 		
-		bonus *= myQuantity;
+		bonus = bonus*myQuantity-bonus;
+		bonusResource.addQuantity(bonus);
 		this.effect.add(bonusResource);
 		
 		super.apply(player);

@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_04.controller;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.model.Game;
+import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.Card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.Card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.Card.TerritoryCard;
@@ -24,6 +24,6 @@ public class Inizializer {
 		vCards = new ArrayList<VentureCard>();
 		// TODO: far prendere gli array da file
 		
-		Game game = new Game();
+		//Game game = new Game(Player);
 	}
 }

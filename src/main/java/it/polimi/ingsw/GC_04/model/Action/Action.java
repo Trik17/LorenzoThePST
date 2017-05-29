@@ -17,6 +17,7 @@ public abstract class Action {
 	public Action(Player player, FamilyMember fMember, int servants) {
 		this.player = player;
 		this.fMember = fMember;
+		this.value = fMember.getDice().getValue() + servants;
 		
 	}
 	

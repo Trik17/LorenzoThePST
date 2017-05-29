@@ -31,20 +31,20 @@ public class TestCoins {
 	@Test
 	public void testModifyQuantityPos() {
 		c=new Coins();
-		c.modifyQuantity(5);
+		c.addQuantity(5);
 		assertEquals(5, c.getQuantity());
 	}
 	
 	@Test
 	public void testModifyQuantityNeg() {
 		c=new Coins();
-		c.modifyQuantity(-5);
+		c.addQuantity(-5);
 		assertEquals(-5, c.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {
 		c=new Coins(1);
-		c.modifyQuantity(0);
+		c.addQuantity(0);
 		assertEquals(1, c.getQuantity());
 	}
 

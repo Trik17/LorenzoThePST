@@ -7,4 +7,5 @@ public class ExcommunicationTile extends Card{
 	private int period;
 	private Effect effect;
 	
+	
 }

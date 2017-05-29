@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_04.model.Action;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
@@ -25,7 +25,7 @@ public class TakeTerritory extends TakeACard{
 		
 		int requestedMP;
 		int nrOfCards = player.getCards(card).size();
-		ArrayList<Resource> myRes = player.getResources(); //player's Resources
+		List<Resource> myRes = player.getResources(); //player's Resources
 		// scroll through player's resources and store in the variable accumulatedMP the quantity of military points accumulated by the player
 		myRes.forEach(res -> {if(res.getClass() == MilitaryPoints.class) accumulatedMP = res.getQuantity();});
 		

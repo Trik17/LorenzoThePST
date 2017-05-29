@@ -1,10 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
-//cambiata funzione RunProduction
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import it.polimi.ingsw.GC_04.model.Action.GoToTheCouncilPalace;
 import it.polimi.ingsw.GC_04.model.Action.GoToTheMarket;
@@ -17,8 +13,6 @@ import it.polimi.ingsw.GC_04.model.Card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.Card.VentureCard;
 import it.polimi.ingsw.GC_04.model.Resource.Resource;
 
-
-
 public class Player {
 	
 	private Game game;
@@ -29,10 +23,10 @@ public class Player {
 	private FamilyMember fMemberN;
 	private ExtraDice extraDice;
 	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
-	private List<TerritoryCard> tCards;
-	private List<VentureCard> vCards;
-	private List<BuildingCard> bCards;
-	private List<CharacterCard> cCards;
+	private List<DevelopmentCard> tCards;
+	private List<DevelopmentCard> vCards;
+	private List<DevelopmentCard> bCards;
+	private List<DevelopmentCard> cCards;
 	private List<Resource> resources;
 	
 	
@@ -62,22 +56,17 @@ public class Player {
 	}
 
 	
-	public List<? extends DevelopmentCard> getCards(DevelopmentCard dC){
-		if (dC instanceof TerritoryCard) return (List<TerritoryCard>) tCards;
-		if (dC instanceof BuildingCard) return (List<BuildingCard>) bCards;
-		if (dC instanceof VentureCard) return (List<VentureCard>) vCards;
-		if (dC instanceof CharacterCard) return (List<CharacterCard>) cCards;
+	public List<DevelopmentCard> getCards(DevelopmentCard dC){
+		if (dC instanceof TerritoryCard) return tCards;
+		if (dC instanceof BuildingCard) return bCards;
+		if (dC instanceof VentureCard) return vCards;
+		if (dC instanceof CharacterCard) return cCards;
 		else return null;
 	}
 	
 	
-	public ArrayList <Resource> getResources(){
-		return (ArrayList<Resource>) resources;
-	}
-	
-	public void modifyResource(List<Resource> cost){
-		//for each resource in input it take the correspondent resource in player and modify it
-		cost.forEach(r->this.resources.forEach(tr->{if(tr.getClass().equals(r.getClass())){tr.modifyQuantity(r.getQuantity());}}));
+	public List <Resource> getResources(){
+		return resources;
 	}
 	
 	

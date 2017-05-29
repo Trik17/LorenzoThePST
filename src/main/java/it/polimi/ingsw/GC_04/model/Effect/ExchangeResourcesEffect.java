@@ -1,18 +1,18 @@
 package it.polimi.ingsw.GC_04.model.Effect;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.Resource.Resource;
 
 //aggiungere l'OR
 public class ExchangeResourcesEffect extends ResourceEffect {
-	private ArrayList<Resource> cost;
+	private List<Resource> cost;
 	private boolean affordable = true;
 	
 	
 
-	public ExchangeResourcesEffect(ArrayList<Resource> effect, ArrayList<Resource> cost) {
+	public ExchangeResourcesEffect(List<Resource> effect, List<Resource> cost) {
 		this.effect = effect;
 		this.cost = cost;
 	}
@@ -26,7 +26,7 @@ public class ExchangeResourcesEffect extends ResourceEffect {
 	}
 	
 	public boolean isApplicable(Player player) {
-		ArrayList<Resource> myRes = player.getResources(); //player's resources
+		List<Resource> myRes = player.getResources(); //player's resources
 		
 		cost.forEach((c)->  //for all resource type in cost
 			{myRes.forEach(mR -> {if(c.getClass().equals(mR.getClass()) && //it scrolls through all types of player's resources and if the type coincides

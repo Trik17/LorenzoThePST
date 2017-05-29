@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model.Action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
@@ -33,9 +34,10 @@ public class TakeACard extends Action{
 		
 		for(ActionSpace aSpace:area.getASpaces()) {//if the tower is occupied it adds three coins to the card's cost
 			if(aSpace.getPresentColor() != null) {
-				for(Resource res:cost) {
-					if (res instanceof Coins) res.modifyQuantity(TOWERPENALITY);
-				}
+				List<Resource> penality = new ArrayList<Resource>();
+				penality.add(new Coins(TOWERPENALITY));
+				Resource.modifyResource(cost, penality);
+				
 			}
 		}
 		
@@ -63,9 +65,9 @@ public class TakeACard extends Action{
 		
 		cost.forEach(res -> {//it turns into negative numbers the quantities of the resources present in the card's cost
 			int newQuantity = -2*res.getQuantity();
-			res.modifyQuantity(newQuantity);});
+			res.addQuantity(newQuantity);});
 		
-		player.modifyResource(cost);
+		Resource.modifyResource(player.getResources(),cost);
 		
 	}
 	

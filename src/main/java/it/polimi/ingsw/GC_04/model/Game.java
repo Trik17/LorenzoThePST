@@ -1,9 +1,5 @@
 package it.polimi.ingsw.GC_04.model;
 
-import java.util.ArrayList;
-import java.util.List;
-//modificata completamente
-
 public class Game {
 	
 
@@ -11,7 +7,8 @@ public class Game {
 	
 	
 	
-    public Game() {
+    public Game(Player[] players) {
+    	this.players = players;
 		// TODO Auto-generated constructor stub
 	}
 	

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_04.model.Resource;
-import com.fasterxml.jackson.annotation.JsonCreator;
+
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -32,13 +34,26 @@ public abstract class Resource {
 		this.quantity = quantity;
 	}
 	
-	public void modifyQuantity(int nOfResources){
+	public void addQuantity(int nOfResources){
 		this.quantity += nOfResources;
+	}
+	
+	public void subtractQuantity(int nOfResources){
+		this.quantity -= nOfResources;
 	}
 	
 	public int getQuantity(){
 		return quantity;
 	}
+	
+	public static void modifyResource(List<Resource> resources, List<Resource> bonus){
+		//for each bonus resource in input it takes the correspondent resource in the parameter resources adds to it the bonus 
+		bonus.forEach(b->
+			resources.forEach(r-> {
+				if(r.getClass().equals(b.getClass()))
+					r.addQuantity(b.getQuantity());}));
+	}
+	
 	
 	
 }

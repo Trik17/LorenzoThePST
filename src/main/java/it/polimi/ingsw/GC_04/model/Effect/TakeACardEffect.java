@@ -1,8 +1,5 @@
 package it.polimi.ingsw.GC_04.model.Effect;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat.Value;
-
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.FamilyMember;

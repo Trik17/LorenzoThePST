@@ -31,19 +31,19 @@ public class TestWoods {
 	@Test
 	public void testModifyQuantityPos() {
 		w=new Woods();
-		w.modifyQuantity(5);
+		w.addQuantity(5);
 		assertEquals(5, w.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityNeg() {
 		w=new Woods();
-		w.modifyQuantity(-5);
+		w.addQuantity(-5);
 		assertEquals(-5, w.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {
 		w=new Woods(1);
-		w.modifyQuantity(0);
+		w.addQuantity(0);
 		assertEquals(1, w.getQuantity());
 	}
 

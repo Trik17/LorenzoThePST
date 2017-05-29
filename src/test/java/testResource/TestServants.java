@@ -32,20 +32,20 @@ public class TestServants {
 	@Test
 	public void testModifyQuantityPos() {
 		s=new Servants();
-		s.modifyQuantity(5);
+		s.addQuantity(5);
 		assertEquals(5, s.getQuantity());
 	}
 	
 	@Test
 	public void testModifyQuantityNeg() {
 		s=new Servants();
-		s.modifyQuantity(-5);
+		s.addQuantity(-5);
 		assertEquals(-5, s.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {
 		s=new Servants(1);
-		s.modifyQuantity(0);
+		s.addQuantity(0);
 		assertEquals(1, s.getQuantity());
 	}
 

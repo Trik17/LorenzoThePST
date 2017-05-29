@@ -31,20 +31,20 @@ public class TestFaithPoints {
 	@Test
 	public void testModifyQuantityPos() {
 		p=new FaithPoints();
-		p.modifyQuantity(5);
+		p.addQuantity(5);
 		assertEquals(5, p.getQuantity());
 	}
 	
 	@Test
 	public void testModifyQuantityNeg() {
 		p=new FaithPoints();
-		p.modifyQuantity(-5);
+		p.addQuantity(-5);
 		assertEquals(-5, p.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {
 		p=new FaithPoints(1);
-		p.modifyQuantity(0);
+		p.addQuantity(0);
 		assertEquals(1, p.getQuantity());
 	}
 }

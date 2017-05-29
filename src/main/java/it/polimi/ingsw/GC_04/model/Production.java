@@ -1,12 +1,12 @@
 package it.polimi.ingsw.GC_04.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.Effect.Effect;
 
 public class Production {
 	private int diceValue;
-	private ArrayList<Effect> effects;
+	private List<Effect> effects;
 
 	public Production() {
 		// TODO Auto-generated constructor stub
@@ -16,7 +16,7 @@ public class Production {
 		return diceValue;	
 	}
 	
-	public ArrayList<Effect> getEffects() {
+	public List<Effect> getEffects() {
 		return effects;
 	}
 }

@@ -31,20 +31,20 @@ public class TestMilitaryPoints {
 	@Test
 	public void testModifyQuantityPos() {
 		m=new MilitaryPoints();
-		m.modifyQuantity(5);
+		m.addQuantity(5);
 		assertEquals(5, m.getQuantity());
 	}
 	
 	@Test
 	public void testModifyQuantityNeg() {
 		m=new MilitaryPoints();
-		m.modifyQuantity(-5);
+		m.addQuantity(-5);
 		assertEquals(-5, m.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {
 		m=new MilitaryPoints(1);
-		m.modifyQuantity(0);
+		m.addQuantity(0);
 		assertEquals(1, m.getQuantity());
 	}
 }
