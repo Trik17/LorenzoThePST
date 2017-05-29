@@ -14,13 +14,13 @@ public class ExchangeResourcesEffect extends ResourceEffect {
 
 	public ExchangeResourcesEffect(List<Resource> effect, List<Resource> cost) {
 		this.effect = effect;
-		this.cost = cost;
+		this.cost = cost; 
 	}
 
 	@Override
 	public void apply(Player player) {
 		if(isApplicable(player)) {
-			player.modifyResource(cost);
+			Resource.modifyResource(cost,player.getResources());//non è vero, così somma il costo
 			super.apply(player);
 		}
 	}

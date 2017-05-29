@@ -14,7 +14,7 @@ public class ResourceEffect extends Effect {
 	
 	@Override
 	public void apply(Player player){
-		player.modifyResource(effect);
+		Resource.modifyResource(effect,player.getResources());
 	}
 
 	
