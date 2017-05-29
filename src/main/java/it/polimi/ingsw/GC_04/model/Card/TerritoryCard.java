@@ -34,7 +34,7 @@ public class TerritoryCard extends DevelopmentCard {
 	}
 
 	public Harvest getHarvest() {
-		return harvest;
+		return this.harvest;
 	}
 
 }
