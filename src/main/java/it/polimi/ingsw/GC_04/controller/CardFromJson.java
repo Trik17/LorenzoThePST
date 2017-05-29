@@ -64,7 +64,7 @@ public class CardFromJson { //classe di prova per serializzazione / deserializza
 		cost.add(r6);
 		
 		
-		DevelopmentCard card=new BuildingCard(1, "forest", cost);
+		//DevelopmentCard card=new BuildingCard(1, "forest", cost);
 		
 		
 		String s = null;
@@ -72,7 +72,7 @@ public class CardFromJson { //classe di prova per serializzazione / deserializza
 		
 		try{
 			FileReader file= new FileReader("src/main/resources/card.json"); 
-			s = mapper.writeValueAsString(card);
+			//s = mapper.writeValueAsString(card);
 			DevelopmentCard r=mapper.readValue(file, DevelopmentCard.class);  
 			
 			w=r.getPeriod();
