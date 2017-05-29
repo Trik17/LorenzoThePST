@@ -8,7 +8,6 @@ import it.polimi.ingsw.GC_04.model.Resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.model.Resource.Resource;
 
 public class TestMilitaryPoints {
-
 	Resource m;
 	
 	@Test
