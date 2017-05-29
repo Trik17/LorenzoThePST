@@ -10,6 +10,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.model.Area.BuildingTower;
+import it.polimi.ingsw.GC_04.model.Area.CharacterTower;
+import it.polimi.ingsw.GC_04.model.Area.TerritoryTower;
+import it.polimi.ingsw.GC_04.model.Area.Tower;
+import it.polimi.ingsw.GC_04.model.Area.VentureTower;
 import it.polimi.ingsw.GC_04.model.Resource.Resource;
 
 @JsonTypeInfo(use = Id.NAME,
@@ -54,6 +59,21 @@ public abstract class DevelopmentCard extends Card{
 	}
 	public String getName() {
 		return this.name;
+		
+	}
+	
+	
+	public Tower getTower() {
+		
+		if (this instanceof TerritoryCard) 
+			return TerritoryTower.instance();
+		if (this instanceof BuildingCard) 
+			return BuildingTower.instance();
+		if (this instanceof VentureCard) 
+			return VentureTower.instance();
+		else
+			return CharacterTower.instance();
+			
 		
 	}
 	

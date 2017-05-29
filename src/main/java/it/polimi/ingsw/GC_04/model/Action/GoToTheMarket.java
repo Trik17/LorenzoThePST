@@ -9,7 +9,7 @@ public class GoToTheMarket extends Action {
 	
 	public GoToTheMarket(Player player, FamilyMember fMember, int servants, ActionSpace aSpace) {
 		super(player, fMember, servants);
-		this.area = MarketArea.getMarket();
+		this.area = MarketArea.instance();
 		this.aSpace = aSpace;
 	}
 

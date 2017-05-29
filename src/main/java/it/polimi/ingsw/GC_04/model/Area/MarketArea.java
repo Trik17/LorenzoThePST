@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 
-//è un Singleton
 public class MarketArea extends Area{
-	private static MarketArea market;
-
-	public static void instance(ArrayList<ActionSpace> aSpaces){
-		if (market == null) market = new MarketArea(aSpaces);	
-		
-	}
+	private static MarketArea instance;
 	
 	public MarketArea(ArrayList<ActionSpace> aSpaces) {
 		this.aSpaces = aSpaces;
 	}
 	
-	public static MarketArea getMarket() {
-		return market;
+	public static void instance(ArrayList<ActionSpace> aSpaces){
+		if (instance == null) instance = new MarketArea(aSpaces);	
+		
 	}
+	
+	public static MarketArea instance() {
+		return instance;
+	}
+
 }

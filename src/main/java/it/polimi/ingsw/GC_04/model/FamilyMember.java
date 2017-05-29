@@ -14,9 +14,9 @@ public class FamilyMember {
 	public FamilyMember[] createFamily(FamilyColor familyColor) {
 		FamilyMember[] family = new FamilyMember[4];
 		family[0] = new FamilyMember();
-		family[1] = new FamilyMember(familyColor,dice.getBlackDice());
-		family[2] = new FamilyMember(familyColor,dice.getWhiteDice());
-		family[3] = new FamilyMember(familyColor,dice.getOrangeDice());
+		family[1] = new FamilyMember(familyColor,Dice.getBlackDice());
+		family[2] = new FamilyMember(familyColor,Dice.getWhiteDice());
+		family[3] = new FamilyMember(familyColor,Dice.getOrangeDice());
 		
 		return family;
 			

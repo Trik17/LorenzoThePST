@@ -4,9 +4,8 @@ import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.Area.Area;
+import it.polimi.ingsw.GC_04.model.Area.ColorReastrictedArea;
 
-//aggiunto metodo isPlaceAvailable
-//aggiunto metodo isColorAvailable
 public abstract class Action {
 	
 	protected Player player;
@@ -33,7 +32,9 @@ public abstract class Action {
 	}
 	
 	public boolean isColorAvailable(){
-		return area.isColorAvailable(fMember.getFamilyColor());
+		if (area instanceof ColorReastrictedArea)
+			return ((ColorReastrictedArea) area).isColorAvailable(fMember.getFamilyColor());
+		return true;
 		
 	}
 	public boolean isPlaceAvailable() {

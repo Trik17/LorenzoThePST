@@ -1,36 +1,31 @@
 package it.polimi.ingsw.GC_04.model.Area;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Player;
 
-//cambiato per forza lo schema del singleton, ma rimane cmq un singleton
-//attributo e set e get turnOrder e nextTurn
 public class CouncilPalaceArea extends Area{ 
 	private static CouncilPalaceArea instance;
 	private static Player[] turnOrder; 
-	private static Player[] nextTurnOrder; 
+	private static Player[] nextTurnOrder;
 	
-	
+	private CouncilPalaceArea(int nrOfPlayers,List<ActionSpace> aSpaces){  //dovrò passare anche i player in realtà
+		turnOrder = new Player[nrOfPlayers];
+		nextTurnOrder = new Player[nrOfPlayers];
+		this.aSpaces = aSpaces;	
+	}
+		
 	public static CouncilPalaceArea instance() {
 		//un'eccezione che faccia inserire il parametro se councilPalace non è stato creato, o forse lo collego al game e prende il numero di giocatori da lì, ora vediamo
 		return instance;
 		
 	}
-	public static CouncilPalaceArea instance(int nrOfPlayers){
-		if (instance==null) instance = new CouncilPalaceArea(nrOfPlayers);
+	public static CouncilPalaceArea instance(int nrOfPlayers,List<ActionSpace> aSpaces){
+		if (instance==null) instance = new CouncilPalaceArea(nrOfPlayers,aSpaces);
 		return instance;
 	}
 	
-	private CouncilPalaceArea(int nrOfPlayers){  //dovrò passare anche i player in realtà
-		aSpaces = new ArrayList<ActionSpace>();
-		turnOrder = new Player[nrOfPlayers];
-		nextTurnOrder = new Player[nrOfPlayers];
-		
-		
-		
-	}
 	
 	public Player[] getTurnOrder(){
 		return turnOrder;
@@ -65,6 +60,10 @@ public class CouncilPalaceArea extends Area{
 		//it empties the array for the next turn
 		for(pos=0; pos<nextTurnOrder.length; pos++) nextTurnOrder[pos]=null;	
 		
+	}
+	
+	public List<ActionSpace> getASpaces() {
+		return aSpaces;
 	}
 	
 	

@@ -13,11 +13,7 @@ public class GoToTheCouncilPalace extends Action{
 		
 		
 	}
-	
-	private void setNextTurnOrder() {
-		CouncilPalaceArea.instance().setNextTurnOrder(player);
 		
-	}
 	
 	@Override
 	public boolean isApplicable() {

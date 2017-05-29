@@ -29,10 +29,10 @@ public class Player {
 	private FamilyMember fMemberN;
 	private ExtraDice extraDice;
 	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
-	private ArrayList<TerritoryCard> tCards;
-	private ArrayList<VentureCard> vCards;
-	private ArrayList<BuildingCard> bCards;
-	private ArrayList<CharacterCard> cCards;
+	private List<TerritoryCard> tCards;
+	private List<VentureCard> vCards;
+	private List<BuildingCard> bCards;
+	private List<CharacterCard> cCards;
 	private List<Resource> resources;
 	
 	
@@ -62,11 +62,11 @@ public class Player {
 	}
 
 	
-	public ArrayList<? extends DevelopmentCard> getCards(DevelopmentCard dC){
-		if (dC instanceof TerritoryCard) return (ArrayList<TerritoryCard>) tCards;
-		if (dC instanceof BuildingCard) return (ArrayList<BuildingCard>) bCards;
-		if (dC instanceof VentureCard) return (ArrayList<VentureCard>) vCards;
-		if (dC instanceof CharacterCard) return (ArrayList<CharacterCard>) cCards;
+	public List<? extends DevelopmentCard> getCards(DevelopmentCard dC){
+		if (dC instanceof TerritoryCard) return (List<TerritoryCard>) tCards;
+		if (dC instanceof BuildingCard) return (List<BuildingCard>) bCards;
+		if (dC instanceof VentureCard) return (List<VentureCard>) vCards;
+		if (dC instanceof CharacterCard) return (List<CharacterCard>) cCards;
 		else return null;
 	}
 	
@@ -75,12 +75,11 @@ public class Player {
 		return (ArrayList<Resource>) resources;
 	}
 	
-	public void modifyResource(ArrayList<Resource> resources){
+	public void modifyResource(List<Resource> cost){
 		//for each resource in input it take the correspondent resource in player and modify it
-		resources.forEach(r->this.resources.forEach(tr->{if(tr.getClass().equals(r.getClass())){tr.modifyQuantity(r.getQuantity());}}));
+		cost.forEach(r->this.resources.forEach(tr->{if(tr.getClass().equals(r.getClass())){tr.modifyQuantity(r.getQuantity());}}));
 	}
 	
-
 	
 	public void takeACard(DevelopmentCard card,ActionSpace aSpace, FamilyMember fMember, int servants){
 		card.takeCard(this,aSpace,fMember,servants);

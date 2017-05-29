@@ -18,7 +18,7 @@ public class RunProduction extends Action {
 		super(player, fMember, servants);
 		this.area = ProductionArea.instance();
 		
-		if (ProductionArea.getASpace().size() < 1) prodValue = value;
+		if (ProductionArea.instance().getASpace().size() < 1) prodValue = value;
 		else prodValue = value - prodPenality;
 	}
 	
@@ -32,6 +32,7 @@ public class RunProduction extends Action {
 
 	@Override
 	public void apply() {
+		@SuppressWarnings("unchecked")
 		ArrayList<BuildingCard> myBCards = (ArrayList<BuildingCard>) player.getCards(new BuildingCard());
 		
 		myBCards.forEach(card -> {//for all the cards which belong to the player

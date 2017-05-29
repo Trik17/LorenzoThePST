@@ -19,7 +19,7 @@ public class RunHarvest extends Action{
 		super(player, fMember, servants);
 		this.area = HarvestArea.instance();
 		
-		if (ProductionArea.getASpace().size() < 1) harvValue = value;
+		if (ProductionArea.instance().getASpace().size() < 1) harvValue = value;
 		else harvValue = value - harvPenality;
 	}
 	
@@ -32,9 +32,10 @@ public class RunHarvest extends Action{
 
 	@Override
 	public void apply() {
-		ArrayList<TerritoryCard> myBCards = (ArrayList<TerritoryCard>) player.getCards(new TerritoryCard());
+		@SuppressWarnings("unchecked")
+		ArrayList<TerritoryCard> myTCards = (ArrayList<TerritoryCard>) player.getCards(new TerritoryCard());
 		
-		myBCards.forEach(card -> {//for all the cards which belong to the player
+		myTCards.forEach(card -> {//for all the cards which belong to the player
 			for(Effect eff:card.getHarvest().getEffects()){//it scroll through the production effects
 				if(eff instanceof EndVictoryPointsEffect) continue;//it doesn't apply this effect because it will be applied only at the end of the game
 				if(harvValue >= card.getHarvest().getDiceValue()) eff.apply(player);}}); //it apply all the production effects whose dice value is <= than the value of the dice with which the action is performed 
