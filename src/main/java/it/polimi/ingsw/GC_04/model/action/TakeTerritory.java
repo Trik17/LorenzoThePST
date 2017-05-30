@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.model.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;

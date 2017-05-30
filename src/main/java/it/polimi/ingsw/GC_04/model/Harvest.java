@@ -8,8 +8,9 @@ public class Harvest {
 	private int diceValue;
 	private List<Effect> effects;
 
-	public Harvest(List<Effect> effects) {
+	public Harvest(int diceValue, List<Effect> effects) {
 		this.effects = effects;
+		this.diceValue = diceValue;
 	}
 	
 	public int getDiceValue() {

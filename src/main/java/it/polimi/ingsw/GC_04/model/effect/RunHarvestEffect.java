@@ -6,8 +6,10 @@ import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.RunHarvest;
 
 public class RunHarvestEffect extends ActionEffect {
-	private int diceValue;
-	
+
+	public RunHarvestEffect(Dice dice) {
+		this.dice = dice;
+	}
 
 	@Override
 	public void apply(Player player) {
@@ -17,7 +19,7 @@ public class RunHarvestEffect extends ActionEffect {
 		 */
 		int servants = 0;
 		
-		FamilyMember fMember = new FamilyMember(new Dice(diceValue));
+		FamilyMember fMember = new FamilyMember(dice);
 		RunHarvest check = new RunHarvest(player, fMember, servants);
 		check.apply();
 

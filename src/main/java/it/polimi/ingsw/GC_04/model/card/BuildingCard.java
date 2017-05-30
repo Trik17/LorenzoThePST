@@ -18,9 +18,9 @@ public class BuildingCard extends DevelopmentCard {
 	
 	
 	@JsonCreator
-	public BuildingCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty List<Effect> effects) {
+	public BuildingCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty List<Effect> effects,@JsonProperty("production") Production production ) {
 		super(period, name, cost1, cost2, effects);
-		// TODO Auto-generated constructor stub
+		this.production = production;
 	}
 	//constructor needed for Json
 	public BuildingCard() {}

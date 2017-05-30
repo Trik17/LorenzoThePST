@@ -6,8 +6,11 @@ import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.RunProduction;
 
 public class RunProductionEffect extends ActionEffect {
-	private int diceValue;
-	
+
+	public RunProductionEffect(Dice dice) {
+		this.dice = dice;
+	}
+
 
 	@Override
 	public void apply(Player player) {
@@ -17,7 +20,7 @@ public class RunProductionEffect extends ActionEffect {
 		 */
 		int servants = 0;
 		
-		FamilyMember fMember = new FamilyMember(new Dice(diceValue));
+		FamilyMember fMember = new FamilyMember(dice);
 		RunProduction check = new RunProduction(player, fMember, servants);
 		check.apply();
 

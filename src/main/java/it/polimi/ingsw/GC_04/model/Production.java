@@ -8,8 +8,9 @@ public class Production {
 	private int diceValue;
 	private List<Effect> effects;
 
-	public Production() {
-		// TODO Auto-generated constructor stub
+	public Production(int diceValue, List<Effect> effects) {
+		this.effects = effects;
+		this.diceValue = diceValue;
 	}
 	
 	public int getDiceValue() {

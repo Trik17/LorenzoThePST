@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.model.card;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

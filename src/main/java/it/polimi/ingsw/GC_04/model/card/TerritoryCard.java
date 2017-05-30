@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.model.card;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -19,8 +18,9 @@ public class TerritoryCard extends DevelopmentCard {
 	private Harvest harvest;
 	
 	@JsonCreator
-	public TerritoryCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty List<Effect> effects){
+	public TerritoryCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty List<Effect> effects,@JsonProperty("harvest") Harvest harvest){
 		super(period, name, cost1, cost2, effects);
+		this.harvest = harvest;
 	}
 	//constructor needed for Json
 		public TerritoryCard() {

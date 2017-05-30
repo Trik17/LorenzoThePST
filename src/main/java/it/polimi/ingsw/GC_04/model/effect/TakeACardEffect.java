@@ -13,11 +13,11 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class TakeACardEffect extends ActionEffect {
 	private DevelopmentCard cardType;
-	private int diceValue;
 
-	public TakeACardEffect(DevelopmentCard cardType, int diceValue) {
+
+	public TakeACardEffect(DevelopmentCard cardType, Dice dice) {
 		this.cardType = cardType;
-		this.diceValue = diceValue;
+		this.dice = dice;
 		}
 
 	@Override
@@ -33,7 +33,7 @@ public class TakeACardEffect extends ActionEffect {
 		DevelopmentCard card = new TerritoryCard();
 		
 		//da qui è giusto
-		FamilyMember fMember = new FamilyMember(new Dice(diceValue));
+		FamilyMember fMember = new FamilyMember(dice);
 		player.takeACard(card, aSpace, fMember, servants,cost);
 		//aggiungere che se non va bene puoi provare con un'altra carta
 	}

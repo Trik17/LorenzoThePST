@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_04.model.ActionSpace;
 public class HarvestArea extends ColorReastrictedArea {
 	private static HarvestArea instance;
 	
-	public HarvestArea() {
+	private HarvestArea() {
 		this.aSpaces = new ArrayList<ActionSpace>();
 	}
 	

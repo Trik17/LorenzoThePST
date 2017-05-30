@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
+import it.polimi.ingsw.GC_04.model.Player;
+
 @JsonTypeInfo(use = Id.NAME,
 	include = JsonTypeInfo.As.PROPERTY,
 	property = "type")
@@ -62,6 +64,18 @@ public abstract class Resource {
 		resources.forEach(r-> {
 			if(r.getClass().equals(b.getClass()))
 				r.addQuantity(-b.getQuantity());}));
+	}
+	
+	public static boolean isAffordable(List<Resource> myRes,List<Resource> cost) {
+		for(Resource c:cost){  //for all resource type in cost
+			for(Resource mR:myRes){
+				//it scrolls through all types of player's resources and if the type coincides
+				//it checks that the player's quantity of that resource is enough to buy the card. if it's not, set affordable = false.
+				if(c.getClass().equals(mR.getClass()) && mR.getQuantity() < c.getQuantity()) 
+						return false;
+				}
+			}
+		return true;
 	}
 	
 	
