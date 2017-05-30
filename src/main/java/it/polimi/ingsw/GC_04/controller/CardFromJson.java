@@ -35,7 +35,7 @@ public class CardFromJson { //classe di prova per serializzazione / deserializza
 		Resource r1=new Coins(3);
 		Resource r2=new Woods(99);
 		Resource r3=new FaithPoints(4);
-		Resource r4=new MilitaryPoints(0);
+		Resource r4=new MilitaryPoints(0,0);
 		Resource r5=new Stones(22);
 		Resource r6=new Servants(1);
 		/*

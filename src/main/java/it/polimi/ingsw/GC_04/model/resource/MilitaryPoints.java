@@ -11,6 +11,11 @@ public class MilitaryPoints extends Resource{
 		super(quantity);
 		this.malus = malus;
 	}
+	@JsonCreator
+	public MilitaryPoints(@JsonProperty("quantity")int quantity){
+		super(quantity);
+		this.malus =0;
+	}
 	//constructor needed for Json
 	public MilitaryPoints() {}
 	

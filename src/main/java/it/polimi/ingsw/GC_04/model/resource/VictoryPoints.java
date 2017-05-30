@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class VictoryPoints extends Resource{
-	//private int endAccumulator; //victory points from venture's cards, for the end of the game
+	
 	@JsonCreator
 	public VictoryPoints(@JsonProperty("quantity")int quantity){
 		super(quantity);
