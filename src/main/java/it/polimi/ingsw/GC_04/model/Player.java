@@ -2,16 +2,16 @@ package it.polimi.ingsw.GC_04.model;
 
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.Action.GoToTheCouncilPalace;
-import it.polimi.ingsw.GC_04.model.Action.GoToTheMarket;
-import it.polimi.ingsw.GC_04.model.Action.RunHarvest;
-import it.polimi.ingsw.GC_04.model.Action.RunProduction;
-import it.polimi.ingsw.GC_04.model.Card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.Card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.Card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.Card.VentureCard;
-import it.polimi.ingsw.GC_04.model.Resource.Resource;
+import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
+import it.polimi.ingsw.GC_04.model.action.GoToTheMarket;
+import it.polimi.ingsw.GC_04.model.action.RunHarvest;
+import it.polimi.ingsw.GC_04.model.action.RunProduction;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class Player {
 	
@@ -70,8 +70,8 @@ public class Player {
 	}
 	
 	
-	public void takeACard(DevelopmentCard card,ActionSpace aSpace, FamilyMember fMember, int servants){
-		card.takeCard(this,aSpace,fMember,servants);
+	public void takeACard(DevelopmentCard card,ActionSpace aSpace, FamilyMember fMember, int servants,List<Resource> cost){
+		card.takeCard(this,aSpace,fMember,servants,cost);
 	}
 	public void runProduction(FamilyMember fMember, int servants){
 		RunProduction check = new RunProduction(this, fMember, servants);

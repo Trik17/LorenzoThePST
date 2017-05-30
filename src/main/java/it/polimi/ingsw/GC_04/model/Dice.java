@@ -8,27 +8,26 @@ public class Dice {
 	private static Dice whiteDice;
 	private static Dice orangeDice;
 	private static Dice neutralDice; //this Dice only serves to be associated to the neutral family member. Its value never changes
-	private DiceColor color;
 	private int value;
 	
-	
-	public static void createDices() {
-			blackDice = new Dice(DiceColor.BLACK);
-			whiteDice = new Dice(DiceColor.WHITE);
-			orangeDice = new Dice(DiceColor.ORANGE);	
-			neutralDice = new Dice(DiceColor.NONE);
-	}
-	
-	
-	
-	private Dice(DiceColor color){
-			this.color = color;	
+	private Dice() {
+		Random rnd = new Random();
+		value = 1 + rnd.nextInt(6);
 	}
 	
 	public Dice(int value) { //it is needed to initialize TakeACardEffect
-		this.color = DiceColor.NONE;
 		this.value = value;
 	}
+	
+	public static void createDices() {
+			blackDice = new Dice();
+			whiteDice = new Dice();
+			orangeDice = new Dice();	
+			neutralDice = new Dice();
+	}
+	
+	
+	
 	
 	public static void rollTheDices(){
 		//it associates a random number between 1 and 6 with the attribute value

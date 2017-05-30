@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_04.model;
 
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.Effect.Effect;
+import it.polimi.ingsw.GC_04.model.effect.Effect;
 
 public class Production {
 	private int diceValue;

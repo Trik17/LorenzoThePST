@@ -1,10 +1,10 @@
 package it.polimi.ingsw.GC_04.model;
 
-import it.polimi.ingsw.GC_04.model.Card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.Card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.Card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.Card.VentureCard;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.model.card.VentureCard;
 
 public class ExtraDice {
 	private int extraTerritory;

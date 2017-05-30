@@ -12,15 +12,15 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import it.polimi.ingsw.GC_04.model.Card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.Resource.Coins;
-import it.polimi.ingsw.GC_04.model.Resource.FaithPoints;
-import it.polimi.ingsw.GC_04.model.Resource.MilitaryPoints;
-import it.polimi.ingsw.GC_04.model.Resource.Resource;
-import it.polimi.ingsw.GC_04.model.Resource.Servants;
-import it.polimi.ingsw.GC_04.model.Resource.Stones;
-import it.polimi.ingsw.GC_04.model.Resource.Woods;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.resource.Coins;
+import it.polimi.ingsw.GC_04.model.resource.FaithPoints;
+import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
+import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.Servants;
+import it.polimi.ingsw.GC_04.model.resource.Stones;
+import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class CardFromJson { //classe di prova per serializzazione / deserializzazione carte json
 	public CardFromJson(){

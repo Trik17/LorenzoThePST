@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.model.Game;
 import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.Card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.Card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.Card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.Card.VentureCard;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.model.card.VentureCard;
 
 public class Inizializer {
 	

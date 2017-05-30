@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
-import it.polimi.ingsw.GC_04.model.Effect.Effect;
+import it.polimi.ingsw.GC_04.model.effect.Effect;
 
 public class ActionSpace {
 	

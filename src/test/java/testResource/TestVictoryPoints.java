@@ -4,9 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
-import it.polimi.ingsw.GC_04.model.Resource.Resource;
-import it.polimi.ingsw.GC_04.model.Resource.VictoryPoints;
+import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.VictoryPoints;
 
 public class TestVictoryPoints {
 	Resource p;
