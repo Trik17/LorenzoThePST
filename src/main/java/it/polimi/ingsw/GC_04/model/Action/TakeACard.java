@@ -36,7 +36,7 @@ public class TakeACard extends Action{
 			if(aSpace.getPresentColor() != null) {
 				List<Resource> penality = new ArrayList<Resource>();
 				penality.add(new Coins(TOWERPENALITY));
-				Resource.modifyResource(cost, penality);
+				Resource.addResource(cost, penality);
 				
 			}
 		}
@@ -63,11 +63,7 @@ public class TakeACard extends Action{
 	public void applyCost() {
 		List<Resource> cost = card.getCost();
 		
-		cost.forEach(res -> {//it turns into negative numbers the quantities of the resources present in the card's cost
-			int newQuantity = -2*res.getQuantity();
-			res.addQuantity(newQuantity);});
-		
-		Resource.modifyResource(player.getResources(),cost);
+		Resource.subtractResource(player.getResources(),cost);
 		
 	}
 	

@@ -20,7 +20,7 @@ public class ExchangeResourcesEffect extends ResourceEffect {
 	@Override
 	public void apply(Player player) {
 		if(isApplicable(player)) {
-			Resource.modifyResource(cost,player.getResources());//non è vero, così somma il costo
+			Resource.subtractResource(player.getResources(),cost);
 			super.apply(player);
 		}
 	}

@@ -38,20 +38,24 @@ public abstract class Resource {
 		this.quantity += nOfResources;
 	}
 	
-	public void subtractQuantity(int nOfResources){
-		this.quantity -= nOfResources;
-	}
-	
 	public int getQuantity(){
 		return quantity;
 	}
 	
-	public static void modifyResource(List<Resource> resources, List<Resource> bonus){
-		//for each bonus resource in input it takes the correspondent resource in the parameter resources adds to it the bonus 
+	public static void addResource(List<Resource> resources, List<Resource> bonus){
+		//for each bonus resource in input it takes the correspondent resource in the parameter resources and adds to it the bonus 
 		bonus.forEach(b->
 			resources.forEach(r-> {
 				if(r.getClass().equals(b.getClass()))
 					r.addQuantity(b.getQuantity());}));
+	}
+	
+	public static void subtractResource(List<Resource> resources, List<Resource> cost){
+		//for each bonus resource in input it takes the correspondent resource in the parameter resources and subtracts to it the cost 
+		cost.forEach(b->
+		resources.forEach(r-> {
+			if(r.getClass().equals(b.getClass()))
+				r.addQuantity(-b.getQuantity());}));
 	}
 	
 	
