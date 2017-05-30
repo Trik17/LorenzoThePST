@@ -11,7 +11,7 @@ public class FamilyMember {
 	private FamilyColor familyColor;
 	private Dice dice;
 	
-	public FamilyMember[] createFamily(FamilyColor familyColor) {
+	public static FamilyMember[] createFamily(FamilyColor familyColor) {
 		FamilyMember[] family = new FamilyMember[4];
 		family[0] = new FamilyMember();
 		family[1] = new FamilyMember(familyColor,Dice.getBlackDice());
