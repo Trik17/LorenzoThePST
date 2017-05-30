@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04;
 
 import java.util.ArrayList;
 
