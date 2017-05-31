@@ -25,7 +25,7 @@ public class TestMilitaryPoints {
 	@Test
 	public void testIntNeg() {
 		m=new MilitaryPoints(-1);
-		assertEquals(-1, m.getQuantity());
+		assertEquals(0, m.getQuantity());
 	}
 	
 	@Test
@@ -37,9 +37,9 @@ public class TestMilitaryPoints {
 	
 	@Test
 	public void testModifyQuantityNeg() {
-		m=new MilitaryPoints();
+		m=new MilitaryPoints(6);
 		m.addQuantity(-5);
-		assertEquals(-5, m.getQuantity());
+		assertEquals(1, m.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {

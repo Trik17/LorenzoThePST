@@ -25,7 +25,7 @@ public class TestVictoryPoints {
 	@Test
 	public void testIntNeg() {
 		p=new VictoryPoints(-1);
-		assertEquals(-1, p.getQuantity());
+		assertEquals(0, p.getQuantity());
 	}
 	
 	@Test
@@ -37,9 +37,9 @@ public class TestVictoryPoints {
 	
 	@Test
 	public void testModifyQuantityNeg() {
-		p=new VictoryPoints();
+		p=new VictoryPoints(10);
 		p.addQuantity(-5);
-		assertEquals(-5, p.getQuantity());
+		assertEquals(5, p.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {

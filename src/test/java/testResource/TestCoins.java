@@ -25,7 +25,7 @@ public class TestCoins {
 	@Test
 	public void testIntNeg() {
 		c=new Coins(-1);
-		assertEquals(-1, c.getQuantity());
+		assertEquals(0, c.getQuantity());
 	}
 	
 	@Test
@@ -37,9 +37,9 @@ public class TestCoins {
 	
 	@Test
 	public void testModifyQuantityNeg() {
-		c=new Coins();
+		c=new Coins(6);
 		c.addQuantity(-5);
-		assertEquals(-5, c.getQuantity());
+		assertEquals(1, c.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {

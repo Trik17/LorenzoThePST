@@ -26,7 +26,7 @@ public class TestServants {
 	@Test
 	public void testIntNeg() {
 		s=new Servants(-1);
-		assertEquals(-1, s.getQuantity());
+		assertEquals(0, s.getQuantity());
 	}
 	
 	@Test
@@ -38,9 +38,9 @@ public class TestServants {
 	
 	@Test
 	public void testModifyQuantityNeg() {
-		s=new Servants();
+		s=new Servants(10);
 		s.addQuantity(-5);
-		assertEquals(-5, s.getQuantity());
+		assertEquals(5, s.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {

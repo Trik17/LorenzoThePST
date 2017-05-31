@@ -25,7 +25,7 @@ public class TestStones {
 	@Test
 	public void testIntNeg() {
 		s=new Stones(-1);
-		assertEquals(-1, s.getQuantity());
+		assertEquals(0, s.getQuantity());
 	}
 	
 	@Test
@@ -37,9 +37,9 @@ public class TestStones {
 	
 	@Test
 	public void testModifyQuantityNeg() {
-		s=new Stones();
+		s=new Stones(10);
 		s.addQuantity(-5);
-		assertEquals(-5, s.getQuantity());
+		assertEquals(5, s.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {

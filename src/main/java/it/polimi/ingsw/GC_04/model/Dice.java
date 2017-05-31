@@ -21,7 +21,8 @@ public class Dice {
 	public Dice(int value) {//it is needed to initialize TakeACardEffect
 		if (value < NEUTRALDICEVALUE)
 			this.value = NEUTRALDICEVALUE;
-		this.value = value;
+			else
+				this.value = value;
 	}
 	
 	public static void createDices() {

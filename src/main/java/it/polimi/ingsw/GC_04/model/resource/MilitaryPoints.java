@@ -9,7 +9,10 @@ public class MilitaryPoints extends Resource{
 	@JsonCreator
 	public MilitaryPoints(@JsonProperty("quantity")int quantity,@JsonProperty("malus")int malus){
 		super(quantity);
-		this.malus = malus;
+		if(malus<0)
+			this.malus=0;
+		else
+			this.malus = malus;
 	}
 	@JsonCreator
 	public MilitaryPoints(@JsonProperty("quantity")int quantity){

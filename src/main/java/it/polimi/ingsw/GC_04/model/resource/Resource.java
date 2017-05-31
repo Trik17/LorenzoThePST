@@ -32,8 +32,9 @@ public abstract class Resource {
 	}
 	
 	public Resource(@JsonProperty("quantity")int quantity){
+		if(quantity>0)
+			this.quantity = quantity;
 		
-		this.quantity = quantity;
 	}
 	
 	public void addQuantity(int nOfResources){

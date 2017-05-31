@@ -25,7 +25,7 @@ public class TestWoods {
 	@Test
 	public void testWoodsIntNeg() {
 		w=new Woods(-1);
-		assertEquals(-1, w.getQuantity());
+		assertEquals(0, w.getQuantity());
 	}
 	
 	@Test
@@ -36,9 +36,9 @@ public class TestWoods {
 	}
 	@Test
 	public void testModifyQuantityNeg() {
-		w=new Woods();
+		w=new Woods(10);
 		w.addQuantity(-5);
-		assertEquals(-5, w.getQuantity());
+		assertEquals(5, w.getQuantity());
 	}
 	@Test
 	public void testModifyQuantityZero() {
