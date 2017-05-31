@@ -3,9 +3,9 @@ package it.polimi.ingsw.GC_04.model;
 import java.util.Random;
 
 public class Dice {
-	private static final int NEUTRALDICEVALUE = 0;
-	private static final int MINDICEVALUE = 1;
-	private static final int MAXDICEVALUE = 6;
+	public static final int NEUTRALDICEVALUE = 0;
+	public static final int MINDICEVALUE = 1;
+	public static final int MAXDICEVALUE = 6;
 	
 	private static Dice blackDice;
 	private static Dice whiteDice;
