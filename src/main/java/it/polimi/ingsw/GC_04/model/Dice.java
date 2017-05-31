@@ -8,7 +8,7 @@ public class Dice {
 	private static Dice whiteDice;
 	private static Dice orangeDice;
 	private static Dice neutralDice; //this Dice only serves to be associated to the neutral family member. Its value never changes
-	private int value;
+	private int value; // 1<=value<=6
 	
 	private Dice() {
 		Random rnd = new Random();
@@ -38,7 +38,7 @@ public class Dice {
 	}
 	
 	public int getValue(){
-		return value;
+		return this.value;
 	}
 	
 	public static Dice getBlackDice() {

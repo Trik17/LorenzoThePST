@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MilitaryPoints extends Resource{
-	private int malus;//it serves for the costs
+	private int malus;//necessary for the costs
 	
 	@JsonCreator
 	public MilitaryPoints(@JsonProperty("quantity")int quantity,@JsonProperty("malus")int malus){
