@@ -1,12 +1,12 @@
 package it.polimi.ingsw.GC_04.model;
 
-public class Game {
+public class Model {
 	
 	private static Player[] players;
 	private int currentPeriod;
 	
-    public Game(Player[] players) {
-    	Game.players = players;
+    public Model(Player[] players) {
+    	Model.players = players;
     	currentPeriod = 1;
 	}
 	

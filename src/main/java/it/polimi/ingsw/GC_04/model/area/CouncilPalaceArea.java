@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.Game;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 
 public class CouncilPalaceArea extends Area{ 

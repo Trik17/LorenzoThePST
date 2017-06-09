@@ -1,15 +1,15 @@
 package it.polimi.ingsw.GC_04.controller;
 
 import it.polimi.ingsw.GC_04.Observer;
-import it.polimi.ingsw.GC_04.model.Game;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.viewCLI.ViewCLI;
+import it.polimi.ingsw.GC_04.viewCLI.Input;
 
 public class Controller implements Observer<Action> {
-	private Game game;
+	private Model model;
 
-	public Controller(Game game, ViewCLI view) {
-		this.game = game;
+	public Controller(Model game, Input view) {
+		this.model = game;
 		view.registerObserver(this);
 		
 	}

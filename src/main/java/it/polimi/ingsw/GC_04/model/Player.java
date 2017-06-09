@@ -24,7 +24,7 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 public class Player {
 	private String name;
 	
-	private Game game;
+	private Model game;
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
 	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;

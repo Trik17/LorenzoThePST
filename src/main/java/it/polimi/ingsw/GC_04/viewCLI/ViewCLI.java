@@ -1,165 +1,124 @@
 package it.polimi.ingsw.GC_04.viewCLI;
 
-import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-import it.polimi.ingsw.GC_04.Observable;
+import it.polimi.ingsw.GC_04.Inizializer;
+import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.DiceColor;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Game;
-import it.polimi.ingsw.GC_04.model.Harvest;
+import it.polimi.ingsw.GC_04.model.FamilyColor;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.Production;
-import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
-import it.polimi.ingsw.GC_04.model.action.GoToTheMarket;
-import it.polimi.ingsw.GC_04.model.action.RunHarvest;
-import it.polimi.ingsw.GC_04.model.action.RunProduction;
-import it.polimi.ingsw.GC_04.model.action.TakeTerritory;
-import it.polimi.ingsw.GC_04.model.area.Area;
-import it.polimi.ingsw.GC_04.model.area.BuildingTower;
-import it.polimi.ingsw.GC_04.model.area.CharacterTower;
-import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
-import it.polimi.ingsw.GC_04.model.area.HarvestArea;
-import it.polimi.ingsw.GC_04.model.area.MarketArea;
-import it.polimi.ingsw.GC_04.model.area.ProductionArea;
-import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
-import it.polimi.ingsw.GC_04.model.area.Tower;
-import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
+
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 
 
-public class ViewCLI extends Observable<Action> {
+
+public class ViewCLI {
 	
-	private final Game game;
-	private int turn;
-	
-	public ViewCLI(Game game) {
-		this.game = game;
-		turn = 0;
+	public static void print(String string) {
+		System.out.println(string);
 	}
-	
-	private void nextPlayer() {
-		int nrOfPlayer = Game.getPlayers().length;
-		if (turn < nrOfPlayer)
-			turn ++;
-		else
+
+	public static void main(String[] args) throws IOException {
+		Scanner in = new Scanner(System.in);
+		int num = 4;
+		int turn = 0;
+		String name;
+		print("Inserisci numero di giocatori");
+		String nrOfPlayers = in.nextLine();
+		
+		try {
+			num = Integer.parseInt(nrOfPlayers);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Player[] players = new Player[num];
+		
+		switch (num) {
+		case 4:
+			print("Player BLUE inserisci il tuo nome");
+			name = in.nextLine();
+			Player player1 = new Player(name, FamilyColor.BLUE, turn);
+			players[turn] = player1;
+			turn++;
+		case 3:
+			print("Player RED inserisci il tuo nome");
+			name = in.nextLine();
+			Player player2 = new Player(name, FamilyColor.RED, turn);
+			players[turn] = player2;
+			turn++;
+		case 2:
+			print("Player GREEN inserisci il tuo nome");
+			name = in.nextLine();
+			Player player3 = new Player(name, FamilyColor.GREEN, turn);
+			players[turn] = player3;
+			turn++;
+			
+			print("Player YELLOW inserisci il tuo nome");
+			name = in.nextLine();
+			Player player4 = new Player(name, FamilyColor.YELLOW, turn);
+			players[turn] = player4;
 			turn = 0;
-	}
-	
-	
-	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost) throws IOException {
-		Action action;
-		Tower realTower;
-		ActionSpace realASpace;
-		DevelopmentCard realCard;
-		List<Resource> realCost = new ArrayList<Resource>();
-		Player player = CouncilPalaceArea.getTurnOrder()[turn];
-		
-		diceColor = diceColor.toUpperCase();
-		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int card = Integer.parseInt(nrOfCard); 
-			int servants = Integer.parseInt(nrOfServants); 
-			int chosenCost = Integer.parseInt(cost);
-			
-			if(tower.equalsIgnoreCase("TERRYTORY")) {
-				realTower = TerritoryTower.instance();
-			}
-			if(tower.equalsIgnoreCase("BUILDING")) {
-				realTower = BuildingTower.instance();
-			}
-			if(tower.equalsIgnoreCase("VENTURE")) {
-				realTower = VentureTower.instance();
-			}
-			if(tower.equalsIgnoreCase("CHARACTER")) {
-				realTower = CharacterTower.instance();
-			}else 
-				throw new IOException();
-			
-			realCard = realTower.getCards()[card];
-				
-			if (chosenCost == 1)
-				realCost = realCard.getCost1();
-			if (chosenCost == 2)
-				realCost = realCard.getCost2();
-			realASpace = realTower.getASpaces().get(card);
-			
-			action = new TakeTerritory(player,realCard,realASpace,fMember,servants,realCost);
-			this.notifyObservers(action);
-		}catch (Exception e) {
-			 e.printStackTrace();
-		}
-	}
-	
-	public void input(String area, String diceColor, String actSpace, String nrOfServants) {
-		Player player = CouncilPalaceArea.getTurnOrder()[turn];
-		ActionSpace realASpace;
-		Area realArea;
-		Action action;
-		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int aSpace = Integer.parseInt(actSpace); 
-			int servants = Integer.parseInt(nrOfServants); 
-			
-			if (area.equals("MARKET")) {
-				realArea = MarketArea.instance();
-				realASpace = realArea.getASpaces().get(aSpace);
-				action = new GoToTheMarket(player, fMember, servants, realASpace);
-			}else 
-				throw new IOException();
-			
-			this.notifyObservers(action);
-				
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
+			break;
+		default:
+			throw new IOException();
 		}
 		
-	}
-	
-	public void input(String area, String diceColor, String nrOfServants) {
-		Player player = CouncilPalaceArea.getTurnOrder()[turn];
-		Action action;
+		//queste inizializzazioni sono solo per far compilare
+		TerritoryCard[] tCards = new TerritoryCard[16];
+		BuildingCard[] bCards = new BuildingCard[16];
+		CharacterCard[] cCards = new CharacterCard[16];
+		VentureCard[] vCards = new VentureCard[16];
+		List<ActionSpace> aSpaces = new ArrayList<ActionSpace>();
 		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int servants = Integer.parseInt(nrOfServants);
-			
-			if (area.equals("COUNCIL PALACE")) {
-				action = new GoToTheCouncilPalace(player, fMember, servants);
-			}
-			
-			if (area.equals("HARVEST")) {
-				action = new RunHarvest(player, fMember, servants);
-			}
-			
-			if (area.equals("PRODUCTION")) {
-				action = new RunProduction(player, fMember, servants);
-			}else 
-				throw new IOException();
-			
-			this.notifyObservers(action);
-			
-			
+		Inizializer inizializer = new Inizializer(players, tCards, bCards, cCards, vCards, aSpaces);
+		Model game = new Model(players);
+		Input view =new Input(game);
+		Controller controller=new Controller(game, view);
 		
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
+		while(true){
+			print(players[turn].getName()+" scegli un'area tra TOWER, PRODUCTION, HARVEST, MARKET, COUNCIL PALACE");
+			String area = in.nextLine();
+			if (area.equalsIgnoreCase("TOWER")) {
+				print("Scegli la torre tra TERRITORY, BUILDING, VENTURE, CHARACTER");
+				String tower = in.nextLine();
+				print("Scegli la carta tra 1, 2, 3, 4");
+				String nrOfCard = in.nextLine();
+				print("Scegli il dado che vuoi usare tra BLACK, ORANGE, WHITE, NEUTRAL");
+				String diceColor = in.nextLine();
+				print("Quanti servants vuoi usare per questa mossa?");
+				String nrOfServants = in.nextLine();
+				print("Scegli, se previsto, quale costo vuoi pagare per questa carta tra 1, 2");
+				print("Se non è prevista una scelta premi 1");
+				String cost = in.nextLine();
+				view.input(tower, nrOfCard, diceColor, nrOfServants, cost);
+			}
+			if (area.equalsIgnoreCase("MARKET")) {
+				print("Scegli il dado che vuoi usare tra BLACK, ORANGE, WHITE, NEUTRAL");
+				String diceColor = in.nextLine();
+				print("Scegli lo shop tra 1, 2, 3, 4"); //in realtà di pende dal numero di giocatori
+				String actSpace = in.nextLine();
+				print("Quanti servants vuoi usare per questa mossa?");
+				String nrOfServants = in.nextLine();
+				view.input(area, diceColor, actSpace, nrOfServants);
+			}else {
+				print("Scegli il dado che vuoi usare tra BLACK, ORANGE, WHITE, NEUTRAL");
+				String diceColor = in.nextLine();
+				print("Quanti servants vuoi usare per questa mossa?");
+				String nrOfServants = in.nextLine();
+				view.input(area, diceColor, nrOfServants);	
+			}
+		
 		}
-		
-		
-		
 	}
 	
 }
+
+
