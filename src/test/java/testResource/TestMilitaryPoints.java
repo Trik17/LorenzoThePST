@@ -47,4 +47,5 @@ public class TestMilitaryPoints {
 		m.addQuantity(0);
 		assertEquals(1, m.getQuantity());
 	}
+	
 }
