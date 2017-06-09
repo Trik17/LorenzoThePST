@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_04.model.area;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.model.Game;
 import it.polimi.ingsw.GC_04.model.Player;
 
 public class CouncilPalaceArea extends Area{ 
@@ -10,10 +12,11 @@ public class CouncilPalaceArea extends Area{
 	private static Player[] turnOrder; 
 	private static Player[] nextTurnOrder;
 	
-	private CouncilPalaceArea(int nrOfPlayers,List<ActionSpace> aSpaces){  //dovrò passare anche i player in realtà
-		turnOrder = new Player[nrOfPlayers];
+	private CouncilPalaceArea(Player[] players){ 
+		turnOrder = players;
+		int nrOfPlayers = turnOrder.length;
 		nextTurnOrder = new Player[nrOfPlayers];
-		this.aSpaces = aSpaces;	
+		this.aSpaces = new ArrayList<ActionSpace>();	
 	}
 		
 	public static CouncilPalaceArea instance() {
@@ -21,13 +24,13 @@ public class CouncilPalaceArea extends Area{
 		return instance;
 		
 	}
-	public static CouncilPalaceArea instance(int nrOfPlayers,List<ActionSpace> aSpaces){
-		if (instance==null) instance = new CouncilPalaceArea(nrOfPlayers,aSpaces);
+	public static CouncilPalaceArea instance(Player[] players){
+		if (instance==null) instance = new CouncilPalaceArea(players);
 		return instance;
 	}
 	
 	
-	public Player[] getTurnOrder(){
+	public static Player[] getTurnOrder(){
 		return turnOrder;
 		
 	}

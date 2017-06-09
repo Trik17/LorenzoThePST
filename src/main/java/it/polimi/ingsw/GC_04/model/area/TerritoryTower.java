@@ -9,7 +9,7 @@ public class TerritoryTower extends Tower{
 	private static TerritoryTower instance;
 	
 	
-	private TerritoryTower(List<TerritoryCard> cards, List<ActionSpace> aSpaces) {
+	private TerritoryTower(TerritoryCard[] cards, List<ActionSpace> aSpaces) {
 		this.cards = cards;
 		this.aSpaces = aSpaces;
 	}
@@ -18,15 +18,9 @@ public class TerritoryTower extends Tower{
 		return instance;
 		
 	}
-	public static TerritoryTower instance(List<TerritoryCard> cards, List<ActionSpace> aSpaces){
+	public static TerritoryTower instance(TerritoryCard[] cards, List<ActionSpace> aSpaces){
 		if (instance==null) instance = new TerritoryTower(cards, aSpaces);
 		return instance;
 	}
-
-	public List<ActionSpace> getASpaces() {
-		return aSpaces;
-		
-	}
-	
 
 }

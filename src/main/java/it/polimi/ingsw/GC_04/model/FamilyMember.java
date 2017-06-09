@@ -10,13 +10,14 @@ public class FamilyMember {
 	
 	private FamilyColor familyColor;
 	private Dice dice;
+	private boolean used;
 	
 	public static FamilyMember[] createFamily(FamilyColor familyColor) {
 		FamilyMember[] family = new FamilyMember[4];
 		family[0] = new FamilyMember();
-		family[1] = new FamilyMember(familyColor,Dice.getBlackDice());
-		family[2] = new FamilyMember(familyColor,Dice.getWhiteDice());
-		family[3] = new FamilyMember(familyColor,Dice.getOrangeDice());
+		family[1] = new FamilyMember(familyColor,Dice.getDice(DiceColor.BLACK));
+		family[2] = new FamilyMember(familyColor,Dice.getDice(DiceColor.WHITE));
+		family[3] = new FamilyMember(familyColor,Dice.getDice(DiceColor.ORANGE));
 		
 		return family;
 			
@@ -24,7 +25,7 @@ public class FamilyMember {
 	
 	private FamilyMember(){ //it creates neutral family members
 		this.familyColor = FamilyColor.NEUTRAL;
-		this.dice = Dice.getNeutralDice();
+		this.dice = Dice.getDice(DiceColor.NEUTRAL);
 	}
 	
 	private FamilyMember(FamilyColor familyColor, Dice dice){
@@ -45,5 +46,10 @@ public class FamilyMember {
 	
 	public FamilyColor getFamilyColor(){
 		return familyColor;
+	}
+	
+	public boolean isUsed() {
+		return used;
+		
 	}
 }

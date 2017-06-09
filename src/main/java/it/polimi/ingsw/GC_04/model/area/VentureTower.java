@@ -8,12 +8,12 @@ import it.polimi.ingsw.GC_04.model.card.VentureCard;
 public class VentureTower extends Tower{
 	private static VentureTower instance;
 	
-	public VentureTower(List<VentureCard> cards, List<ActionSpace> aSpaces) {
+	public VentureTower(VentureCard[] cards, List<ActionSpace> aSpaces) {
 		this.cards = cards;
 		this.aSpaces = aSpaces;
 	}
 	
-	public static VentureTower instance(List<VentureCard> cards, List<ActionSpace> aSpaces){
+	public static VentureTower instance(VentureCard[] cards, List<ActionSpace> aSpaces){
 		if (instance==null) instance = new VentureTower(cards, aSpaces);
 		return instance;
 	}
@@ -22,10 +22,5 @@ public class VentureTower extends Tower{
 		return instance;
 		
 	}
-
-	public List<ActionSpace> getASpaces() {
-		return aSpaces;
-	}
-	
 
 }

@@ -15,13 +15,13 @@ public class GoToTheMarket extends Action {
 
 	@Override
 	public boolean isApplicable() {
-		return isPlaceAvailable() &&
+		return isAvailable() &&
 				isValueEnough();
 	}
 
 	@Override
 	public void apply() {
-		applyActionSpaceEffect();
+		applyActionSpaceChanges();
 	}
 	
 

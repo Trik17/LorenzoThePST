@@ -19,7 +19,7 @@ public class GoToTheCouncilPalace extends Action{
 
 	@Override
 	public void apply() {
-		applyActionSpaceEffect();
+		applyActionSpaceChanges();
 		
 		
 	}

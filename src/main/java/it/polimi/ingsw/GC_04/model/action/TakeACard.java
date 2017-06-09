@@ -71,13 +71,13 @@ public class TakeACard extends Action{
 				isValueEnough() && 
 				isAffordable() && 
 				isColorAvailable() &&
-				isPlaceAvailable();
+				isAvailable();
 	}
 
 	@Override
 	public void apply() {
 		applyCost();
-		applyActionSpaceEffect();
+		applyActionSpaceChanges();
 	
 	}
 }	

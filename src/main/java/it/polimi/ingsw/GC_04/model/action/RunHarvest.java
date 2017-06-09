@@ -28,7 +28,7 @@ public class RunHarvest extends Action{
 	public boolean isApplicable() {
 		return isColorAvailable() &&
 				isValueEnough() &&
-				isPlaceAvailable();
+				isAvailable();
 	}
 
 	@Override

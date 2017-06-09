@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import it.polimi.ingsw.GC_04.model.Dice;
+import it.polimi.ingsw.GC_04.model.DiceColor;
 
 public class testDice {
 	int b=0;
@@ -16,10 +17,10 @@ public class testDice {
 	public void testRollTheDices() {
 		Dice.createDices();
 		Dice.rollTheDices();
-		b=Dice.getBlackDice().getValue();
-		o=Dice.getOrangeDice().getValue();
-		w=Dice.getWhiteDice().getValue();		
-		n=Dice.getNeutralDice().getValue();
+		b=Dice.getDice(DiceColor.BLACK).getValue();
+		o=Dice.getDice(DiceColor.ORANGE).getValue();
+		w=Dice.getDice(DiceColor.WHITE).getValue();		
+		n=Dice.getDice(DiceColor.NEUTRAL).getValue();
 		assertTrue(Dice.MINDICEVALUE<=b && b<=Dice.MAXDICEVALUE && Dice.MINDICEVALUE<=o && o<=Dice.MAXDICEVALUE && Dice.MINDICEVALUE<=w && w<=Dice.MAXDICEVALUE && Dice.NEUTRALDICEVALUE==n);
 	}
 	

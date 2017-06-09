@@ -15,8 +15,13 @@ public class ActionSpace {
 		this.effect = effect;
 	}
 	
+	public void setFamilyMember(FamilyMember fMember) {
+		this.fMember = fMember;
+	}
 	
-	
+	public void reset() {
+		this.fMember = null;
+	}
 	public int getActivationCost(){
 		return activationCost;
 	}

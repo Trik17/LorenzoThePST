@@ -1,14 +1,19 @@
 package it.polimi.ingsw.GC_04.model.area;
 
-import java.util.List;
-
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 
 public abstract class Tower extends ColorReastrictedArea {
-	protected List<? extends DevelopmentCard> cards;
+	protected DevelopmentCard[] cards;
 	
-	public List<? extends DevelopmentCard> getCards() {
+	public DevelopmentCard[] getCards() {
 		return cards;
+		
+	}
+	
+	public void resetTower(DevelopmentCard[] cards) {
+		this.cards = cards;
+		aSpaces.forEach(aSpaces -> aSpaces.reset());
+		
 		
 	}
 

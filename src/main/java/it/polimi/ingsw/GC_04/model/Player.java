@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
@@ -11,16 +12,20 @@ import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.model.resource.Coins;
+import it.polimi.ingsw.GC_04.model.resource.FaithPoints;
+import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.Servants;
+import it.polimi.ingsw.GC_04.model.resource.Stones;
+import it.polimi.ingsw.GC_04.model.resource.VictoryPoints;
+import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class Player {
+	private String name;
 	
 	private Game game;
-	private FamilyColor color;
-	private FamilyMember fMemberB;
-	private FamilyMember fMemberO;
-	private FamilyMember fMemberW;
-	private FamilyMember fMemberN;
+	private FamilyMember[] family;
 	private ExtraDice extraDice;
 	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
 	private List<DevelopmentCard> tCards;
@@ -29,28 +34,36 @@ public class Player {
 	private List<DevelopmentCard> cCards;
 	private List<Resource> resources;
 	
-	
-	//TODO costruttore
-	/*public Player(FamilyColor color){
 
-		this.color = color;
+	public Player(String name, FamilyColor color, int turn){
+		this.name = name;
+
 		resources = new ArrayList<Resource>();
-		resources.add(new Coins(5));//questo è da modificare perché non hanno tutti 5 monete
+		
 		resources.add(new Woods(2));
 		resources.add(new Stones(2));
 		resources.add(new Servants(3));
 		resources.add(new MilitaryPoints(0));
 		resources.add(new VictoryPoints(0));
 		resources.add(new FaithPoints(0));
+		resources.add(new Coins(turn+4));
 		
-		this.fMemberB = new FamilyMember(color, game.blackDice);
-		this.fMemberO = new FamilyMember(color, game.orangeDice);
-		this.fMemberW = new FamilyMember(color, game.whiteDice);
-		this.fMemberN = new FamilyMember();
+		family = FamilyMember.createFamily(color);
 		this.extraDice = new ExtraDice();
-	}*/
+	}
 	
-	
+	public FamilyMember getFamilyMember(DiceColor diceColor) {
+		if (diceColor == DiceColor.BLACK)
+			return family[1];
+		if (diceColor == DiceColor.WHITE) 
+			return family[2];
+		if (diceColor == DiceColor.ORANGE)
+			return family[3];
+		else
+			return family[0];
+		
+		
+	}
 	public ExtraDice getExtraDice(){
 		return extraDice;
 	}
@@ -67,6 +80,11 @@ public class Player {
 	
 	public List <Resource> getResources(){
 		return resources;
+	}
+	
+	public String getName() {
+		return name;
+		
 	}
 	
 	

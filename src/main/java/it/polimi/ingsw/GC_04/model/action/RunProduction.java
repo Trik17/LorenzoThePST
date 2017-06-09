@@ -27,7 +27,7 @@ public class RunProduction extends Action {
 	public boolean isApplicable() {
 		return isColorAvailable() &&
 				isValueEnough() &&
-				isPlaceAvailable();
+				isAvailable();
 	}
 	
 

@@ -2,17 +2,24 @@ package it.polimi.ingsw.GC_04.model;
 
 public class Game {
 	
-
-	private Player[] players;
-	
-	
+	private static Player[] players;
+	private int currentPeriod;
 	
     public Game(Player[] players) {
-    	this.players = players;
-		// TODO Auto-generated constructor stub
+    	Game.players = players;
+    	currentPeriod = 1;
 	}
 	
-	
-	
+    public static Player[] getPlayers() {
+    	return players;
+    }
+    
+    public int getPeriod() {
+    	return currentPeriod;
+    }
+    
+    public void incrementPeriod() {
+    	currentPeriod++;
+    }
 
 }

@@ -9,7 +9,7 @@ public class CharacterTower extends Tower{
 
 	private static CharacterTower instance;
 	
-	private CharacterTower(List<CharacterCard> cards, List<ActionSpace> aSpaces) {
+	private CharacterTower(CharacterCard[] cards, List<ActionSpace> aSpaces) {
 		this.cards = cards;
 		this.aSpaces = aSpaces;
 	}
@@ -18,13 +18,9 @@ public class CharacterTower extends Tower{
 		return instance;
 		
 	}
-	public static CharacterTower instance(List<CharacterCard> cards, List<ActionSpace> aSpaces){
+	public static CharacterTower instance(CharacterCard[] cards, List<ActionSpace> aSpaces){
 		if (instance==null) instance = new CharacterTower(cards, aSpaces);
 		return instance;
-	}
-
-	public List<ActionSpace> getASpaces() {
-		return aSpaces;
 	}
 	
 

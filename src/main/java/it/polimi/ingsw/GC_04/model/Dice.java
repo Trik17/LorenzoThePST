@@ -47,23 +47,16 @@ public class Dice {
 		return this.value;
 	}
 	
-	public static Dice getBlackDice() {
-		return blackDice;
-		
+	public static Dice getDice(DiceColor color) {
+		if (color == DiceColor.BLACK)
+			return blackDice;
+		if (color == DiceColor.ORANGE)
+			return orangeDice;
+		if (color == DiceColor.WHITE)
+			return whiteDice;
+		else
+			return neutralDice;
 	}
-	public static Dice getWhiteDice() {
-		return whiteDice;
-		
-	}
-	public static Dice getOrangeDice() {
-		return orangeDice;
-		
-	}
-	public static Dice getNeutralDice() {
-		return neutralDice;
-	}
-	
-
 	
 	
 }

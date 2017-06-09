@@ -12,8 +12,5 @@ public class ResourceEffect extends Effect {
 	public void apply(Player player){
 		Resource.addResource(effect,player.getResources());
 	}
-
-	
-	
 		
 }
