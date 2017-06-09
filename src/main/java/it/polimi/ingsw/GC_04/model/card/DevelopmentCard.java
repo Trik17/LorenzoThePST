@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_04.model.card;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -35,8 +36,8 @@ public abstract class DevelopmentCard extends Card{
 	private List<Resource> cost1; 
 	private List<Resource> cost2;
 	private List<Effect> effects;
-	
-	public DevelopmentCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty List<Effect> effects){
+	@JsonCreator
+	public DevelopmentCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects){
 		this.period=period;
 		this.name=name;
 		this.cost1=cost1;

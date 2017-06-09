@@ -13,7 +13,7 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class VentureCard extends DevelopmentCard {
 
-	public VentureCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty List<Effect> effects) {
+	public VentureCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects) {
 		super(period, name, cost1, cost2, effects);
 		
 	}

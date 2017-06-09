@@ -6,4 +6,8 @@ public abstract class Effect {
 				
 	public abstract void apply(Player player);
 	
+	public Effect(){//for json
+		
+	}
+	
 } 

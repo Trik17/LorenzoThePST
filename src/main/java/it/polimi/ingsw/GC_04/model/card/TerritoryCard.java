@@ -18,7 +18,7 @@ public class TerritoryCard extends DevelopmentCard {
 	private Harvest harvest;
 	
 	@JsonCreator
-	public TerritoryCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty List<Effect> effects,@JsonProperty("harvest") Harvest harvest){
+	public TerritoryCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects,@JsonProperty("harvest") Harvest harvest){
 		super(period, name, cost1, cost2, effects);
 		this.harvest = harvest;
 	}
