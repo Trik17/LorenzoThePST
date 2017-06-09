@@ -48,7 +48,7 @@ public class Inizializer {
 	
 		// TODO: far prendere gli array da file
 		
-		//Game game = new Game(Player);
+		//Model model = new Model(Player);
 	}
 	
 	public void changeTurn() {
