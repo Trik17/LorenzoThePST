@@ -1,8 +1,8 @@
-{
+[{
   "type" : "BuildingCard",
   "period" : 1,
-  "name" : "forest",
-  "image": "PERCORSO DA DENTRO RESOURCE IN POI",
+  "name" : "Mint",
+  "image": "/BuildingCard/building.devcards_f_en_c_25",
   "cost" : [ {
     "type" : "Coins",
     "quantity" : 3
@@ -22,4 +22,17 @@
     "type" : "Servants",
     "quantity" : 1
   } ]
+},{
+  "type" : "BuildingCard",
+  "period" : 1,
+  "name" : "Mint",
+  "image": "/BuildingCard/building.devcards_f_en_c_25"  
+},{
+  "type" : "BuildingCard",
+  "period" : 1,
+  "name" : "Mint",
+  "image": "/BuildingCard/building.devcards_f_en_c_25"  
 }
+
+
+]
