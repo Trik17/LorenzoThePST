@@ -38,9 +38,10 @@ public abstract class DevelopmentCard extends Card{
 	private List<Resource> cost2;
 	private List<Effect> effects;
 	@JsonCreator
-	public DevelopmentCard(@JsonProperty("period")int period,@JsonProperty("name") String name,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects){
+	public DevelopmentCard(@JsonProperty("period")int period,@JsonProperty("name") String name, @JsonProperty("image") String image, @JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects){
 		this.period=period;
 		this.name=name;
+		this.image=image;
 		this.cost1=cost1;
 		this.cost2=cost2;
 		this.effects=effects;
