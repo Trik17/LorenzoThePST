@@ -33,6 +33,7 @@ public abstract class DevelopmentCard extends Card{
 	
 	private int period;
 	private String name;
+	private String image;
 	private List<Resource> cost1; 
 	private List<Resource> cost2;
 	private List<Effect> effects;
