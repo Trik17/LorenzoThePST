@@ -57,28 +57,47 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 		cost.add(r6);
 		*/
 		
-		//DevelopmentCard card=new BuildingCard(1, "forest", cost);
+		//DevelopmentCard card=new BuildingCard(1, "forest", cost1);
 		
 		
 		String s = null;
 		int w=0,a=0,b=0;
 		
 		try{
+			/*
 			//FileReader file= new FileReader("src/main/resources/card.json"); 
-			FileReader file= new FileReader("src/main/resources/timer.json"); 
-			//s = mapper.writeValueAsString(card);
-			//DevelopmentCard r=mapper.readValue(file, DevelopmentCard.class);
 			
-			TimerJson t=mapper.readValue(file, TimerJson.class);
-			//w=r.getPeriod();
+			//s = mapper.writeValueAsString(card);
+			DevelopmentCard r=mapper.readValue(file, DevelopmentCard.class);
+			w=r.getPeriod();
+			System.out.println(w);*/
+			
+			//MilitaryPoints:
+			FileReader file1= new FileReader("src/main/resources/mp.json"); 
+			MilitaryPoints m=mapper.readValue(file1, MilitaryPoints.class);
+			
+			System.out.println(m.getQuantity());
+			System.out.println(m.getMalus());
+		
+			
+			//TIMER:
+			System.out.println("timer:");
+			FileReader file2= new FileReader("src/main/resources/timer.json"); 
 			a=TimerJson.getStartTimer();
 			b=TimerJson.getActionTimer();
-			System.out.println(a + b);
+			System.out.println(a);
+			System.out.println(b);
+			System.out.println("dopo json:");
+			TimerJson t=mapper.readValue(file2, TimerJson.class);			
+			a=TimerJson.getStartTimer();
+			b=TimerJson.getActionTimer();
+			System.out.println(a);
+			System.out.println(b);
 			
 		}catch(JsonParseException e){
 			 e.printStackTrace();
 		}	
-		System.out.println(w);
+		
 	}	
 }// per l'array doveva essere fatto in classe a parte:
 /*

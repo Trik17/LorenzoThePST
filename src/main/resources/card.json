@@ -2,7 +2,7 @@
   "type" : "BuildingCard",
   "period" : 1,
   "name" : "forest",
-  "cost" : [ {
+  "cost1" : [ {
     "type" : "Coins",
     "quantity" : 3
   }, {
