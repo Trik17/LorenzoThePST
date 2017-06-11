@@ -1,4 +1,4 @@
-{
+[{
   "type" : "BuildingCard",
   "period" : 1,
   "name" : "forest",
@@ -22,4 +22,124 @@
     "type" : "Servants",
     "quantity" : 1
   } ]
-}
+},{
+	  "type" : "VentureCard",
+	  "period" : 1,
+	  "name" : "Hiring Recruits",
+	  "image": "/VentureCard/devcards_f_en_c_73.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 1,
+	  "name" : "Repairing the Church",
+	  "image": "/VentureCard/devcards_f_en_c_74.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 1,
+	  "name" : "Building the Walls",
+	  "image": "/VentureCard/devcards_f_en_c_75.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 1,
+	  "name" : "Raising a Statue",
+	  "image": "/VentureCard/devcards_f_en_c_76.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 1,
+	  "name" : "Military Campaign",
+	  "image": "/VentureCard/devcards_f_en_c_77.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 1,
+	  "name" : "Hosting Panhandlers",
+	  "image": "/VentureCard/devcards_f_en_c_78.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 1,
+	  "name" : "Fighting Heresies",
+	  "image": "/VentureCard/devcards_f_en_c_79.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 1,
+	  "name" : "Support to the Bishop",
+	  "image": "/VentureCard/devcards_f_en_c_80.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 2,
+	  "name" : "Hiring Soldiers",
+	  "image": "/VentureCard/devcards_f_en_c_81.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 2,
+	  "name" : "Repairing the Abbey",
+	  "image": "/VentureCard/devcards_f_en_c_82.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 2,
+	  "name" : "Building the Bastions",
+	  "image": "/VentureCard/devcards_f_en_c_83.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 2,
+	  "name" : "Support to the King",
+	  "image": "/VentureCard/devcards_f_en_c_84.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 2,
+	  "name" : "Improving the Canals",
+	  "image": "/VentureCard/devcards_f_en_c_85.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 2,
+	  "name" : "Hosting Foreigners",
+	  "image": "/VentureCard/devcards_f_en_c_86.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 2,
+	  "name" : "Crusade",
+	  "image": "/VentureCard/devcards_f_en_c_87.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 2,
+	  "name" : "Support to the Cardinal",
+	  "image": "/VentureCard/devcards_f_en_c_88.png"  
+},{
+	  "type" : "VentureCard",
+	  "period" : 3,
+	  "name" : "Hiring Mercenaries",
+	  "image": "/VentureCard/devcards_f_en_c_89.png"  
+},{
+	"type" : "VentureCard",
+	  "period" : 3,
+	  "name" : "Repairing the Cathedral",
+	  "image": "/VentureCard/devcards_f_en_c_90.png"  
+},{
+	"type" : "VentureCard",
+	  "period" : 3,
+	  "name" : "Building the Towers",
+	  "image": "/VentureCard/devcards_f_en_c_91.png"  
+},{
+	"type" : "VentureCard",
+	  "period" : 3,
+	  "name" : "Promoting Sacred Art",
+	  "image": "/VentureCard/devcards_f_en_c_92.png"  
+},{
+	"type" : "VentureCard",
+	  "period" : 3,
+	  "name" : "military Conquest",
+	  "image": "/VentureCard/devcards_f_en_c_93.png"  
+},{
+	"type" : "VentureCard",
+	  "period" : 3,
+	  "name" : "Improving the Roads",
+	  "image": "/VentureCard/devcards_f_en_c_94.png"  
+},{
+	"type" : "VentureCard",
+	  "period" : 3,
+	  "name" : "Sacred War",
+	  "image": "/VentureCard/devcards_f_en_c_95.png"  
+},{
+	"type" : "VentureCard",
+	  "period" : 3,
+	  "name" : "Support to the Pope",
+	  "image": "/VentureCard/devcards_f_en_c_96.png"  
+}]

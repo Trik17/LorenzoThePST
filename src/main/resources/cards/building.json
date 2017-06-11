@@ -2,7 +2,7 @@
   "type" : "BuildingCard",
   "period" : 1,
   "name" : "Mint",
-  "image": "/BuildingCard/building.devcards_f_en_c_25",
+  "image": "/BuildingCard/devcards_f_en_c_25.png",
   "cost" : [ {
     "type" : "Coins",
     "quantity" : 3
@@ -23,16 +23,123 @@
     "quantity" : 1
   } ]
 },{
-  "type" : "BuildingCard",
-  "period" : 1,
-  "name" : "Mint",
-  "image": "/BuildingCard/building.devcards_f_en_c_25"  
+	  "type" : "BuildingCard",
+	  "period" : 1,
+	  "name" : "Mint",
+	  "image": "/BuildingCard/devcards_f_en_c_25.png"  
 },{
-  "type" : "BuildingCard",
-  "period" : 1,
-  "name" : "Mint",
-  "image": "/BuildingCard/building.devcards_f_en_c_25"  
-}
-
-
-]
+	  "type" : "BuildingCard",
+	  "period" : 1,
+	  "name" : "Tax Office",
+	  "image": "/BuildingCard/devcards_f_en_c_26.png"  
+},{
+	 "type" : "BuildingCard",
+	  "period" : 1,
+	  "name" : "Triunphal Arch",
+	  "image": "/BuildingCard/devcards_f_en_c_27.png"  
+},{
+	   "type" : "BuildingCard",
+	  "period" : 1,
+	  "name" : "Theater",
+	  "image": "/BuildingCard/devcards_f_en_c_28.png"  			
+},{
+	    "type" : "BuildingCard",
+	  "period" : 1,
+	  "name" : "Carpenter's Shop",
+	  "image": "/BuildingCard/devcards_f_en_c_29.png"  			
+},{
+	     "type" : "BuildingCard",
+	  "period" : 1,
+	  "name" : "Stonemason's Shop",
+	  "image": "/BuildingCard/devcards_f_en_c_30.png"  			
+},{
+	       "type" : "BuildingCard",
+	  "period" : 1,
+	  "name" : "Chapel",
+	  "image": "/BuildingCard/devcards_f_en_c_31.png"  			
+},{
+	      "type" : "BuildingCard",
+	  "period" : 1,
+	  "name" : "Residence",
+	  "image": "/BuildingCard/devcards_f_en_c_32.png"  			
+},{
+	    "type" : "BuildingCard",
+	  "period" : 2,
+	  "name" : "Marketplace",
+	  "image": "/BuildingCard/devcards_f_en_c_33.png"  			
+},{
+	  "type" : "BuildingCard",
+	  "period" : 2,
+	  "name" : "Treasury",
+	  "image": "/BuildingCard/devcards_f_en_c_34.png"  			
+},{
+	  "type" : "BuildingCard",
+	  "period" : 2,
+	  "name" : "Painter's Guild",
+	  "image": "/BuildingCard/devcards_f_en_c_35.png"  			
+},{
+	  "type" : "BuildingCard",
+	  "period" : 2,
+	  "name" : "Sculptors's Guild",
+	  "image": "/BuildingCard/devcards_f_en_c_36.png"  			
+},{
+	  "type" : "BuildingCard",
+	  "period" : 2,
+	  "name" : "Stonemason's Guild",
+	  "image": "/BuildingCard/devcards_f_en_c_37.png"  			
+},{
+	  "type" : "BuildingCard",
+	  "period" : 2,
+	  "name" : "Baptistery",
+	  "image": "/BuildingCard/devcards_f_en_c_38.png"  			
+},{
+	  "type" : "BuildingCard",
+	  "period" : 2,
+	  "name" : "Barracks",
+	  "image": "/BuildingCard/devcards_f_en_c_39.png"  			
+},{
+	  "type" : "BuildingCard",
+	  "period" : 2,
+	  "name" : "Stronghold",
+	  "image": "/BuildingCard/devcards_f_en_c_40.png"  			
+},{
+	"type" : "BuildingCard",
+	  "period" : 3,
+	  "name" : "Bank",
+	  "image": "/BuildingCard/devcards_f_en_c_41.png"  			
+},{
+	"type" : "BuildingCard",
+	  "period" : 3,
+	  "name" : "Fair",
+	  "image": "/BuildingCard/devcards_f_en_c_42.png"  			
+},{
+	"type" : "BuildingCard",
+	  "period" : 3,
+	  "name" : "Garden",
+	  "image": "/BuildingCard/devcards_f_en_c_43.png"  			
+},{
+	"type" : "BuildingCard",
+	  "period" : 3,
+	  "name" : "Fortress",
+	  "image": "/BuildingCard/devcards_f_en_c_44.png"  			
+},{
+	"type" : "BuildingCard",
+	  "period" : 3,
+	  "name" : "Palace",
+	  "image": "/BuildingCard/devcards_f_en_c_45.png"  			
+},{
+	"type" : "BuildingCard",
+	  "period" : 3,
+	  "name" : "Church",
+	  "image": "/BuildingCard/devcards_f_en_c_46.png"  			
+},{
+	"type" : "BuildingCard",
+	  "period" : 3,
+	  "name" : "Military Academy",
+	  "image": "/BuildingCard/devcards_f_en_c_47.png"  			
+},{
+	"type" : "BuildingCard",
+	  "period" : 3,
+	  "name" : "Cathedral",
+	  "image": "/BuildingCard/devcards_f_en_c_48.png"  			
+}]

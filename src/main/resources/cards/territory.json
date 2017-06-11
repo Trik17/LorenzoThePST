@@ -22,4 +22,126 @@
     "type" : "Servants",
     "quantity" : 1
   } ]
-}
+},{
+	
+	  "type" : "TerritoryCard",
+	  "period" : 1,
+	  "name" : "Commercial Hub",
+	  "image": "/TerritoryCard/devcards_f_en_c_1.png"  
+},{
+	  "type" : "TerritoryCard",
+	  "period" : 1,
+	  "name" : "Woods",
+	  "image": "/TerritoryCard/devcards_f_en_c_2.png"  
+},{
+	  "type" : "TerritoryCard",
+	  "period" : 1,
+	  "name" : "Village",
+	  "image": "/TerritoryCard/devcards_f_en_c_3.png"  
+},{
+	  "type" : "TerritoryCard",
+	  "period" : 1,
+	  "name" : "Gravel Pit",
+	  "image": "/TerritoryCard/devcards_f_en_c_4.png"  
+},{
+	  "type" : "TerritoryCard",
+	  "period" : 1,
+	  "name" : "Forest",
+	  "image": "/TerritoryCard/devcards_f_en_c_5.png"  
+},{
+	  "type" : "TerritoryCard",
+	  "period" : 1,
+	  "name" : "Monastery",
+	  "image": "/TerritoryCard/devcards_f_en_c_6.png"  
+},{
+	  "type" : "TerritoryCard",
+	  "period" : 1,
+	  "name" : "Citadel",
+	  "image": "/TerritoryCard/devcards_f_en_c_7.png"  
+},{
+	  "type" : "TerritoryCard",
+	  "period" : 1,
+	  "name" : "City",
+	  "image": "/TerritoryCard/devcards_f_en_c_8.png"  
+},{
+	 "type" : "TerritoryCard",
+	  "period" : 2,
+	  "name" : "Gold Mine",
+	  "image": "/TerritoryCard/devcards_f_en_c_9.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 2,
+	  "name" : "Mountain Town",
+	  "image": "/TerritoryCard/devcards_f_en_c_10.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 2,
+	  "name" : "Mining Town",
+	  "image": "/TerritoryCard/devcards_f_en_c_11.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 2,
+	  "name" : "Rock Pit",
+	  "image": "/TerritoryCard/devcards_f_en_c_12.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 2,
+	  "name" : "Estate",
+	  "image": "/TerritoryCard/devcards_f_en_c_13.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 2,
+	  "name" : "Hermitage",
+	  "image": "/TerritoryCard/devcards_f_en_c_14.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 2,
+	  "name" : "Manor House",
+	  "image": "/TerritoryCard/devcards_f_en_c_15.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 2,
+	  "name" : "Dukedom",
+	  "image": "/TerritoryCard/devcards_f_en_c_16.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 3,
+	  "name" : "Trading Town",
+	  "image": "/TerritoryCard/devcards_f_en_c_17.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 3,
+	  "name" : "Farm",
+	  "image": "/TerritoryCard/devcards_f_en_c_18.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 3,
+	  "name" : "Colony",
+	  "image": "/TerritoryCard/devcards_f_en_c_19.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 3,
+	  "name" : "Marble Pit",
+	  "image": "/TerritoryCard/devcards_f_en_c_20.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 3,
+	  "name" : "Province",
+	  "image": "/TerritoryCard/devcards_f_en_c_21.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 3,
+	  "name" : "Sanctuary",
+	  "image": "/TerritoryCard/devcards_f_en_c_22.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 3,
+	  "name" : "Castle",
+	  "image": "/TerritoryCard/devcards_f_en_c_23.png"  
+},{
+	"type" : "TerritoryCard",
+	  "period" : 3,
+	  "name" : "Fortified Town",
+	  "image": "/TerritoryCard/devcards_f_en_c_24.png"  
+}]
+
