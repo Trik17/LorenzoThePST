@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import it.polimi.ingsw.GC_04.model.Timer;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
@@ -70,10 +69,10 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 			//s = mapper.writeValueAsString(card);
 			//DevelopmentCard r=mapper.readValue(file, DevelopmentCard.class);
 			
-			Timer t=mapper.readValue(file, Timer.class);
+			TimerJson t=mapper.readValue(file, TimerJson.class);
 			//w=r.getPeriod();
-			a=Timer.getStartTimer();
-			b=Timer.getActionTimer();
+			a=TimerJson.getStartTimer();
+			b=TimerJson.getActionTimer();
 			System.out.println(a + b);
 			
 		}catch(JsonParseException e){
