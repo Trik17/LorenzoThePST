@@ -7,13 +7,11 @@
     "quantity" : 3
   }, {
     "type" : "Woods",
-    "quantity" : 99
-  }, {
-    "type" : "FaithPoints",
-    "quantity" : 4
+    "quantity" : 9
   }, {
     "type" : "MilitaryPoints",
-    "quantity" : 0
+    "quantity" : 0,
+    "malus": 3
   }, {
     "type" : "Stones",
     "quantity" : 22

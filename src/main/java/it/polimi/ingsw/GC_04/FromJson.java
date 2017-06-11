@@ -64,15 +64,17 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 		int w=0,a=0,b=0;
 		
 		try{
-			/*
-			//FileReader file= new FileReader("src/main/resources/card.json"); 
+			//carte
+			System.out.println("carte:");
+			FileReader file= new FileReader("src/main/resources/card.json"); 
 			
 			//s = mapper.writeValueAsString(card);
 			DevelopmentCard r=mapper.readValue(file, DevelopmentCard.class);
 			w=r.getPeriod();
-			System.out.println(w);*/
+			System.out.println(w);
 			
 			//MilitaryPoints:
+			System.out.println("militaryPoints:");
 			FileReader file1= new FileReader("src/main/resources/mp.json"); 
 			MilitaryPoints m=mapper.readValue(file1, MilitaryPoints.class);
 			

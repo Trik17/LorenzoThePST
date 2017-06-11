@@ -14,8 +14,8 @@ public class MilitaryPoints extends Resource{
 		else
 			this.malus = malus;
 	}
-	@JsonCreator
-	public MilitaryPoints(@JsonProperty("quantity")int quantity){
+	
+	public MilitaryPoints(int quantity){
 		super(quantity);
 		this.malus =0;
 	}
