@@ -21,9 +21,10 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Servants;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
+import it.polimi.ingsw.GC_04.timer.TimerJson;
 
 public class FromJson { //classe di prova per serializzazione / deserializzazione carte json
-	public FromJson(){		
+	public FromJson(){		//servirà, sistemata, per caricare carte e timer
 	}
 	
 	//ORA DA ERRORE, PROBABILMENTE PERCHè MANCANO @JSONCREATOR E @JSON PROPERTY AI COSTRUTTORI DI EFFECT E HARVEST E PRODUCTION E ANCHE I COSTRUTTORI DI DEFAULT VUOTI DA METTERE PER JSON

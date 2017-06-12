@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04;
+package it.polimi.ingsw.GC_04.timer;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
