@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.viewCLI;
+package it.polimi.ingsw.GC_04.view;
 
 import java.util.List;
 import java.io.IOException;

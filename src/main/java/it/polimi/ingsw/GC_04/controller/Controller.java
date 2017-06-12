@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_04.controller;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.viewCLI.Input;
+import it.polimi.ingsw.GC_04.view.Input;
 
 public class Controller implements Observer<Action> {
 	private Model model;
