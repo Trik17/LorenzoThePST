@@ -16,5 +16,25 @@
   },{
     "type" : "Stones",
     "quantity" : 3
-  }]
+  }],
+  "effects":[{
+  	"type": "RunHarvestEffect",
+  	"dice":{
+  		"value": 3
+  	}
+  	},{
+    "type": "RunProductionEffect",
+    "dice":{
+  		"value": 3
+  	}},{
+  	 "type": "TakeACardEffect",
+  	 "cardType":{
+  	 	"type": "TerritoryCard" 
+  	 	},  	 	
+     "dice":{
+  		"value": 3
+ 	 }}
+  
+  ]
+  
 }

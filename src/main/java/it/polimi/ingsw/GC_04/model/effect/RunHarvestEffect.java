@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_04.model.effect;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
@@ -7,7 +10,8 @@ import it.polimi.ingsw.GC_04.model.action.RunHarvest;
 
 public class RunHarvestEffect extends ActionEffect {
 
-	public RunHarvestEffect(Dice dice) {
+	@JsonCreator
+	public RunHarvestEffect(@JsonProperty("dice")Dice dice) {
 		this.dice = dice;
 	}
 

@@ -3,6 +3,9 @@ package it.polimi.ingsw.GC_04.model.effect;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
@@ -14,8 +17,8 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 public class TakeACardEffect extends ActionEffect {
 	private DevelopmentCard cardType;
 
-
-	public TakeACardEffect(DevelopmentCard cardType, Dice dice) {
+	@JsonCreator
+	public TakeACardEffect(@JsonProperty("cardType") DevelopmentCard cardType,@JsonProperty("dice") Dice dice) {
 		this.cardType = cardType;
 		this.dice = dice;
 		}

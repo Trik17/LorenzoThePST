@@ -2,6 +2,9 @@ package it.polimi.ingsw.GC_04.model;
 
 import java.util.Random;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Dice {
 	public static final int NEUTRALDICEVALUE = 0;
 	public static final int MINDICEVALUE = 1;
@@ -17,8 +20,8 @@ public class Dice {
 		Random rnd = new Random();
 		value = MINDICEVALUE + rnd.nextInt(MAXDICEVALUE);
 	}
-	
-	public Dice(int value) {//it is needed to initialize TakeACardEffect
+	@JsonCreator
+	public Dice(@JsonProperty("value") int value) {//it is needed to initialize TakeACardEffect
 		if (value < NEUTRALDICEVALUE)
 			this.value = NEUTRALDICEVALUE;
 			else
