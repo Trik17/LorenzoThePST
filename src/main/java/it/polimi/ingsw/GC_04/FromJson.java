@@ -72,6 +72,13 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 			DevelopmentCard r=mapper.readValue(file, DevelopmentCard.class);
 			w=r.getPeriod();
 			System.out.println(w);
+			System.out.println("null?  :");
+			if(r.getCost2()==null)
+				System.out.println("va a null");
+			else if (r.getCost2()!=null)
+						System.out.println("errore");
+			
+			
 			
 			//MilitaryPoints:
 			System.out.println("militaryPoints:");
