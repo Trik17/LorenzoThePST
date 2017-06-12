@@ -1,29 +1,4 @@
-{
-  "type" : "BuildingCard",
-  "period" : 1,
-  "name" : "forest",
-  "image": "PERCORSO DA DENTRO RESOURCE IN POI",
-  "cost" : [ {
-    "type" : "Coins",
-    "quantity" : 3
-  }, {
-    "type" : "Woods",
-    "quantity" : 99
-  }, {
-    "type" : "FaithPoints",
-    "quantity" : 4
-  }, {
-    "type" : "MilitaryPoints",
-    "quantity" : 0
-  }, {
-    "type" : "Stones",
-    "quantity" : 22
-  }, {
-    "type" : "Servants",
-    "quantity" : 1
-  } ]
-},{
-	
+[{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "Commercial Hub",

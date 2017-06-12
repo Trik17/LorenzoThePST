@@ -1,145 +1,283 @@
 [{
-  "type" : "BuildingCard",
-  "period" : 1,
-  "name" : "forest",
-  "image": "PERCORSO DA DENTRO RESOURCE IN POI",
-  "cost" : [ {
-    "type" : "Coins",
-    "quantity" : 3
-  }, {
-    "type" : "Woods",
-    "quantity" : 99
-  }, {
-    "type" : "FaithPoints",
-    "quantity" : 4
-  }, {
-    "type" : "MilitaryPoints",
-    "quantity" : 0
-  }, {
-    "type" : "Stones",
-    "quantity" : 22
-  }, {
-    "type" : "Servants",
-    "quantity" : 1
-  } ]
-},{
 	  "type" : "VentureCard",
 	  "period" : 1,
 	  "name" : "Hiring Recruits",
-	  "image": "/VentureCard/devcards_f_en_c_73.png"  
+	  "image": "/VentureCard/devcards_f_en_c_73.png",
+	  "cost1" : [ {
+      "type" : "Coins",
+      "quantity" : 4
+  } ]  
 },{
 	  "type" : "VentureCard",
 	  "period" : 1,
 	  "name" : "Repairing the Church",
-	  "image": "/VentureCard/devcards_f_en_c_74.png"  
+	  "image": "/VentureCard/devcards_f_en_c_74.png",
+	  "cost1" : [ {
+      "type" : "Coins",
+      "quantity" : 1
+  },{
+  	  "type" : "Stones",
+      "quantity" : 1
+  },{
+  	  "type" : "Woods",
+      "quantity" : 1
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 1,
 	  "name" : "Building the Walls",
-	  "image": "/VentureCard/devcards_f_en_c_75.png"  
+	  "image": "/VentureCard/devcards_f_en_c_75.png",
+	  "cost1" : [ {
+      "type" : "Stones",
+      "quantity" : 3
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 1,
 	  "name" : "Raising a Statue",
-	  "image": "/VentureCard/devcards_f_en_c_76.png"  
+	  "image": "/VentureCard/devcards_f_en_c_76.png",
+	  "cost1" : [ {
+      "type" : "Woods",
+      "quantity" : 2
+  },{
+  	  "type" : "Stones",
+      "quantity" : 2
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 1,
 	  "name" : "Military Campaign",
-	  "image": "/VentureCard/devcards_f_en_c_77.png"  
+	  "image": "/VentureCard/devcards_f_en_c_77.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 3,
+      "malus" : 2
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 1,
 	  "name" : "Hosting Panhandlers",
-	  "image": "/VentureCard/devcards_f_en_c_78.png"  
+	  "image": "/VentureCard/devcards_f_en_c_78.png",
+	  "cost1" : [ {
+      "type" : "Woods",
+      "quantity" : 3
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 1,
 	  "name" : "Fighting Heresies",
-	  "image": "/VentureCard/devcards_f_en_c_79.png"  
+	  "image": "/VentureCard/devcards_f_en_c_79.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 5,
+      "malus" : 3
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 1,
 	  "name" : "Support to the Bishop",
-	  "image": "/VentureCard/devcards_f_en_c_80.png"  
+	  "image": "/VentureCard/devcards_f_en_c_80.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 4,
+      "malus" : 2
+  } ],
+	  "cost2" : [{
+	  "type" : "Woods",
+	  "quantity" : 1
+	  },{
+	  "type" : "Stones",
+	  "quantity" : 1
+	  },{
+	  "type" : "Coins",
+	  "quantity" : 2
+	  }]     
 },{
 	  "type" : "VentureCard",
 	  "period" : 2,
 	  "name" : "Hiring Soldiers",
-	  "image": "/VentureCard/devcards_f_en_c_81.png"  
+	  "image": "/VentureCard/devcards_f_en_c_81.png",
+	  "cost1" : [ {
+      "type" : "Coins",
+      "quantity" : 6
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 2,
 	  "name" : "Repairing the Abbey",
-	  "image": "/VentureCard/devcards_f_en_c_82.png"  
+	  "image": "/VentureCard/devcards_f_en_c_82.png",
+	  "cost1" : [ {
+      "type" : "Coins",
+      "quantity" : 2
+  },{
+  	  "type" : "Woods",
+      "quantity" : 2
+   },{
+  	  "type" : "Stones",
+      "quantity" : 2    
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 2,
 	  "name" : "Building the Bastions",
-	  "image": "/VentureCard/devcards_f_en_c_83.png"  
+	  "image": "/VentureCard/devcards_f_en_c_83.png",
+	  "cost1" : [ {
+      "type" : "Stones",
+      "quantity" : 4
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 2,
 	  "name" : "Support to the King",
-	  "image": "/VentureCard/devcards_f_en_c_84.png"  
+	  "image": "/VentureCard/devcards_f_en_c_84.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 6,
+      "malus" : 3
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 2,
 	  "name" : "Improving the Canals",
-	  "image": "/VentureCard/devcards_f_en_c_85.png"  
+	  "image": "/VentureCard/devcards_f_en_c_85.png",
+	  "cost1" : [ {
+      "type" : "Coins",
+      "quantity" : 3
+  },{
+  	  "type" : "Servants",
+      "quantity" : 2
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 2,
 	  "name" : "Hosting Foreigners",
-	  "image": "/VentureCard/devcards_f_en_c_86.png"  
+	  "image": "/VentureCard/devcards_f_en_c_86.png",
+	  "cost1" : [ {
+      "type" : "Woods",
+      "quantity" : 4
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 2,
 	  "name" : "Crusade",
-	  "image": "/VentureCard/devcards_f_en_c_87.png"  
+	  "image": "/VentureCard/devcards_f_en_c_87.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 8,
+      "malus" : 4
+  } ]   
 },{
 	  "type" : "VentureCard",
 	  "period" : 2,
 	  "name" : "Support to the Cardinal",
-	  "image": "/VentureCard/devcards_f_en_c_88.png"  
+	  "image": "/VentureCard/devcards_f_en_c_88.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 7,
+      "malus" : 4
+      }],
+       "cost2" : [{
+	  "type" : "Woods",
+	  "quantity" : 2
+	  },{
+	  "type" : "Stones",
+	  "quantity" : 2
+	  },{
+	  "type" : "Coins",
+	  "quantity" : 3
+	  }]         
 },{
 	  "type" : "VentureCard",
 	  "period" : 3,
 	  "name" : "Hiring Mercenaries",
-	  "image": "/VentureCard/devcards_f_en_c_89.png"  
+	  "image": "/VentureCard/devcards_f_en_c_89.png",
+	  "cost1" : [ {
+      "type" : "Coins",
+      "quantity" : 8
+  } ]   
 },{
 	"type" : "VentureCard",
 	  "period" : 3,
 	  "name" : "Repairing the Cathedral",
-	  "image": "/VentureCard/devcards_f_en_c_90.png"  
+	  "image": "/VentureCard/devcards_f_en_c_90.png",
+	  "cost1" : [ {
+      "type" : "Coins",
+      "quantity" : 3
+  },{
+  	  "type" : "Stones",
+      "quantity" : 3
+  },{
+  	  "type" : "Woods",
+      "quantity" : 3
+  } ]   
 },{
 	"type" : "VentureCard",
 	  "period" : 3,
 	  "name" : "Building the Towers",
-	  "image": "/VentureCard/devcards_f_en_c_91.png"  
+	  "image": "/VentureCard/devcards_f_en_c_91.png",
+	  "cost1" : [ {
+      "type" : "Stones",
+      "quantity" : 6
+  } ]   
 },{
 	"type" : "VentureCard",
 	  "period" : 3,
 	  "name" : "Promoting Sacred Art",
-	  "image": "/VentureCard/devcards_f_en_c_92.png"  
+	  "image": "/VentureCard/devcards_f_en_c_92.png",
+	  "cost1" : [ {
+      "type" : "Woods",
+      "quantity" : 6
+  } ]   
 },{
 	"type" : "VentureCard",
 	  "period" : 3,
-	  "name" : "military Conquest",
-	  "image": "/VentureCard/devcards_f_en_c_93.png"  
+	  "name" : "Military Conquest",
+	  "image": "/VentureCard/devcards_f_en_c_93.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 12,
+      "malus" : 6
+  } ]   
 },{
 	"type" : "VentureCard",
 	  "period" : 3,
 	  "name" : "Improving the Roads",
-	  "image": "/VentureCard/devcards_f_en_c_94.png"  
+	  "image": "/VentureCard/devcards_f_en_c_94.png",
+	  "cost1" : [ {
+      "type" : "Coins",
+      "quantity" : 4
+  },{
+  	  "type" : "Servants",
+      "quantity" : 3
+  } ]   
 },{
 	"type" : "VentureCard",
 	  "period" : 3,
 	  "name" : "Sacred War",
-	  "image": "/VentureCard/devcards_f_en_c_95.png"  
+	  "image": "/VentureCard/devcards_f_en_c_95.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 15,
+      "malus" : 8
+  } ]   
 },{
 	"type" : "VentureCard",
 	  "period" : 3,
 	  "name" : "Support to the Pope",
-	  "image": "/VentureCard/devcards_f_en_c_96.png"  
-}]
+	  "image": "/VentureCard/devcards_f_en_c_96.png",
+	  "cost1" : [ {
+      "type" : "MilitaryPoints",
+      "quantity" : 10,
+      "malus" : 5
+      }],
+          "cost2" : [{
+	  "type" : "Woods",
+	  "quantity" : 3
+	  },{
+	  "type" : "Stones",
+	  "quantity" : 3
+	  },{
+	  "type" : "Coins",
+	  "quantity" : 4
+	  }]         
+   }]  
