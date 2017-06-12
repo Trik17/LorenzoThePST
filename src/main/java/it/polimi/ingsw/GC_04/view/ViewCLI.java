@@ -80,7 +80,7 @@ public class ViewCLI {
 		
 		Inizializer inizializer = new Inizializer(players, tCards, bCards, cCards, vCards, aSpaces);
 		Model game = new Model(players);
-		Input view =new Input(game);
+		View view =new View(game);
 		Controller controller=new Controller(game, view);
 		
 		while(true){

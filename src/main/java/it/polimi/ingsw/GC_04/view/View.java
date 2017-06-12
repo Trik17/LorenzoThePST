@@ -36,17 +36,17 @@ import it.polimi.ingsw.GC_04.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 
-public class Input extends Observable<Action> {
+public class View extends Observable<Action> {
 	
 	private final Model game;
 	private int turn;
 	
-	public Input(Model game) {
+	public View(Model game) {
 		this.game = game;
 		turn = 0;
 	}
 	
-	private void nextPlayer() {
+	private void nextPlayer() {//perché è qua???? ATTENZIONE
 		int nrOfPlayer = Model.getPlayers().length;
 		if (turn < nrOfPlayer)
 			turn ++;
