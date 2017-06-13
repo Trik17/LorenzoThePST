@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_04.timer;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.io.*;
-
+//NON VA
 
 
 public class MyTimer{//poi vanno fatti i metodi pure per gestire inizio partita
@@ -20,9 +20,8 @@ public class MyTimer{//poi vanno fatti i metodi pure per gestire inizio partita
 			}	
         }    
     };
-
-    public void makeAction() throws MyTimerException
-    {
+// variabile tipo promise con i future-> ma è difficile
+    public void makeAction()    {
         Timer timer = new Timer();
         timer.schedule( task, TimerJson.getActionTimer());
         System.out.println( "Make your action" );
@@ -34,13 +33,8 @@ public class MyTimer{//poi vanno fatti i metodi pure per gestire inizio partita
 
     public static void main( String[] args ) throws MyTimerException    {//questo main va cancellato e messo il codice nel controller
     	MyTimer myTimer=new MyTimer();
-        try
-        {
+       
             myTimer.makeAction();
-        }
-        catch( MyTimerException e )
-        {
-            System.out.println( e );//qua va messo il codice per far perdere il turno al giocatore
-        }
+  
      }
 }

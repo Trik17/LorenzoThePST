@@ -10,7 +10,7 @@
   "cost2" : [ {
     "type" : "Coins",
     "quantity" : 3
-  }, {
+  },{
     "type" : "Woods",
     "quantity" : 9
   },{
@@ -33,7 +33,17 @@
   	 	},  	 	
      "dice":{
   		"value": 3
- 	 }}
+ 	 }
+ 	},{
+    "type": "CouncilPrivilege"
+    },{
+    "type": "EndVictoryPointsEffect",
+    "vPoints": {
+     	"type": "VictoryPoints",
+     	"quantity": 3
+    }
+    },{	
+    
   
   ]
   
