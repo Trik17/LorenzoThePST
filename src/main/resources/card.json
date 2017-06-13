@@ -45,6 +45,22 @@
     }
     
   
+  ],
+  "Production": {
+  "diceValue":4,
+  "effects":[{
+  	"type":"ResourceEffect",
+  	"effect":[ {
+	    "type" : "Coins",
+	    "quantity" : 3
+	  },{
+	    "type" : "Woods",
+	    "quantity" : 9
+	  },{
+	    "type" : "Stones",
+	    "quantity" : 3
+	  }]}  	  
   ]
+  }
   
 }

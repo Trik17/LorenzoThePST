@@ -14,6 +14,7 @@ property = "type")
 @Type(value = ActionEffect.class),
 @Type(value = ExtraDiceEffect.class),
 @Type(value = ResourceEffect.class),
+@Type(value = PermanentEffect.class), 
 })
 public abstract class Effect {
 				
