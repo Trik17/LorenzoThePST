@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_04.model.effect;
 
 import java.util.ArrayList;
 
+
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.VictoryPoints;
 

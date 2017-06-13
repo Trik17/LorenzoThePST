@@ -1,11 +1,5 @@
 package it.polimi.ingsw.GC_04.model;
 
-
-
-//aggiunto createFamily()
-//eliminato metodi updateExtra(), updateValue() e attributi extraValue e value
-//aggiunto metodo getDice()
-
 public class FamilyMember {
 	
 	private FamilyColor familyColor;
@@ -50,6 +44,10 @@ public class FamilyMember {
 	
 	public boolean isUsed() {
 		return used;
+		
+	}
+	public void switchUsed() {
+		used = !used;
 		
 	}
 }

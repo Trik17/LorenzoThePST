@@ -5,7 +5,6 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
-//aggiungere l'OR
 public class ExchangeResourcesEffect extends ResourceEffect {
 	private List<Resource> cost;
 	

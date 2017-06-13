@@ -61,8 +61,11 @@ public abstract class Resource {
 		//for each bonus resource in input it takes the correspondent resource in the parameter resources and subtracts to it the cost 
 		cost.forEach(b->
 		resources.forEach(r-> {
-			if(r.getClass().equals(b.getClass()))
-				r.addQuantity(-b.getQuantity());}));
+			if(r.getClass().equals(b.getClass())) {
+				if (r.getClass().equals(MilitaryPoints.class))
+					r.addQuantity(-((MilitaryPoints) b).getMalus());
+				else
+					r.addQuantity(-b.getQuantity());}}));
 	}
 	
 	public static boolean isAffordable(List<Resource> myRes,List<Resource> cost) {

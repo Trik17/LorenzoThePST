@@ -50,6 +50,8 @@ public abstract class Action {
 	public void applyActionSpaceChanges() {
 		aSpace.getEffect().apply(player);
 		aSpace.setFamilyMember(fMember);
+		fMember.switchUsed();
+		
 	}
 
 }

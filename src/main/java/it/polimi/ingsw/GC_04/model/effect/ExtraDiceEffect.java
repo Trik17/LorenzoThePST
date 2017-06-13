@@ -1,27 +1,10 @@
 package it.polimi.ingsw.GC_04.model.effect;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+public abstract class ExtraDiceEffect extends Effect {
 
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+	protected int extra;
 
-public class ExtraDiceEffect extends Effect {
-
-	private DevelopmentCard cardType;
-	private int extra;
-	
-	@JsonCreator
-	public ExtraDiceEffect(@JsonProperty("cardType")DevelopmentCard cardType,@JsonProperty("extra") int extra) {
-		this.cardType = cardType;
+	public ExtraDiceEffect(int extra) {
 		this.extra = extra;
 	}
-
-	@Override
-	public void apply(Player player) {
-		
-		player.getExtraDice().setExtra(cardType, extra);
-	
-	}
-
 }

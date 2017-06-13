@@ -23,7 +23,7 @@ public class TakeACard extends Action{
 		this.card = card;
 		this.cost = cost;//poi vediamo se lasciare così o mettere un int
 		this.area = card.getTower();
-		this.value = fMember.getDice().getValue() + player.getExtraDice().getExtra(card) + servants; 
+		this.value = fMember.getDice().getValue() + player.getExtraDice().getCardExtra(card) + servants; 
 	}
 	
 	

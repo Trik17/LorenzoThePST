@@ -23,7 +23,6 @@ public class MilitaryPoints extends Resource{
 	public MilitaryPoints() {}
 	
 	public int getMalus() {
-		return malus;
-		
+		return malus;	
 	}
 }

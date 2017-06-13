@@ -11,9 +11,12 @@ public class ExtraDice {
 	private int extraBuilding;
 	private int extraVenture;
 	private int extraCharacter;
+	private int extraPrduction;
+	private int extraHarvest;
 	
 	
-	public int getExtra(DevelopmentCard cardType) {
+	
+	public int getCardExtra(DevelopmentCard cardType) {
 		if (cardType instanceof TerritoryCard) return extraTerritory;
 		if (cardType instanceof BuildingCard) return extraBuilding;
 		if (cardType instanceof VentureCard) return extraVenture;
@@ -21,7 +24,24 @@ public class ExtraDice {
 
 	} 
 	
-	public void setExtra(DevelopmentCard cardType, int extra) {
+	public int getProductionExtra() {
+		return extraPrduction;
+	}
+	public int getHarvestExtra() {
+		return extraHarvest;
+	}
+	
+	public void setProductionExtra(int extra) {
+		extraPrduction += extra;
+	}
+	
+	public void setHarvestExtra(int extra) {
+		extraHarvest += extra;
+	}
+	
+	
+	
+	public void setCardExtra(DevelopmentCard cardType, int extra) {
 		if (cardType instanceof TerritoryCard) extraTerritory += extra;
 		if (cardType instanceof BuildingCard) extraBuilding += extra;
 		if (cardType instanceof VentureCard) extraVenture += extra;
