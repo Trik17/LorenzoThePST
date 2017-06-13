@@ -8,12 +8,18 @@ import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class TestMilitaryPoints {
-	Resource m;
+	MilitaryPoints m;
 	
 	@Test
 	public void testIntEmpty() {
 		m=new MilitaryPoints();
 		assertEquals(0, m.getQuantity());
+	}
+	
+	@Test
+	public void testIntPosMalus() {
+		m=new MilitaryPoints(1,3);
+		assertEquals(3, m.getMalus());
 	}
 	
 	@Test
@@ -26,6 +32,12 @@ public class TestMilitaryPoints {
 	public void testIntNeg() {
 		m=new MilitaryPoints(-1);
 		assertEquals(0, m.getQuantity());
+	}
+	
+	@Test
+	public void testIntNegMalus() {
+		m=new MilitaryPoints(1,-3);
+		assertEquals(0, m.getMalus());
 	}
 	
 	@Test
