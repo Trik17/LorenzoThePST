@@ -2,121 +2,542 @@
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "Commercial Hub",
-	  "image": "/TerritoryCard/devcards_f_en_c_1.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_1.png",
+	  "Harvest": {
+  		"diceValue": 1,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Coins",
+	    		"quantity" :1 
+	  	}]}  	  
+  	  	]
+      }	    
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "Woods",
-	  "image": "/TerritoryCard/devcards_f_en_c_2.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_2.png",
+	  "Harvest": {
+  		"diceValue": 2,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Woods",
+	    		"quantity" :1 
+	  	}]}  	  
+  	  	]
+      }	    
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "Village",
-	  "image": "/TerritoryCard/devcards_f_en_c_3.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_3.png",
+	  "Harvest": {
+  		"diceValue": 3,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Coins",
+	    		"quantity" :1
+	    	},{
+	    		"type" : "Servants",
+	    		"quantity" : 1 
+	  	}]}  	  
+  	  	]
+      }	    
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "Gravel Pit",
-	  "image": "/TerritoryCard/devcards_f_en_c_4.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_4.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Stones",
+	  		"quantity" : 2
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 4,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Stones",
+	    		"quantity" :2 
+	  	}]}  	  
+  	  	]
+      }	   
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "Forest",
-	  "image": "/TerritoryCard/devcards_f_en_c_5.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_5.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Woods",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 5,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Woods",
+	    		"quantity" : 3 
+	  	}]}  	  
+  	  	]
+      }	    
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "Monastery",
-	  "image": "/TerritoryCard/devcards_f_en_c_6.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_6.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "MilitaryPoints",
+	  		"quantity" : 2,
+	  		"malus" : 0
+	  },{
+	  		"type" : "Servants",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 6,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "FaithPoints",
+	    		"quantity" : 1
+	    	},{
+	    		"type" : "Stones",
+	    		"quantity" : 1	
+	  	}]}  	  
+  	  	]
+      }	    	   
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "Citadel",
-	  "image": "/TerritoryCard/devcards_f_en_c_7.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_7.png",
+	  "Harvest": {
+  		"diceValue": 5,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "MilitaryPoints",
+	    		"quantity" : 2,
+	    		"malus" : 0
+	    	},{
+	    		"type" : "Stones",
+	    		"quantity" : 1	
+	  	}]}  	  
+  	  	]
+      }	    	     
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
 	  "name" : "City",
-	  "image": "/TerritoryCard/devcards_f_en_c_8.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_8.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Coins",
+	  		"quantity" : 3
+	  }]}
+	  ]  
 },{
 	 "type" : "TerritoryCard",
 	  "period" : 2,
 	  "name" : "Gold Mine",
-	  "image": "/TerritoryCard/devcards_f_en_c_9.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_9.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Coins",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 1,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Coins",
+	    		"quantity" : 2 
+	  	}]}  	  
+  	  	]
+      }	    
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
 	  "name" : "Mountain Town",
-	  "image": "/TerritoryCard/devcards_f_en_c_10.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_10.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Servants",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	   "Harvest": {
+  		"diceValue": 3,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "MilitaryPoints",
+	    		"quantity" : 1,
+	    		"malus" : 0
+	    	},{
+	    		"type" : "Woods",
+	    		"quantity" : 2	
+	  	}]}  	  
+  	  	]
+      }	  
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
 	  "name" : "Mining Town",
-	  "image": "/TerritoryCard/devcards_f_en_c_11.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_11.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Stones",
+	  		"quantity" : 1
+	  },{
+	  		"type" : "Servants",
+	  		"quantity" : 2
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 4,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Servants",
+	    		"quantity" : 1
+	    	},{
+	    		"type" : "Stones",
+	    		"quantity" : 2	
+	  	}]}  	  
+  	  	]
+      }	   
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
 	  "name" : "Rock Pit",
-	  "image": "/TerritoryCard/devcards_f_en_c_12.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_12.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Woods",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 3,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Stones",
+	    		"quantity" : 3 
+	  	}]}  	  
+  	  	]
+      }	  
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
 	  "name" : "Estate",
-	  "image": "/TerritoryCard/devcards_f_en_c_13.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_13.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Woods",
+	  		"quantity" : 1
+	  },{
+	  		"type" : "Servants",
+	  		"quantity" : 2
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 4,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Coins",
+	    		"quantity" : 1
+	    	},{
+	    		"type" : "Woods",
+	    		"quantity" : 2	
+	  	}]}  	  
+  	  	]
+      }  
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
 	  "name" : "Hermitage",
-	  "image": "/TerritoryCard/devcards_f_en_c_14.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_14.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "FaithPoints",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 2,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "FaithPoints",
+	    		"quantity" : 1 
+	  	}]}  	  
+  	  	]
+      }  
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
 	  "name" : "Manor House",
-	  "image": "/TerritoryCard/devcards_f_en_c_15.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_15.png",
+	   "Harvest": {
+  		"diceValue": 5,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "MilitaryPoints",
+	    		"quantity" : 2,
+	    		"malus" : 0
+	    	},{
+	    		"type" : "Servants",
+	    		"quantity" : 2	
+	  	}]}  	  
+  	  	]
+      }	     
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
 	  "name" : "Dukedom",
-	  "image": "/TerritoryCard/devcards_f_en_c_16.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_16.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Coins",
+	  		"quantity" : 4
+	  }]}
+	  ],
+	   "Harvest": {
+  		"diceValue": 6,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Coins",
+	    		"quantity" : 1
+	    	},{
+	    		"type" : "Woods",
+	    		"quantity" : 2
+	    	},{
+	    		"type" : "Stones",
+	    		"quantity" : 1		
+	  	}]}  	  
+  	  	]
+      }	    
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Trading Town",
-	  "image": "/TerritoryCard/devcards_f_en_c_17.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_17.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Coins",
+	  		"quantity" : 1
+	  	},{
+	  		"type" : "Servants",
+	  		"quantity": 1
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 1,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Coins",
+	    		"quantity" : 3 
+	  	}]}  	  
+  	  	]
+      }   
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Farm",
-	  "image": "/TerritoryCard/devcards_f_en_c_18.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_18.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "VictoryPoints",
+	  		"quantity" : 1
+	  },{
+	  		"type" : "Woods",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 3,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "VictoryPoints",
+	    		"quantity" : 2
+	    	},{
+	    		"type" : "Woods",
+	    		"quantity" : 2	
+	  	}]}  	  
+  	  	]
+      }    
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Colony",
-	  "image": "/TerritoryCard/devcards_f_en_c_19.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_19.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "MilitaryPoints",
+	  		"quantity" : 2,
+	  		"malus" : 0
+	  }]}
+	  ],
+	   "Harvest": {
+  		"diceValue": 5,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "VictoryPoints",
+	    		"quantity" : 4
+	    	},{
+	    		"type" : "Woods",
+	    		"quantity" : 1	
+	  	}]}  	  
+  	  	]
+      }	    
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Marble Pit",
-	  "image": "/TerritoryCard/devcards_f_en_c_20.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_20.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "VictoryPoints",
+	  		"quantity" : 3
+	  }]}
+	  ],
+	   "Harvest": {
+  		"diceValue": 2,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "VictoryPoints",
+	    		"quantity" : 1
+	    	},{
+	    		"type" : "Stones",
+	    		"quantity" : 2	
+	  	}]}  	  
+  	  	]
+      } 
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Province",
-	  "image": "/TerritoryCard/devcards_f_en_c_21.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_21.png"
+	    
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Sanctuary",
-	  "image": "/TerritoryCard/devcards_f_en_c_22.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_22.png",
+	   "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "FaithPoints",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	   "Harvest": {
+  		"diceValue": 1,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "Coins",
+	    		"quantity" : 1
+	    	},{
+	    		"type" : "FaithPoints",
+	    		"quantity" : 1	
+	  	}]}  	  
+  	  	]
+      } 
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Castle",
-	  "image": "/TerritoryCard/devcards_f_en_c_23.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_23.png",
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "VictoryPoints",
+	  		"quantity" : 2
+	  },{
+	  		"type" : "Coins",
+	  		"quantity" : 2
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 4,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "MilitaryPoints",
+	    		"quantity" : 3,
+	    		"malus" : 0
+	    	},{
+	    		"type" : "Servants",
+	    		"quantity" : 1	
+	  	}]}  	  
+  	  	]
+      }  
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Fortified Town",
-	  "image": "/TerritoryCard/devcards_f_en_c_24.png"  
+	  "image": "/TerritoryCard/devcards_f_en_c_24.png",  
+	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "MilitaryPoints",
+	  		"quantity" : 2,
+	  		"malus" : 0
+	  },{
+	  		"type" : "Servants",
+	  		"quantity" : 1
+	  }]}
+	  ],
+	  "Harvest": {
+  		"diceValue": 2,
+  		"effects":[{
+  			"type":"ResourceEffect",
+  			"effect":[ {
+	    		"type" : "MilitaryPoints",
+	    		"quantity" : 1,
+	    		"malus" : 0
+	    	},{
+	    		"type" : "Servants",
+	    		"quantity" : 2	
+	  	}]}  	  
+  	  	]
+      }
 }]
 
