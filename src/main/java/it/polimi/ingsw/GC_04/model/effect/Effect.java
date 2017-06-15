@@ -16,11 +16,11 @@ property = "type")
 @Type(value = ResourceEffect.class),
 })
 public abstract class Effect {
+	protected boolean requestedAuthorization;
 				
 	public abstract void apply(Player player);
 	
 	public Effect(){//for json
-		
 	}
 	
 } 

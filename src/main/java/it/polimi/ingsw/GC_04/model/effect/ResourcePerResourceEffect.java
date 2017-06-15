@@ -31,12 +31,12 @@ public class ResourcePerResourceEffect extends ResourceEffect {
 				break;
 			}
 		}
-		
-		bonus = bonus*myQuantity-bonus;
-		bonusResource.addQuantity(bonus);
-		this.effect.add(bonusResource);
-		
-		super.apply(player);
+		if (!(myQuantity==0)) {		
+			bonus = bonus*myQuantity-bonus;
+			bonusResource.addQuantity(bonus);
+			this.effect.add(bonusResource);
+			super.apply(player);
+		}
 	}
 	
 	

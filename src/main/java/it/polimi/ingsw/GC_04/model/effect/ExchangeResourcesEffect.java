@@ -11,6 +11,7 @@ public class ExchangeResourcesEffect extends ResourceEffect {
 	public ExchangeResourcesEffect(List<Resource> effect, List<Resource> cost) {
 		this.effect = effect;
 		this.cost = cost; 
+		this.requestedAuthorization = true;
 	}
 
 	@Override

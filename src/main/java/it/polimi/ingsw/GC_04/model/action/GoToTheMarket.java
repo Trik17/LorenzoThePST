@@ -21,7 +21,7 @@ public class GoToTheMarket extends Action {
 
 	@Override
 	public void apply() {
-		applyActionSpaceChanges();
+		applyPlayerChanges();
 	}
 	
 

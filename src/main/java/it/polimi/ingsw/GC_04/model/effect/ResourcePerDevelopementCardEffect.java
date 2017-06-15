@@ -17,12 +17,12 @@ public class ResourcePerDevelopementCardEffect extends ResourceEffect {
 	public void apply(Player player) {
 		int bonus = bonusResource.getQuantity();
 		int myQuantity = player.getCards(card).size();
-		
-		bonus = bonus*myQuantity-bonus;
-		bonusResource.addQuantity(bonus);
-		this.effect.add(bonusResource);
-		
-		super.apply(player);
+		if (!(myQuantity == 0)) {
+			bonus = bonus*myQuantity-bonus;
+			bonusResource.addQuantity(bonus);
+			this.effect.add(bonusResource);
+			super.apply(player);
+		}
 	}
 	
 }

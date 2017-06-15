@@ -6,6 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
@@ -13,7 +14,7 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 public class TakeACard extends Action{
 
 	protected DevelopmentCard card;
-	protected List<Resource> cost;
+	
 	protected static final int TOWERPENALITY = 3;
 	
 	
@@ -21,9 +22,9 @@ public class TakeACard extends Action{
 		super(player, fMember, servants);
 		this.aSpace = aSpace;
 		this.card = card;
-		this.cost = cost;//poi vediamo se lasciare così o mettere un int
 		this.area = card.getTower();
 		this.value = fMember.getDice().getValue() + player.getExtraDice().getCardExtra(card) + servants; 
+		this.actionCost.addAll(cost);
 	}
 	
 	
@@ -35,12 +36,12 @@ public class TakeACard extends Action{
 			if(aSpace.getPresentColor() != null) {
 				List<Resource> penality = new ArrayList<Resource>();
 				penality.add(new Coins(TOWERPENALITY));
-				Resource.addResource(cost, penality);
+				Resource.addResource(actionCost, penality);
 				
 			}
 		}
 		
-		return Resource.isAffordable(myRes, cost);
+		return Resource.isAffordable(myRes, actionCost);
 	
 		}
 	
@@ -54,9 +55,10 @@ public class TakeACard extends Action{
 		
 	}
 	
-	public void applyCost() {
+	public void applyCardChanges(){
 		
-		Resource.subtractResource(player.getResources(),cost);
+		player.getCards(card).add(card);
+		((Tower) area).deleteCard(card);
 		
 	}
 	
@@ -76,8 +78,8 @@ public class TakeACard extends Action{
 
 	@Override
 	public void apply() {
-		applyCost();
-		applyActionSpaceChanges();
+		applyCardChanges();
+		applyPlayerChanges();
 	
 	}
 }	

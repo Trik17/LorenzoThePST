@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_04.model.effect;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class CouncilPrivilege extends ResourceEffect {
@@ -18,7 +17,5 @@ public class CouncilPrivilege extends ResourceEffect {
 		
 	}
 	
-	@Override
-	public void apply(Player player){
-	}	
+
 } 

@@ -16,6 +16,19 @@ public abstract class Tower extends ColorReastrictedArea {
 		
 		
 	}
+	
+	public void deleteCard(DevelopmentCard devCard) {
+		DevelopmentCard[] tower = devCard.getTower().getCards();
+		int card = 0;
+		while (card < this.cards.length -1) {
+			if (devCard.equals(tower[card])) {
+				tower[card] = null;
+				return;
+			}
+			card++;
+		}
+
+	}
 
 
 }

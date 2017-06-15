@@ -9,23 +9,22 @@ import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.RunHarvest;
 
 public class RunHarvestEffect extends ActionEffect {
+	private RunHarvest runHarvest;
 
 	@JsonCreator
 	public RunHarvestEffect(@JsonProperty("dice")Dice dice) {
 		this.dice = dice;
 	}
 
+	public void setParameters(Player player,int servants) {
+		FamilyMember fMember = new FamilyMember(dice);
+		runHarvest = new RunHarvest(player, fMember, servants);
+	}
+	
 	@Override
 	public void apply(Player player) {
 		
-		/*prima chiede al giocatore se vuole usare dei servants e quanti
-		 * poi fa questo.. io inizializzo i servants così giusto per far compilare
-		 */
-		int servants = 0;
-		
-		FamilyMember fMember = new FamilyMember(dice);
-		RunHarvest check = new RunHarvest(player, fMember, servants);
-		check.apply();
+		runHarvest.apply();
 
 	}
 
