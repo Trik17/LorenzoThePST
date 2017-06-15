@@ -27,6 +27,7 @@ public class Player {
 	private Model game;
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
+	private Discount discount;
 	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
 	private List<DevelopmentCard> tCards;
 	private List<DevelopmentCard> vCards;
@@ -50,6 +51,10 @@ public class Player {
 		
 		family = FamilyMember.createFamily(color);
 		this.extraDice = new ExtraDice();
+	}
+	
+	public Discount getDiscount(){
+		return discount;
 	}
 	
 	public FamilyMember getFamilyMember(DiceColor diceColor) {
