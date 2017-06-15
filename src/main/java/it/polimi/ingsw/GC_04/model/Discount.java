@@ -10,6 +10,9 @@ import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
+//se c'è raw material il controller deve chiedere quale delle due cose vuole che si scontino
+//occhio a non fare andare il costo sotto zero
+//in takeACard fai agire il controller prima di tutto
 public class Discount {
 	private List<Resource> territoryDiscount;
 	private List<Resource> buildingDiscount;

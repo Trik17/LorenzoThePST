@@ -31,6 +31,7 @@ public class TakeACard extends Action{
 	public boolean isAffordable(){
 		
 		List<Resource> myRes = player.getResources(); //player's resources
+		List<Resource> myDiscount = player.getDiscount().getDiscount(card);
 		
 		for(ActionSpace aSpace:area.getASpaces()) {//if the tower is occupied it adds three coins to the card's cost
 			if(aSpace.getPresentColor() != null) {

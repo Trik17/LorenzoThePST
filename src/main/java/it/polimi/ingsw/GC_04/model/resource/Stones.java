@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_04.model.resource;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Stones extends Resource{
+public class Stones extends RawMaterial{
 	@JsonCreator
 	public Stones(@JsonProperty("quantity")int quantity){
 		super(quantity);
