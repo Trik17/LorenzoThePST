@@ -6,7 +6,21 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 2
-  	}]  
+  	}],
+  	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "MilitaryyPoints",
+	  		"quantity" : 3,
+	  		"malus" : 0
+	  }]},{
+		"type" : "ExtraDiceCardEffect",
+		"cardType" : {
+			"type" : "TerritoryCard"
+			},
+			"extra" : 2		  
+	  	 }
+	  ]	  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
@@ -33,7 +47,19 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 2
-  	}]  
+  	  }],
+  	   "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "CouncilPrivilege"
+	  }]},{
+		"type" : "ExtraDiceCardEffect",
+		"cardType" : {
+			"type" : "VentureCard"
+			},
+			"extra" : 2		  
+	  	 }
+	  ]	    
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
@@ -42,7 +68,11 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 3
-  	}]  
+  	  }],
+  	  "effects" : [{
+  	  	"type" : "ExtraDiceHarvestEffect",
+  	  	"extra" : 2
+  	  		}]  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
@@ -51,7 +81,11 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 3
-  	}]  
+  	  }],
+  	   "effects" : [{
+  	  	"type" : "ExtraDiceEffect",
+  	  	"extra" : 2
+  	  		}]  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
@@ -60,7 +94,14 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 2
-  	}]  
+  	}],
+  	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "FaithPoints",
+	  		"quantity" : 4
+	  }]}
+	  ]	  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
@@ -69,7 +110,18 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 3
-  	}]  
+  	}],
+  	  "effects" : [{
+  	  	"type" : "TakeACardEffect",
+  	  	"dice" : {
+  	  		"value" : 4
+  	  	}
+  	  },{
+  	  "type" : "SimpleResourceEffect",
+  	  "effect" : [{
+  	  	"type" : "FaithPoints",
+  	  	"quantity": 1
+  	  }]}]	  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
@@ -78,7 +130,22 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 4
-  	}]  
+  	}],
+  	  "effects" : [{
+  	  	"type" : "TakeACardEffect",
+  	  	"cardType" : {
+  	  		"type" : "TerritoryCard"
+  	  		},
+  	  	"dice" : {
+  	  		"value" : 6	
+  	  	}},{
+  	  	"type" : "SimpleResourceEffect",
+  	  	"effect" : [{
+  	  	"type" : "MilitaryPoints",
+  	  	"quantity" : 2,
+  	  	"malus" : 0
+		}]}
+		]  	   
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
@@ -87,7 +154,8 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 4
-  	}]  
+  	}]
+  	    		  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
@@ -105,7 +173,18 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 4
-  	}]  
+  	}],
+  	   "effects" : [{
+  	  	"type" : "TakeACardEffect",
+  	  	"cardType" : {
+  	  		"type" : "VentureCard"
+  	  		},
+  	  	"dice" : {
+  	  		"value" : 6	
+  	  	}},{
+  	  	"type" : "CouncilePrivilege"
+  	  	}
+		]  	    
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
@@ -114,7 +193,11 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 4
-  	}]  
+  	}],
+  	   "effects" : [{
+  	  	"type" : "ExtraDiceHarvestEffect",
+  	  	"extra" : 3
+  	  		}]    
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
@@ -123,7 +206,11 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 4
-  	}]  
+  	}],
+  	   "effects" : [{
+  	  	"type" : "ExtraDiceProductionEffect",
+  	  	"extra" : 3
+  	  		}]    
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
@@ -132,7 +219,14 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 5
-  	}]  
+  	}],
+  	  "effects" : [{
+	  	"type" : "ResourceEffect",
+	  	"effect" : [{
+	  		"type" : "FaithPoints",
+	  		"quantity" : 3
+	  }]}
+	  ]	  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
@@ -141,7 +235,14 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 5
-  	}]  
+  	}],
+  	  "effects" : [{
+  	  	"type" : "CouncilPrivilege"
+  	  	},{
+  	  	"type" : "CouncilPrivilege"
+  	  	},{
+  	  	"type" : "CouncilPrivilege"
+  	  	}]  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 3,
@@ -150,7 +251,17 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 6
-  	}]  
+  	}],
+  	  "effects" : [{
+  	  	"type" : "ResourcePerDevelopmentCard",
+  	  	"cardType" : {
+  	  		"type" : "TerritoryCard"
+  	  		},
+  	  	"resource" : {
+  	  		"type" : "VictoryPoints",
+  	  		"quantity" : 2
+  	  		}}
+  	  		]
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
@@ -159,7 +270,17 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 6
-  	}]  
+  	}],
+  	  "effects" : [{
+  	  	"type" : "ResourcePerDevelopmentCard",
+  	  	"cardType" : {
+  	  		"type" : "BuildingCard"
+  	  		},
+  	  	"resource" : {
+  	  		"type" : "VictoryPoints",
+  	  		"quantity" : 2
+  	  		}}
+  	  		]
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
@@ -168,7 +289,17 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 7
-  	}]  
+  	}],
+  	  "effects" : [{
+  	  	"type" : "ResourcePerDevelopmentCard",
+  	  	"cardType" : {
+  	  		"type" : "CharacterCard"
+  	  		},
+  	  	"resource" : {
+  	  		"type" : "VictoryPoints",
+  	  		"quantity" : 2
+  	  		}}
+  	  		]
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
@@ -177,7 +308,17 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 6
-  	}]  
+  	}],
+  	  "effects" : [{
+  	  	"type" : "ResourcePerDevelopmentCard",
+  	  	"cardType" : {
+  	  		"type" : "VentureCard"
+  	  		},
+  	  	"resource" : {
+  	  		"type" : "VictoryPoints",
+  	  		"quantity" : 2
+  	  		}}
+  	  		]  
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
@@ -213,5 +354,13 @@
 	  "cost1" : [ {
       "type" : "Coins",
       "quantity" : 6
-  	}]  
+  	}],
+  	 "effects" : [{
+  	  	"type" : "TakeACardEffect",
+  	  	"dice" : {
+  	  		"value" : 7
+  	  	}
+  	  },{
+  	  "type" : "CouncilPrivilege"
+  	  }]	  
 }]
