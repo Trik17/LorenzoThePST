@@ -30,6 +30,7 @@ public class JsonMapper {
 	List<BuildingCard> buildingCards;
 	List<VentureCard> ventureCards;
 	
+	
 	public JsonMapper() throws JsonMappingException, IOException{	
 		ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);

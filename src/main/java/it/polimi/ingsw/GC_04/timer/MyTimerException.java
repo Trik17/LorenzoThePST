@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_04.timer;
 
+
+//per ora non è proprio usata
 public class MyTimerException extends Exception {
 	/**
 	 * 
