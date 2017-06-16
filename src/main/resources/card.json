@@ -6,18 +6,7 @@
     "type" : "MilitaryPoints",
     "quantity" : 0,
     "malus": 3
-  }],
-  "cost2" : [ {
-    "type" : "Coins",
-    "quantity" : 3
-  },{
-    "type" : "Woods",
-    "quantity" : 9
-  },{
-    "type" : "Stones",
-    "quantity" : 3
-  }],
-  "effects":[{
+  }], "effects":[{
   	"type": "RunHarvestEffect",
   	"dice":{
   		"value": 3
