@@ -81,7 +81,7 @@
       	"quantity" : 3
   	  }],
   	  "effects" : [{
-  	  	"type" : "ExtraDiceEffect",
+  	  	"type" : "ExtraDiceProductionEffect",
   	  	"extra" : 2
   	  		}]  
 },{
@@ -115,7 +115,7 @@
   	  		"value" : 4
   	  	}
   	  },{
-  	  	"type" : "SimpleSimpleResourceEffect",
+  	  	"type" : "SimpleResourceEffect",
   	  	"effect" : [{
   	  		"type" : "FaithPoints",
   	  		"quantity": 1
@@ -137,7 +137,7 @@
   	  	"dice" : {
   	  		"value" : 6	
   	   }},{
-  	  	"type" : "SimpleSimpleResourceEffect",
+  	  	"type" : "SimpleResourceEffect",
   	  	"effect" : [{
   	  		"type" : "MilitaryPoints",
   	  		"quantity" : 2,
@@ -179,7 +179,7 @@
   	  	"dice" : {
   	  		"value" : 6	
   	  }},{
-  	  	"type" : "CouncilePrivilege"
+  	  	"type" : "CouncilPrivilege"
   	  	}
 		]  	    
 },{
@@ -250,7 +250,7 @@
       	"quantity" : 6
   	  }],
   	  "effects" : [{
-  	  	"type" : "ResourcePerDevelopmentCard",
+  	  	"type" : "ResourcePerDevelopmentCardEffect",
   	  	"cardType" : {
   	  		"type" : "TerritoryCard"
   	  		},
