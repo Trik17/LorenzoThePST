@@ -8,7 +8,7 @@
       "quantity" : 2
   	}],
   	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "MilitaryyPoints",
 	  		"quantity" : 3,
@@ -49,7 +49,7 @@
       "quantity" : 2
   	  }],
   	   "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "CouncilPrivilege"
 	  }]},{
@@ -96,7 +96,7 @@
       "quantity" : 2
   	}],
   	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "FaithPoints",
 	  		"quantity" : 4
@@ -117,7 +117,7 @@
   	  		"value" : 4
   	  	}
   	  },{
-  	  "type" : "SimpleResourceEffect",
+  	  "type" : "SimpleSimpleResourceEffect",
   	  "effect" : [{
   	  	"type" : "FaithPoints",
   	  	"quantity": 1
@@ -139,7 +139,7 @@
   	  	"dice" : {
   	  		"value" : 6	
   	  	}},{
-  	  	"type" : "SimpleResourceEffect",
+  	  	"type" : "SimpleSimpleResourceEffect",
   	  	"effect" : [{
   	  	"type" : "MilitaryPoints",
   	  	"quantity" : 2,
@@ -221,7 +221,7 @@
       "quantity" : 5
   	}],
   	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "FaithPoints",
 	  		"quantity" : 3
