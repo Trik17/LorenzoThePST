@@ -149,7 +149,13 @@
 	  		"type" : "Coins",
 	  		"quantity" : 3
 	  }]}
-	  ]  
+	  ], 
+	  "harvest": {
+  		"diceValue": 6,
+  		"effects":[{
+  			"type":"CouncilPrivilege"
+  	  }]
+      } 
 },{
 	 "type" : "TerritoryCard",
 	  "period" : 2,
@@ -453,8 +459,29 @@
 	"type" : "TerritoryCard",
 	  "period" : 3,
 	  "name" : "Province",
-	  "image": "/TerritoryCard/devcards_f_en_c_21.png"
-	    
+	  "image": "/TerritoryCard/devcards_f_en_c_21.png",
+	   "effects" : [{
+	  	"type" : "SimpleResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Stones",
+	  		"quantity" : 1
+	  }]},{
+	  		"type" : "CouncilPrivilege"
+	  }
+	  ],
+	  "harvest": {
+  		"diceValue": 6,
+  		"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "VictoryPoints",
+	    		"quantity" : 4
+	    	},{
+	    		"type" : "Stones",
+	    		"quantity" : 1	
+	  	}]}  	  
+  	  	]
+      }  
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
