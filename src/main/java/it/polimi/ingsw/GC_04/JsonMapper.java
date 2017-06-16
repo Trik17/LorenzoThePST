@@ -59,19 +59,19 @@ public class JsonMapper {
 	}
 	
 	public TerritoryCard[] getTerritoryCardArray(){
-		return (TerritoryCard[]) territoryCards.toArray();
+		return territoryCards.toArray(new TerritoryCard[0]);
 	}
 	
 	public CharacterCard[] getCharacterCardArray(){
-		return (CharacterCard[]) characterCards.toArray();
+		return characterCards.toArray(new CharacterCard[0]);
 	}
 	
 	public BuildingCard[] getBuildingCardArray(){
-		return (BuildingCard[]) buildingCards.toArray();
+		return buildingCards.toArray(new BuildingCard[0]);
 	}
 	
 	public VentureCard[] getVentureCardsArray(){
-		return (VentureCard[]) ventureCards.toArray();
+		return ventureCards.toArray(new VentureCard[0]);
 	}
 	
 	public List<ActionSpace> getActionSpaces(){
