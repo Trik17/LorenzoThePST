@@ -49,7 +49,7 @@
   "production": {
   "diceValue":4,
   "effects":[{
-  	"type":"ResourceEffect",
+  	"type":"SimpleResourceEffect",
   	"effect":[ {
 	    "type" : "Coins",
 	    "quantity" : 3

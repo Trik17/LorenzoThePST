@@ -8,12 +8,16 @@ import javax.lang.model.type.NullType;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
@@ -66,7 +70,7 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 		int w=0,a=0,b=0;
 		
 		try{
-			
+				
 			
 		
 			//carte
@@ -83,6 +87,31 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 			else if (r.getCost2()!=null)
 						System.out.println("errore");
 			
+			
+			//mazzi di carte
+			System.out.println("MAZZI DI CARTE FINALI PER IL GIOCO");
+			
+			System.out.println("territory");
+			FileReader fileT= new FileReader("src/main/resources/cards/territory.json"); 			
+			TypeReference<List<TerritoryCard>> mapTypeT = new TypeReference<List<TerritoryCard>>() {};
+	    	List<TerritoryCard> territoryCards=mapper.readValue(fileT,mapTypeT);
+	    	
+	    	System.out.println("building");
+	    	FileReader fileB= new FileReader("src/main/resources/cards/building.json"); 			
+	    	TypeReference<List<BuildingCard>> mapTypeB = new TypeReference<List<BuildingCard>>() {};
+	    	List<BuildingCard> buildingCards=mapper.readValue(fileB,mapTypeB);
+	    	
+	    	System.out.println("character");
+	    	FileReader fileC= new FileReader("src/main/resources/cards/character.json"); 			
+	    	TypeReference<List<CharacterCard>> mapTypeC = new TypeReference<List<CharacterCard>>() {};
+	    	List<CharacterCard> characterCards=mapper.readValue(fileC,mapTypeC);
+	    	
+	    	System.out.println("venture");
+	    	FileReader fileV= new FileReader("src/main/resources/cards/venture.json"); 			
+	    	TypeReference<List<VentureCard>> mapTypeV = new TypeReference<List<VentureCard>>() {};
+	    	List<VentureCard> ventureCards=mapper.readValue(fileV,mapTypeV);
+	    	
+	    	
 			
 			
 			//MilitaryPoints:
