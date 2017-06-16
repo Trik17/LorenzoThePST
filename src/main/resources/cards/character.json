@@ -50,7 +50,7 @@
   	  }],
   	  "effects" : [{
 	  		"type" : "CouncilPrivilege"
-	  }]},{
+	  },{
 		"type" : "ExtraDiceCardEffect",
 		"cardType" : {
 			"type" : "VentureCard"
