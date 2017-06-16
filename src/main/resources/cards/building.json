@@ -11,7 +11,7 @@
 	  	"quantity" : 3
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 5
@@ -30,7 +30,7 @@
 	  	"quantity" : 1
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 5
@@ -49,7 +49,7 @@
 	  	"quantity" : 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 6
@@ -68,7 +68,7 @@
 	  	"quantity" : 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 6
@@ -87,7 +87,7 @@
 	  	"quantity" : 1
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 3
@@ -106,7 +106,7 @@
 	  	"quantity" : 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 2
@@ -122,7 +122,7 @@
 	  	"quantity": 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "FaithPoints",
 	  		"quantity" : 1
@@ -138,7 +138,7 @@
 	  	"quantity" : 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 1
@@ -157,7 +157,7 @@
 	  	"quantity" : 1
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 3
@@ -173,7 +173,7 @@
 	  	"quantity": 3	
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 4
@@ -189,7 +189,7 @@
 	  	"quantity": 4
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 5
@@ -205,7 +205,7 @@
 	  	"quantity" : 4
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 6
@@ -224,7 +224,7 @@
 	  	"quantity" : 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 4
@@ -240,7 +240,7 @@
 	  	"quantity" : 3
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 2
@@ -262,7 +262,7 @@
 	  	"quantity" : 1
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  		"effect" : [{
 	  			"type" : "VictoryPoints",
 	  			"quantity" : 3
@@ -284,16 +284,16 @@
 	  	"quantity" : 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  		"effect" : [{
 	  			"type" : "VictoryPoints",
 	  			"quantity" : 8
 	  }]}
 	  		],
-	  "Production": {
+	  "production": {
   		  "diceValue":6,
   		  "effects":[{
-  			"type":"ResourceEffect",
+  			"type":"SimpleResourceEffect",
   			"effect":[ {
 	    		"type" : "MilitaryPoints",
 	    		"quantity" : 2,
@@ -320,16 +320,16 @@
 	  	"quantity" : 3
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 7
 	  }]}
 	  ],
-	  "Production": {
+	  "production": {
   		"diceValue":2,
   		"effects":[{
-  			"type":"ResourceEffect",
+  			"type":"SimpleResourceEffect",
   			"effect":[ {
 	    		"type" : "Coins",
 	    		"quantity" : 5
@@ -349,7 +349,7 @@
 	  	"quantity" : 4
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 8
@@ -371,16 +371,16 @@
 	  	"quantity" : 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 10
 	  }]}
 	  ],
-	  "Production": {
+	  "production": {
   		"diceValue":1,
   		"effects":[{
-  			"type":"ResourceEffect",
+  			"type":"SimpleResourceEffect",
   			"effect":[ {
 	    		"type" : "VictoryPoints",
 	    		"quantity" : 3
@@ -403,7 +403,7 @@
 	  	"quantity" : 2
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 9
@@ -425,7 +425,7 @@
 	  	"quantity" : 3
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 9
@@ -444,7 +444,7 @@
 	  	"quantity" : 4
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 5
@@ -469,7 +469,7 @@
 	  	"quantity" : 1	
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 7
@@ -488,7 +488,7 @@
 	  	"quantity" : 4
 	  }],
 	  "effects" : [{
-	  	"type" : "ResourceEffect",
+	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 7
@@ -497,10 +497,10 @@
 	  		"quantity" : 3
 	  }]}
 	  ],
-	  "Production": {
+	  "production": {
   		"diceValue":2,
   		"effects":[{
-  			"type":"ResourceEffect",
+  			"type":"SimpleResourceEffect",
   			"effect":[ {
 	    		"type" : "VictoryPoints",
 	    		"quantity" : 1

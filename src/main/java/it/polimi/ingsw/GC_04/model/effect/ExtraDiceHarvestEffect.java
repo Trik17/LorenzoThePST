@@ -1,10 +1,14 @@
 package it.polimi.ingsw.GC_04.model.effect;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import it.polimi.ingsw.GC_04.model.Player;
 
 public class ExtraDiceHarvestEffect extends ExtraDiceEffect {
 
-	public ExtraDiceHarvestEffect(int extra) {
+	@JsonCreator
+	public ExtraDiceHarvestEffect(@JsonProperty("extra") int extra) {
 		super(extra);
 	}
 

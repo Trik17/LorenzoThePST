@@ -3,6 +3,9 @@ package it.polimi.ingsw.GC_04.model.effect;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
@@ -10,9 +13,11 @@ public class ResourcePerResourceEffect extends ResourceEffect {
 	private Resource playerResource;//player's resource type that must be counted
 	private Resource bonusResource;
 	
-
-	public ResourcePerResourceEffect() {
+	@JsonCreator
+	public ResourcePerResourceEffect(@JsonProperty("playerResource") Resource playerResource, @JsonProperty("bonusResource") Resource bonusResource) {
 		effect = new ArrayList<Resource>();
+		this.bonusResource=bonusResource;
+		this.playerResource=playerResource;
 	}
 	
 	
