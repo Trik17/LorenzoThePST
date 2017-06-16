@@ -250,7 +250,7 @@
       	"quantity" : 6
   	  }],
   	  "effects" : [{
-  	  	"type" : "ResourcePerDevelopmentCardEffectEffect",
+  	  	"type" : "ResourcePerDevelopmentCardEffect",
   	  	"cardType" : {
   	  		"type" : "TerritoryCard"
   	  		},
@@ -269,7 +269,7 @@
       	"quantity" : 6
   	  }],
   	  "effects" : [{
-  	  	"type" : "ResourcePerDevelopmentCardEffectEffect",
+  	  	"type" : "ResourcePerDevelopmentCardEffect",
   	  	"cardType" : {
   	  		"type" : "BuildingCard"
   	  	},
