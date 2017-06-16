@@ -17,4 +17,8 @@ property = "type")
 })
 public abstract class ActionEffect extends Effect {
 	protected Dice dice;
+	
+	public ActionEffect() {
+		// for Json
+	}
 }

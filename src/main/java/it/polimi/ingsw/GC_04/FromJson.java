@@ -66,6 +66,9 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 		int w=0,a=0,b=0;
 		
 		try{
+			
+			
+		
 			//carte
 			System.out.println("carte:");
 			FileReader file= new FileReader("src/main/resources/card.json"); 

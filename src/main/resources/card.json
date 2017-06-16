@@ -46,7 +46,7 @@
     
   
   ],
-  "Production": {
+  "production": {
   "diceValue":4,
   "effects":[{
   	"type":"ResourceEffect",
