@@ -1,17 +1,118 @@
 [
 	{
-	"activationCost":1
+	"activationCost": 1
 	},{
-	"activationCost":3
+	"activationCost": 3
 	},{
-	"activationCost":5,
-	"effect":{
+	"activationCost": 5,
+	"effect":[{
 		"type": "SimpleResourceEffect",
 		"effect":[{
 			"type": "Woods",
 			"quantity": 1
+		}]}]
+	},{
+	"activationCost": 7,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Woods",
+			"quantity": 2
+		}]}]
+	},{
+	"activationCost": 1
+	},{
+	"activationCost": 3
+	},{
+	"activationCost": 5,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Stones",
+			"quantity": 1
+		}]}]
+	},{
+	"activationCost": 7,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Stones",
+			"quantity": 2
+		}]}]
+	},{
+	"activationCost": 1
+	},{
+	"activationCost": 3
+	},{
+	"activationCost": 5,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "MilitaryPoints",
+			"quantity": 1
+		}]}]
+	},{
+	"activationCost": 7,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "MilitaryPoints",
+			"quantity": 2
+		}]}]
+	},{
+	"activationCost": 1
+	},{
+	"activationCost": 3
+	},{
+	"activationCost": 5,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Coins",
+			"quantity": 1
+		}]}]
+	},{
+	"activationCost": 7,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Coins",
+			"quantity": 2
+		}]}]
+	},{
+	"activationCost": 1,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Coins",
+			"quantity": 5
+		}]}]
+	},{
+	"activationCost": 1,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Servants",
+			"quantity": 5
+		}]}]
+	},{
+	"activationCost": 1,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "MilitaryPoints",
+			"quantity": 3,
+			"malus" : 0
+		},{
+			"type" : "Coins",
+			"quantity" : 2
+		}]}]
+	},{
+	"activationCost": 1,
+	"effect":[{
+		"type": "CouncilPrivilege"
+		
+		},{
+			"type" : "CouncilPrivilege"
 		}]}
-	}
-			
-
 ]

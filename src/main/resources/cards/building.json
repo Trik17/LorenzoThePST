@@ -16,7 +16,19 @@
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 5
 	  }]}
-	  ]	
+	  ],
+	  "production" : {
+	  	"diceValue" : 5,
+	  	"effects" : [{
+	  		"type" : "resourcePerDevelopmentCardEffect",
+	  		"cardType" : {
+  	  		"type" : "BuildingCard"
+  	  	},
+  	  	"resource" : {
+  	  		"type" : "Coins",
+  	  		"quantity" : 1
+  	  }}
+  	  ]}	
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
@@ -35,7 +47,19 @@
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 5
 	  }]}
-	  ]	
+	  ],
+	  "production" : {
+	  	"diceValue" : 5,
+	  	"effects" : [{
+	  		"type" : "resourcePerDevelopmentCardEffect",
+	  		"cardType" : {
+  	  		"type" : "TerritoryCard"
+  	  	},
+  	  	"resource" : {
+  	  		"type" : "Coins",
+  	  		"quantity" : 1
+  	  }}
+  	  ]}
 },{
 	 "type" : "BuildingCard",
 	  "period" : 1,
@@ -54,7 +78,19 @@
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 6
 	  }]}
-	  ]	
+	  ],
+	  "production" : {
+	  	"diceValue" : 6,
+	  	"effects" : [{
+	  		"type" : "resourcePerDevelopmentCardEffect",
+	  		"cardType" : {
+  	  		"type" : "VentureCard"
+  	  	},
+  	  	"resource" : {
+  	  		"type" : "VictoryPoints",
+  	  		"quantity" : 1
+  	  }}
+  	  ]}	
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
@@ -73,7 +109,19 @@
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 6
 	  }]}
-	  ]	  			
+	  ],
+	  "production" : {
+	  	"diceValue" : 6,
+	  	"effects" : [{
+	  		"type" : "resourcePerDevelopmentCardEffect",
+	  		"cardType" : {
+  	  		"type" : "CharacterCard"
+  	  	},
+  	  	"resource" : {
+  	  		"type" : "VictoryPoints",
+  	  		"quantity" : 1
+  	  }}
+  	  ]}	  			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
