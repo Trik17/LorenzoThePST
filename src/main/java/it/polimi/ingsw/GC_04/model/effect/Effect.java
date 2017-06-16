@@ -13,11 +13,15 @@ property = "type")
 @JsonSubTypes({
 @Type(value = ActionEffect.class),
 @Type(value = ExtraDiceEffect.class),
-@Type(value = ResourceEffect.class),
-@Type(value = PermanentEffect.class), 
+@Type(value = ResourceEffect.class), 
 })
 public abstract class Effect {
 	protected boolean requestedAuthorization;
+	
+	public boolean getRequestedAuthorization() {
+		return requestedAuthorization;
+		
+	}
 				
 	public abstract void apply(Player player);
 	

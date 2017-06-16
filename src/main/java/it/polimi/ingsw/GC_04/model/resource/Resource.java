@@ -64,6 +64,8 @@ public abstract class Resource {
 			if(r.getClass().equals(b.getClass())) {
 				if (r.getClass().equals(MilitaryPoints.class))
 					r.addQuantity(-((MilitaryPoints) b).getMalus());
+				else if (r.getQuantity()-b.getQuantity() < 0)
+					r.quantity = 0;
 				else
 					r.addQuantity(-b.getQuantity());}}));
 	}

@@ -8,12 +8,15 @@ import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.effect.EndVictoryPointsEffect;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
+import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class TakeACard extends Action{
 
 	protected DevelopmentCard card;
+	protected List<Resource> discount;
 	
 	protected static final int TOWERPENALITY = 3;
 	
@@ -27,8 +30,14 @@ public class TakeACard extends Action{
 		this.actionCost.addAll(cost);
 	}
 	
+	public void chooseDiscount() {
+		//TODO: mi serve il controller
+		if (!player.getDiscount().getDiscount(card).contains(RawMaterial.class))
+			this.discount = player.getDiscount().getDiscount(card);
+	}
 	
 	public boolean isAffordable(){
+		chooseDiscount();
 		
 		List<Resource> myRes = player.getResources(); //player's resources
 		List<Resource> myDiscount = player.getDiscount().getDiscount(card);
@@ -65,8 +74,16 @@ public class TakeACard extends Action{
 		
 	}
 	
-	
-
+	public void applyEffects() {
+		aSpace.getEffect().apply(player);
+		card.getEffects().forEach(eff -> {
+			if (!eff.getRequestedAuthorization() || !(eff instanceof EndVictoryPointsEffect))
+				eff.apply(player);
+			else
+				requestedAuthorizationEffects.add(eff);
+		});
+		//TODO: fai chiedere al controller cosa attivare
+	}
 	
 	
 	@Override
@@ -83,6 +100,7 @@ public class TakeACard extends Action{
 	public void apply() {
 		applyCardChanges();
 		applyPlayerChanges();
+		applyEffects();
 	
 	}
 }	

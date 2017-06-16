@@ -81,16 +81,9 @@ public abstract class DevelopmentCard extends Card{
 			
 		
 	}
-	
-
-	
-//	public ArrayList<Effect> getImmediateE(){
-//		return immediateEffects;
-//	}
-	
-//	public ArrayList<Effect> getPermanentE(){
-//		return permanentEffects;
-//	}
+	public List<Effect> getEffects() {
+		return effects;
+	}
 	
 	
 }

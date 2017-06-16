@@ -18,6 +18,7 @@ public class Discount {
 	private List<Resource> buildingDiscount;
 	private List<Resource> ventureDiscount;
 	private List<Resource> characterDiscount;
+	private Resource chosenRawMaterial;
 	
 	public Discount() {
 		territoryDiscount = new ArrayList<Resource>();
@@ -48,6 +49,14 @@ public class Discount {
 		if (cardType instanceof CharacterCard)
 			Resource.addResource(characterDiscount, discount);
 		return;
+	}
+
+	public Resource getChosenRawMaterial() {
+		return chosenRawMaterial;
+	}
+
+	public void setChosenRawMaterial(Resource chosenRawMaterial) {
+		this.chosenRawMaterial = chosenRawMaterial;
 	}
 }
 
