@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_04;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Model;
@@ -24,24 +27,25 @@ public class Inizializer {
 	private static int finalPosition = 3;
 	
 	private final TerritoryCard[] tCards;
-	private final BuildingCard[] bCards;
 	private final CharacterCard[] cCards;
+	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
 
 	
-	public Inizializer(Player[] players,TerritoryCard[] tCards,BuildingCard[] bCards,CharacterCard[] cCards,VentureCard[] vCards, List<ActionSpace> aSpaces) {
+	public Inizializer(Player[] players) throws JsonMappingException, IOException {
+		JsonMapper jsonMapper=new JsonMapper();		
+		this.tCards = jsonMapper.getTerritoryCardArray();
+		this.cCards = jsonMapper.getCharacterCardArray();
+		this.bCards = jsonMapper.getBuildingCardArray();
+		this.vCards = jsonMapper.getVentureCardsArray();		
+		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		
-		
-		this.tCards = tCards;
-		this.bCards = bCards;
-		this.cCards = cCards;
-		this.vCards = vCards;
 		CouncilPalaceArea.instance(players);
 		TerritoryTower.instance(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0, 3));
 		BuildingTower.instance(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(4, 7));
 		VentureTower.instance(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(8, 11));
 		CharacterTower.instance(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(12, 15));
-		MarketArea.instance(aSpaces.subList(15, aSpaces.size()-1));
+		MarketArea.instance(aSpaces.subList(15, aSpaces.size()-1)); //calcolare meglio fino a dove prenderli
 		HarvestArea.instance();
 		ProductionArea.instance();
 		

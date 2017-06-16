@@ -432,7 +432,7 @@
   	  		"value" : 7
   	  	}
   	  },{
-  	  	"type" : "SimpleSimpleResourceEffect",
+  	  	"type" : "SimpleResourceEffect",
   	  	"effect" : [{
   	  		"type" : "FaithPoints",
   	  		"quantity": 1

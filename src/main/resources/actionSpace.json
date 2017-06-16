@@ -1,3 +1,17 @@
 [
+	{
+	"activationCost":1
+	},{
+	"activationCost":3
+	},{
+	"activationCost":5,
+	"effect":{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Woods",
+			"quantity": 1
+		}]}
+	}
+			
 
 ]
