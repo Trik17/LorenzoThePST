@@ -250,7 +250,7 @@
       	"quantity" : 6
   	  }],
   	  "effects" : [{
-  	  	"type" : "ResourcePerDevelopmentCardEffect",
+  	  	"type" : "ResourcePerDevelopmentCardEffectEffect",
   	  	"cardType" : {
   	  		"type" : "TerritoryCard"
   	  		},
@@ -269,7 +269,7 @@
       	"quantity" : 6
   	  }],
   	  "effects" : [{
-  	  	"type" : "ResourcePerDevelopmentCard",
+  	  	"type" : "ResourcePerDevelopmentCardEffectEffect",
   	  	"cardType" : {
   	  		"type" : "BuildingCard"
   	  	},
@@ -288,7 +288,7 @@
       	"quantity" : 7
   	  }],
   	  "effects" : [{
-  	  	"type" : "ResourcePerDevelopmentCard",
+  	  	"type" : "ResourcePerDevelopmentCardEffect",
   	  	"cardType" : {
   	  		"type" : "CharacterCard"
   	    },
@@ -307,7 +307,7 @@
       	"quantity" : 6
   	  }],
   	  "effects" : [{
-  	  	"type" : "ResourcePerDevelopmentCard",
+  	  	"type" : "ResourcePerDevelopmentCardEffect",
   	  	"cardType" : {
   	  		"type" : "VentureCard"
   	  	},

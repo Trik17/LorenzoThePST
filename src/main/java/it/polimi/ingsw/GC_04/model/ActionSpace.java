@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_04.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 
 public class ActionSpace {
@@ -8,8 +11,8 @@ public class ActionSpace {
 	private Effect effect;
 	private FamilyMember fMember;
 	
-	
-	public ActionSpace(int activationCost, Effect effect){
+	@JsonCreator
+	public ActionSpace(@JsonProperty("activationCost") int activationCost,@JsonProperty("effect") Effect effect){
 		
 		this.activationCost = activationCost;
 		this.effect = effect;

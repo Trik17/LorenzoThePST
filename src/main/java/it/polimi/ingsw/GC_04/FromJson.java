@@ -31,7 +31,6 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 	public FromJson(){		//servirà, sistemata, per caricare carte e timer
 	}
 	
-	//ORA DA ERRORE, PROBABILMENTE PERCHè MANCANO @JSONCREATOR E @JSON PROPERTY AI COSTRUTTORI DI EFFECT E HARVEST E PRODUCTION E ANCHE I COSTRUTTORI DI DEFAULT VUOTI DA METTERE PER JSON
 	public static void main(String[] args) throws JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -43,8 +42,7 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 		Resource r4=new MilitaryPoints(0,0);
 		Resource r5=new Stones(22);
 		Resource r6=new Servants(1);
-		*/
-		
+		*/		
 		/*
 		ResourceArray c=new ResourceArray();
 		c.getL().add(r1);
@@ -64,15 +62,11 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 		*/
 		
 		//DevelopmentCard card=new BuildingCard(1, "forest", cost1);
-		
-		
+				
 		//String s = null;
 		int w=0,a=0,b=0;
 		
-		try{
-				
-			
-		
+		try{		
 			//carte
 			System.out.println("carte:");
 			FileReader file= new FileReader("src/main/resources/card.json"); 
@@ -85,8 +79,7 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 			if(r.getCost2()==null)
 				System.out.println("va a null");
 			else if (r.getCost2()!=null)
-						System.out.println("errore");
-			
+						System.out.println("errore");			
 			
 			//mazzi di carte
 			System.out.println("MAZZI DI CARTE FINALI PER IL GIOCO");
@@ -142,35 +135,10 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 			 e.printStackTrace();
 		}	
 		
-	}	
+	}
+	
+	public static void cardFromJson(){
+		
+	}
 }
 
-
-
-// per l'array doveva essere fatto in classe a parte:
-/*
- package it.polimi.ingsw.GC_04.model;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class ResourceArray {//per Json
-	
-	private List<Resource> l;
-
-    public ResourceArray(List<Resource> pl) {
-        this.l = pl;
-    }
-
-    public ResourceArray() {
-        this.l = new ArrayList<Resource>();
-    }
-
-    public List<Resource> getL() {
-        return this.l;
-    }
-
-    public void setL(List<Resource> l) {
-        this.l = l;
-    }
-}*/
