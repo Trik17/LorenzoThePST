@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
@@ -22,6 +23,8 @@ public class JsonMapper {
 	FileReader fileC= new FileReader("src/main/resources/cards/character.json"); 
 	FileReader fileB= new FileReader("src/main/resources/cards/building.json"); 
 	FileReader fileV= new FileReader("src/main/resources/cards/venture.json"); 	
+	FileReader fileAS= new FileReader("src/main/resources/actionSpace.json"); 	
+	List<ActionSpace> actionSpaces;
 	List<TerritoryCard> territoryCards;
 	List<CharacterCard> characterCards;
 	List<BuildingCard> buildingCards;
@@ -32,7 +35,7 @@ public class JsonMapper {
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 				
 		try{		
-			//mazzi di carte
+			//Cards
 			TypeReference<List<TerritoryCard>> mapTypeT = new TypeReference<List<TerritoryCard>>() {};
 			territoryCards=mapper.readValue(fileT,mapTypeT);	
 
@@ -45,26 +48,34 @@ public class JsonMapper {
 	    	TypeReference<List<VentureCard>> mapTypeV = new TypeReference<List<VentureCard>>() {};
 	    	ventureCards=mapper.readValue(fileV,mapTypeV);
 	    	
+	    	//ActionSpaces
+	    	TypeReference<List<ActionSpace>> mapTypeAS = new TypeReference<List<ActionSpace>>() {};
+			actionSpaces=mapper.readValue(fileAS,mapTypeAS);
+	    	
 		}catch(JsonParseException e){
 			 e.printStackTrace();
 		}	
 		
 	}
 	
-	public TerritoryCard[] getTerritoryCards(){
+	public TerritoryCard[] getTerritoryCardArray(){
 		return (TerritoryCard[]) territoryCards.toArray();
 	}
 	
-	public CharacterCard[] getCharacterCard(){
+	public CharacterCard[] getCharacterCardArray(){
 		return (CharacterCard[]) characterCards.toArray();
 	}
 	
-	public BuildingCard[] getBuildingCard(){
+	public BuildingCard[] getBuildingCardArray(){
 		return (BuildingCard[]) buildingCards.toArray();
 	}
 	
-	public VentureCard[] getVentureCards(){
+	public VentureCard[] getVentureCardsArray(){
 		return (VentureCard[]) ventureCards.toArray();
+	}
+	
+	public List<ActionSpace> getActionSpaces(){
+		return actionSpaces;
 	}
 	
 	
@@ -123,7 +134,10 @@ public class JsonMapper {
 			else if (r.getCost2()!=null)
 						System.out.println("errore");			
 			
-			
+			//ActionSpaces
+			System.out.println("actionspace:");
+	    	TypeReference<List<ActionSpace>> mapTypeAS = new TypeReference<List<ActionSpace>>() {};
+			actionSpaces=mapper.readValue(fileAS,mapTypeAS);
 	    	
 			
 			

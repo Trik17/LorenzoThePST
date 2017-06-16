@@ -32,18 +32,20 @@ public class Inizializer {
 	private final VentureCard[] vCards;
 
 	
-	public Inizializer(Player[] players, List<ActionSpace> aSpaces) throws JsonMappingException, IOException {
+	public Inizializer(Player[] players) throws JsonMappingException, IOException {
 		JsonMapper jsonMapper=new JsonMapper();		
-		this.tCards = jsonMapper.getTerritoryCards();
-		this.cCards = jsonMapper.getCharacterCard();
-		this.bCards = jsonMapper.getBuildingCard();
-		this.vCards = jsonMapper.getVentureCards();
+		this.tCards = jsonMapper.getTerritoryCardArray();
+		this.cCards = jsonMapper.getCharacterCardArray();
+		this.bCards = jsonMapper.getBuildingCardArray();
+		this.vCards = jsonMapper.getVentureCardsArray();		
+		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
+		
 		CouncilPalaceArea.instance(players);
 		TerritoryTower.instance(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0, 3));
 		BuildingTower.instance(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(4, 7));
 		VentureTower.instance(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(8, 11));
 		CharacterTower.instance(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(12, 15));
-		MarketArea.instance(aSpaces.subList(15, aSpaces.size()-1));
+		MarketArea.instance(aSpaces.subList(15, aSpaces.size()-1)); //calcolare meglio fino a dove prenderli
 		HarvestArea.instance();
 		ProductionArea.instance();
 		
