@@ -78,7 +78,7 @@ public class ViewCLI {
 		VentureCard[] vCards = new VentureCard[16];
 		List<ActionSpace> aSpaces = new ArrayList<ActionSpace>();
 		
-		Inizializer inizializer = new Inizializer(players, tCards, bCards, cCards, vCards, aSpaces);
+		Inizializer inizializer = new Inizializer(players);
 		Model game = new Model(players);
 		View view =new View(game);
 		Controller controller=new Controller(game, view);
