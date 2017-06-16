@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_04;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Model;
@@ -24,18 +27,17 @@ public class Inizializer {
 	private static int finalPosition = 3;
 	
 	private final TerritoryCard[] tCards;
-	private final BuildingCard[] bCards;
 	private final CharacterCard[] cCards;
+	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
 
 	
-	public Inizializer(Player[] players,TerritoryCard[] tCards,BuildingCard[] bCards,CharacterCard[] cCards,VentureCard[] vCards, List<ActionSpace> aSpaces) {
-		
-		
-		this.tCards = tCards;
-		this.bCards = bCards;
-		this.cCards = cCards;
-		this.vCards = vCards;
+	public Inizializer(Player[] players, List<ActionSpace> aSpaces) throws JsonMappingException, IOException {
+		JsonMapper jsonMapper=new JsonMapper();		
+		this.tCards = jsonMapper.getTerritoryCards();
+		this.cCards = jsonMapper.getCharacterCard();
+		this.bCards = jsonMapper.getBuildingCard();
+		this.vCards = jsonMapper.getVentureCards();
 		CouncilPalaceArea.instance(players);
 		TerritoryTower.instance(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0, 3));
 		BuildingTower.instance(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(4, 7));
