@@ -18,7 +18,7 @@ property = "type")
 @Type(value = EndVictoryPointsEffect.class),
 @Type(value = SimpleResourceEffect.class),
 @Type(value = ResourcePerResourceEffect.class),
-@Type(value = ResourcePerDevelopementCardEffect.class),
+@Type(value = ResourcePerDevelopmentCardEffect.class),
 @Type(value = ExchangeResourcesEffect.class),
 @Type(value = CouncilPrivilege.class),
 })

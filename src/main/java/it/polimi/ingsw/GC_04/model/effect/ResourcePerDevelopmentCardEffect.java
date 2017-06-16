@@ -7,12 +7,12 @@ import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
-public class ResourcePerDevelopementCardEffect extends ResourceEffect {
+public class ResourcePerDevelopmentCardEffect extends ResourceEffect {
 	private DevelopmentCard cardType;
 	private Resource bonusResource;
 	
 	@JsonCreator
-	public ResourcePerDevelopementCardEffect(@JsonProperty("cardType") DevelopmentCard cardType,@JsonProperty("resource") Resource resource) {
+	public ResourcePerDevelopmentCardEffect(@JsonProperty("cardType") DevelopmentCard cardType,@JsonProperty("resource") Resource resource) {
 		this.cardType = cardType;
 		this.bonusResource = resource;
 	}

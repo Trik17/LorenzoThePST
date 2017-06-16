@@ -30,6 +30,8 @@ public class Inizializer {
 
 	
 	public Inizializer(Player[] players,TerritoryCard[] tCards,BuildingCard[] bCards,CharacterCard[] cCards,VentureCard[] vCards, List<ActionSpace> aSpaces) {
+		
+		
 		this.tCards = tCards;
 		this.bCards = bCards;
 		this.cCards = cCards;

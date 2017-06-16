@@ -34,7 +34,8 @@ public class Player {
 	private List<DevelopmentCard> bCards;
 	private List<DevelopmentCard> cCards;
 	private List<Resource> resources;
-	
+	private List<Harvest> harvestList;
+	private List<Production> productionList;
 
 	public Player(String name, FamilyColor color, int turn){
 		this.name = name;
@@ -51,6 +52,9 @@ public class Player {
 		
 		family = FamilyMember.createFamily(color);
 		this.extraDice = new ExtraDice();
+		harvestList = new ArrayList<Harvest>();
+		productionList = new ArrayList<Production>();
+		
 	}
 	
 	public Discount getDiscount(){
