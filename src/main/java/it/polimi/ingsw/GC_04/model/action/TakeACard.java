@@ -33,6 +33,8 @@ public class TakeACard extends Action{
 		List<Resource> myRes = player.getResources(); //player's resources
 		List<Resource> myDiscount = player.getDiscount().getDiscount(card);
 		
+		Resource.subtractResource(actionCost, myDiscount);
+		
 		for(ActionSpace aSpace:area.getASpaces()) {//if the tower is occupied it adds three coins to the card's cost
 			if(aSpace.getPresentColor() != null) {
 				List<Resource> penality = new ArrayList<Resource>();

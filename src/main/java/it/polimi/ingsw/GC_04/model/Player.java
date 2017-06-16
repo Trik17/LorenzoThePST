@@ -34,6 +34,8 @@ public class Player {
 	private List<DevelopmentCard> bCards;
 	private List<DevelopmentCard> cCards;
 	private List<Resource> resources;
+	private boolean actionSpacePenality;
+	
 	private List<Harvest> harvestList;
 	private List<Production> productionList;
 
@@ -59,6 +61,16 @@ public class Player {
 	
 	public Discount getDiscount(){
 		return discount;
+	}
+	
+	public boolean getActionSpacePenality() {
+		return actionSpacePenality;
+		
+	}
+	
+	public void setActionSpacePenality() {
+		actionSpacePenality = true;
+		
 	}
 	
 	public FamilyMember getFamilyMember(DiceColor diceColor) {
