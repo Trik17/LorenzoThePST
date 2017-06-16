@@ -111,6 +111,7 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 	    	TypeReference<List<VentureCard>> mapTypeV = new TypeReference<List<VentureCard>>() {};
 	    	List<VentureCard> ventureCards=mapper.readValue(fileV,mapTypeV);
 	    	
+	    	territoryCards.toArray();
 	    	
 			
 			
@@ -142,7 +143,11 @@ public class FromJson { //classe di prova per serializzazione / deserializzazion
 		}	
 		
 	}	
-}// per l'array doveva essere fatto in classe a parte:
+}
+
+
+
+// per l'array doveva essere fatto in classe a parte:
 /*
  package it.polimi.ingsw.GC_04.model;
 

@@ -49,8 +49,6 @@
       	"quantity" : 2
   	  }],
   	  "effects" : [{
-	  	"type" : "SimpleResourceEffect",
-	  	"effect" : [{
 	  		"type" : "CouncilPrivilege"
 	  }]},{
 		"type" : "ExtraDiceCardEffect",
