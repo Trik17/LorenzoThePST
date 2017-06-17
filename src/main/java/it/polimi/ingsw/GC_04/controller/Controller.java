@@ -10,7 +10,6 @@ import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 import it.polimi.ingsw.GC_04.view.View;
 

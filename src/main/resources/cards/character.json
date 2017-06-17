@@ -29,7 +29,24 @@
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 4
-  	  }]	
+  	  }],
+  	   "effects" : [{
+  	  	"type" : "ExtraDiceCardEffect",
+  	  	"cardType" : {
+  	  		"type" : "BuildingCard"
+  	  		},
+  	  		"extra" : 2
+  	  		},{
+  	  	"type" : "DiscountEffect",
+  	  	"cardType" : {
+  	  		"type" : "BuildingCard"
+  	  		},
+  	  	"discount" : [{
+  	  		"type" : "RawMaterial",
+  	  		"quantity" : 1
+  	  		}]}
+  	  		]
+  	  	
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
@@ -38,7 +55,23 @@
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 4
-  	  }]  
+  	  }],
+  	  "effects" : [{
+  	  	"type" : "ExtraDiceCardEffect",
+  	  	"cardType" : {
+  	  		"type" : "CharacterCard"
+  	  		},
+  	  		"extra" : 2
+  	  		},{
+  	  	"type" : "DiscountEffect",
+  	  	"cardType" : {
+  	  		"type" : "CharacterCard"
+  	  		},
+  	  	"discount" : [{
+  	  		"type" : "Coins",
+  	  		"quantity" : 1
+  	  		}]}
+  	  		]	  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
@@ -152,6 +185,22 @@
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 4
+  	  }],
+  	  "effects" : [{
+  	  	"type" : "TakeACardEffect",
+  	  	"cardType" : {
+  	  		"type" : "BuildingCard"
+  	  		},
+  	  	"dice" : {
+  	  		"value" : 6
+  	  		},
+  	  	"discount" : [{
+  	  		"type" : "Woods",
+  	  		"quantity" : 1
+  	  		},{
+  	  		"type" : "Stones",
+  	  		"quantity" : 1
+  	  		}]	
   	  }]  		  
 },{
 	  "type" : "CharacterCard",
@@ -161,7 +210,20 @@
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 3
-  	  }]  
+  	  }],
+  	  "effects" : [{
+  	  	"type" : "TakeACardEffect",
+  	  	"cardType" : {
+  	  		"type" : "CharacterCard"
+  	  		},
+  	  	"dice" : {
+  	  		"value" : 6
+  	  		},
+  	  	"discount" : [{
+  	  		"type" : "Coins",
+  	  		"quantity" : 2
+  	  		}]}
+  	  		]		  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
@@ -364,7 +426,19 @@
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 5
-  	  }]  
+  	  }],
+  	  "effects" : [{
+  	  	"type" : "ResourcePerResourceEffect",
+  	  	"playerResource" : {
+  	  		"type" : "MilitaryPoints",
+  	  		"quantity" : 2,
+  	  		"malus" : 0
+  	  		},
+  	  	"bonusResource" : {
+  	  		"type" : "VictoryPoints",
+  	  		"quantity" : 1
+  	  	}}
+  	  	]	  
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
