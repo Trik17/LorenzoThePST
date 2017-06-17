@@ -8,7 +8,6 @@ import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.effect.EndVictoryPointsEffect;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
@@ -32,7 +31,7 @@ public class TakeACard extends Action{
 	
 	public void chooseDiscount() {
 		//TODO: mi serve il controller
-		if (!player.getDiscount().getDiscount(card).contains(RawMaterial.class))
+		if (!player.getDiscount().getDiscount(card).stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
 			this.discount = player.getDiscount().getDiscount(card);
 	}
 	
@@ -78,7 +77,7 @@ public class TakeACard extends Action{
 		aSpace.applyEffects(player);
 		
 		card.getEffects().forEach(eff -> {
-			if (!eff.getRequestedAuthorization() || !(eff instanceof EndVictoryPointsEffect))
+			if (!eff.getRequestedAuthorization())
 				eff.apply(player);
 			else
 				requestedAuthorizationEffects.add(eff);
@@ -104,6 +103,7 @@ public class TakeACard extends Action{
 		applyEffects();
 	
 	}
+
 }	
 
 	
