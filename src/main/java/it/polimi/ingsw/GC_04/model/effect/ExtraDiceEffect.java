@@ -18,6 +18,10 @@ property = "type")
 public abstract class ExtraDiceEffect extends Effect {
 
 	protected int extra;
+	
+	public ExtraDiceEffect(){
+		//json
+	}
 
 	@JsonCreator
 	public ExtraDiceEffect(@JsonProperty("extra") int extra) {

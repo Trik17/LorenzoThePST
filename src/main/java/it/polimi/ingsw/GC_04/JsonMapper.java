@@ -37,18 +37,23 @@ public class JsonMapper {
 				
 		try{		
 			//Cards
+			System.out.println("territory: ");//CANCELAAAAAA
 			TypeReference<List<TerritoryCard>> mapTypeT = new TypeReference<List<TerritoryCard>>() {};
 			territoryCards=mapper.readValue(fileT,mapTypeT);	
-
+			
+			System.out.println("caracter");//CANCELAAAAAA
 	    	TypeReference<List<CharacterCard>> mapTypeC = new TypeReference<List<CharacterCard>>() {};
 	    	characterCards=mapper.readValue(fileC,mapTypeC);
-
+	    	
+	    	System.out.println("buiding");//CANCELAAAAAA
 	    	TypeReference<List<BuildingCard>> mapTypeB = new TypeReference<List<BuildingCard>>() {};
 	    	buildingCards=mapper.readValue(fileB,mapTypeB);
-
+	    	
+	    	System.out.println("ventur");//CANCELAAAAAA
 	    	TypeReference<List<VentureCard>> mapTypeV = new TypeReference<List<VentureCard>>() {};
 	    	ventureCards=mapper.readValue(fileV,mapTypeV);
 	    	
+	    	System.out.println("actionspace");//CANCELAAAAAA
 	    	//ActionSpaces
 	    	TypeReference<List<ActionSpace>> mapTypeAS = new TypeReference<List<ActionSpace>>() {};
 			actionSpaces=mapper.readValue(fileAS,mapTypeAS);
@@ -82,7 +87,10 @@ public class JsonMapper {
 	
 	
 	public static void main(String[] args) throws JsonMappingException, IOException {
+		System.out.println("start");
 		JsonMapper jsonMapper=new JsonMapper();
+		System.out.println("vero start");
+		jsonMapper.getActionSpaces();
 		
 		jsonMapper.getTerritoryCardArray();
 		System.out.println("territory: ok");
@@ -94,8 +102,7 @@ public class JsonMapper {
 		
 		jsonMapper.getCharacterCardArray();
 		System.out.println("character: ok");
-		jsonMapper.getActionSpaces();
-		System.out.println("actionspace: ok");
+		
 		
 		/*
 		ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
