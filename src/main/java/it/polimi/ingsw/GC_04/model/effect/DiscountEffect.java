@@ -18,6 +18,10 @@ public class DiscountEffect extends Effect {
 		this.cardType = cardType;
 		this.discount = discount;
 	}
+	
+	public DiscountEffect(){
+		//json
+	}
 
 	
 	@Override

@@ -14,6 +14,9 @@ public class ExtraDiceCardEffect extends ExtraDiceEffect {
 		super(extra);
 		this.cardType = cardType;
 	}
+	public ExtraDiceCardEffect() {
+		// json
+	}
 
 	@Override
 	public void apply(Player player) {
