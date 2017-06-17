@@ -131,8 +131,10 @@
 	  	"effect" : [{
 	  		"type" : "FaithPoints",
 	  		"quantity" : 4
-	  }]}
-	  ]	  
+	  }]},{
+	  "type" : " ActionSpacePenalityEffect" 
+	  }	  
+	  ]
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,

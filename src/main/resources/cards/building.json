@@ -139,7 +139,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 3
-	  }]},{
+	  }]}],
 	   "production": {
   		  "diceValue":4,
   		  "effects":[{
@@ -166,7 +166,7 @@
 	  	  }]
 	  	   }]
 	    	}]
-	  }}]
+	  }
 	   	  			
 },{
 	  "type" : "BuildingCard",
@@ -185,7 +185,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 2
-	  }]},{
+	  }]}],
 	  	 "production": {
   		  "diceValue":3,
   		  "effects":[{
@@ -212,7 +212,7 @@
 	  	  }]
 	  	   }]
 	    	}]
-	  }}] 			
+	  } 			
 },{
       "type" : "BuildingCard",
 	  "period" : 1,
@@ -227,7 +227,7 @@
 	  	"effect" : [{
 	  		"type" : "FaithPoints",
 	  		"quantity" : 1
-	  }]},{
+	  }]}],
 	   "production": {
   		  "diceValue":2,
   		  "effects":[{
@@ -241,8 +241,7 @@
 	    		"quantity" : 1
 	  	  }]}
 	    	]
-	  }}
-	  ]	  			
+	  }		
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
@@ -257,7 +256,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 1
-	  }]},{
+	  }]}],
 	   "production": {
   		  "diceValue":1,
   		  "effects":[{
@@ -269,8 +268,7 @@
 	    		"type" : "Coins",
 	    		"quantity" : 1
 	  	  }]}]   	
-	  }}
-	  ]	  			
+	  }	  			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
@@ -288,7 +286,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 3
-	  }]},{
+	  }]}],
 	  "production": {
   		  "diceValue":3,
   		  "effects":[{
@@ -305,8 +303,7 @@
 	    		"quantity" : 3
 	  	  }]}
 	    	]
-	  }}
-	  ]	  			
+	  }	  			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
@@ -321,7 +318,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 4
-	  }]},{
+	  }]}],
 	  	 "production": {
   		  "diceValue":3,
   		  "effects":[{
@@ -348,7 +345,7 @@
 	  	  }]
 	  	   }]
 	    	}]
-	  }}] 
+	  } 
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
@@ -363,7 +360,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 5
-	  }]},{
+	  }]}],
 	   "production": {
   		  "diceValue":4,
   		  "effects":[{
@@ -390,7 +387,7 @@
 	  	  }]
 	  	   }]
 	    	}]
-	  }}] 		
+	  } 		
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
@@ -405,7 +402,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 6
-	  }]},{
+	  }]}],
 	  "production": {
   		  "diceValue":5,
   		  "effects":[{
@@ -432,7 +429,7 @@
 	  	  }]
 	  	   }]
 	    	}]
-	  }}]  			
+	  }  			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
@@ -450,7 +447,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 4
-	  }]},{
+	  }]}],
 	  	 "production": {
   		  "diceValue":4,
   		  "effects":[{
@@ -470,8 +467,7 @@
 	  	  		"quantity" : 1
 	  	  }]}
 	    	]
-	  }}
-	  ]	    			
+	  }	    			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
@@ -489,7 +485,7 @@
 	  },{
 	  		"type" : "FaithPoints",
 	  		"quantity" : 1
-	  }]},{
+	  }]}],
 	     "production": {
   		  "diceValue":2,
   		  "effects":[{
@@ -506,8 +502,7 @@
 	    		"quantity" : 1
 	  	  }]}
 	    	]
-	  }}
-	  ]	  					
+	  }  					
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
@@ -525,7 +520,7 @@
 	  		"effect" : [{
 	  			"type" : "VictoryPoints",
 	  			"quantity" : 3
-	  }]},{
+	  }]}],
 	   "production": {
   		  "diceValue":1,
   		  "effects":[{
@@ -540,8 +535,7 @@
 	    		"quantity" : 1
 	  	  }]}
 	    	]
-	  }}
-	  ]	  			
+	  }	  			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
@@ -562,8 +556,7 @@
 	  		"effect" : [{
 	  			"type" : "VictoryPoints",
 	  			"quantity" : 8
-	  }]}
-	  		],
+	  }]}],
 	  "production": {
   		  "diceValue":6,
   		  "effects":[{
@@ -627,7 +620,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 8
-	  }]},{
+	  }]}],
 	  "production": {
   		  "diceValue":4,
   		  "effects":[{
@@ -644,8 +637,7 @@
 	    		"quantity" : 4
 	  	  }]}
 	    	]
-	  }}
-	  ] 			
+	  } 			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
@@ -731,7 +723,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 9
-	  }]},{
+	  }]}],
 	   "production": {
   		  "diceValue":4,
   		  "effects":[{
@@ -748,10 +740,7 @@
 	    		"quantity" : 1
 	  	  }]}
 	    	]
-	  }}
-	  ] 			
-	  
-	    			
+	  } 			 			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
@@ -772,7 +761,7 @@
 	  		},{
 	  		"type" : "FaithPoints",
 	  		"quantity" : 1
-	  }]},{
+	  }]}],
 	   "production": {
   		  "diceValue":1,
   		  "effects":[{
@@ -786,8 +775,7 @@
 	    		"quantity" : 1
 	  	  }]}
 	    	]
-	  }}
-	  ]	  			
+	  }	  			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
@@ -808,7 +796,7 @@
 	  	"effect" : [{
 	  		"type" : "VictoryPoints",
 	  		"quantity" : 7
-	  	}]},{
+	  	}]}],
 	     "production": {
   		  "diceValue":3,
   		  "effects":[{
@@ -826,8 +814,7 @@
 	    		"quantity" : 1
 	  	  }]}
 	    	]
-	  }}
-	  ] 		  			
+	  } 		  			
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
