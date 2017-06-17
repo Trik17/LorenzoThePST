@@ -83,11 +83,19 @@ public class JsonMapper {
 	
 	public static void main(String[] args) throws JsonMappingException, IOException {
 		JsonMapper jsonMapper=new JsonMapper();
-		jsonMapper.getActionSpaces();
-		jsonMapper.getBuildingCardArray();
-		jsonMapper.getVentureCardsArray();
+		
 		jsonMapper.getTerritoryCardArray();
+		System.out.println("territory: ok");
+		
+		jsonMapper.getBuildingCardArray();
+		System.out.println("building: ok");
+		jsonMapper.getVentureCardsArray();
+		System.out.println("venture: ok");
+		
 		jsonMapper.getCharacterCardArray();
+		System.out.println("character: ok");
+		jsonMapper.getActionSpaces();
+		System.out.println("actionspace: ok");
 		
 		/*
 		ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
