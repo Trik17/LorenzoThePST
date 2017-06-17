@@ -33,5 +33,9 @@ public abstract class ResourceEffect extends Effect {
 	public void apply(Player player){
 		Resource.addResource(effect,player.getResources());
 	}
+	
+	public List<Resource> getEffect(){
+		return effect;
+	}
 		
 }
