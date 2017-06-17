@@ -19,16 +19,16 @@ import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 
 public class JsonMapper { 
-	FileReader fileT= new FileReader("src/main/resources/cards/territory.json");
-	FileReader fileC= new FileReader("src/main/resources/cards/character.json"); 
-	FileReader fileB= new FileReader("src/main/resources/cards/building.json"); 
-	FileReader fileV= new FileReader("src/main/resources/cards/venture.json"); 	
-	FileReader fileAS= new FileReader("src/main/resources/actionSpace.json"); 	
-	List<ActionSpace> actionSpaces;
-	List<TerritoryCard> territoryCards;
-	List<CharacterCard> characterCards;
-	List<BuildingCard> buildingCards;
-	List<VentureCard> ventureCards;
+	private FileReader fileT= new FileReader("src/main/resources/cards/territory.json");
+	private FileReader fileC= new FileReader("src/main/resources/cards/character.json"); 
+	private FileReader fileB= new FileReader("src/main/resources/cards/building.json"); 
+	private FileReader fileV= new FileReader("src/main/resources/cards/venture.json"); 	
+	private FileReader fileAS= new FileReader("src/main/resources/actionSpace.json"); 	
+	private List<ActionSpace> actionSpaces;
+	private List<TerritoryCard> territoryCards;
+	private List<CharacterCard> characterCards;
+	private List<BuildingCard> buildingCards;
+	private List<VentureCard> ventureCards;
 	
 	
 	public JsonMapper() throws JsonMappingException, IOException{	
@@ -80,8 +80,16 @@ public class JsonMapper {
 	}
 	
 	
-	/*
+	
 	public static void main(String[] args) throws JsonMappingException, IOException {
+		JsonMapper jsonMapper=new JsonMapper();
+		jsonMapper.getActionSpaces();
+		jsonMapper.getBuildingCardArray();
+		jsonMapper.getVentureCardsArray();
+		jsonMapper.getTerritoryCardArray();
+		jsonMapper.getCharacterCardArray();
+		
+		/*
 		ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 		
@@ -93,7 +101,6 @@ public class JsonMapper {
 		try{		
 			
 			//mazzi di carte
-			System.out.println("MAZZI DI CARTE FINALI PER IL GIOCO");
 			System.out.println("territory");
 			FileReader fileT= new FileReader("src/main/resources/cards/territory.json"); 	
 			TypeReference<List<TerritoryCard>> mapTypeT = new TypeReference<List<TerritoryCard>>() {};
@@ -166,6 +173,6 @@ public class JsonMapper {
 			System.out.println(b);
 	}catch(JsonParseException e){
 		 e.printStackTrace();
-	}
 	}*/
+	}
 }

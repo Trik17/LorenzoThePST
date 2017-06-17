@@ -33,7 +33,7 @@ import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.*;
 
 
 public class View extends Observable<Action> {
@@ -126,6 +126,14 @@ public class View extends Observable<Action> {
 			// TODO: handle exception
 		}
 		
+	}
+	
+	public Resource askCouncilPrivilege(){
+		Resource resource=new RawMaterial();//INIZIALIZZATA SOLO PER FAR COMPILARE, DEVE CHIEDERE ALL'UTENTE E GLI RITORNA LA RISPOSTA 
+										//MI INTERESSA SOLO LA CLASSE DI RITORNO (STONE =WOODS-> rawMaterials)
+											//con quantità vuota
+		
+		return resource;
 	}
 	
 	public void input(String area, String diceColor, String nrOfServants) {

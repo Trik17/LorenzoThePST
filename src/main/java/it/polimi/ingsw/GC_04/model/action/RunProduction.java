@@ -7,9 +7,7 @@ import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.ProductionArea;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.effect.EndVictoryPointsEffect;
 
 public class RunProduction extends Action {
 	
@@ -38,12 +36,11 @@ public class RunProduction extends Action {
 		
 		myBCards.forEach(card -> {//for all the cards which belong to the player
 			for(Effect eff:((BuildingCard) card).getProduction().getEffects()){//it scroll through the production effects
-				if(eff instanceof EndVictoryPointsEffect) continue;//it doesn't apply this effect because it will be applied only at the end of the game
 				if(prodValue >= ((BuildingCard) card).getProduction().getDiceValue()) { 
 					if (!eff.getRequestedAuthorization())
 						eff.apply(player);
 					else
-						requestedAuthorizationEffects.add(eff);eff.apply(player);}}}); //it apply all the production effects whose dice value is <= than the value of the dice with which the action is performed 
+						requestedAuthorizationEffects.add(eff);}}}); //it apply all the production effects whose dice value is <= than the value of the dice with which the action is performed 
 				}
 	
 	//TODO: fai chiedere al controller cosa attivare

@@ -8,6 +8,8 @@ import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.EndVictoryPointsEffect;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
@@ -32,7 +34,7 @@ public class TakeACard extends Action{
 	
 	public void chooseDiscount() {
 		//TODO: mi serve il controller
-		if (!player.getDiscount().getDiscount(card).contains(RawMaterial.class))
+		if (!player.getDiscount().getDiscount(card).stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
 			this.discount = player.getDiscount().getDiscount(card);
 	}
 	
@@ -77,12 +79,14 @@ public class TakeACard extends Action{
 	public void applyEffects() {
 		aSpace.applyEffects(player);
 		
-		card.getEffects().forEach(eff -> {
-			if (!eff.getRequestedAuthorization() || !(eff instanceof EndVictoryPointsEffect))
+		for(Effect eff : card.getEffects()){
+			if (!eff.getRequestedAuthorization())
 				eff.apply(player);
 			else
 				requestedAuthorizationEffects.add(eff);
-		});
+		}
+		
+				
 		//TODO: fai chiedere al controller cosa attivare
 	}
 	
@@ -103,6 +107,19 @@ public class TakeACard extends Action{
 		applyPlayerChanges();
 		applyEffects();
 	
+	}
+
+	public DevelopmentCard getCard() {
+		return this.card;
+	}
+
+	public boolean isCouncilPrivilegePresent(){
+		List<Effect> effects=card.getEffects();
+		for(Effect eff: effects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				return true;
+			}
+		return false;			
 	}
 }	
 

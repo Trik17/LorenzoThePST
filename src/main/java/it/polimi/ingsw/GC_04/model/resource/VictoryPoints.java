@@ -1,9 +1,15 @@
 package it.polimi.ingsw.GC_04.model.resource;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import it.polimi.ingsw.GC_04.model.Player;
+
 public class VictoryPoints extends Resource{
+	
+	private int endVictoryPoints;
 	
 	@JsonCreator
 	public VictoryPoints(@JsonProperty("quantity")int quantity){
@@ -13,6 +19,26 @@ public class VictoryPoints extends Resource{
 		public VictoryPoints() {
 			// TODO Auto-generated constructor stub
 		}
+		
+	public static void sumEndVictoryPoints(Player player) {
+		List<Resource> playerRes = player.getResources();
+		
+		for(Resource r:playerRes) {
+			if(r.getClass().equals(VictoryPoints.class)) 
+				((VictoryPoints) r).addQuantity(((VictoryPoints) r).endVictoryPoints);
+			break;
+		}
+	}
+	public void addEndVictoryPoints(Player player) {
+		List<Resource> playerRes = player.getResources();
+		
+		for(Resource r:playerRes) {
+			if(r.getClass().equals(VictoryPoints.class)) 
+				((VictoryPoints) r).endVictoryPoints += this.endVictoryPoints;
+			break;
+		}
+		
+	}
 	/* PER ORA COMMENTATI PERCHé NON HA SENSO CHE ANCHE COSE TIPO I COSTI ABBIANO GLI END VICTORY POINTS
 	public void addEndPoints(int quantity){ 
 		endAccumulator += quantity;
