@@ -13,7 +13,6 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class FinalScore {
 	
-	
 
 	public static int calculateFinalScore(Player player) {
 		List<Resource> playerRes = player.getResources();
@@ -51,35 +50,18 @@ public class FinalScore {
 	public static void calcuateCharacterCardScore(Player player) {
 		int characterCards = player.getCards(new CharacterCard()).size();
 		List<Resource> playerRes = player.getResources();
-		int CharacterCardScore = 0;
+		int characterCardScore = 0;
+		int bonusScore = 0;
 		
-		switch (characterCards) {
-		
-		case 1:
-			CharacterCardScore = 1;
-			break;
-		case 2:
-			CharacterCardScore = 3;
-			break;
-		case 3:
-			CharacterCardScore = 6;
-			break;
-		case 4:
-			CharacterCardScore = 10;
-			break;
-		case 5:
-			CharacterCardScore = 15;
-			break;
-		case 6:
-			CharacterCardScore = 21;
-			break;
-		default:
-			break;
+		for(int cont=0; cont<=characterCards; cont++) {
+			characterCardScore += bonusScore;
+			bonusScore++;
 		}
 		
 		for (Resource res:playerRes) 
 			if (res instanceof VictoryPoints)
-				res.addQuantity(CharacterCardScore);
+				res.addQuantity(characterCardScore);
 		
 	}
+
 }
