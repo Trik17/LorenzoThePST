@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 	property = "type")
 @JsonSubTypes({
 	@Type(value = Coins.class),
-	@Type(value = Woods.class),
-	@Type(value = Stones.class),
+	@Type(value = RawMaterial.class),
 	@Type(value = Servants.class),
 	@Type(value = FaithPoints.class),
 	@Type(value = MilitaryPoints.class),
