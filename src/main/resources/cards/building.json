@@ -730,7 +730,7 @@
 	  		"quantity" : 9
 	  }]}],
 	   "production": {
-  		  "diceValue":4,
+  		  "diceValue":6,
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{

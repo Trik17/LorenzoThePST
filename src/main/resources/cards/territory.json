@@ -18,6 +18,13 @@
 	  "period" : 1,
 	  "name" : "Woods",
 	  "image": "/TerritoryCard/devcards_f_en_c_2.png",
+	  "effects" : [{
+	  	"type" : "SimpleResourceEffect",
+	  	"effect" : [{
+	  		"type" : "Woods",
+	  		"quantity" : 1
+	  }]}
+	  ],
 	  "harvest": {
   		"diceValue": 2,
   		"effects":[{
