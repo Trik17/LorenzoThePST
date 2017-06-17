@@ -8,6 +8,8 @@ import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.EndVictoryPointsEffect;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
@@ -104,6 +106,22 @@ public class TakeACard extends Action{
 		applyEffects();
 	
 	}
+	
+	public boolean isCouncilPrivilegePresent(){
+		List<Effect> effects=card.getEffects();
+		for(Effect eff: effects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				return true;
+			}
+		return false;			
+	}
+	
+	public DevelopmentCard getCard(){
+		return this.card;
+	}
+	
+	
+	
 }	
 
 	

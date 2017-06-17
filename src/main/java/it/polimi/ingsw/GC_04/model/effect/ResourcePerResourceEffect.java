@@ -37,7 +37,7 @@ public class ResourcePerResourceEffect extends ResourceEffect {
 			}
 		}
 		if (!(myQuantity==0)) {		
-			bonus = bonus*myQuantity-bonus;
+			bonus = bonus*(myQuantity/playerResource.getQuantity())-bonus;
 			bonusResource.addQuantity(bonus);
 			this.effect.add(bonusResource);
 			super.apply(player);
