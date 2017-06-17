@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_04.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.regexp.internal.RE;
 
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.model.Model;
