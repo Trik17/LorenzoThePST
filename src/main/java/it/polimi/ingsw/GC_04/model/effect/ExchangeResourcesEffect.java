@@ -9,14 +9,14 @@ import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class ExchangeResourcesEffect extends ResourceEffect {
-	private List<Resource> effect1;
+	private List<ResourceEffect> effect1;
 	private List<Resource> cost1;
-	private List<Resource> effect2;
+	private List<ResourceEffect> effect2;
 	private List<Resource> cost2;
 	private List<Resource> chosenCost;
 	
 	@JsonCreator
-	public ExchangeResourcesEffect(@JsonProperty("effect1") List<Resource> effect1,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("effect2") List<Resource> effect2,@JsonProperty("cost2") List<Resource> cost2) {
+	public ExchangeResourcesEffect(@JsonProperty("effect1") List<ResourceEffect> effect1,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("effect2") List<ResourceEffect> effect2,@JsonProperty("cost2") List<Resource> cost2) {
 		this.effect1 = effect1;
 		this.cost1 = cost1; 
 		this.effect2 = effect2;
@@ -44,13 +44,13 @@ public class ExchangeResourcesEffect extends ResourceEffect {
 		
 	}
 
-	public List<Resource> getEffect1() {
+	public List<ResourceEffect> getEffect1() {
 		return effect1;
 	}
 	public List<Resource> getCost1() {
 		return cost1;
 	}
-	public List<Resource> getEffect2() {
+	public List<ResourceEffect> getEffect2() {
 		return effect2;
 	}
 	public List<Resource> getCost2() {

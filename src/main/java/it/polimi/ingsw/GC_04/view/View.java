@@ -129,8 +129,9 @@ public class View extends Observable<Action> {
 	}
 	
 	public Resource askCouncilPrivilege(){
-		Resource resource=new Coins();//INIZIALIZZATA SOLO PER FAR COMPILARE, DEVE CHIEDERE ALL'UTENTE E GLI RITORNA LA RISPOSTA 
-										//MI INTERESSA SOLO LA CLASSE DI RITORNO (STONE =WOODS)
+		Resource resource=new RawMaterial();//INIZIALIZZATA SOLO PER FAR COMPILARE, DEVE CHIEDERE ALL'UTENTE E GLI RITORNA LA RISPOSTA 
+										//MI INTERESSA SOLO LA CLASSE DI RITORNO (STONE =WOODS-> rawMaterials)
+											//con quantità vuota
 		
 		return resource;
 	}
