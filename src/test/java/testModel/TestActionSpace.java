@@ -14,5 +14,20 @@ public class TestActionSpace {
 		actionSpace=new ActionSpace(-4, null);
 		assertEquals(0, actionSpace.getActivationCost());
 	}
+	
+	@Test
+	public void testCostPos() {
+		actionSpace=new ActionSpace(4, null);
+		assertEquals(4, actionSpace.getActivationCost());
+	}
+	
+	@Test
+	public void testEffectNull() {
+		actionSpace=new ActionSpace(-4, null);
+		assertEquals(null, actionSpace.getEffect());
+	}
+	
+	
+	
 
 }

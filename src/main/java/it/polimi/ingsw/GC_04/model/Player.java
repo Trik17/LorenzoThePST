@@ -28,7 +28,6 @@ public class Player {
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
 	private Discount discount;
-	// per ora li prendiamo da carte: private ArrayList<Effect> permanentEffects;
 	private List<DevelopmentCard> tCards;
 	private List<DevelopmentCard> vCards;
 	private List<DevelopmentCard> bCards;
@@ -42,8 +41,11 @@ public class Player {
 	public int getId(){
 		return this.id;
 	}
-
+	
+	
 	public Player(String name, FamilyColor color, int turn, int id){
+		// 1<=turn<=4 only for initial coins
+		// 0<=id<=4
 		this.name = name;
 		this.id=id;
 		
@@ -104,7 +106,7 @@ public class Player {
 	}
 	
 	
-	public List <Resource> getResources(){
+	public List<Resource> getResources(){
 		return resources;
 	}
 	
