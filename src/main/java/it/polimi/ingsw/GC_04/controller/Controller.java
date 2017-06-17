@@ -15,19 +15,27 @@ import it.polimi.ingsw.GC_04.view.View;
 
 public class Controller implements Observer<Action> {
 	private Model model;
-	private View view;
+	private View[] views;
+	private static int turn = 0;
 
-	public Controller(Model game, View view) {
+	public Controller(Model game, View[] views) {
 		this.model = game;
-		view.registerObserver(this);
+		this.views = views;
+		for(View view : views)
+			view.registerObserver(this);
+		startGame();
+	}
+	
+	private void startGame(){
 		
+		views[turn].chooseAction();
 	}
 
 	@Override
 	public void update(Action action) {
 		if (action instanceof TakeACard){
 			if(((TakeACard) action).isCouncilPrivilegePresent()){
-				setCouncilPrivilege(action);				
+				//setCouncilPrivilege(action);		//TOGLI COMMENTO		
 			}				
 		}
 		if(action.isApplicable())
@@ -42,13 +50,13 @@ public class Controller implements Observer<Action> {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	/*
 	private void setCouncilPrivilege(Action action){
 		List<Effect> effects=((TakeACard) action).getCard().getEffects();
 		List<Resource> privilege= new ArrayList<Resource>();
 		for(Effect eff: effects) {
 			if (eff.getClass().equals(CouncilPrivilege.class)){ //eff is a CouncilPriviege
-				Resource res=view.askCouncilPrivilege();
+				Resource res=views.askCouncilPrivilege();
 				if (res.getClass().equals(RawMaterial.class)){
 					privilege.add(new Woods(1));
 					privilege.add(new Stones(1));
@@ -64,5 +72,5 @@ public class Controller implements Observer<Action> {
 								
 			}
 		}
-	}
+	}*/
 }

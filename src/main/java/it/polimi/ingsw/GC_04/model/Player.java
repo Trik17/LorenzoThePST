@@ -23,7 +23,7 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class Player {
 	private String name;
-	
+	private int id;
 	private Model game;
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
@@ -38,10 +38,15 @@ public class Player {
 	
 	private List<Harvest> harvestList;
 	private List<Production> productionList;
+	
+	public int getId(){
+		return this.id;
+	}
 
-	public Player(String name, FamilyColor color, int turn){
+	public Player(String name, FamilyColor color, int turn, int id){
 		this.name = name;
-
+		this.id=id;
+		
 		resources = new ArrayList<Resource>();
 		
 		resources.add(new Woods(2));

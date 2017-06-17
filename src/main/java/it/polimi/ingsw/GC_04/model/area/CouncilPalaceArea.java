@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 
 public class CouncilPalaceArea extends Area{ 
@@ -20,10 +19,9 @@ public class CouncilPalaceArea extends Area{
 	}
 		
 	public static CouncilPalaceArea instance() {
-		//un'eccezione che faccia inserire il parametro se councilPalace non è stato creato, o forse lo collego al game e prende il numero di giocatori da lì, ora vediamo
-		return instance;
-		
+		return instance;		
 	}
+	
 	public static CouncilPalaceArea instance(Player[] players){
 		if (instance==null) instance = new CouncilPalaceArea(players);
 		return instance;
