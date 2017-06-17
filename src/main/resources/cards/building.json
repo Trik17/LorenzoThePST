@@ -20,7 +20,7 @@
 	  "production" : {
 	  	"diceValue" : 5,
 	  	"effects" : [{
-	  		"type" : "resourcePerDevelopmentCardEffect",
+	  		"type" : "ResourcePerDevelopmentCardEffect",
 	  		"cardType" : {
   	  		"type" : "BuildingCard"
   	  	},
@@ -51,7 +51,7 @@
 	  "production" : {
 	  	"diceValue" : 5,
 	  	"effects" : [{
-	  		"type" : "resourcePerDevelopmentCardEffect",
+	  		"type" : "ResourcePerDevelopmentCardEffect",
 	  		"cardType" : {
   	  		"type" : "TerritoryCard"
   	  	},
@@ -82,7 +82,7 @@
 	  "production" : {
 	  	"diceValue" : 6,
 	  	"effects" : [{
-	  		"type" : "resourcePerDevelopmentCardEffect",
+	  		"type" : "ResourcePerDevelopmentCardEffect",
 	  		"cardType" : {
   	  		"type" : "VentureCard"
   	  	},
@@ -113,7 +113,7 @@
 	  "production" : {
 	  	"diceValue" : 6,
 	  	"effects" : [{
-	  		"type" : "resourcePerDevelopmentCardEffect",
+	  		"type" : "ResourcePerDevelopmentCardEffect",
 	  		"cardType" : {
   	  		"type" : "CharacterCard"
   	  	},

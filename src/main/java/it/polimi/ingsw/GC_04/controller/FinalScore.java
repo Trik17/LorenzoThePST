@@ -4,7 +4,9 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
+import it.polimi.ingsw.GC_04.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Servants;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
@@ -13,6 +15,13 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class FinalScore {
 	
+	private static void addVictoryPoints(Player player, int bonus) {
+		List<Resource> playerRes = player.getResources();
+		
+		for (Resource res:playerRes) 
+			if (res instanceof VictoryPoints)
+				res.addQuantity(bonus);
+	}
 	
 
 	public static int calculateFinalScore(Player player) {
@@ -21,7 +30,9 @@ public class FinalScore {
 		
 		VictoryPoints.sumEndVictoryPoints(player);
 		calculateResourceScore(player);
-		calcuateCharacterCardScore(player);
+		calculateCharacterCardScore(player);
+		calculateFaithPointsScore(player);
+		calculateTerritoryCardScore(player);
 		
 		for (Resource res:playerRes) 
 			if (res instanceof VictoryPoints)
@@ -31,7 +42,7 @@ public class FinalScore {
 		
 	}
 	
-	public static void calculateResourceScore(Player player) {
+	private static void calculateResourceScore(Player player) {
 		List<Resource> playerRes = player.getResources();
 		int resourceScore = 0;
 		
@@ -43,43 +54,61 @@ public class FinalScore {
 			resourceScore += res.getQuantity();
 		}
 		
-		for (Resource res:playerRes) 
-			if (res instanceof VictoryPoints)
-				res.addQuantity(resourceScore);
+		addVictoryPoints(player,resourceScore);
 	}
 	
-	public static void calcuateCharacterCardScore(Player player) {
+	private static void calculateCharacterCardScore(Player player) {
 		int characterCards = player.getCards(new CharacterCard()).size();
-		List<Resource> playerRes = player.getResources();
-		int CharacterCardScore = 0;
+		int characterCardScore = 0;
+		int bonusScore = 0;
 		
-		switch (characterCards) {
-		
-		case 1:
-			CharacterCardScore = 1;
-			break;
-		case 2:
-			CharacterCardScore = 3;
-			break;
-		case 3:
-			CharacterCardScore = 6;
-			break;
-		case 4:
-			CharacterCardScore = 10;
-			break;
-		case 5:
-			CharacterCardScore = 15;
-			break;
-		case 6:
-			CharacterCardScore = 21;
-			break;
-		default:
-			break;
+		for(int cont=0; cont<=characterCards; cont++) {
+			characterCardScore += bonusScore;
+			bonusScore++;
 		}
 		
-		for (Resource res:playerRes) 
-			if (res instanceof VictoryPoints)
-				res.addQuantity(CharacterCardScore);
+		addVictoryPoints(player, characterCardScore);
 		
 	}
+	
+	private static void calculateTerritoryCardScore(Player player) {
+		int territoryCards = player.getCards(new TerritoryCard()).size();
+		int territoryCardScore = 0;
+		int addingScore = 2;
+		int bonusScore = 1;
+		
+		for (int cont=3; cont<=territoryCards; cont++) {
+			territoryCardScore += bonusScore;
+			bonusScore += addingScore;
+			addingScore++;
+		}
+		
+		addVictoryPoints(player, territoryCardScore);
+		
+	}
+	
+	private static void calculateFaithPointsScore(Player player) {
+		List<Resource> playerRes = player.getResources();
+		int faithPointsScore = 0;
+		int faithPoints = 0;
+		
+		for (Resource res:playerRes) 
+			if (res instanceof FaithPoints)
+				faithPoints = res.getQuantity();
+		
+		for (int cont=1; cont<=faithPoints; cont++) {
+			if (cont < 6)
+				faithPointsScore++;
+			if (cont >= 6 && cont < 13)
+				faithPointsScore += 2;
+			if (cont >= 13 && cont < 15)
+				faithPointsScore += 3;
+			else
+				faithPointsScore += 5;
+		}
+		
+		addVictoryPoints(player, faithPointsScore);			
+	}
+	
+
 }
