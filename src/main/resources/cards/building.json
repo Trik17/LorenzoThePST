@@ -149,23 +149,22 @@
   			"effect" : [{
 	    		"type" : "Coins",
 	    		"quantity" : 3	
-	  		}],
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Woods",
 	    		"quantity" : 1
-	  	  }]}],
+	  	  }],
 	  	  	"effect2" : [{
 	  	  	"type" : "SimpleResourceEffect",
 	  	  	"effect" : [{
 	  	  		"type" : "Coins",
 	  	  		"quantity" : 5
-	  	  }],
+	  	  }]}],
 	  	  	"cost2" : [{
 	  	  		"type" : "Woods",
 	  	  		"quantity" : 2 		
 	  	  }]
 	  	   }]
-	    	}]
 	  }
 	   	  			
 },{
@@ -195,23 +194,22 @@
   			"effect" : [{
 	    		"type" : "Coins",
 	    		"quantity" : 3	
-	  		}],
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Stones",
 	    		"quantity" : 1
-	  	  }]}],
+	  	  }],
 	  	  	"effect2" : [{
 	  	  	"type" : "SimpleResourceEffect",
 	  	  	"effect" : [{
 	  	  		"type" : "Coins",
 	  	  		"quantity" : 5
-	  	  }],
+	  	  }]}],
 	  	  	"cost2" : [{
 	  	  		"type" : "Stones",
 	  	  		"quantity" : 2 		
 	  	  }]
 	  	   }]
-	    	}]
 	  } 			
 },{
       "type" : "BuildingCard",
@@ -233,15 +231,15 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
-	    		"type" : "FaithPoints",
-	    		"quantity" : 1	
-	  		}],
+  				"type" : "SimpleResourceEffect",
+  					"effect" : [{
+	    				"type" : "FaithPoints",
+	    				"quantity" : 1	
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Coins",
 	    		"quantity" : 1
-	  	  }]}
-	    	]
-	  }		
+	  	  }]}]}
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
@@ -261,9 +259,9 @@
   		  "diceValue":1,
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
-  			"effect1":{
+  			"effect1":[{
 	    		"type" : "CouncilPrivilege"
-	    	},
+	    	}],
 	  		"cost1" : [{
 	    		"type" : "Coins",
 	    		"quantity" : 1
@@ -292,12 +290,14 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
+  			"type" : "SimpleResourceEffect",
+  					"effect" : [{
 	    		"type" : "Woods",
 	    		"quantity" : 2	
 	  		},{
 	  			"type" : "Stones",
 	  			"quantity" : 2
-	  		}],
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Coins",
 	    		"quantity" : 3
@@ -328,22 +328,21 @@
   			"effect" : [{
 	    		"type" : "VictoryPoints",
 	    		"quantity" : 3	
-	  		}],
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Coins",
 	    		"quantity" : 1
-	  	  }]}],
+	  	  }],
 	  	  	"effect2" : [{
 	  	  	"type" : "SimpleResourceEffect",
 	  	  	"effect" : [{
 	  	  		"type" : "VictoryPoints",
 	  	  		"quantity" : 5
-	  	  }],
+	  	  }]}],
 	  	  	"cost2" : [{
 	  	  		"type" : "Coins",
 	  	  		"quantity" : 2 		
 	  	  }]
-	  	   }]
 	    	}]
 	  } 
 },{
@@ -370,23 +369,22 @@
   			"effect" : [{
 	    		"type" : "VictoryPoints",
 	    		"quantity" : 3	
-	  		}],
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Woods",
 	    		"quantity" : 1
-	  	  }]}],
+	  	  }],
 	  	  	"effect2" : [{
 	  	  	"type" : "SimpleResourceEffect",
 	  	  	"effect" : [{
 	  	  		"type" : "VictoryPoints",
 	  	  		"quantity" : 7
-	  	  }],
+	  	  }]}],
 	  	  	"cost2" : [{
 	  	  		"type" : "Woods",
 	  	  		"quantity" : 3 		
 	  	  }]
 	  	   }]
-	    	}]
 	  } 		
 },{
 	  "type" : "BuildingCard",
@@ -412,23 +410,22 @@
   			"effect" : [{
 	    		"type" : "VictoryPoints",
 	    		"quantity" : 3	
-	  		}],
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Stones",
 	    		"quantity" : 1
-	  	  }]}],
+	  	  }],
 	  	  	"effect2" : [{
 	  	  	"type" : "SimpleResourceEffect",
 	  	  	"effect" : [{
 	  	  		"type" : "VictoryPoints",
 	  	  		"quantity" : 7
-	  	  }],
+	  	  }]}],
 	  	  	"cost2" : [{
 	  	  		"type" : "Stones",
 	  	  		"quantity" : 3 		
 	  	  }]
 	  	   }]
-	    	}]
 	  }  			
 },{
 	  "type" : "BuildingCard",
@@ -453,9 +450,11 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
-	    		"type" : "VictoryPoints",
-	    		"quantity" : 6	
-	  		}],
+  				"type" : "SimpleResourceEffect",
+  				"effect" : [{
+	    			"type" : "VictoryPoints",
+	    			"quantity" : 6	
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Servants",
 	    		"quantity" : 1
@@ -491,12 +490,14 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
-	    		"type" : "Coins",
-	    		"quantity" : 2
+  				"type" : "SimpleResourceEffect",
+  				"effect" : [{
+	    			"type" : "Coins",
+	    			"quantity" : 2
 	  		},{
-	  			"type" : "VictoryPoints",
-	  			"quantity" : 2
-	  		}],
+	  				"type" : "VictoryPoints",
+	  				"quantity" : 2
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "FaithPoints",
 	    		"quantity" : 1
@@ -526,10 +527,12 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
+  			"type" : "SimpleResourceEffect",
+  			"effect" : [{
 	    		"type" : "MilitaryPoints",
 	    		"quantity" : 3,
 	    		"malus" : 0	
-	  		}],
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Servants",
 	    		"quantity" : 1
@@ -626,12 +629,14 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
-	    		"type" : "Woods",
-	    		"quantity" : 3
+  				"type" : "SimpleResourceEffect",
+  				"effect" : [{
+	    			"type" : "Woods",
+	    			"quantity" : 3
 	  		},{
-	  			"type" : "Stones",
-	  			"quantity" : 3
-	  		}],
+	  				"type" : "Stones",
+	  				"quantity" : 3
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Coins",
 	    		"quantity" : 4
@@ -729,12 +734,14 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
-	    		"type" : "Servants",
-	    		"quantity" : 2
+  				"type" : "SimpleResourceEffect",
+  				"effect" : [{
+	    			"type" : "Servants",
+	    			"quantity" : 2
 	  		},{
-	  			"type" : "VictoryPoints",
-	  			"quantity" : 4
-	  		}],
+	  				"type" : "VictoryPoints",
+	  				"quantity" : 4
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Coins",
 	    		"quantity" : 1
@@ -767,9 +774,11 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
-	    		"type" : "FaithPoints",
-	    		"quantity" : 2
-	  		}],
+  				"type" : "SimpleResourceEffect",
+  				"effect" : [{
+	    			"type" : "FaithPoints",
+	    			"quantity" : 2
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "RawMaterial",
 	    		"quantity" : 1
@@ -802,13 +811,15 @@
   		  "effects":[{
   			"type":"ExchangeResourcesEffect",
   			"effect1":[{
-	    		"type" : "MilitaryPoints",
-	    		"quantity" : 3,
-	    		"malus" : 0
+  				"type" : "SimpleResourceEffect",
+  				"effect" : [{
+	    			"type" : "MilitaryPoints",
+	    			"quantity" : 3,
+	    			"malus" : 0
 	  		},{
-	  			"type" : "VictoryPoints",
-	  			"quantity" : 1
-	  		}],
+	  				"type" : "VictoryPoints",
+	  				"quantity" : 1
+	  		}]}],
 	  		"cost1" : [{
 	    		"type" : "Servants",
 	    		"quantity" : 1

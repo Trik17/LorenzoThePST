@@ -34,18 +34,18 @@
   	  	"type" : "ExtraDiceCardEffect",
   	  	"cardType" : {
   	  		"type" : "BuildingCard"
-  	  		},
-  	  		"extra" : 2
-  	  		},{
+  	  	},
+  	  	"extra" : 2
+  	  	},{
   	  	"type" : "DiscountEffect",
   	  	"cardType" : {
   	  		"type" : "BuildingCard"
-  	  		},
+  	  	},
   	  	"discount" : [{
   	  		"type" : "RawMaterial",
   	  		"quantity" : 1
-  	  		}]}
-  	  		]
+  	  	}]}
+  	  	]
   	  	
 },{
 	  "type" : "CharacterCard",
@@ -60,18 +60,18 @@
   	  	"type" : "ExtraDiceCardEffect",
   	  	"cardType" : {
   	  		"type" : "CharacterCard"
-  	  		},
-  	  		"extra" : 2
-  	  		},{
+  	  	},
+  	  	"extra" : 2
+  	  	},{
   	  	"type" : "DiscountEffect",
   	  	"cardType" : {
   	  		"type" : "CharacterCard"
-  	  		},
+  	  	},
   	  	"discount" : [{
   	  		"type" : "Coins",
   	  		"quantity" : 1
-  	  		}]}
-  	  		]	  
+  	  	}]}
+  	  	]	  
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
@@ -132,7 +132,7 @@
 	  		"type" : "FaithPoints",
 	  		"quantity" : 4
 	  }]},{
-	  "type" : " ActionSpacePenalityEffect" 
+	  "type" : "ActionSpacePenalityEffect" 
 	  }	  
 	  ]
 },{
