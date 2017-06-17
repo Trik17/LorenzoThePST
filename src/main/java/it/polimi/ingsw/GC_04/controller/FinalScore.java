@@ -1,11 +1,9 @@
 package it.polimi.ingsw.GC_04.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Servants;
@@ -18,14 +16,22 @@ public class FinalScore {
 	
 
 	public static int calculateFinalScore(Player player) {
-		VictoryPoints.sumEndVictoryPoints(player);
-		calculateFinalScore(player);
+		List<Resource> playerRes = player.getResources();
+		int finalScore = 0;
 		
-		return 0;
+		VictoryPoints.sumEndVictoryPoints(player);
+		calculateResourceScore(player);
+		calcuateCharacterCardScore(player);
+		
+		for (Resource res:playerRes) 
+			if (res instanceof VictoryPoints)
+				finalScore = res.getQuantity();
+		
+		return finalScore;
 		
 	}
 	
-	public void calculateResourceScore(Player player) {
+	public static void calculateResourceScore(Player player) {
 		List<Resource> playerRes = player.getResources();
 		int resourceScore = 0;
 		
@@ -42,10 +48,38 @@ public class FinalScore {
 				res.addQuantity(resourceScore);
 	}
 	
-	/*public void calcuateCharacterCardScore(Player player) {
+	public static void calcuateCharacterCardScore(Player player) {
 		int characterCards = player.getCards(new CharacterCard()).size();
-		int CharacterCardScore = 
+		List<Resource> playerRes = player.getResources();
+		int CharacterCardScore = 0;
 		
+		switch (characterCards) {
 		
-	}*/
+		case 1:
+			CharacterCardScore = 1;
+			break;
+		case 2:
+			CharacterCardScore = 3;
+			break;
+		case 3:
+			CharacterCardScore = 6;
+			break;
+		case 4:
+			CharacterCardScore = 10;
+			break;
+		case 5:
+			CharacterCardScore = 15;
+			break;
+		case 6:
+			CharacterCardScore = 21;
+			break;
+		default:
+			break;
+		}
+		
+		for (Resource res:playerRes) 
+			if (res instanceof VictoryPoints)
+				res.addQuantity(CharacterCardScore);
+		
+	}
 }
