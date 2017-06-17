@@ -75,7 +75,8 @@ public class TakeACard extends Action{
 	}
 	
 	public void applyEffects() {
-		aSpace.getEffect().apply(player);
+		aSpace.applyEffects(player);
+		
 		card.getEffects().forEach(eff -> {
 			if (!eff.getRequestedAuthorization() || !(eff instanceof EndVictoryPointsEffect))
 				eff.apply(player);

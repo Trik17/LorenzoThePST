@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,11 +10,11 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 public class ActionSpace {//METTERE LIST<EFFECT> AL POSTO DI UN SINGOLO EFFETTO
 	
 	private int activationCost;//necessary dice's value
-	private Effect effect;
+	private List<Effect> effect;
 	private FamilyMember fMember;
 	
 	@JsonCreator
-	public ActionSpace(@JsonProperty("activationCost") int activationCost,@JsonProperty("effect") Effect effect){
+	public ActionSpace(@JsonProperty("activationCost") int activationCost,@JsonProperty("effect") List<Effect> effect){
 		
 		this.effect = effect;
 		if(activationCost<0)
@@ -32,10 +34,13 @@ public class ActionSpace {//METTERE LIST<EFFECT> AL POSTO DI UN SINGOLO EFFETTO
 		return activationCost;
 	}
 	
-	public Effect getEffect() {
+	public List<Effect> getEffect() {
 		return effect;
 	}
-	
+	public void applyEffects(Player player) {
+		effect.forEach(eff -> eff.apply(player));
+		
+	}
 	public FamilyColor getPresentColor(){
 		if (fMember == null) return null;
 		return this.fMember.getFamilyColor();
