@@ -15,7 +15,6 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 include = JsonTypeInfo.As.PROPERTY,
 property = "type")
 @JsonSubTypes({
-@Type(value = EndVictoryPointsEffect.class),
 @Type(value = SimpleResourceEffect.class),
 @Type(value = ResourcePerResourceEffect.class),
 @Type(value = ResourcePerDevelopmentCardEffect.class),

@@ -106,6 +106,19 @@ public class TakeACard extends Action{
 		applyEffects();
 	
 	}
+
+	public DevelopmentCard getCard() {
+		return this.card;
+	}
+
+	public boolean isCouncilPrivilegePresent(){
+		List<Effect> effects=card.getEffects();
+		for(Effect eff: effects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				return true;
+			}
+		return false;			
+	}
 }	
 
 	
