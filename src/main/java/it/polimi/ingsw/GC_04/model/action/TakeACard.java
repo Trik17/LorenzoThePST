@@ -79,12 +79,14 @@ public class TakeACard extends Action{
 	public void applyEffects() {
 		aSpace.applyEffects(player);
 		
-		card.getEffects().forEach(eff -> {
+		for(Effect eff : card.getEffects()){
 			if (!eff.getRequestedAuthorization())
 				eff.apply(player);
 			else
 				requestedAuthorizationEffects.add(eff);
-		});
+		}
+		
+				
 		//TODO: fai chiedere al controller cosa attivare
 	}
 	
