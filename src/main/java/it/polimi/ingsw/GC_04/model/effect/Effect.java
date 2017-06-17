@@ -15,6 +15,7 @@ property = "type")
 @Type(value = ExtraDiceEffect.class),
 @Type(value = ResourceEffect.class), 
 @Type(value = EndVictoryPointsEffect.class), 
+@Type(value = DiscountEffect.class), 
 })
 public abstract class Effect {
 	protected boolean requestedAuthorization;
