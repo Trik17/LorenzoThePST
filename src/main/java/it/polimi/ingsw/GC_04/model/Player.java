@@ -23,8 +23,7 @@ public class Player {
 	private Model game;
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
-	private Discount discount;
-	
+	private Discount discount;	
 	private List<DevelopmentCard> tCards;
 	private List<DevelopmentCard> vCards;
 	private List<DevelopmentCard> bCards;
