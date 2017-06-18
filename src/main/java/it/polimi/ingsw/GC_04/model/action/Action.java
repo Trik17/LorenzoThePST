@@ -102,37 +102,4 @@ public abstract class Action {
 		return councilPrivileges;
 		
 	}
-
-	/*public static void main(String[] args) {
-/*	List<CouncilPrivilege> councilPrivileges = new ArrayList<CouncilPrivilege>();
-		List<Effect> effects = new ArrayList<Effect>();
-		CouncilPrivilege councilPrivilege = new CouncilPrivilege();
-		
-		System.out.println(councilPrivilege.getClass().getSimpleName());
-		
-		Resource resources = new Coins(4);
-		
-		
-		effects.add(new ActionSpacePenalityEffect());
-		effects.add(councilPrivilege);
-		effects.add(new ActionSpacePenalityEffect());
-		
-		for(Effect eff: effects) {
-			if (eff.getClass().equals(CouncilPrivilege.class))
-				councilPrivileges.add((CouncilPrivilege) eff);	
-		}
-		
-		councilPrivileges.get(0).setCouncilPrivilege(resources);
-		System.out.println(councilPrivilege.getEffect().get(0).getQuantity());
-		List<Coins> i = new ArrayList<Coins>();
-		i.add(new Coins(1));
-		i.add(new Coins(2));
-		i.add(new Coins(3));
-		i.add(new Coins(4));
-		i.add(new Coins(5));
-		
-		i.remove(3);
-		System.out.println(i.get(3).getQuantity());
-		
-	}*/
 }

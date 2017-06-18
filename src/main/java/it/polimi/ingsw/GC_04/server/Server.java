@@ -43,13 +43,13 @@ public class Server {
 
 		// Create the RMI View, that will be shared with the client
 		RMIView rmiView=new RMIView();
-		System.out.println("1");
+		
 		//controller observes this view
 		rmiView.registerObserver(this.controller);
-		System.out.println("2");
+		
 		//this view observes the model
 		this.model.registerObserver(rmiView);
-		System.out.println("3");
+		
 		// publish the view in the registry as a remote object
 		RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		
@@ -89,6 +89,10 @@ public class Server {
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException {
 		Server server=Server.instance();
+		
+		instance.model=new Model();
+		instance.controller=new Controller(instance.model);
+		
 		System.out.println("START RMI");
 		server.startRMI();
 		/*System.out.println("START SOCKET");
