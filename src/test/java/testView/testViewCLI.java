@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_04.view.ViewCLI;
 public class testViewCLI {//it isn't a real test
 	
 	
-	/*
+	
 	
 	@Test
 	public void testSetRequestedAuthorizationEffects() {
@@ -63,5 +63,5 @@ public class testViewCLI {//it isn't a real test
 		assertTrue(true);
 		
 	}
-*/
+
 }

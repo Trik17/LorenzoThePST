@@ -7,6 +7,8 @@ import java.util.Scanner;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
+import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
+import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
@@ -101,51 +103,94 @@ public class ViewCLI extends View{
 	}
 	
 	public void setRequestedAuthorizationEffects(List<Effect> effects) {
-		
+		Scanner in = new Scanner(System.in);
+		String input = new String();
+		String output = new String();
 		int effectCounter = 1;
 		print("Which of these effects do you want to activate?");
 		print("After every number, press Enter");
 		print("When you have finished, type OK and press Enter");
+		print("");
 		
 		for(Effect eff:effects) {
 			if (eff instanceof ExchangeResourcesEffect) {
+				
 				if (((ExchangeResourcesEffect) eff).getCost2() == null) {
-					int costQuantity;
-					int effectQuantity;
-					String costType;
-					String effectType;
 					String cost = new String();
 					String effect = new String();
-					for (int i = 0; i < ((ExchangeResourcesEffect) eff).getChosenCost().size(); i++) {
-						costQuantity = ((ExchangeResourcesEffect) eff).getChosenCost().get(i).getQuantity();
-						costType = ((ExchangeResourcesEffect) eff).getChosenCost().get(i).getClass().getSimpleName();
-						cost = cost +" "+ costQuantity +" "+ costType;
-					}
-					for (int i = 0; i < ((ExchangeResourcesEffect) eff).getEffect().size(); i++) {
-						if (((ExchangeResourcesEffect) eff).getEffect().get(i).getClass().equals(CouncilPrivilege.class)) {
-							effectQuantity = 1;
-							effectType = "Council Privilege";
-							effect = effect +" "+ effectQuantity +" "+ effectType;
-						}else {
-							for (int j = 0; j < ((ExchangeResourcesEffect) eff).getEffect().get(i).getEffect().size(); j++) {
-								effectQuantity = ((ExchangeResourcesEffect) eff).getEffect().get(i).getEffect().get(j).getQuantity();
-								effectType = ((ExchangeResourcesEffect) eff).getEffect().get(i).getEffect().get(j).getClass().getSimpleName();
-								effect = effect +" "+ effectQuantity +" "+ effectType;
-							}
-						}
-						
-							
-					}
+					cost = cost + calculateCost(((ExchangeResourcesEffect) eff).getChosenCost());
+					effect = effect + calculateEffect(((ExchangeResourcesEffect) eff).getEffect());			
 					print(effectCounter+")Pay "+cost+" to receive "+effect);	
-					effectCounter++;
+					effectCounter++;	
 			
+				}else {
+					String cost1 = new String();
+					String effect1 = new String();
+					String cost2 = new String();
+					String effect2 = new String();
+					cost1 = calculateCost(((ExchangeResourcesEffect) eff).getCost1());
+					effect1 = calculateEffect(((ExchangeResourcesEffect) eff).getEffect1());
+					cost2 = calculateCost(((ExchangeResourcesEffect) eff).getCost2());
+					effect2 = calculateEffect(((ExchangeResourcesEffect) eff).getEffect2());
+					print(effectCounter+")Pay "+cost1+" to receive "+effect1+" or pay "+cost2+" to receive "+effect2);	
+					effectCounter++;	
+			
+				}
+			}else if (eff instanceof TakeACardEffect) {
+				if (((TakeACardEffect) eff).getCardType() == null) {
+					print(effectCounter+")Take a card from any tower");
+					effectCounter++;	
+				}else {
+					String cardType = ((TakeACardEffect) eff).getCardType().getClass().getSimpleName(); 
+					print(effectCounter+")Take a "+cardType);
+					effectCounter++;
+				}
+			}else {
+				return;
+			}
+			
+		}
+		while(!input.equalsIgnoreCase("OK")) {
+			input = in.nextLine();
+			output = output + input;
+		}
+		
+		
+	}
+	public String calculateCost(List<Resource> costs) {
+		String cost = new String();
+		int costQuantity;
+		String costType;
+		
+		for (int i = 0; i < costs.size(); i++) {
+			costQuantity = costs.get(i).getQuantity();
+			costType = costs.get(i).getClass().getSimpleName();
+			cost = cost +" "+ costQuantity +" "+ costType;
+		}
+		return cost;
+	}
+			
+	public String calculateEffect(List<ResourceEffect> list) {
+		String effect = new String();
+		int effectQuantity;
+		String effectType;
+		
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getClass().equals(CouncilPrivilege.class)) {
+				effectQuantity = 1;
+				effectType = "CouncilPrivilege";
+				effect = effect +" "+ effectQuantity +" "+ effectType;
+			}else {
+				for (int j = 0; j < list.get(i).getEffect().size(); j++) {
+					effectQuantity = list.get(i).getEffect().get(j).getQuantity();
+					effectType = list.get(i).getEffect().get(j).getClass().getSimpleName();
+					effect = effect +" "+ effectQuantity +" "+ effectType;
 				}
 			}
 		}
-	}
-			
-			
-			
+		return effect;
+		
+	}	
 		
 		
 	

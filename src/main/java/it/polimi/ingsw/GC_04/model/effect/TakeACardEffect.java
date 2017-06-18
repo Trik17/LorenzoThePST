@@ -38,6 +38,11 @@ public class TakeACardEffect extends ActionEffect {
 		}
 	}
 	
+	public DevelopmentCard getCardType() {
+		return cardType;
+		
+	}
+	
 	@Override
 	public void apply(Player player) {
 		if (takeACard.isApplicable())
