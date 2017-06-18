@@ -17,6 +17,7 @@ property = "type")
 @Type(value = EndVictoryPointsEffect.class), 
 @Type(value = DiscountEffect.class), 
 @Type(value = ActionSpacePenalityEffect.class), 
+@Type(value = ExchangeResourcesEffect.class),
 })
 
 public abstract class Effect {

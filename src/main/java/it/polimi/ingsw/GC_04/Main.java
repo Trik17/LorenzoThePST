@@ -86,7 +86,8 @@ public class Main {
 		//fine da cancellare
 				
 		Inizializer inizializer = new Inizializer(players);
-		Model game = new Model(players);
+		Model model = new Model();
+		model.setPlayers(players);
 		View[] views =new View[num];
 		for(int i=0; i<num; i++)
 			if(graphic)
@@ -94,7 +95,9 @@ public class Main {
 			else
 				views[i] = new ViewCLI();
 		
-		Controller controller=new Controller(game, views);
+		Controller controller=new Controller(model);
+		controller.setViews(views);
+		controller.startGame();
 		
 		
 		

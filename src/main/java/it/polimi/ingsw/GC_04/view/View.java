@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.Observable;
+import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
@@ -28,7 +29,7 @@ import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
 
-public abstract class View extends Observable<Action,Resource> {
+public abstract class View extends Observable<Action,Resource> implements Observer<Action, Resource>{
 	
 	private int turn;
 	

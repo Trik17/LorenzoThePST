@@ -18,7 +18,6 @@ property = "type")
 @Type(value = SimpleResourceEffect.class),
 @Type(value = ResourcePerResourceEffect.class),
 @Type(value = ResourcePerDevelopmentCardEffect.class),
-@Type(value = ExchangeResourcesEffect.class),
 @Type(value = CouncilPrivilege.class),
 })
 public abstract class ResourceEffect extends Effect {

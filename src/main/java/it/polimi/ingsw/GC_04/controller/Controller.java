@@ -11,15 +11,17 @@ public class Controller implements Observer<Action,Resource> {
 	private View[] views;
 	private static int turn = 0;
 
-	public Controller(Model game, View[] views) {
-		this.model = game;
+	public Controller(Model model) {
+		this.model = model;		
+	}
+	
+	public void setViews(View[] views){
 		this.views = views;
 		for(View view : views)
 			view.registerObserver(this);
-		startGame();
 	}
 	
-	private void startGame(){
+	public void startGame(){
 		views[turn].chooseAction();
 	}
 
