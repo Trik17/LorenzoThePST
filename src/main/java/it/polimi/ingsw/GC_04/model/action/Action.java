@@ -43,11 +43,13 @@ public abstract class Action {
 
 	public abstract void apply();
 	
-	public void checkCouncilPrivilege() {
+	public void checkExtraordinaryEffect() {
 		List<Effect> effects = aSpace.getEffect();
 		for(Effect eff: effects) {
 			if (eff.getClass().equals(CouncilPrivilege.class))
 				councilPrivileges.add((CouncilPrivilege) eff);	
+			if (eff.getRequestedAuthorization())
+				requestedAuthorizationEffects.add(eff);
 		}
 	}
 	
@@ -55,6 +57,11 @@ public abstract class Action {
 		int cont = councilPrivileges.size() -1;
 		councilPrivileges.get(cont).setCouncilPrivilege(resource);
 		councilPrivileges.remove(cont);
+		
+	}
+	
+	public void setRequestedAuthorizationEffects(List<Effect> effects) {
+		requestedAuthorizationEffects = effects;	
 		
 	}
 
@@ -86,6 +93,10 @@ public abstract class Action {
 		
 		
 	}
+	public List<Effect> getRequestedAuthorizationEffects() {
+		return requestedAuthorizationEffects;
+		
+	}
 	
 	public List<CouncilPrivilege> getCouncilPrivileges() {
 		return councilPrivileges;
@@ -93,9 +104,11 @@ public abstract class Action {
 	}
 
 	/*public static void main(String[] args) {
-		List<CouncilPrivilege> councilPrivileges = new ArrayList<CouncilPrivilege>();
+/*	List<CouncilPrivilege> councilPrivileges = new ArrayList<CouncilPrivilege>();
 		List<Effect> effects = new ArrayList<Effect>();
 		CouncilPrivilege councilPrivilege = new CouncilPrivilege();
+		
+		System.out.println(councilPrivilege.getClass().getSimpleName());
 		
 		Resource resources = new Coins(4);
 		
@@ -111,6 +124,15 @@ public abstract class Action {
 		
 		councilPrivileges.get(0).setCouncilPrivilege(resources);
 		System.out.println(councilPrivilege.getEffect().get(0).getQuantity());
+		List<Coins> i = new ArrayList<Coins>();
+		i.add(new Coins(1));
+		i.add(new Coins(2));
+		i.add(new Coins(3));
+		i.add(new Coins(4));
+		i.add(new Coins(5));
+		
+		i.remove(3);
+		System.out.println(i.get(3).getQuantity());
 		
 	}*/
 }

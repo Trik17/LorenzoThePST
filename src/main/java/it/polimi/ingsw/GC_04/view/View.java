@@ -26,6 +26,7 @@ import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
 
@@ -39,6 +40,7 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 	
 	public abstract void chooseAction();
 	public abstract Resource setCouncilPrivilege();
+	public abstract void setRequestedAuthorizationEffects(List<Effect> effects);
 	
 	private void nextPlayer() {//perché è qua???? ATTENZIONE
 		int nrOfPlayer = Model.getPlayers().length;

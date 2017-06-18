@@ -1,8 +1,12 @@
 package it.polimi.ingsw.GC_04.view;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.model.effect.Effect;
+import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
@@ -95,6 +99,56 @@ public class ViewCLI extends View{
 		
 		
 	}
+	
+	public void setRequestedAuthorizationEffects(List<Effect> effects) {
+		
+		int effectCounter = 1;
+		print("Which of these effects do you want to activate?");
+		print("After every number, press Enter");
+		print("When you have finished, type OK and press Enter");
+		
+		for(Effect eff:effects) {
+			if (eff instanceof ExchangeResourcesEffect) {
+				if (((ExchangeResourcesEffect) eff).getCost2() == null) {
+					int costQuantity;
+					int effectQuantity;
+					String costType;
+					String effectType;
+					String cost = new String();
+					String effect = new String();
+					for (int i = 0; i < ((ExchangeResourcesEffect) eff).getChosenCost().size(); i++) {
+						costQuantity = ((ExchangeResourcesEffect) eff).getChosenCost().get(i).getQuantity();
+						costType = ((ExchangeResourcesEffect) eff).getChosenCost().get(i).getClass().getSimpleName();
+						cost = cost +" "+ costQuantity +" "+ costType;
+					}
+					for (int i = 0; i < ((ExchangeResourcesEffect) eff).getEffect().size(); i++) {
+						if (((ExchangeResourcesEffect) eff).getEffect().get(i).getClass().equals(CouncilPrivilege.class)) {
+							effectQuantity = 1;
+							effectType = "Council Privilege";
+							effect = effect +" "+ effectQuantity +" "+ effectType;
+						}else {
+							for (int j = 0; j < ((ExchangeResourcesEffect) eff).getEffect().get(i).getEffect().size(); j++) {
+								effectQuantity = ((ExchangeResourcesEffect) eff).getEffect().get(i).getEffect().get(j).getQuantity();
+								effectType = ((ExchangeResourcesEffect) eff).getEffect().get(i).getEffect().get(j).getClass().getSimpleName();
+								effect = effect +" "+ effectQuantity +" "+ effectType;
+							}
+						}
+						print(effectCounter+")Pay "+cost+" to receive "+effect);	
+						effectCounter++;
+							
+					}
+					
+			
+				}
+			}
+		}
+	}
+			
+			
+			
+		
+		
+	
 
 	@Override
 	public void update() {

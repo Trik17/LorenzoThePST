@@ -8,11 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
-public class ExchangeResourcesEffect extends ResourceEffect {
+public class ExchangeResourcesEffect extends Effect {
 	private List<ResourceEffect> effect1;
 	private List<Resource> cost1;
 	private List<ResourceEffect> effect2;
 	private List<Resource> cost2;
+	private List<ResourceEffect> effect;
 	private List<Resource> chosenCost;
 	
 	@JsonCreator
@@ -24,7 +25,7 @@ public class ExchangeResourcesEffect extends ResourceEffect {
 		this.requestedAuthorization = true;
 	}
 
-	public void setEffect(List<Resource> effect,List<Resource> chosenCost) {
+	public void setEffect(List<ResourceEffect> effect,List<Resource> chosenCost) {
 		this.effect = effect;
 		this.chosenCost = chosenCost;
 		
@@ -33,7 +34,8 @@ public class ExchangeResourcesEffect extends ResourceEffect {
 	public void apply(Player player) {
 		if(isApplicable(player)) {
 			Resource.subtractResource(player.getResources(),chosenCost);
-			super.apply(player);
+			for(Effect effect:effect) 
+				effect.apply(player);
 		}
 	}
 	
@@ -55,6 +57,12 @@ public class ExchangeResourcesEffect extends ResourceEffect {
 	}
 	public List<Resource> getCost2() {
 		return cost2;
+	}
+	public List<ResourceEffect> getEffect() {
+		return effect;		
+	}
+	public List<Resource> getChosenCost() {
+		return chosenCost;		
 	}
 
 
