@@ -38,8 +38,11 @@ public class Player {
 	public int getId(){
 		return this.id;
 	}
-
+	
+	
 	public Player(String name, FamilyColor color, int turn, int id){
+		// 1<=turn<=4 only for initial coins
+		// 0<=id<=4
 		this.name = name;
 		this.id=id;
 		
@@ -100,7 +103,7 @@ public class Player {
 	}
 	
 	
-	public List <Resource> getResources(){
+	public List<Resource> getResources(){
 		return resources;
 	}
 	
