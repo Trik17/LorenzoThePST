@@ -10,7 +10,10 @@ import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.Area;
 import it.polimi.ingsw.GC_04.model.area.ColorReastrictedArea;
+import it.polimi.ingsw.GC_04.model.effect.ActionSpacePenalityEffect;
+import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
+import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Servants;
 
@@ -23,6 +26,7 @@ public abstract class Action {
 	protected List<Resource> actionCost;						// and any permanent effects
 	protected Area area;
 	protected List<Effect> requestedAuthorizationEffects;
+	protected List<CouncilPrivilege> councilPrivileges;
 
 	public Action(Player player, FamilyMember fMember, int servants) {
 		this.player = player;
@@ -31,12 +35,28 @@ public abstract class Action {
 		this.actionCost = new ArrayList<Resource>();
 		this.actionCost.add(new Servants(servants));
 		this.requestedAuthorizationEffects = new ArrayList<Effect>();
+		this.councilPrivileges = new ArrayList<CouncilPrivilege>();
 
 	}
 
 	public abstract boolean isApplicable();
 
 	public abstract void apply();
+	
+	public void checkCouncilPrivilege() {
+		List<Effect> effects = aSpace.getEffect();
+		for(Effect eff: effects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				councilPrivileges.add((CouncilPrivilege) eff);	
+		}
+	}
+	
+	public void setCouncilPrivilege(Resource resource) {
+		int cont = councilPrivileges.size() -1;
+		councilPrivileges.get(cont).setCouncilPrivilege(resource);
+		councilPrivileges.remove(cont);
+		
+	}
 
 	public boolean isValueEnough() {
 
@@ -66,5 +86,31 @@ public abstract class Action {
 		
 		
 	}
+	
+	public List<CouncilPrivilege> getCouncilPrivileges() {
+		return councilPrivileges;
+		
+	}
 
+	/*public static void main(String[] args) {
+		List<CouncilPrivilege> councilPrivileges = new ArrayList<CouncilPrivilege>();
+		List<Effect> effects = new ArrayList<Effect>();
+		CouncilPrivilege councilPrivilege = new CouncilPrivilege();
+		
+		Resource resources = new Coins(4);
+		
+		
+		effects.add(new ActionSpacePenalityEffect());
+		effects.add(councilPrivilege);
+		effects.add(new ActionSpacePenalityEffect());
+		
+		for(Effect eff: effects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				councilPrivileges.add((CouncilPrivilege) eff);	
+		}
+		
+		councilPrivileges.get(0).setCouncilPrivilege(resources);
+		System.out.println(councilPrivilege.getEffect().get(0).getQuantity());
+		
+	}*/
 }

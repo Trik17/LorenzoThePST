@@ -3,10 +3,6 @@ package it.polimi.ingsw.GC_04.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
-import it.polimi.ingsw.GC_04.model.action.GoToTheMarket;
-import it.polimi.ingsw.GC_04.model.action.RunHarvest;
-import it.polimi.ingsw.GC_04.model.action.RunProduction;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
@@ -28,6 +24,7 @@ public class Player {
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
 	private Discount discount;
+	
 	private List<DevelopmentCard> tCards;
 	private List<DevelopmentCard> vCards;
 	private List<DevelopmentCard> bCards;
@@ -116,7 +113,7 @@ public class Player {
 	}
 	
 	
-	public void takeACard(DevelopmentCard card,ActionSpace aSpace, FamilyMember fMember, int servants,List<Resource> cost){
+	/*public void takeACard(DevelopmentCard card,ActionSpace aSpace, FamilyMember fMember, int servants,List<Resource> cost){
 		card.takeCard(this,aSpace,fMember,servants,cost);
 	}
 	public void runProduction(FamilyMember fMember, int servants){
@@ -141,7 +138,7 @@ public class Player {
 	
 	public void getExcommunication(){}
 	
-	
+	*/
 	
 	
 	

@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_04;
 
-public interface Observer<C> {
+public interface Observer<A,R> {
 	public void update();
-	public default void update(C change){
-		System.out.println("I am the "+this.getClass().getSimpleName()+" I have been notified with the "+change.getClass().getSimpleName());
-	}
+	public void updateAction(A action);
+	public void updateResource(R resource);
 }

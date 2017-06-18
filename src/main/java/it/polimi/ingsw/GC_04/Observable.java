@@ -5,36 +5,39 @@ import java.util.List;
 
 
 
-public abstract class Observable<C> {
+public abstract class Observable<A,R> {
 
-	private List<Observer<C>> observers;
+	private List<Observer<A,R>> observers;
 
 	public Observable() {
 
-		observers = new ArrayList<Observer<C>>();
+		observers = new ArrayList<Observer<A,R>>();
 	}
 
-	public void registerObserver(Observer<C> o) {
+	public void registerObserver(Observer<A,R> o) {
 		observers.add(o);
 	}
 
-	public void unregisterObserver(Observer<C> o) {
+	public void unregisterObserver(Observer<A,R> o) {
 		this.observers.remove(o);
 	}
 
 	public void notifyObservers() {
-		System.out
-				.println("I am the " + this.getClass().getSimpleName() + " -- I am notifying my observers");
-
-		for (Observer<C> o : this.observers) {
+		for (Observer<A,R> o : this.observers) {
 			o.update();
 		}
 	}
 
-	public void notifyObservers(C c) {
-		for (Observer<C> o : this.observers) {
-			o.update(c);
+	public void notifyObserversA(A action) {
+		for (Observer<A,R> o : this.observers) {
+			o.updateAction(action);
 		}
-
 	}
+	
+	public void notifyObserversR(R resource) {
+		for (Observer<A,R> o : this.observers) {
+			o.updateResource(resource);
+		}
+	}
+	
 }

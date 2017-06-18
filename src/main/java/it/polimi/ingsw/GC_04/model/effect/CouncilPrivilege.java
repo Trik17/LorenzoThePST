@@ -5,7 +5,10 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.Stones;
+import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class CouncilPrivilege extends ResourceEffect {
 	
@@ -14,8 +17,12 @@ public class CouncilPrivilege extends ResourceEffect {
 		this.effect = new ArrayList<Resource>();
 	}
 	
-	public void setCouncilPrivilege(List<Resource> resources) {
-		effect.add((Resource) resources);
+	public void setCouncilPrivilege(Resource resources) {
+		if (resources instanceof RawMaterial) {
+			effect.add(new Stones(1));
+			effect.add(new Woods(1));
+		}else
+			effect.add(resources);
 		
 	}
 	
