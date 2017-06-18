@@ -133,11 +133,11 @@ public class ViewCLI extends View{
 								effect = effect +" "+ effectQuantity +" "+ effectType;
 							}
 						}
-						print(effectCounter+")Pay "+cost+" to receive "+effect);	
-						effectCounter++;
+						
 							
 					}
-					
+					print(effectCounter+")Pay "+cost+" to receive "+effect);	
+					effectCounter++;
 			
 				}
 			}

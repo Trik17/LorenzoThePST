@@ -52,7 +52,7 @@ public class Controller implements Observer<Action,Resource> {
 		
 	}
 	
-	private List<Effect> organizeRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) {
+	public List<Effect> organizeRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) {
 		List<Effect> rAE =  new ArrayList<Effect>();
 		for (Effect eff:requestedAuthorizationEffects) {
 			if (eff instanceof ExchangeResourcesEffect)
