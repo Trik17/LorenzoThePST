@@ -112,13 +112,20 @@ public class TakeACard extends Action{
 		return this.card;
 	}
 
-	public boolean isCouncilPrivilegePresent(){
+	@Override
+	public void checkCouncilPrivilege(){
 		List<Effect> effects=card.getEffects();
 		for(Effect eff: effects) {
 			if (eff.getClass().equals(CouncilPrivilege.class))
-				return true;
+				councilPrivileges.add((CouncilPrivilege) eff);
 			}
-		return false;			
+		
+		effects = aSpace.getEffect();
+		for(Effect eff: effects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				councilPrivileges.add((CouncilPrivilege) eff);
+			}
+	
 	}
 }	
 

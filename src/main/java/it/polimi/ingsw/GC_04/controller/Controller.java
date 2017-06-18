@@ -1,19 +1,12 @@
 package it.polimi.ingsw.GC_04.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.action.TakeACard;
-import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
-import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 import it.polimi.ingsw.GC_04.view.View;
 
-public class Controller implements Observer<Action> {
+public class Controller implements Observer<Action,Resource> {
 	private Model model;
 	private View[] views;
 	private static int turn = 0;
@@ -27,23 +20,28 @@ public class Controller implements Observer<Action> {
 	}
 	
 	private void startGame(){
-		
 		views[turn].chooseAction();
 	}
 
 	@Override
-	public void update(Action action) {
-		if (action instanceof TakeACard){
-			if(((TakeACard) action).isCouncilPrivilegePresent()){
-				//setCouncilPrivilege(action);		//TOGLI COMMENTO		
-			}				
+	public void updateAction(Action action) {
+		action.checkCouncilPrivilege();
+		Resource privilege;
+		while(!action.getCouncilPrivileges().isEmpty()) {
+			privilege = views[turn].setCouncilPrivilege();
+			action.setCouncilPrivilege(privilege);
 		}
+								
 		if(action.isApplicable())
 			action.apply();
 		else 
 			System.out.println("Non puoi fare questa mossa");
 		
 	}
+
+	
+	
+	
 
 	@Override
 	public void update() {
@@ -73,4 +71,10 @@ public class Controller implements Observer<Action> {
 			}
 		}
 	}*/
+
+	@Override
+	public void updateResource(Resource resource) {
+		// TODO Auto-generated method stub
+		
+	}
 }
