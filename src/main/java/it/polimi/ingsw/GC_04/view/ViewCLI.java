@@ -137,12 +137,14 @@ public class ViewCLI extends View{
 			
 				}
 			}else if (eff instanceof TakeACardEffect) {
+				int value = ((TakeACardEffect) eff).getDice().getValue();
 				if (((TakeACardEffect) eff).getCardType() == null) {
-					print(effectCounter+")Take a card from any tower");
+					
+					print(effectCounter+")Take a card with dice value "+value+" from any tower");
 					effectCounter++;	
 				}else {
 					String cardType = ((TakeACardEffect) eff).getCardType().getClass().getSimpleName(); 
-					print(effectCounter+")Take a "+cardType);
+					print(effectCounter+")Take a "+cardType+ " with dice value "+value);
 					effectCounter++;
 				}
 			}else {

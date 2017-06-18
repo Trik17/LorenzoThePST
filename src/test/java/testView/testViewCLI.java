@@ -9,7 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.polimi.ingsw.GC_04.controller.Controller;
+import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.Model;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.effect.*;
 import it.polimi.ingsw.GC_04.model.resource.*;
 import it.polimi.ingsw.GC_04.view.ViewCLI;
@@ -18,7 +21,7 @@ public class testViewCLI {//it isn't a real test
 	
 	
 	
-	
+	/*
 	@Test
 	public void testSetRequestedAuthorizationEffects() {
 		CouncilPrivilege cp=new CouncilPrivilege();
@@ -50,18 +53,34 @@ public class testViewCLI {//it isn't a real test
 		ExchangeResourcesEffect ere2=new ExchangeResourcesEffect(eff2,cost1,null,null);
 		
 		List<Effect> ereList=new ArrayList<Effect>();
+		List<Effect> ereList2=new ArrayList<Effect>();
 		ereList.add(ere1);
 		ereList.add(ere2);
 		
+		ExchangeResourcesEffect ere3=new ExchangeResourcesEffect(eff1,cost1,eff2,cost1);
+		ereList.add(ere3);
+		DevelopmentCard card=new BuildingCard(2,"miriamTheCraziest",null,cost1,null,ereList,null);
+		
+		
+		Dice dice=new Dice(5);
+		Effect take= new TakeACardEffect(null,dice , null);
+		Effect take2= new TakeACardEffect(card,dice , cost1);
+		
+		ereList.add(take);
+		ereList2.add(take);
+		ereList.add(take2);
+		ereList.add(take2);
+		ereList.add(take2);
 		
 		ViewCLI viewCLI=new ViewCLI();
 		Model model=new Model();
 		Controller controller =new Controller(model);
+		System.out.println("ahah");
 		controller.organizeRequestedAuthorizationEffects(ereList);
-		
+		System.out.println("ahah");
 		viewCLI.setRequestedAuthorizationEffects(ereList);
 		assertTrue(true);
 		
-	}
+	}*/
 
 }

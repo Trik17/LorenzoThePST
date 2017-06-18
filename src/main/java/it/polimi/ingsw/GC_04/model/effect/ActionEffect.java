@@ -21,4 +21,8 @@ public abstract class ActionEffect extends Effect {
 	public ActionEffect() {
 		// for Json
 	}
+	
+	public Dice getDice(){
+		return dice;
+	}
 }

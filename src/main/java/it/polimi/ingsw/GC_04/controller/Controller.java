@@ -62,6 +62,7 @@ public class Controller implements Observer<Action,Resource> {
 					rAE.add(eff);
 					requestedAuthorizationEffects.remove(eff);
 				}
+			
 		}
 		requestedAuthorizationEffects.addAll(rAE);
 		return requestedAuthorizationEffects;
