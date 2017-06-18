@@ -81,14 +81,32 @@ public class TakeACard extends Action{
 		for(Effect eff : card.getEffects()){
 			if (!eff.getRequestedAuthorization())
 				eff.apply(player);
-			else
-				requestedAuthorizationEffects.add(eff);
 		}
 		
 				
 		//TODO: fai chiedere al controller cosa attivare
 	}
 	
+
+	@Override
+	public void checkExtraordinaryEffect(){
+		List<Effect> effects=card.getEffects();
+		for(Effect eff: effects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				councilPrivileges.add((CouncilPrivilege) eff);
+			if (eff.getRequestedAuthorization())
+				requestedAuthorizationEffects.add(eff);
+			}
+		
+		effects = aSpace.getEffect();
+		for(Effect eff: effects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				councilPrivileges.add((CouncilPrivilege) eff);
+			if (eff.getRequestedAuthorization())
+				requestedAuthorizationEffects.add(eff);
+			}
+	
+	}
 	
 	@Override
 	public boolean isApplicable(){
@@ -112,21 +130,6 @@ public class TakeACard extends Action{
 		return this.card;
 	}
 
-	@Override
-	public void checkCouncilPrivilege(){
-		List<Effect> effects=card.getEffects();
-		for(Effect eff: effects) {
-			if (eff.getClass().equals(CouncilPrivilege.class))
-				councilPrivileges.add((CouncilPrivilege) eff);
-			}
-		
-		effects = aSpace.getEffect();
-		for(Effect eff: effects) {
-			if (eff.getClass().equals(CouncilPrivilege.class))
-				councilPrivileges.add((CouncilPrivilege) eff);
-			}
-	
-	}
 }	
 
 	
