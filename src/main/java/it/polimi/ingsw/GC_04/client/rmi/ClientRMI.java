@@ -11,8 +11,8 @@ import it.polimi.ingsw.GC_04.view.RMIViewRemote;
 
 
 public class ClientRMI {
-	public final static int RMI_PORT = 12008;
-	public final static String HOST = "localhost";
+	public static final int RMI_PORT = 12008;
+	public static final String HOST = "localhost";
 	public static final String NAME = "lorenzo";
 	
 	
@@ -31,7 +31,6 @@ public class ClientRMI {
 		
 		//Scanner in = new Scanner(System.in);
 		
-		//ora si fa sempre serverStub.metodo che si trova su rmiviewremote
 		
 		
 
