@@ -64,9 +64,16 @@ public class RMIView extends View implements RMIViewRemote{
 	}
 
 	@Override
-	public void setRequestedAuthorizationEffects(List<Effect> effects) {
+	public int[] setRequestedAuthorizationEffects(List<Effect> effects) {
 		// TODO Auto-generated method stub
+		return new int[0];
 		
+	}
+
+	@Override
+	public int[] setFurtherCheckNeededEffect(Effect effect) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

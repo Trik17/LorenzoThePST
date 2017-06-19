@@ -1,12 +1,15 @@
 package it.polimi.ingsw.GC_04.view;
 
 import java.util.List;
+import java.util.StringTokenizer;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.Observable;
 import it.polimi.ingsw.GC_04.Observer;
+import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Model;
@@ -25,8 +28,14 @@ import it.polimi.ingsw.GC_04.model.area.MarketArea;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
+import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
+import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
+import it.polimi.ingsw.GC_04.model.effect.SimpleResourceEffect;
+import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
 
@@ -40,7 +49,8 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 	
 	public abstract void chooseAction();
 	public abstract Resource setCouncilPrivilege();
-	public abstract void setRequestedAuthorizationEffects(List<Effect> effects);
+	public abstract int[] setRequestedAuthorizationEffects(List<Effect> effects);
+	public abstract int[] setFurtherCheckNeededEffect(Effect effect);
 	
 	private void nextPlayer() {//perché è qua???? ATTENZIONE
 		int nrOfPlayer = Model.getPlayers().length;
@@ -179,5 +189,76 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 		return resource;
 			
 	}
+
+	public static int[] parseIntArray (String str){
+	    StringTokenizer strTok = new StringTokenizer(str);
+
+	    int size = strTok.countTokens ();
+	    int[] vint = new int[size];
+
+	    for (int i = 0; i < size; i++)
+	        vint[i] = Integer.parseInt (strTok.nextToken());
+
+	    return vint;
+	}
+	/*
+	public static void main(String[] args) {
+		CouncilPrivilege cp=new CouncilPrivilege();
+		Resource st=new Stones(1);
+		Resource wo=new Woods(1);
+		Resource co=new Coins(1);
+		Resource co2=new Coins(2);
+		Resource mp=new MilitaryPoints(1);
+		Resource vp= new VictoryPoints(1);
+		List<Resource> resources=new ArrayList<Resource>();
+		List<Resource> resources2=new ArrayList<Resource>();
+		resources.add(co);
+		resources.add(mp);
+		resources2.add(co2);
+		resources2.add(vp);
+		
+		ResourceEffect simple=new SimpleResourceEffect(resources);
+		ResourceEffect simple2=new SimpleResourceEffect(resources2);
+		
+		List<Resource> cost1=new ArrayList<Resource>();
+		List<ResourceEffect> eff1=new ArrayList<ResourceEffect>();
+		List<ResourceEffect> eff2=new ArrayList<ResourceEffect>();
+		cost1.add(st);
+		cost1.add(wo);
+		eff1.add(cp);
+		eff1.add(simple);
+		eff2.add(simple2);
+		ExchangeResourcesEffect ere1=new ExchangeResourcesEffect(eff1,cost1,null,null);
+		ExchangeResourcesEffect ere2=new ExchangeResourcesEffect(eff2,cost1,null,null);
+		
+		List<Effect> ereList=new ArrayList<Effect>();
+		List<Effect> ereList2=new ArrayList<Effect>();
+		ereList.add(ere1);
+		ereList.add(ere2);
+		
+		ExchangeResourcesEffect ere3=new ExchangeResourcesEffect(eff1,cost1,eff2,cost1);
+		ereList.add(ere3);
+		DevelopmentCard card=new BuildingCard(2,"miriamTheCraziest",null,cost1,null,ereList,null);
+		
+		
+		Dice dice=new Dice(5);
+		Effect take= new TakeACardEffect(null,dice , null);
+		Effect take2= new TakeACardEffect(card,dice , cost1);
+		
+		ereList.add(take);
+		ereList2.add(take);
+		ereList.add(take2);
+		ereList.add(take2);
+		ereList.add(take2);
+		
+		ViewCLI viewCLI=new ViewCLI();
+		Model model=new Model();
+		Controller controller =new Controller(model);
+		controller.organizeRequestedAuthorizationEffects(ereList);
+		int[] rrrr = viewCLI.setRequestedAuthorizationEffects(ereList);
+		for (int i = 0; i < rrrr.length; i++) {
+			System.out.println(rrrr[i]);
+		}
+	}*/
 	
 }

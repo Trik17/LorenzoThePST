@@ -41,10 +41,11 @@ public class Inizializer {
 		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		
 		CouncilPalaceArea.instance(players);
-		TerritoryTower.instance(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0, 3));
-		BuildingTower.instance(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(4, 7));
-		VentureTower.instance(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(8, 11));
-		CharacterTower.instance(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(12, 15));
+		TerritoryTower.instance(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0,3));
+		CharacterTower.instance(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(4,7));
+		BuildingTower.instance(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(8,11));
+		VentureTower.instance(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(12,15));
+		
 		MarketArea.instance(aSpaces.subList(15, aSpaces.size()-1)); //calcolare meglio fino a dove prenderli
 		HarvestArea.instance();
 		ProductionArea.instance();

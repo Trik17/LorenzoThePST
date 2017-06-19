@@ -94,7 +94,7 @@ public class ViewCLI extends View{
 		try {
 			return input(resource);
 		} catch (IOException e) {
-			print("Your input is wrong.");
+			print("Your input is not valid");
 			return setCouncilPrivilege();
 		}
 		
@@ -102,7 +102,7 @@ public class ViewCLI extends View{
 		
 	}
 	
-	public void setRequestedAuthorizationEffects(List<Effect> effects) {
+	public int[] setRequestedAuthorizationEffects(List<Effect> effects) {
 		Scanner in = new Scanner(System.in);
 		String input = new String();
 		String output = new String();
@@ -139,7 +139,6 @@ public class ViewCLI extends View{
 			}else if (eff instanceof TakeACardEffect) {
 				int value = ((TakeACardEffect) eff).getDice().getValue();
 				if (((TakeACardEffect) eff).getCardType() == null) {
-					
 					print(effectCounter+")Take a card with dice value "+value+" from any tower");
 					effectCounter++;	
 				}else {
@@ -148,17 +147,122 @@ public class ViewCLI extends View{
 					effectCounter++;
 				}
 			}else {
-				return;
+				return new int[0];
 			}
 			
 		}
-		while(!input.equalsIgnoreCase("OK")) {
+		
+		while(true) {
 			input = in.nextLine();
-			output = output + input;
+			if (input.equalsIgnoreCase("OK"))
+				break;
+			try{
+				if (Integer.parseInt(input) >= effectCounter || Integer.parseInt(input) < 1) {
+					print("Your input is not valid");
+					return setRequestedAuthorizationEffects(effects);
+				}
+			}catch(NumberFormatException e) {
+				print("Your input is not valid");
+				return setRequestedAuthorizationEffects(effects);
+			}
+			
+			output = output+ " " +input;
 		}
+		int[] out = parseIntArray(output);
+		
+		return out;
+		
+		
 		
 		
 	}
+	
+	public int[] setFurtherCheckNeededEffect(Effect effect) {
+		Scanner in = new Scanner(System.in);
+		String input = new String();
+		print("Which of these options do you want to activate?");
+		print("After every number, press Enter");
+		print("");
+		
+		if (effect instanceof ExchangeResourcesEffect) {
+			String cost1 = new String();
+			String effect1 = new String();
+			String cost2 = new String();
+			String effect2 = new String();
+			cost1 = calculateCost(((ExchangeResourcesEffect) effect).getCost1());
+			effect1 = calculateEffect(((ExchangeResourcesEffect) effect).getEffect1());
+			cost2 = calculateCost(((ExchangeResourcesEffect) effect).getCost2());
+			effect2 = calculateEffect(((ExchangeResourcesEffect) effect).getEffect2());
+			print("1)Pay "+cost1+" to receive "+effect1);
+			print("2)Pay "+cost2+" to receive "+effect2);	
+			input = in.nextLine();
+			try{
+				if (Integer.parseInt(input) > 2 || Integer.parseInt(input) < 1) {
+					print("Your input is not valid");
+					return setFurtherCheckNeededEffect(effect);
+				}
+			}catch(NumberFormatException e) {
+				print("Your input is not valid");
+				return setFurtherCheckNeededEffect(effect);
+			}
+			
+		}
+		if (effect instanceof TakeACardEffect) {
+			if (((TakeACardEffect) effect).getCardType() == null) {
+				print("1)Take a card from Territory Tower");
+				print("2)Take a card from Character Tower");
+				print("3)Take a card from Building Tower");
+				print("4)Take a card from Venture Tower");
+				input = in.nextLine();
+				try{
+					if (Integer.parseInt(input) > 4 || Integer.parseInt(input) < 1) {
+						print("Your input is not valid");
+						return setFurtherCheckNeededEffect(effect);
+					}
+				}catch(NumberFormatException e) {
+					print("Your input is not valid");
+					return setFurtherCheckNeededEffect(effect);
+				}
+			}
+			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
+			
+			try{
+				String string = in.nextLine();
+				if (Integer.parseInt(string) > 4 || Integer.parseInt(string) < 1) {
+					print("Your input is not valid");
+					return setFurtherCheckNeededEffect(effect);
+				}
+				input = input + " " + string;
+			}catch(NumberFormatException e) {
+				print("Your input is not valid");
+				return setFurtherCheckNeededEffect(effect);
+			}
+			print("How many servants do you want to use?");
+
+			try{
+				String string = in.nextLine();
+				input = input + " " + string;
+			}catch (NumberFormatException e) {
+				print("Your input is not valid");
+				return setFurtherCheckNeededEffect(effect);
+			}
+			print("Which cost do you want to pay?");
+			print("If there's only one cost available, type 1 and press Enter");
+			try{
+				String string = in.nextLine();
+				input = input + " " + string;
+			}catch (NumberFormatException e) {
+				print("Your input is not valid");
+				return setFurtherCheckNeededEffect(effect);
+			}
+		}
+		
+		int[] out = parseIntArray(input);
+		return out;
+		
+		
+	}
+	
 	public String calculateCost(List<Resource> costs) {
 		String cost = new String();
 		int costQuantity;

@@ -102,4 +102,7 @@ public abstract class Action {
 		return councilPrivileges;
 		
 	}
+	public Player getPlayer() {
+		return player;
+	}
 }
