@@ -26,6 +26,7 @@ public class MyTimer{//poi vanno fatti i metodi pure per gestire inizio partita
 
         timer.cancel();
      }
+    
 
     public static void main( String[] args ) {//questo main va cancellato e messo il codice nel controller
     	MyTimer myTimer=new MyTimer();
