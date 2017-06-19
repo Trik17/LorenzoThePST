@@ -79,6 +79,18 @@ public class JsonMapper {
 		return actionSpaces;
 	}
 	
+	public static void TimerFromJson() throws JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		
+		try{			
+			FileReader fileTimer= new FileReader("src/main/resources/timer.json"); 
+			@SuppressWarnings("unused")
+			TimerJson t=mapper.readValue(fileTimer, TimerJson.class);		
+		}catch (JsonParseException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/*
 	public static void main(String[] args) throws JsonMappingException, IOException {

@@ -12,12 +12,8 @@ public class MyTimer{//poi vanno fatti i metodi pure per gestire inizio partita
     	
         public void run(){
         	System.out.println( "time out" );
-        	try {
-				throw new MyTimerException("tempo scaduto");
-			} catch (MyTimerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+        	//fai qualcosa quando scatta il timer
+				
         }    
     };
 // variabile tipo promise con i future-> ma è difficile
@@ -31,7 +27,7 @@ public class MyTimer{//poi vanno fatti i metodi pure per gestire inizio partita
         timer.cancel();
      }
 
-    public static void main( String[] args ) throws MyTimerException    {//questo main va cancellato e messo il codice nel controller
+    public static void main( String[] args ) {//questo main va cancellato e messo il codice nel controller
     	MyTimer myTimer=new MyTimer();
        
             myTimer.makeAction();
