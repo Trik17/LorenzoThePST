@@ -1,7 +1,6 @@
-package it.polimi.ingsw.GC_04.view;
+package it.polimi.ingsw.GC_04.client.rmi;
 
 import java.util.List;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.Observable;
@@ -30,11 +29,11 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
 
-public abstract class View extends Observable<Action,Resource> implements Observer<Action, Resource>{
+public abstract class ViewClient extends Observable<Action,Resource> implements Observer<Action, Resource>{
 	
 	private int turn;
 	
-	public View() {
+	public ViewClient() {
 		turn = 0;
 	}
 	
@@ -43,15 +42,6 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 	public abstract int[] setRequestedAuthorizationEffects(List<Effect> effects);
 	public abstract int[] setFurtherCheckNeededEffect(Effect effect);
 	public abstract Resource setDiscount(Resource rawMaterial);
-	
-	private void nextPlayer() {//perché è qua???? ATTENZIONE
-		int nrOfPlayer = Model.getPlayers().length;
-		if (turn < nrOfPlayer)
-			turn ++;
-		else
-			turn = 0;
-	}
-	
 	
 	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost){
 		Action action;

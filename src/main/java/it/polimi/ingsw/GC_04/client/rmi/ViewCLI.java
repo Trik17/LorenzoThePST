@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.view;
+package it.polimi.ingsw.GC_04.client.rmi;
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
 
-public class ViewCLI extends View{
+public class ViewCLI extends ViewClient{
 	
 	
 	public static void print(String string) {

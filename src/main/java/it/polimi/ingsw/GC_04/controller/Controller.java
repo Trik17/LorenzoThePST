@@ -6,6 +6,7 @@ import java.util.List;
 import com.sun.javafx.geom.Area;
 
 import it.polimi.ingsw.GC_04.Observer;
+import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
@@ -22,20 +23,19 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
-import it.polimi.ingsw.GC_04.view.View;
 
 public class Controller implements Observer<Action,Resource> {
 	private Model model;
-	private View[] views;
+	private ViewClient[] views;
 	private static int turn = 0;
 
 	public Controller(Model model) {
 		this.model = model;		
 	}
 	
-	public void setViews(View[] views){
+	public void setViews(ViewClient[] views){
 		this.views = views;
-		for(View view : views)
+		for(ViewClient view : views)
 			view.registerObserver(this);
 	}
 	

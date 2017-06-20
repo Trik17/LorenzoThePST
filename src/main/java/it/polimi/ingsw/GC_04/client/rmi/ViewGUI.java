@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.view;
+package it.polimi.ingsw.GC_04.client.rmi;
 
 import it.polimi.ingsw.GC_04.model.action.Action;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
-public class ViewGUI extends View {
+public class ViewGUI extends ViewClient {
 
 	@Override
 	public void chooseAction() {

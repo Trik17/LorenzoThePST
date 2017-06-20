@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
+import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
+import it.polimi.ingsw.GC_04.client.rmi.ViewGUI;
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyColor;
@@ -14,9 +17,6 @@ import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.view.View;
-import it.polimi.ingsw.GC_04.view.ViewCLI;
-import it.polimi.ingsw.GC_04.view.ViewGUI;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 
 
@@ -88,7 +88,7 @@ public class Main {
 		Inizializer inizializer = new Inizializer(players);
 		Model model = new Model();
 		model.setPlayers(players);
-		View[] views =new View[num];
+		ViewClient[] views =new ViewClient[num];
 		for(int i=0; i<num; i++)
 			if(graphic)
 				views[i] = new ViewGUI();

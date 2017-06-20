@@ -9,7 +9,4 @@ public interface RMIViewRemote extends Remote{
 	
 	public void registerClient(ClientViewRemote clientStub) throws RemoteException;
 	
-	public void printModel() throws RemoteException;
-	
-	public void makeAction() throws RemoteException;
 }

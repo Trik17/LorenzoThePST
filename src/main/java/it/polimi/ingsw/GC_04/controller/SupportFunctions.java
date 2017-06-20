@@ -6,9 +6,9 @@ import java.util.StringTokenizer;
 
 import com.sun.glass.ui.View;
 
+import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.view.ViewCLI;
 
 public class SupportFunctions {
 
