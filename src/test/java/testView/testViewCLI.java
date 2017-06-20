@@ -20,8 +20,8 @@ import it.polimi.ingsw.GC_04.view.ViewCLI;
 public class testViewCLI {//it isn't a real test
 	
 	
+/*	
 	
-	/*
 	@Test
 	public void testSetRequestedAuthorizationEffects() {
 		CouncilPrivilege cp=new CouncilPrivilege();
@@ -75,12 +75,16 @@ public class testViewCLI {//it isn't a real test
 		ViewCLI viewCLI=new ViewCLI();
 		Model model=new Model();
 		Controller controller =new Controller(model);
-		System.out.println("ahah");
 		controller.organizeRequestedAuthorizationEffects(ereList);
-		System.out.println("ahah");
-		viewCLI.setRequestedAuthorizationEffects(ereList);
+		int[] rrrr = viewCLI.setRequestedAuthorizationEffects(ereList);
+		for (int i = 0; i < rrrr.length; i++) {
+			System.out.println(rrrr[i]);
+		}
+//		viewCLI.setRequestedAuthorizationEffects(ereList);
+		
 		assertTrue(true);
 		
-	}*/
+	}
 
+	*/
 }

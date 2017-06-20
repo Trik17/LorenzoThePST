@@ -39,7 +39,19 @@ public class ViewGUI extends View {
 	}
 
 	@Override
-	public void setRequestedAuthorizationEffects(List<Effect> effects) {
+	public int[] setRequestedAuthorizationEffects(List<Effect> effects) {
+		return	new int[0];	
+	}
+
+	@Override
+	public int[] setFurtherCheckNeededEffect(Effect effect) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resource setDiscount(Resource rawMaterial) {
+		return rawMaterial;
 		// TODO Auto-generated method stub
 		
 	}

@@ -26,8 +26,9 @@ public abstract class Action {
 	protected List<Resource> actionCost;						// and any permanent effects
 	protected Area area;
 	protected List<Effect> requestedAuthorizationEffects;
-	protected List<CouncilPrivilege> councilPrivileges;
-
+	protected List<Effect> councilPrivileges;
+	protected List<Resource> discount;
+	
 	public Action(Player player, FamilyMember fMember, int servants) {
 		this.player = player;
 		this.fMember = fMember;
@@ -35,7 +36,7 @@ public abstract class Action {
 		this.actionCost = new ArrayList<Resource>();
 		this.actionCost.add(new Servants(servants));
 		this.requestedAuthorizationEffects = new ArrayList<Effect>();
-		this.councilPrivileges = new ArrayList<CouncilPrivilege>();
+		this.councilPrivileges = new ArrayList<Effect>();
 
 	}
 
@@ -53,15 +54,13 @@ public abstract class Action {
 		}
 	}
 	
-	public void setCouncilPrivilege(Resource resource) {
-		int cont = councilPrivileges.size() -1;
-		councilPrivileges.get(cont).setCouncilPrivilege(resource);
-		councilPrivileges.remove(cont);
-		
-	}
 	
 	public void setRequestedAuthorizationEffects(List<Effect> effects) {
 		requestedAuthorizationEffects = effects;	
+		
+	}
+	public void setCouncilPrivilege(List<Effect> cp) {
+		councilPrivileges = cp;
 		
 	}
 
@@ -93,13 +92,25 @@ public abstract class Action {
 		
 		
 	}
+	public void applyEffects() {
+		aSpace.applyEffects(player);
+		councilPrivileges.forEach(cp -> cp.apply(player));
+	}
+	
 	public List<Effect> getRequestedAuthorizationEffects() {
 		return requestedAuthorizationEffects;
 		
 	}
 	
-	public List<CouncilPrivilege> getCouncilPrivileges() {
+	public List<Effect> getCouncilPrivileges() {
 		return councilPrivileges;
+		
+	}
+	public Player getPlayer() {
+		return player;
+	}
+	public void setDiscount(List<Resource> discount) {
+		this.discount = discount;
 		
 	}
 }

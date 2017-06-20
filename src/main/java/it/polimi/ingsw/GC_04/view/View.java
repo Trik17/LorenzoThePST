@@ -40,7 +40,9 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 	
 	public abstract void chooseAction();
 	public abstract Resource setCouncilPrivilege();
-	public abstract void setRequestedAuthorizationEffects(List<Effect> effects);
+	public abstract int[] setRequestedAuthorizationEffects(List<Effect> effects);
+	public abstract int[] setFurtherCheckNeededEffect(Effect effect);
+	public abstract Resource setDiscount(Resource rawMaterial);
 	
 	private void nextPlayer() {//perché è qua???? ATTENZIONE
 		int nrOfPlayer = Model.getPlayers().length;
@@ -51,7 +53,7 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 	}
 	
 	
-	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost) throws IOException {
+	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost){
 		Action action;
 		Tower realTower;
 		ActionSpace realASpace;
@@ -61,39 +63,37 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 		
 		diceColor = diceColor.toUpperCase();
 		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int card = Integer.parseInt(nrOfCard); 
-			int servants = Integer.parseInt(nrOfServants); 
-			int chosenCost = Integer.parseInt(cost);
-			
-			if(tower.equals("1")) {
-				realTower = TerritoryTower.instance();
-			}
-			if(tower.equals("2")) {
-				realTower = BuildingTower.instance();
-			}
-			if(tower.equals("3")) {
-				realTower = VentureTower.instance();
-			}
-			if(tower.equals("4")) {
-				realTower = CharacterTower.instance();
-			}else 
-				throw new IOException();
-			
-			realCard = realTower.getCards()[card];
-				
-			if (chosenCost == 1)
-				realCost = realCard.getCost1();
-			if (chosenCost == 2)
-				realCost = realCard.getCost2();
-			realASpace = realTower.getASpaces().get(card);
-			
-			action = new TakeTerritory(player,realCard,realASpace,fMember,servants,realCost);
-			this.notifyObserversA(action);
-		}catch (Exception e) {
-			 e.printStackTrace();
+		
+		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
+		int card = Integer.parseInt(nrOfCard); 
+		int servants = Integer.parseInt(nrOfServants); 
+		int chosenCost = Integer.parseInt(cost);
+		
+		if(tower.equals("1")) {
+			realTower = TerritoryTower.instance();
 		}
+		if(tower.equals("2")) {
+			realTower = CharacterTower.instance();
+			
+		}
+		if(tower.equals("3")) {
+			realTower = BuildingTower.instance();
+		}
+		else {
+			realTower = VentureTower.instance();
+			
+		realCard = realTower.getCards()[card];
+			
+		if (chosenCost == 1)
+			realCost = realCard.getCost1();
+		if (chosenCost == 2)
+			realCost = realCard.getCost2();
+		realASpace = realTower.getASpaces().get(card);
+		
+		action = new TakeTerritory(player,realCard,realASpace,fMember,servants,realCost);
+		this.notifyObserversA(action);
+		}
+		
 	}
 	
 	public void input(String area, String diceColor, String actSpace, String nrOfServants) {
@@ -102,26 +102,16 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 		Area realArea;
 		Action action;
 		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int aSpace = Integer.parseInt(actSpace); 
-			int servants = Integer.parseInt(nrOfServants); 
-			
-			if (area.equals("2")) {
-				realArea = MarketArea.instance();
-				realASpace = realArea.getASpaces().get(aSpace);
-				action = new GoToTheMarket(player, fMember, servants, realASpace);
-			}else 
-				throw new IOException();
-			
-			this.notifyObserversA(action);
-				
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
-		}
+		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
+		int aSpace = Integer.parseInt(actSpace); 
+		int servants = Integer.parseInt(nrOfServants); 
 		
+		realArea = MarketArea.instance();
+		realASpace = realArea.getASpaces().get(aSpace);
+		action = new GoToTheMarket(player, fMember, servants, realASpace);
+		
+		this.notifyObserversA(action);
+	
 	}
 	
 	
@@ -130,36 +120,24 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 		Player player = CouncilPalaceArea.getTurnOrder()[turn];
 		Action action;
 		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int servants = Integer.parseInt(nrOfServants);
-			
-			if (area.equals("3")) {
-				action = new RunProduction(player, fMember, servants);
-			}
-			
-			if (area.equals("4")) {
-				action = new RunHarvest(player, fMember, servants);
-			}
-			
-			if (area.equals("5")) {
-				action = new GoToTheCouncilPalace(player, fMember, servants);
-			}else 
-				throw new IOException();
-			
-			this.notifyObserversA(action);
-			
-			
 		
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
+		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
+		int servants = Integer.parseInt(nrOfServants);
+		
+		if (area.equals("3")) {
+			action = new RunProduction(player, fMember, servants);
 		}
 		
-		
+		if (area.equals("4")) {
+			action = new RunHarvest(player, fMember, servants);
+		}else{
+			action = new GoToTheCouncilPalace(player, fMember, servants);
+			
+			this.notifyObserversA(action);
+		}
 	}
 	
-	public Resource input(String privilege) throws IOException {
+	public Resource input(String privilege) {
 		
 		Resource resource;
 		
@@ -171,13 +149,72 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 			resource = new Coins(2);
 		if (privilege.equals("4"))
 			resource = new MilitaryPoints(2);
-		if (privilege.equals("5"))
+		else
 			resource = new FaithPoints(1);
-		else 
-			throw new IOException();
 		
 		return resource;
 			
 	}
+
+	
+	/*
+	public static void main(String[] args) {
+		CouncilPrivilege cp=new CouncilPrivilege();
+		Resource st=new Stones(1);
+		Resource wo=new Woods(1);
+		Resource co=new Coins(1);
+		Resource co2=new Coins(2);
+		Resource mp=new MilitaryPoints(1);
+		Resource vp= new VictoryPoints(1);
+		List<Resource> resources=new ArrayList<Resource>();
+		List<Resource> resources2=new ArrayList<Resource>();
+		resources.add(co);
+		resources.add(mp);
+		resources2.add(co2);
+		resources2.add(vp);
+		
+		ResourceEffect simple=new SimpleResourceEffect(resources);
+		ResourceEffect simple2=new SimpleResourceEffect(resources2);
+		
+		List<Resource> cost1=new ArrayList<Resource>();
+		List<ResourceEffect> eff1=new ArrayList<ResourceEffect>();
+		List<ResourceEffect> eff2=new ArrayList<ResourceEffect>();
+		cost1.add(st);
+		cost1.add(wo);
+		eff1.add(cp);
+		eff1.add(simple);
+		eff2.add(simple2);
+		ExchangeResourcesEffect ere1=new ExchangeResourcesEffect(eff1,cost1,null,null);
+		ExchangeResourcesEffect ere2=new ExchangeResourcesEffect(eff2,cost1,null,null);
+		
+		List<Effect> ereList=new ArrayList<Effect>();
+		List<Effect> ereList2=new ArrayList<Effect>();
+		ereList.add(ere1);
+		ereList.add(ere2);
+		
+		ExchangeResourcesEffect ere3=new ExchangeResourcesEffect(eff1,cost1,eff2,cost1);
+		ereList.add(ere3);
+		DevelopmentCard card=new BuildingCard(2,"miriamTheCraziest",null,cost1,null,ereList,null);
+		
+		
+		Dice dice=new Dice(5);
+		Effect take= new TakeACardEffect(null,dice , null);
+		Effect take2= new TakeACardEffect(card,dice , cost1);
+		
+		ereList.add(take);
+		ereList2.add(take);
+		ereList.add(take2);
+		ereList.add(take2);
+		ereList.add(take2);
+		
+		ViewCLI viewCLI=new ViewCLI();
+		Model model=new Model();
+		Controller controller =new Controller(model);
+		controller.organizeRequestedAuthorizationEffects(ereList);
+		int[] rrrr = viewCLI.setRequestedAuthorizationEffects(ereList);
+		for (int i = 0; i < rrrr.length; i++) {
+			System.out.println(rrrr[i]);
+		}
+	}*/
 	
 }
