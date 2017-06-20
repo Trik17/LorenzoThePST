@@ -5,16 +5,16 @@ import java.io.IOException;
 public enum DiceColor {
 	BLACK, ORANGE, WHITE, NEUTRAL;
 	
-	public static DiceColor fromString(String string) throws IOException {
-		if (string.equalsIgnoreCase("BLACK"))
+	public static DiceColor fromString(String string){
+		if (string.equalsIgnoreCase("1"))
 			return BLACK;
-		if (string.equalsIgnoreCase("ORANGE"))
+		if (string.equalsIgnoreCase("2"))
 			return ORANGE;
-		if (string.equalsIgnoreCase("WHITE"))
+		if (string.equalsIgnoreCase("3"))
 			return WHITE;
-		if (string.equalsIgnoreCase("NEUTRAL"))
+		if (string.equalsIgnoreCase("4"))
 			return NEUTRAL;
 		else
-			throw new IOException();
+			return null;
 	}
 }

@@ -8,13 +8,16 @@ import com.sun.javafx.geom.Area;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Model;
+import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.model.area.CharacterTower;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
@@ -40,16 +43,24 @@ public class Controller implements Observer<Action,Resource> {
 		views[turn].chooseAction();
 	}
 
+
+	public void setCouncilPrivilege(List<Effect> councilPrivileges, Resource resource,int cont) {
+		((CouncilPrivilege) councilPrivileges.get(cont)).setCouncilPrivilege(resource);
+		
+	}
 	@Override
 	public void updateAction(Action action) {
 		
 		action.checkExtraordinaryEffect();
 		Resource privilege;
-		while(!action.getCouncilPrivileges().isEmpty()) {
+		List<Effect> councilPrivileges = SupportFunctions.cloneEffects(action.getCouncilPrivileges());
+		while(!councilPrivileges.isEmpty()) {
+			int cont = 0;
 			privilege = views[turn].setCouncilPrivilege();
-			action.setCouncilPrivilege(privilege);
+			setCouncilPrivilege(councilPrivileges,privilege,cont);
+			cont++;
 		}
-		List<Effect> requestedAuthorizationEffects = action.getRequestedAuthorizationEffects();
+		List<Effect> requestedAuthorizationEffects = SupportFunctions.cloneEffects(action.getRequestedAuthorizationEffects());
 		int[] furtherCheckNeeded = new int[requestedAuthorizationEffects.size()-1];
 		int cont = 0;
 		for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
@@ -109,18 +120,44 @@ public class Controller implements Observer<Action,Resource> {
 							cost = tower.getCards()[choice[1] -1].getCost1();
 						else
 							cost = tower.getCards()[choice[1] -1].getCost2();;
-						((TakeACardEffect) action.getRequestedAuthorizationEffects().get(j)).setParameters(action.getPlayer(),card,aSpace,servants,cost);
+						((TakeACardEffect) requestedAuthorizationEffects.get(j)).setParameters(action.getPlayer(),card,aSpace,servants,cost);
 					}
-					//TODO: ora devi impostare i parametri di takeAcard e exchange bla bla
+					
 				}
 			}
 		}
-							
-		if(action.isApplicable())
+		List<Resource> discount = new ArrayList<Resource>();
+		if (action instanceof TakeACard) {
+			discount = setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
+			
+		}
+		if(action.isApplicable()) {
+			action.setRequestedAuthorizationEffects(requestedAuthorizationEffects);
+			action.setCouncilPrivilege(councilPrivileges);
+			//TODO: fai attivare i privilegi
+			action.setDiscount(discount);
 			action.apply(); //continuare da qui
+		}
 		else 
 			System.out.println("Non puoi fare questa mossa");
 		
+	}
+	
+	public List<Resource> setDiscount(Player player, DevelopmentCard card) {
+		//this method uploads the action's discounts accumulated by the player 
+		List<Resource> discounts;
+		List<Resource> myDiscounts = SupportFunctions.cloneResources(player.getDiscount().getDiscount(card));
+		if (myDiscounts.isEmpty())
+			return null;
+		if (!myDiscounts.stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
+			discounts = myDiscounts;
+		else {
+			myDiscounts.forEach(res -> {if (res instanceof RawMaterial) res = views[turn].setDiscount(res);});
+			discounts = myDiscounts;
+		}
+		return discounts;
+			
+			
 	}
 	
 	public List<Effect> organizeRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) {

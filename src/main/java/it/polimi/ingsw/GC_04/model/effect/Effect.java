@@ -33,4 +33,13 @@ public abstract class Effect {
 	public Effect(){//for json
 	}
 	
+	public static Effect clone(Effect effect) {
+		try {
+			return (Effect) effect.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+		
+	}
+	
 } 

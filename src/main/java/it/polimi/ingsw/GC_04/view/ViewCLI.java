@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.view;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,8 +8,11 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
+import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.Stones;
+import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class ViewCLI extends View{
 	
@@ -21,6 +23,8 @@ public class ViewCLI extends View{
 	
 	public void chooseAction(){
 		Scanner in = new Scanner(System.in);
+		String diceColor;
+		String nrOfServants;
 		print("Scegli un'area tra"); 
 		print("1)TOWER");
 		print("2)MARKET");
@@ -28,44 +32,68 @@ public class ViewCLI extends View{
 		print("4)HARVEST");
 		print("5)COUNCIL PALACE");
 		String area = in.nextLine();
-		if (area.equalsIgnoreCase("TOWER")) {
+		if (!SupportFunctions.isInputValid(area, 1, 5)) {
+			chooseAction();
+		}
+		if (area.equals("1")) {
 			print("Scegli la torre tra ");
 			print("1)TERRITORY");
-			print("2)BUILDING");
-			print("3)VENTURE");
-			print("4)CHARACTER");
+			print("2)CHARACTER");
+			print("3)BUILDING");
+			print("4)VENTURE");
 			String tower = in.nextLine();
+			if (!SupportFunctions.isInputValid(tower, 1, 4)) {
+				chooseAction();
+			}
 			print("Scegli la carta tra 1, 2, 3, 4");
 			String nrOfCard = in.nextLine();
+			if (!SupportFunctions.isInputValid(nrOfCard, 1, 4)) {
+				chooseAction();
+			}
 			print("Scegli il dado che vuoi usare tra ");
 			print("1)BLACK");
 			print("2)ORANGE");
 			print("3)WHITE");
 			print("4)NEUTRAL");
-			String diceColor = in.nextLine();
+			diceColor = in.nextLine();
+			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
+				chooseAction();
+			}
 			print("Quanti servants vuoi usare per questa mossa?");
-			String nrOfServants = in.nextLine();
+			nrOfServants = in.nextLine();
+			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
+				chooseAction();
+			}
 			print("Scegli, se previsto, quale costo vuoi pagare per questa carta tra 1, 2");
 			print("Se non è prevista una scelta premi 1");
 			String cost = in.nextLine();
-			try {
-				input(tower, nrOfCard, diceColor, nrOfServants, cost);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (!SupportFunctions.isInputValid(cost, 1, 2)) {
+				chooseAction();
 			}
+			
+			input(tower, nrOfCard, diceColor, nrOfServants, cost);
+			
 		}
-		if (area.equalsIgnoreCase("MARKET")) {
+		if (area.equals("2")) {
 			print("Scegli il dado che vuoi usare tra ");
 			print("1)BLACK");
 			print("2)ORANGE");
 			print("3)WHITE");
 			print("4)NEUTRAL");
-			String diceColor = in.nextLine();
+			diceColor = in.nextLine();
+			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
+				chooseAction();
+			}
 			print("Scegli lo shop tra 1, 2, 3, 4"); //in realtà di pende dal numero di giocatori
 			String actSpace = in.nextLine();
+			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
+				chooseAction();
+			}
 			print("Quanti servants vuoi usare per questa mossa?");
-			String nrOfServants = in.nextLine();
+			nrOfServants = in.nextLine();
+			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
+				chooseAction();
+			}
 			input(area, diceColor, actSpace, nrOfServants);
 		}else {
 			print("Scegli il dado che vuoi usare tra ");
@@ -73,9 +101,15 @@ public class ViewCLI extends View{
 			print("2)ORANGE");
 			print("3)WHITE");
 			print("4)NEUTRAL");
-			String diceColor = in.nextLine();
+			diceColor = in.nextLine();
+			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
+				chooseAction();
+			}
 			print("Quanti servants vuoi usare per questa mossa?");
-			String nrOfServants = in.nextLine();
+			nrOfServants = in.nextLine();
+			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
+				chooseAction();
+			}
 			input(area, diceColor, nrOfServants);	
 		}
 	}
@@ -90,13 +124,10 @@ public class ViewCLI extends View{
 		print("5) 1 Faith Point");
 		
 		String resource = in.nextLine();
-		
-		try {
-			return input(resource);
-		} catch (IOException e) {
-			print("Your input is not valid");
+		if (!SupportFunctions.isInputValid(resource, 1, 5)) {
 			return setCouncilPrivilege();
 		}
+		return input(resource);
 		
 		
 		
@@ -156,19 +187,14 @@ public class ViewCLI extends View{
 			input = in.nextLine();
 			if (input.equalsIgnoreCase("OK"))
 				break;
-			try{
-				if (Integer.parseInt(input) >= effectCounter || Integer.parseInt(input) < 1) {
-					print("Your input is not valid");
-					return setRequestedAuthorizationEffects(effects);
-				}
-			}catch(NumberFormatException e) {
-				print("Your input is not valid");
+			
+			if (!SupportFunctions.isInputValid(input, 1, effectCounter -1)) {
 				return setRequestedAuthorizationEffects(effects);
 			}
 			
 			output = output+ " " +input;
 		}
-		int[] out = parseIntArray(output);
+		int[] out = SupportFunctions.parseIntArray(output);
 		
 		return out;
 		
@@ -196,13 +222,7 @@ public class ViewCLI extends View{
 			print("1)Pay "+cost1+" to receive "+effect1);
 			print("2)Pay "+cost2+" to receive "+effect2);	
 			input = in.nextLine();
-			try{
-				if (Integer.parseInt(input) > 2 || Integer.parseInt(input) < 1) {
-					print("Your input is not valid");
-					return setFurtherCheckNeededEffect(effect);
-				}
-			}catch(NumberFormatException e) {
-				print("Your input is not valid");
+			if (!SupportFunctions.isInputValid(input, 1, 2)) {
 				return setFurtherCheckNeededEffect(effect);
 			}
 			
@@ -214,50 +234,41 @@ public class ViewCLI extends View{
 				print("3)Take a card from Building Tower");
 				print("4)Take a card from Venture Tower");
 				input = in.nextLine();
-				try{
-					if (Integer.parseInt(input) > 4 || Integer.parseInt(input) < 1) {
-						print("Your input is not valid");
-						return setFurtherCheckNeededEffect(effect);
-					}
-				}catch(NumberFormatException e) {
-					print("Your input is not valid");
+				if (!SupportFunctions.isInputValid(input, 1, 4)) {
 					return setFurtherCheckNeededEffect(effect);
 				}
 			}
 			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
 			
-			try{
-				String string = in.nextLine();
-				if (Integer.parseInt(string) > 4 || Integer.parseInt(string) < 1) {
-					print("Your input is not valid");
-					return setFurtherCheckNeededEffect(effect);
-				}
-				input = input + " " + string;
-			}catch(NumberFormatException e) {
-				print("Your input is not valid");
+			String string = in.nextLine();
+			if (!SupportFunctions.isInputValid(input, 1, 4)) {
 				return setFurtherCheckNeededEffect(effect);
 			}
+			input = input + " " + string;
 			print("How many servants do you want to use?");
 
-			try{
-				String string = in.nextLine();
-				input = input + " " + string;
-			}catch (NumberFormatException e) {
-				print("Your input is not valid");
+			string = in.nextLine();
+			
+			if (!SupportFunctions.isInputValid(input, 1, 100)) {
 				return setFurtherCheckNeededEffect(effect);
 			}
+			
+			input = input + " " + string;
+			
 			print("Which cost do you want to pay?");
 			print("If there's only one cost available, type 1 and press Enter");
-			try{
-				String string = in.nextLine();
-				input = input + " " + string;
-			}catch (NumberFormatException e) {
-				print("Your input is not valid");
+			
+			string = in.nextLine();
+			
+			if (!SupportFunctions.isInputValid(input, 1, 2)) {
 				return setFurtherCheckNeededEffect(effect);
 			}
+			
+			input = input + " " + string;
+		
 		}
 		
-		int[] out = parseIntArray(input);
+		int[] out = SupportFunctions.parseIntArray(input);
 		return out;
 		
 		
@@ -297,6 +308,23 @@ public class ViewCLI extends View{
 		return effect;
 		
 	}	
+	public Resource setDiscount(Resource rawMaterial) {
+		Scanner in = new Scanner(System.in);
+		String input;
+		print("You can choose between two discounts, what do you prefer?");
+		print("1) "+ rawMaterial.getQuantity() +" Stone");
+		print("2) "+ rawMaterial.getQuantity() +" Wood");
+		
+		input = in.nextLine();
+		if (!SupportFunctions.isInputValid(input, 1, 2)) {
+			return setDiscount(rawMaterial);	
+		}
+		if (Integer.parseInt(input) == 1) 
+			return new Stones(rawMaterial.getQuantity());
+		else
+			return new Woods(rawMaterial.getQuantity());
+		
+	}
 		
 		
 	

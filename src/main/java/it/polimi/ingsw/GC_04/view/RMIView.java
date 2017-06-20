@@ -76,6 +76,15 @@ public class RMIView extends View implements RMIViewRemote{
 		return null;
 	}
 
+	@Override
+	public Resource setDiscount(Resource rawMaterial) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+
 	
 
 }

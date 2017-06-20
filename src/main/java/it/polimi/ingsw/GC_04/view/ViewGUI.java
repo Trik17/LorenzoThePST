@@ -49,4 +49,11 @@ public class ViewGUI extends View {
 		return null;
 	}
 
+	@Override
+	public Resource setDiscount(Resource rawMaterial) {
+		return rawMaterial;
+		// TODO Auto-generated method stub
+		
+	}
+
 }

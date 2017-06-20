@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
+import it.polimi.ingsw.GC_04.model.effect.Effect;
+
 @JsonTypeInfo(use = Id.NAME,
 	include = JsonTypeInfo.As.PROPERTY,
 	property = "type")
@@ -81,6 +83,13 @@ public abstract class Resource {
 		return true;
 	}
 	
-	
+	public static Resource clone(Resource resource) {
+		try {
+			return (Resource) resource.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+		
+	}
 	
 }

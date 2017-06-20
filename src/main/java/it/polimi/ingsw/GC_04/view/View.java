@@ -1,15 +1,12 @@
 package it.polimi.ingsw.GC_04.view;
 
 import java.util.List;
-import java.util.StringTokenizer;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.Observable;
 import it.polimi.ingsw.GC_04.Observer;
-import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Model;
@@ -28,14 +25,8 @@ import it.polimi.ingsw.GC_04.model.area.MarketArea;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
-import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
-import it.polimi.ingsw.GC_04.model.effect.SimpleResourceEffect;
-import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
 
@@ -51,6 +42,7 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 	public abstract Resource setCouncilPrivilege();
 	public abstract int[] setRequestedAuthorizationEffects(List<Effect> effects);
 	public abstract int[] setFurtherCheckNeededEffect(Effect effect);
+	public abstract Resource setDiscount(Resource rawMaterial);
 	
 	private void nextPlayer() {//perché è qua???? ATTENZIONE
 		int nrOfPlayer = Model.getPlayers().length;
@@ -61,7 +53,7 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 	}
 	
 	
-	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost) throws IOException {
+	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost){
 		Action action;
 		Tower realTower;
 		ActionSpace realASpace;
@@ -71,39 +63,37 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 		
 		diceColor = diceColor.toUpperCase();
 		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int card = Integer.parseInt(nrOfCard); 
-			int servants = Integer.parseInt(nrOfServants); 
-			int chosenCost = Integer.parseInt(cost);
-			
-			if(tower.equals("1")) {
-				realTower = TerritoryTower.instance();
-			}
-			if(tower.equals("2")) {
-				realTower = BuildingTower.instance();
-			}
-			if(tower.equals("3")) {
-				realTower = VentureTower.instance();
-			}
-			if(tower.equals("4")) {
-				realTower = CharacterTower.instance();
-			}else 
-				throw new IOException();
-			
-			realCard = realTower.getCards()[card];
-				
-			if (chosenCost == 1)
-				realCost = realCard.getCost1();
-			if (chosenCost == 2)
-				realCost = realCard.getCost2();
-			realASpace = realTower.getASpaces().get(card);
-			
-			action = new TakeTerritory(player,realCard,realASpace,fMember,servants,realCost);
-			this.notifyObserversA(action);
-		}catch (Exception e) {
-			 e.printStackTrace();
+		
+		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
+		int card = Integer.parseInt(nrOfCard); 
+		int servants = Integer.parseInt(nrOfServants); 
+		int chosenCost = Integer.parseInt(cost);
+		
+		if(tower.equals("1")) {
+			realTower = TerritoryTower.instance();
 		}
+		if(tower.equals("2")) {
+			realTower = CharacterTower.instance();
+			
+		}
+		if(tower.equals("3")) {
+			realTower = BuildingTower.instance();
+		}
+		else {
+			realTower = VentureTower.instance();
+			
+		realCard = realTower.getCards()[card];
+			
+		if (chosenCost == 1)
+			realCost = realCard.getCost1();
+		if (chosenCost == 2)
+			realCost = realCard.getCost2();
+		realASpace = realTower.getASpaces().get(card);
+		
+		action = new TakeTerritory(player,realCard,realASpace,fMember,servants,realCost);
+		this.notifyObserversA(action);
+		}
+		
 	}
 	
 	public void input(String area, String diceColor, String actSpace, String nrOfServants) {
@@ -112,26 +102,16 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 		Area realArea;
 		Action action;
 		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int aSpace = Integer.parseInt(actSpace); 
-			int servants = Integer.parseInt(nrOfServants); 
-			
-			if (area.equals("2")) {
-				realArea = MarketArea.instance();
-				realASpace = realArea.getASpaces().get(aSpace);
-				action = new GoToTheMarket(player, fMember, servants, realASpace);
-			}else 
-				throw new IOException();
-			
-			this.notifyObserversA(action);
-				
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
-		}
+		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
+		int aSpace = Integer.parseInt(actSpace); 
+		int servants = Integer.parseInt(nrOfServants); 
 		
+		realArea = MarketArea.instance();
+		realASpace = realArea.getASpaces().get(aSpace);
+		action = new GoToTheMarket(player, fMember, servants, realASpace);
+		
+		this.notifyObserversA(action);
+	
 	}
 	
 	
@@ -140,36 +120,24 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 		Player player = CouncilPalaceArea.getTurnOrder()[turn];
 		Action action;
 		
-		try {
-			FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-			int servants = Integer.parseInt(nrOfServants);
-			
-			if (area.equals("3")) {
-				action = new RunProduction(player, fMember, servants);
-			}
-			
-			if (area.equals("4")) {
-				action = new RunHarvest(player, fMember, servants);
-			}
-			
-			if (area.equals("5")) {
-				action = new GoToTheCouncilPalace(player, fMember, servants);
-			}else 
-				throw new IOException();
-			
-			this.notifyObserversA(action);
-			
-			
 		
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
+		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
+		int servants = Integer.parseInt(nrOfServants);
+		
+		if (area.equals("3")) {
+			action = new RunProduction(player, fMember, servants);
 		}
 		
-		
+		if (area.equals("4")) {
+			action = new RunHarvest(player, fMember, servants);
+		}else{
+			action = new GoToTheCouncilPalace(player, fMember, servants);
+			
+			this.notifyObserversA(action);
+		}
 	}
 	
-	public Resource input(String privilege) throws IOException {
+	public Resource input(String privilege) {
 		
 		Resource resource;
 		
@@ -181,26 +149,14 @@ public abstract class View extends Observable<Action,Resource> implements Observ
 			resource = new Coins(2);
 		if (privilege.equals("4"))
 			resource = new MilitaryPoints(2);
-		if (privilege.equals("5"))
+		else
 			resource = new FaithPoints(1);
-		else 
-			throw new IOException();
 		
 		return resource;
 			
 	}
 
-	public static int[] parseIntArray (String str){
-	    StringTokenizer strTok = new StringTokenizer(str);
-
-	    int size = strTok.countTokens ();
-	    int[] vint = new int[size];
-
-	    for (int i = 0; i < size; i++)
-	        vint[i] = Integer.parseInt (strTok.nextToken());
-
-	    return vint;
-	}
+	
 	/*
 	public static void main(String[] args) {
 		CouncilPrivilege cp=new CouncilPrivilege();

@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 public class TakeACard extends Action{
 
 	protected DevelopmentCard card;
-	protected List<Resource> discount;
+	
 	
 	protected static final int TOWERPENALITY = 3;
 	
@@ -31,14 +31,9 @@ public class TakeACard extends Action{
 		this.actionCost.addAll(cost);
 	}
 	
-	public void chooseDiscount() {
-		//TODO: mi serve il controller
-		if (!player.getDiscount().getDiscount(card).stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
-			this.discount = player.getDiscount().getDiscount(card);
-	}
+	
 	
 	public boolean isAffordable(){
-		chooseDiscount();
 		
 		List<Resource> myRes = player.getResources(); //player's resources
 		List<Resource> myDiscount = player.getDiscount().getDiscount(card);
@@ -74,17 +69,15 @@ public class TakeACard extends Action{
 		((Tower) area).deleteCard(card);
 		
 	}
-	
+	@Override
 	public void applyEffects() {
-		aSpace.applyEffects(player);
+		super.applyEffects();
 		
 		for(Effect eff : card.getEffects()){
 			if (!eff.getRequestedAuthorization())
 				eff.apply(player);
 		}
-		
-				
-		//TODO: fai chiedere al controller cosa attivare
+
 	}
 	
 
