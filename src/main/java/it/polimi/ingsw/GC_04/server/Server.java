@@ -1,18 +1,11 @@
 package it.polimi.ingsw.GC_04.server;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import it.polimi.ingsw.GC_04.controller.Controller;
-import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.view.RMIView;
 import it.polimi.ingsw.GC_04.view.RMIViewRemote;
 
@@ -53,6 +46,7 @@ public class Server {
 		*/
 		
 		// publish the view in the registry as a remote object
+		@SuppressWarnings("unused")
 		RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		
 		System.out.println("Binding the server implementation to the registry");

@@ -20,25 +20,21 @@ public class ClientManager {
 	private boolean timerStarted=false;
 	private Timer timer;
 	
+	
+	//this is the timer that starts the countdown (to start a match) when two players connect to the server 
 	TimerTask task = new TimerTask(){
     	public void run(){
         	System.out.println( "Time out: starting the game" );
-        	//avviare startGame()
-				
+        	//timerStarted=true;
+			startGame();	
         }    
     };
 	
 	public ClientManager() throws JsonMappingException, IOException {
 		this.clients=new HashSet<ClientViewRemote>();
-		JsonMapper.TimerFromJson();//inizialize the timer from json file
-		
-		
+		JsonMapper.TimerFromJson();//inizialize the timer from json file		
 	}
 
-	public Set<ClientViewRemote> getClients(){
-		return this.clients;
-	}
-	
 	public synchronized void addClient(ClientViewRemote clientStub){
 		this.clients.add(clientStub);
 		checkPlayers();
@@ -52,8 +48,8 @@ public class ClientManager {
 		if(clients.size()<2)
 			return;
 		if(clients.size()==4){
-			startGame();
 			timer.cancel();
+			startGame();			
 		}			
 		if(timerStarted)
 			return;
@@ -70,11 +66,11 @@ public class ClientManager {
 	
 	
 	
-	private void newGame(){
+	private synchronized void newGame(){
 		//TODO crea un nuovo gestore per le nuove connessioni
 	}
 
-	private void startGame(){
+	private synchronized void startGame(){
 		newGame();
 		System.out.println("Starting a new game:");
 		
