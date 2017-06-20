@@ -25,7 +25,7 @@ public class ViewCLI extends ViewClient{
 		Scanner in = new Scanner(System.in);
 		String diceColor;
 		String nrOfServants;
-		print("Scegli un'area tra"); 
+		print("Choose an area between:"); 
 		print("1)TOWER");
 		print("2)MARKET");
 		print("3)PRODUCTION");
@@ -36,7 +36,7 @@ public class ViewCLI extends ViewClient{
 			chooseAction();
 		}
 		if (area.equals("1")) {
-			print("Scegli la torre tra ");
+			print("Choose a tower between:");
 			print("1)TERRITORY");
 			print("2)CHARACTER");
 			print("3)BUILDING");
@@ -45,12 +45,12 @@ public class ViewCLI extends ViewClient{
 			if (!SupportFunctions.isInputValid(tower, 1, 4)) {
 				chooseAction();
 			}
-			print("Scegli la carta tra 1, 2, 3, 4");
+			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
 			String nrOfCard = in.nextLine();
 			if (!SupportFunctions.isInputValid(nrOfCard, 1, 4)) {
 				chooseAction();
 			}
-			print("Scegli il dado che vuoi usare tra ");
+			print("Choose the dice that you want to use between:");
 			print("1)BLACK");
 			print("2)ORANGE");
 			print("3)WHITE");
@@ -59,23 +59,22 @@ public class ViewCLI extends ViewClient{
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 			}
-			print("Quanti servants vuoi usare per questa mossa?");
+			print("How many servants do you want to use?");
 			nrOfServants = in.nextLine();
 			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
 				chooseAction();
 			}
-			print("Scegli, se previsto, quale costo vuoi pagare per questa carta tra 1, 2");
-			print("Se non è prevista una scelta premi 1");
+			print("Which cost do you want to pay?");
+			print("If there's only one cost available, type 1 and press Enter");
 			String cost = in.nextLine();
 			if (!SupportFunctions.isInputValid(cost, 1, 2)) {
 				chooseAction();
 			}
-			
 			input(tower, nrOfCard, diceColor, nrOfServants, cost);
 			
 		}
-		if (area.equals("2")) {
-			print("Scegli il dado che vuoi usare tra ");
+		else if (area.equals("2")) {
+			print("Choose the dice that you want to use between:");
 			print("1)BLACK");
 			print("2)ORANGE");
 			print("3)WHITE");
@@ -84,19 +83,19 @@ public class ViewCLI extends ViewClient{
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 			}
-			print("Scegli lo shop tra 1, 2, 3, 4"); //in realtà di pende dal numero di giocatori
+			print("Choose a shop between 1, 2, 3, 4"); //in realtà di pende dal numero di giocatori
 			String actSpace = in.nextLine();
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 			}
-			print("Quanti servants vuoi usare per questa mossa?");
+			print("How many servants do you want to use?");
 			nrOfServants = in.nextLine();
 			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
 				chooseAction();
 			}
 			input(area, diceColor, actSpace, nrOfServants);
 		}else {
-			print("Scegli il dado che vuoi usare tra ");
+			print("Choose the dice that you want to use between:");
 			print("1)BLACK");
 			print("2)ORANGE");
 			print("3)WHITE");
@@ -105,11 +104,12 @@ public class ViewCLI extends ViewClient{
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 			}
-			print("Quanti servants vuoi usare per questa mossa?");
+			print("How many servants do you want to use?");
 			nrOfServants = in.nextLine();
 			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
 				chooseAction();
 			}
+			
 			input(area, diceColor, nrOfServants);	
 		}
 	}
@@ -227,7 +227,7 @@ public class ViewCLI extends ViewClient{
 			}
 			
 		}
-		if (effect instanceof TakeACardEffect) {
+		else if (effect instanceof TakeACardEffect) {
 			if (((TakeACardEffect) effect).getCardType() == null) {
 				print("1)Take a card from Territory Tower");
 				print("2)Take a card from Character Tower");

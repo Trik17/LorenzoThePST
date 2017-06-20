@@ -8,14 +8,12 @@ import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
 import it.polimi.ingsw.GC_04.model.action.GoToTheMarket;
 import it.polimi.ingsw.GC_04.model.action.RunHarvest;
 import it.polimi.ingsw.GC_04.model.action.RunProduction;
-import it.polimi.ingsw.GC_04.model.action.TakeTerritory;
 import it.polimi.ingsw.GC_04.model.area.Area;
 import it.polimi.ingsw.GC_04.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.model.area.CharacterTower;
@@ -61,16 +59,19 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 		
 		if(tower.equals("1")) {
 			realTower = TerritoryTower.instance();
+			System.out.println(1);
 		}
-		if(tower.equals("2")) {
+		else if(tower.equals("2")) {
 			realTower = CharacterTower.instance();
-			
+			System.out.println(2);
 		}
-		if(tower.equals("3")) {
+		else if(tower.equals("3")) {
 			realTower = BuildingTower.instance();
+			System.out.println(3);
 		}
 		else {
 			realTower = VentureTower.instance();
+			System.out.println(4);
 			
 		realCard = realTower.getCards()[card];
 			
@@ -80,7 +81,7 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 			realCost = realCard.getCost2();
 		realASpace = realTower.getASpaces().get(card);
 		
-		action = new TakeTerritory(player,realCard,realASpace,fMember,servants,realCost);
+		action = realCard.takeCard(player, realASpace, fMember, servants, realCost);
 		this.notifyObserversA(action);
 		}
 		
@@ -118,7 +119,7 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 			action = new RunProduction(player, fMember, servants);
 		}
 		
-		if (area.equals("4")) {
+		else if (area.equals("4")) {
 			action = new RunHarvest(player, fMember, servants);
 		}else{
 			action = new GoToTheCouncilPalace(player, fMember, servants);
@@ -133,11 +134,11 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 		
 		if (privilege.equals("1"))
 			resource = new RawMaterial(1);
-		if (privilege.equals("2"))
+		else if (privilege.equals("2"))
 			resource = new Servants(2);
-		if (privilege.equals("3"))
+		else if (privilege.equals("3"))
 			resource = new Coins(2);
-		if (privilege.equals("4"))
+		else if (privilege.equals("4"))
 			resource = new MilitaryPoints(2);
 		else
 			resource = new FaithPoints(1);

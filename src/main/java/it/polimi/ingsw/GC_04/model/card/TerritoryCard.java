@@ -27,10 +27,10 @@ public class TerritoryCard extends DevelopmentCard {
 			// TODO Auto-generated constructor stub
 		}
 
-	@Override
-	public void takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost){
-		TakeTerritory check = new TakeTerritory(player, this, aSpace, fMember,servants, cost);
-		if (check.isApplicable()){check.apply();}
+//	@Override
+	public TakeTerritory takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost){
+		return new TakeTerritory(player, this, aSpace, fMember,servants, cost);
+//		if (check.isApplicable()){check.apply();}
 		
 	}
 

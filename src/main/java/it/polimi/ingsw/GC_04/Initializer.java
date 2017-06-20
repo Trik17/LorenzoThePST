@@ -22,7 +22,7 @@ import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
 
-public class Inizializer {
+public class Initializer {
 	private static int initialPosition = 0;
 	private static int finalPosition = 3;
 	
@@ -32,7 +32,7 @@ public class Inizializer {
 	private final VentureCard[] vCards;
 
 	
-	public Inizializer(Player[] players) throws JsonMappingException, IOException {
+	public Initializer(Player[] players) throws JsonMappingException, IOException {
 		JsonMapper jsonMapper=new JsonMapper();		
 		this.tCards = jsonMapper.getTerritoryCardArray();
 		this.cCards = jsonMapper.getCharacterCardArray();
@@ -59,5 +59,8 @@ public class Inizializer {
 		BuildingTower.instance().resetTower(Arrays.copyOfRange(bCards, initialPosition, finalPosition));
 		VentureTower.instance().resetTower(Arrays.copyOfRange(tCards, initialPosition, finalPosition));
 		CharacterTower.instance().resetTower(Arrays.copyOfRange(tCards, initialPosition, finalPosition));
+		
+		initialPosition += 4;
+		finalPosition += 4;
 	}
 }

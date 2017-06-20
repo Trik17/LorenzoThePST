@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.model.area.CharacterTower;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
@@ -51,7 +52,7 @@ public abstract class DevelopmentCard extends Card{
 	
 
 
-	public abstract void takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost);
+	public abstract TakeACard takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost);
 	
 	public List<Resource> getCost1(){
 		return cost1;

@@ -85,7 +85,7 @@ public class Main {
 		graphic=false;//poi mettere scelta
 		//fine da cancellare
 				
-		Inizializer inizializer = new Inizializer(players);
+		Initializer initializer = new Initializer(players);
 		Model model = new Model();
 		model.setPlayers(players);
 		ViewClient[] views =new ViewClient[num];
@@ -95,7 +95,7 @@ public class Main {
 			else
 				views[i] = new ViewCLI();
 		
-		Controller controller=new Controller(model);
+		Controller controller=new Controller(model,initializer);
 		controller.setViews(views);
 		controller.startGame();
 		

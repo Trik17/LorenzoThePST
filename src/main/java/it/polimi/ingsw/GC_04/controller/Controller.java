@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.sun.javafx.geom.Area;
 
+import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
@@ -27,10 +28,13 @@ import it.polimi.ingsw.GC_04.model.resource.*;
 public class Controller implements Observer<Action,Resource> {
 	private Model model;
 	private ViewClient[] views;
-	private static int turn = 0;
+	private Initializer initializer;
+	private int turn = 0;
+	private int phase = 1;
 
-	public Controller(Model model) {
-		this.model = model;		
+	public Controller(Model model, Initializer initializer) {
+		this.model = model;	
+		this.initializer = initializer;
 	}
 	
 	public void setViews(ViewClient[] views){
@@ -137,10 +141,11 @@ public class Controller implements Observer<Action,Resource> {
 			//TODO: fai attivare i privilegi
 			action.setDiscount(discount);
 			action.apply(); //continuare da qui
+			
 		}
 		else 
 			System.out.println("Non puoi fare questa mossa");
-		
+			views[turn].chooseAction();
 	}
 	
 	public List<Resource> setDiscount(Player player, DevelopmentCard card) {
@@ -178,36 +183,20 @@ public class Controller implements Observer<Action,Resource> {
 		}
 	}
 	
-	
+	public void updateTurn() {
+		if (model.getPeriod() == 4 && phase == 2)
+			//TODO: final score
+		if (turn == views.length -1) {
+			turn = 0;//TODO: GESTIONE SCOMUNICHE
+		}
+	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		
 	}
-	/*
-	private void setCouncilPrivilege(Action action){
-		List<Effect> effects=((TakeACard) action).getCard().getEffects();
-		List<Resource> privilege= new ArrayList<Resource>();
-		for(Effect eff: effects) {
-			if (eff.getClass().equals(CouncilPrivilege.class)){ //eff is a CouncilPriviege
-				Resource res=views.askCouncilPrivilege();
-				if (res.getClass().equals(RawMaterial.class)){
-					privilege.add(new Woods(1));
-					privilege.add(new Stones(1));
-				}else{
-					if(eff.getClass().equals(FaithPoints.class))
-						res.addQuantity(1);
-					else
-						res.addQuantity(2);
-					privilege.add(res);
-				}					
-				
-				((CouncilPrivilege) eff).setCouncilPrivilege(privilege);
-								
-			}
-		}
-	}*/
+	
 
 	@Override
 	public void updateResource(Resource resource) {

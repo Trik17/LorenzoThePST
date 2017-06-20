@@ -23,9 +23,9 @@ public class VentureCard extends DevelopmentCard {
 		}
 
 	@Override
-	public void takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
-		TakeACard check = new TakeACard(player, this, aSpace, fMember,servants, cost);
-		if (check.isApplicable()){check.apply();}
+	public TakeACard takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
+		return new TakeACard(player, this, aSpace, fMember,servants, cost);
+//		if (check.isApplicable()){check.apply();}
 		
 		
 	}

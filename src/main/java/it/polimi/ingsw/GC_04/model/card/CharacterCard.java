@@ -23,10 +23,10 @@ public class CharacterCard extends DevelopmentCard {
 		}
 
 	@Override
-	public void takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
-		TakeACard check = new TakeACard(player, this, aSpace, fMember,servants, cost);
+	public TakeACard takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
+		return new TakeACard(player, this, aSpace, fMember,servants, cost);
 		
-		if (check.isApplicable()){check.apply();}
+//		if (check.isApplicable()){check.apply();}
 		
 	}
 		
