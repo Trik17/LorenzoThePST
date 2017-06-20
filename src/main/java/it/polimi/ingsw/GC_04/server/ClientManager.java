@@ -41,9 +41,9 @@ public class ClientManager {
 		//username devono essere diversi
 	}
 	
-	public Set<ClientViewRemote> getClients(){ //così o li passo per copia?
-	    return this.clients; 
-	  } 
+	public Set<ClientViewRemote> getClients(){
+		return this.clients; 
+	} 
 	
 	private synchronized void checkPlayers() {
 		if(clients.size()<2)
@@ -68,7 +68,9 @@ public class ClientManager {
 
 	private synchronized void startGame(){
 		newGame();
-		System.out.println("Starting a new game:");		
+		System.out.println("Starting a new game:");	
+		int nPlayers =clients.size();
+		
 		//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
 	}
 	
