@@ -21,4 +21,8 @@ public class ProductionArea extends ColorReastrictedArea{
 	public List<ActionSpace> getASpace() {
 		return aSpaces;
 	}
+	public void reset() {
+		aSpaces = new ArrayList<ActionSpace>();
+		//TODO: dire a tricki come fare per gli effetti
+	}
 }

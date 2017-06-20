@@ -30,7 +30,7 @@ public class Controller implements Observer<Action,Resource> {
 	private ViewClient[] views;
 	private Initializer initializer;
 	private int turn = 0;
-	private int phase = 1;
+	private boolean lastPhase;
 
 	public Controller(Model model, Initializer initializer) {
 		this.model = model;	
@@ -44,6 +44,7 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void startGame(){
+		views[turn].printCards(initializer.cardsOnTheTable());
 		views[turn].chooseAction();
 	}
 
@@ -63,6 +64,7 @@ public class Controller implements Observer<Action,Resource> {
 			privilege = views[turn].setCouncilPrivilege();
 			setCouncilPrivilege(councilPrivileges,privilege,cont);
 			cont++;
+			
 		}
 		List<Effect> requestedAuthorizationEffects = SupportFunctions.cloneEffects(action.getRequestedAuthorizationEffects());
 		int[] furtherCheckNeeded = new int[requestedAuthorizationEffects.size()-1];
@@ -142,10 +144,13 @@ public class Controller implements Observer<Action,Resource> {
 			action.setDiscount(discount);
 			action.apply(); //continuare da qui
 			
-		}
-		else 
+		}else {
 			System.out.println("Non puoi fare questa mossa");
 			views[turn].chooseAction();
+		}
+		updateTurn();
+		views[turn].printCards(initializer.cardsOnTheTable());
+		views[turn].chooseAction();
 	}
 	
 	public List<Resource> setDiscount(Player player, DevelopmentCard card) {
@@ -184,11 +189,16 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void updateTurn() {
-		if (model.getPeriod() == 4 && phase == 2)
+		if (model.getPeriod() == 4 && lastPhase)
 			//TODO: final score
+			return;
 		if (turn == views.length -1) {
 			turn = 0;//TODO: GESTIONE SCOMUNICHE
+		}else {
+			turn++;
 		}
+		lastPhase =!lastPhase;
+		initializer.changeTurn();
 	}
 
 	@Override

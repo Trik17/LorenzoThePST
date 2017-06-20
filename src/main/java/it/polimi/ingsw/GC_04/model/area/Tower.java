@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model.area;
 
+import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 
 public abstract class Tower extends ColorReastrictedArea {
@@ -10,12 +11,14 @@ public abstract class Tower extends ColorReastrictedArea {
 		
 	}
 	
-	public void resetTower(DevelopmentCard[] cards) {
+	public void reset(DevelopmentCard[] cards) {
 		this.cards = cards;
-		aSpaces.forEach(aSpaces -> aSpaces.reset());
-		
-		
-	}
+
+		for (ActionSpace aSpace:aSpaces)
+			aSpace.reset();
+			
+		}
+
 	
 	public void deleteCard(DevelopmentCard devCard) {
 		DevelopmentCard[] tower = devCard.getTower().getCards();

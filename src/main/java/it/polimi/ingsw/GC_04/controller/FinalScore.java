@@ -24,6 +24,20 @@ public class FinalScore {
 	}
 	
 
+	/*public static Player[] calculateFinalScore(Player[] players) {
+		int[] scores = new int[players.length];
+		
+		for (int i = 0; i < scores.length; i++) {
+			scores[i] = calculateFinalScore(players[i]);
+		}
+		
+		int[] ranking = new int[players.length];
+		for (int i = 1; i < scores.length; i++) {
+			if (winner)
+		}
+		
+		
+	}*/
 	public static int calculateFinalScore(Player player) {
 		List<Resource> playerRes = player.getResources();
 		int finalScore = 0;

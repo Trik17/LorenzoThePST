@@ -63,6 +63,11 @@ public class CouncilPalaceArea extends Area{
 		
 	}
 	
+	public void reset() {
+		aSpaces = new ArrayList<ActionSpace>();
+		//TODO: dire a tricki come fare per gli effetti
+	}
+	
 	public List<ActionSpace> getASpaces() {
 		return aSpaces;
 	}

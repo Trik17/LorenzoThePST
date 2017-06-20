@@ -1,23 +1,15 @@
 package it.polimi.ingsw.GC_04;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.client.rmi.ViewGUI;
 import it.polimi.ingsw.GC_04.controller.Controller;
-import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyColor;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 
 
 

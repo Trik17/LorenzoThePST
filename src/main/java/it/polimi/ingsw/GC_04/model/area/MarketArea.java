@@ -20,4 +20,9 @@ public class MarketArea extends Area{
 		return instance;
 	}
 
+	public void reset() {
+		for (ActionSpace aSpace:aSpaces)
+			aSpace.reset();
+		
+	}
 }

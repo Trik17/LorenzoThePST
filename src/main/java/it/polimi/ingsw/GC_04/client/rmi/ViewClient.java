@@ -40,6 +40,7 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 	public abstract int[] setRequestedAuthorizationEffects(List<Effect> effects);
 	public abstract int[] setFurtherCheckNeededEffect(Effect effect);
 	public abstract Resource setDiscount(Resource rawMaterial);
+	public abstract void printCards(List<DevelopmentCard> cards);
 	
 	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost){
 		Action action;
@@ -59,19 +60,15 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 		
 		if(tower.equals("1")) {
 			realTower = TerritoryTower.instance();
-			System.out.println(1);
 		}
 		else if(tower.equals("2")) {
 			realTower = CharacterTower.instance();
-			System.out.println(2);
 		}
 		else if(tower.equals("3")) {
 			realTower = BuildingTower.instance();
-			System.out.println(3);
 		}
 		else {
 			realTower = VentureTower.instance();
-			System.out.println(4);
 			
 		realCard = realTower.getCards()[card];
 			
