@@ -35,18 +35,9 @@ public class ClientRMI {
 
 		this.rmiView=new ClientRMIView();
 
-		// register the client view in the server side (to receive messages from the server)
+		// register the client view in the server side to receive messages from the server (in ClientManager)
 		serverStub.registerClient(rmiView);
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
+			
 	}
 	
 }

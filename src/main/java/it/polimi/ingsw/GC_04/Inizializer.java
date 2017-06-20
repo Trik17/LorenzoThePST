@@ -51,10 +51,6 @@ public class Inizializer {
 		
 		initialPosition = 4;
 		finalPosition = 7;
-	
-		// TODO: far prendere gli array da file
-		
-		//Model model = new Model(Player);
 	}
 	
 	public void changeTurn() {

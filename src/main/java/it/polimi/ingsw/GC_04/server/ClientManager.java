@@ -25,8 +25,7 @@ public class ClientManager {
 	TimerTask task = new TimerTask(){
     	public void run(){
         	System.out.println( "Time out: starting the game" );
-        	//timerStarted=true;
-			startGame();	
+        	startGame();	
         }    
     };
 	
@@ -40,11 +39,13 @@ public class ClientManager {
 		checkPlayers();
 		//controlla giocatori
 		//username devono essere diversi
-		//vedi se devi iniziare timer o avviare la partita
 	}
 	
+	public Set<ClientViewRemote> getClients(){ //così o li passo per copia?
+	    return this.clients; 
+	  } 
+	
 	private synchronized void checkPlayers() {
-		//TODO inserisci pure il timer
 		if(clients.size()<2)
 			return;
 		if(clients.size()==4){
@@ -54,16 +55,11 @@ public class ClientManager {
 		if(timerStarted)
 			return;
 		else{
+			timerStarted=true;
 			timer=new Timer();
 			timer.schedule(task, TimerJson.getStartTimer());
-		}
-		
-		//start timer e metti a true la variabile timerstarted
-				
-		
-	}
-	
-	
+		}		
+	}	
 	
 	
 	private synchronized void newGame(){
@@ -72,9 +68,8 @@ public class ClientManager {
 
 	private synchronized void startGame(){
 		newGame();
-		System.out.println("Starting a new game:");
-		
-		
+		System.out.println("Starting a new game:");		
+		//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
 	}
 	
 	
