@@ -31,6 +31,7 @@ public class ClientRMI {
 		
 		//Scanner in = new Scanner(System.in);
 		
+		//ora si fa sempre serverStub.metodo che si trova su rmiviewremote
 		
 		
 
