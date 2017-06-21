@@ -19,7 +19,8 @@ public class TerritoryTower extends Tower{
 		
 	}
 	public static TerritoryTower instance(TerritoryCard[] cards, List<ActionSpace> aSpaces){
-		if (instance==null) instance = new TerritoryTower(cards, aSpaces);
+		if (instance==null) 
+			instance = new TerritoryTower(cards, aSpaces);
 		return instance;
 	}
 

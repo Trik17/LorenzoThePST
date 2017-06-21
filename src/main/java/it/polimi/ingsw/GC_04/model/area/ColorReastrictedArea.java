@@ -9,8 +9,9 @@ public abstract class ColorReastrictedArea extends Area {
 		if (color == FamilyColor.NEUTRAL) return true;
 		
 		for(ActionSpace aSpace:aSpaces) {
-				if(color == aSpace.getPresentColor())
-					return false;}
+			if(color == aSpace.getPresentColor())
+				return false;
+		}
 		
 		return true;
 	}

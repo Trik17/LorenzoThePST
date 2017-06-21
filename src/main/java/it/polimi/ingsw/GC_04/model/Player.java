@@ -39,13 +39,13 @@ public class Player {
 	}
 	
 	
-	public Player(String name, FamilyColor color, int turn, int id){
+	public Player(String name, int turn, int id){
 		// 1<=turn<=4 only for initial coins
 		// 0<=id<=4
 		this.name = name;
 		this.id=id;
 		
-		resources = new ArrayList<Resource>();
+		resources = new ArrayList<>();
 		
 		resources.add(new Woods(2));
 		resources.add(new Stones(2));
@@ -55,10 +55,10 @@ public class Player {
 		resources.add(new FaithPoints(0));
 		resources.add(new Coins(turn+4));
 		
-		family = FamilyMember.createFamily(color);
+//		family = FamilyMember.createFamily(color);
 		this.extraDice = new ExtraDice();
-		harvestList = new ArrayList<Harvest>();
-		productionList = new ArrayList<Production>();
+		harvestList = new ArrayList<>();
+		productionList = new ArrayList<>();
 		
 	}
 	
@@ -77,11 +77,11 @@ public class Player {
 	}
 	
 	public FamilyMember getFamilyMember(DiceColor diceColor) {
-		if (diceColor == DiceColor.BLACK)
+		if (diceColor.equals(DiceColor.BLACK))
 			return family[1];
-		if (diceColor == DiceColor.WHITE) 
+		else if (diceColor.equals(DiceColor.WHITE))
 			return family[2];
-		if (diceColor == DiceColor.ORANGE)
+		else if (diceColor.equals(DiceColor.ORANGE))
 			return family[3];
 		else
 			return family[0];
@@ -95,10 +95,10 @@ public class Player {
 	
 	public List<DevelopmentCard> getCards(DevelopmentCard dC){
 		if (dC instanceof TerritoryCard) return tCards;
-		if (dC instanceof BuildingCard) return bCards;
-		if (dC instanceof VentureCard) return vCards;
-		if (dC instanceof CharacterCard) return cCards;
-		else return null;
+		else if (dC instanceof BuildingCard) return bCards;
+		else if (dC instanceof VentureCard) return vCards;
+		else if (dC instanceof CharacterCard) return cCards;
+		else return new ArrayList<>();
 	}
 	
 	
@@ -110,36 +110,8 @@ public class Player {
 		return name;
 		
 	}
-	
-	
-	/*public void takeACard(DevelopmentCard card,ActionSpace aSpace, FamilyMember fMember, int servants,List<Resource> cost){
-		card.takeCard(this,aSpace,fMember,servants,cost);
+	public void setFamily(FamilyMember[] fMembers) {
+		this.family = fMembers;
 	}
-	public void runProduction(FamilyMember fMember, int servants){
-		RunProduction check = new RunProduction(this, fMember, servants);
-		if (check.isApplicable()) check.apply();
-		
-	}
-	public void runHarvest(FamilyMember fMember, int servants){
-		RunHarvest check = new RunHarvest(this, fMember, servants);
-		if (check.isApplicable()) check.apply();
-	}
-	
-	public void goToTheMarket(FamilyMember fMember, int servants,ActionSpace aSpace){
-		GoToTheMarket check = new GoToTheMarket(this, fMember, servants, aSpace);
-		if (check.isApplicable()) check.apply();
-	}
-	
-	public void goToTheCouncilPalace(FamilyMember fMember, int servants){
-		GoToTheCouncilPalace check = new GoToTheCouncilPalace(this, fMember, servants);
-		if (check.isApplicable()) check.apply();
-	}
-	
-	public void getExcommunication(){}
-	
-	*/
-	
-	
-	
 	
 }

@@ -19,8 +19,9 @@ public class GoToTheCouncilPalace extends Action{
 
 	@Override
 	public void apply() {
+		CouncilPalaceArea.instance().getASpaces().add(CouncilPalaceArea.instance().getActionSpaceDefault());
 		applyPlayerChanges();
-		
+		//TODO
 		
 	}
 

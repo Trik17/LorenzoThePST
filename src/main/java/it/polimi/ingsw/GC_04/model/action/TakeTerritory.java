@@ -38,7 +38,8 @@ public class TakeTerritory extends TakeACard{
 			default: requestedMP = 18;
 		}
 		
-		if (requestedMP > accumulatedMP) return false;
+		if (requestedMP > accumulatedMP) 
+			return false;
 		
 		return true;
 	}

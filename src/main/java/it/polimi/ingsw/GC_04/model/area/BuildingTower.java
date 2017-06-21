@@ -18,7 +18,8 @@ public class BuildingTower extends Tower{
 		
 	}
 	public static BuildingTower instance(BuildingCard[] cards, List<ActionSpace> aSpaces){
-		if (instance==null) instance = new BuildingTower(cards, aSpaces);
+		if (instance==null) 
+			instance = new BuildingTower(cards, aSpaces);
 		return instance;
 	}
 	

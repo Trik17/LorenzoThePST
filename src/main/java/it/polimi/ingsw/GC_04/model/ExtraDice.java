@@ -17,10 +17,14 @@ public class ExtraDice {
 	
 	
 	public int getCardExtra(DevelopmentCard cardType) {
-		if (cardType instanceof TerritoryCard) return extraTerritory;
-		if (cardType instanceof BuildingCard) return extraBuilding;
-		if (cardType instanceof VentureCard) return extraVenture;
-		else return extraCharacter;
+		if (cardType instanceof TerritoryCard) 
+			return extraTerritory;
+		else if (cardType instanceof BuildingCard) 
+			return extraBuilding;
+		else if (cardType instanceof VentureCard) 
+			return extraVenture;
+		else 
+			return extraCharacter;
 
 	} 
 	
@@ -42,10 +46,14 @@ public class ExtraDice {
 	
 	
 	public void setCardExtra(DevelopmentCard cardType, int extra) {
-		if (cardType instanceof TerritoryCard) extraTerritory += extra;
-		if (cardType instanceof BuildingCard) extraBuilding += extra;
-		if (cardType instanceof VentureCard) extraVenture += extra;
-		if (cardType instanceof CharacterCard) extraCharacter += extra;
+		if (cardType instanceof TerritoryCard) 
+			extraTerritory += extra;
+		if (cardType instanceof BuildingCard) 
+			extraBuilding += extra;
+		if (cardType instanceof VentureCard) 
+			extraVenture += extra;
+		if (cardType instanceof CharacterCard) 
+			extraCharacter += extra;
 		
 	}
 }

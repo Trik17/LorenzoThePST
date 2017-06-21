@@ -24,10 +24,10 @@ public class TestPlayer {
 	
 	@Before
 	public void inizializer(){
-		p1=new Player("AndreaTest", FamilyColor.YELLOW,1,0);
-		p2=new Player("MiriamTest", FamilyColor.GREEN,2,1);
-		p3=new Player("LuigiTest", FamilyColor.RED,3,2);
-		p4=new Player("MartinTest", FamilyColor.BLUE,4,3);
+		p1=new Player("AndreaTest", 1,0);
+		p2=new Player("MiriamTest", 2,1);
+		p3=new Player("LuigiTest", 3,2);
+		p4=new Player("MartinTest", 4,3);
 		players=new ArrayList<Player>();
 		players.add(p1);
 		players.add(p2);

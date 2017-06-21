@@ -4,13 +4,21 @@ import static org.junit.Assert.*;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.JsonMapper;
+import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.model.card.VentureCard;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -23,6 +31,10 @@ import it.polimi.ingsw.GC_04.timer.TimerJson;
 public class TestJson {
 	protected JsonMapper jsonMapper;
 	protected ObjectMapper mapper;
+	private  TerritoryCard[] tCards;
+	private  CharacterCard[] cCards;
+	private  BuildingCard[] bCards;
+	private  VentureCard[] vCards;
 	
 	@Before
 	public void Initialize() throws JsonMappingException, IOException{
@@ -35,12 +47,16 @@ public class TestJson {
 	@Test
 	public void testGetJson() throws JsonMappingException, IOException {
 		//actionSpaces
-		jsonMapper.getActionSpaces();
+		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		//cards
-		jsonMapper.getTerritoryCardArray();
-		jsonMapper.getBuildingCardArray();
-		jsonMapper.getVentureCardsArray();
-		jsonMapper.getCharacterCardArray();
+		this.tCards = jsonMapper.getTerritoryCardArray();
+		this.cCards = jsonMapper.getCharacterCardArray();
+		this.bCards = jsonMapper.getBuildingCardArray();
+		this.vCards = jsonMapper.getVentureCardsArray();		
+		assertEquals(TerritoryCard[].class, tCards.getClass());
+		assertEquals(CharacterCard[].class, cCards.getClass());
+		assertEquals(BuildingCard[].class, bCards.getClass());
+		assertEquals(VentureCard[].class, vCards.getClass());
 		
 		try{		
 	    	

@@ -30,11 +30,11 @@ public class Discount {
 	public List<Resource> getDiscount(DevelopmentCard cardType){
 		if (cardType instanceof TerritoryCard)
 			return territoryDiscount;
-		if (cardType instanceof BuildingCard)
+		else if (cardType instanceof BuildingCard)
 			return buildingDiscount;
-		if (cardType instanceof VentureCard)
+		else if (cardType instanceof VentureCard)
 			return ventureDiscount;
-		if (cardType instanceof CharacterCard)
+		else if (cardType instanceof CharacterCard)
 			return characterDiscount;
 		return null;
 	}
@@ -42,11 +42,11 @@ public class Discount {
 	public void setDiscount(DevelopmentCard cardType, List<Resource> discount){
 		if (cardType instanceof TerritoryCard)
 			Resource.addResource(territoryDiscount, discount);
-		if (cardType instanceof BuildingCard)
+		else if (cardType instanceof BuildingCard)
 			Resource.addResource(buildingDiscount, discount);
-		if (cardType instanceof VentureCard)
+		else if (cardType instanceof VentureCard)
 			Resource.addResource(ventureDiscount, discount);
-		if (cardType instanceof CharacterCard)
+		else if (cardType instanceof CharacterCard)
 			Resource.addResource(characterDiscount, discount);
 		return;
 	}

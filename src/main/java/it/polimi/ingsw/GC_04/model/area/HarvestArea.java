@@ -8,12 +8,16 @@ public class HarvestArea extends ColorReastrictedArea {
 	private static HarvestArea instance;
 	
 	private HarvestArea() {
-		this.aSpaces = new ArrayList<ActionSpace>();
+		this.aSpaces = new ArrayList<>();
 	}
 	
 	public static HarvestArea instance(){
-		if (instance==null) instance = new HarvestArea();
+		if (instance==null) 
+			instance = new HarvestArea();
 		return instance;
 	}
-	
+	public void reset() {
+		aSpaces = new ArrayList<>();
+		//TODO: dire a tricki come fare per gli effetti
+	}
 }

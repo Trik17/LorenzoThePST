@@ -24,6 +24,20 @@ public class FinalScore {
 	}
 	
 
+	/*public static Player[] calculateFinalScore(Player[] players) {
+		int[] scores = new int[players.length];
+		
+		for (int i = 0; i < scores.length; i++) {
+			scores[i] = calculateFinalScore(players[i]);
+		}
+		
+		int[] ranking = new int[players.length];
+		for (int i = 1; i < scores.length; i++) {
+			if (winner)
+		}
+		
+		
+	}*/
 	public static int calculateFinalScore(Player player) {
 		List<Resource> playerRes = player.getResources();
 		int finalScore = 0;
@@ -99,9 +113,9 @@ public class FinalScore {
 		for (int cont=1; cont<=faithPoints; cont++) {
 			if (cont < 6)
 				faithPointsScore++;
-			if (cont >= 6 && cont < 13)
+			else if (cont >= 6 && cont < 13)
 				faithPointsScore += 2;
-			if (cont >= 13 && cont < 15)
+			else if (cont >= 13 && cont < 15)
 				faithPointsScore += 3;
 			else
 				faithPointsScore += 5;

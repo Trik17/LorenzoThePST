@@ -24,8 +24,8 @@ public class Dice {
 	public Dice(@JsonProperty("value") int value) {//it is needed to initialize TakeACardEffect
 		if (value < NEUTRALDICEVALUE)
 			this.value = NEUTRALDICEVALUE;
-			else
-				this.value = value;
+		else
+			this.value = value;
 	}
 	
 	public static void createDices() {
@@ -53,9 +53,9 @@ public class Dice {
 	public static Dice getDice(DiceColor color) {
 		if (color == DiceColor.BLACK)
 			return blackDice;
-		if (color == DiceColor.ORANGE)
+		else if (color == DiceColor.ORANGE)
 			return orangeDice;
-		if (color == DiceColor.WHITE)
+		else if (color == DiceColor.WHITE)
 			return whiteDice;
 		else
 			return neutralDice;

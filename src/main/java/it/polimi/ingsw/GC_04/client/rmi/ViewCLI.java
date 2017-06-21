@@ -10,6 +10,9 @@ import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
+import it.polimi.ingsw.GC_04.model.action.TakeACard;
+import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
@@ -134,6 +137,8 @@ public class ViewCLI extends ViewClient{
 	}
 	
 	public int[] setRequestedAuthorizationEffects(List<Effect> effects) {
+		if (effects.isEmpty())
+			return new int[0];
 		Scanner in = new Scanner(System.in);
 		String input = new String();
 		String output = new String();
@@ -326,7 +331,54 @@ public class ViewCLI extends ViewClient{
 		
 	}
 		
-		
+	@Override
+	public void printCards(List<DevelopmentCard> cards) {
+
+		int cont = 1;
+		print("Territory Cards");
+		for(int i = 0; i < 4; i++) {
+			try {
+				print(cont+")"+cards.get(i).getName());
+				cont++;
+			} catch (NullPointerException e) {
+				print(cont+")TAKEN");
+				cont++;
+			}
+		}
+		cont = 1;
+		print("Character Cards");
+		for(int i = 4; i < 8; i++) {
+			try {
+				print(cont+")"+cards.get(i).getName());
+				cont++;
+			} catch (NullPointerException e) {
+				print(cont+")TAKEN");
+				cont++;
+			}
+		}
+		cont = 1;
+		print("Building Cards");
+		for(int i = 8; i < 12; i++) {
+			try {
+				print(cont+")"+cards.get(i).getName());
+				cont++;
+			} catch (NullPointerException e) {
+				print(cont+")TAKEN");
+				cont++;
+			}
+		}
+		cont = 1;
+		print("Venture Cards");
+		for(int i = 12; i < 16; i++) {
+			try {
+				print(cont+")"+cards.get(i).getName());
+				cont++;
+			} catch (NullPointerException e) {
+				print(cont+")TAKEN");
+				cont++;
+			}
+		}
+	}	
 	
 
 	@Override
@@ -346,4 +398,6 @@ public class ViewCLI extends ViewClient{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 }

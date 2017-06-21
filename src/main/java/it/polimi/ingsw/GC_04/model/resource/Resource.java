@@ -77,7 +77,7 @@ public abstract class Resource {
 				//it scrolls through all types of player's resources and if the type coincides
 				//it checks that the player's quantity of that resource is enough to buy the card. if it's not, set affordable = false.
 				if(c.getClass().equals(mR.getClass()) && mR.getQuantity() < c.getQuantity()) 
-						return false;
+					return false;
 				}
 			}
 		return true;
