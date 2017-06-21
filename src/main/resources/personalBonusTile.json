@@ -1,23 +1,119 @@
 [
 {
 	"prouction":{
-	},
+		"diceValue":1,
+ 	 	"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "Servants",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "Coins",
+	    		"quantity" : 2
+	  	}]}  	  
+  	]},
 	"harvest":{
-	}
+		"diceValue":1,
+  		"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "Woods",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "Stones",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "MilitaryPoints",
+	    		"quantity" : 1,
+	    		"malus" : 0
+	  	}]}  	  
+  	]}
 },{
 	"prouction":{
-	},
+		"diceValue":1,
+  		"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "Servants",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "MilitaryPoints",
+	    		"quantity" : 2,
+	    		"malus" : 0
+	  	}]}  	  
+  	]},
 	"harvest":{
-	}
+		"diceValue":1,
+  		"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "Woods",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "Stones",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "Coins",
+	    		"quantity" : 1
+	  	}]}  	  
+  	]}
 },{
 	"prouction":{
-	},
+		"diceValue":1,
+  		"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "Servants",
+	    		"quantity" : 2
+	  		},{
+	    		"type" : "Coins",
+	    		"quantity" : 1
+	  	}]}  	  
+  	]},
 	"harvest":{
-	}
+		"diceValue":1,
+  		"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "Woods",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "Stones",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "MilitaryPints",
+	    	"quantity" : 1,
+	    	"malus" : 0
+	  	}]}  	  
+  		]}
 },{
 	"prouction":{
-	},
+		"diceValue":1,
+  		"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "MilitaryPoints",
+	    		"quantity" : 2,
+	    		"malus" : 0
+	  		},{
+	    		"type" : "Coins",
+	    		"quantity" : 1
+	   	}]}  	  
+  	]},
 	"harvest":{
-	}
+		"diceValue":1,
+  		"effects":[{
+  			"type":"SimpleResourceEffect",
+  			"effect":[ {
+	    		"type" : "Woods",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "Stones",
+	    		"quantity" : 1
+	  		},{
+	    		"type" : "Servants",
+	    		"quantity" : 1
+	  	}]}  	  
+  	]}
 }
 ]
