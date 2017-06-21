@@ -57,7 +57,8 @@
 		"type": "SimpleResourceEffect",
 		"effect":[{
 			"type": "MilitaryPoints",
-			"quantity": 2
+			"quantity": 2,
+			"malus" : 0
 		}]}]
 	},{
 	"activationCost": 1
@@ -114,5 +115,15 @@
 		
 		},{
 			"type" : "CouncilPrivilege"
-		}]}
+		}]
+		},{
+	"activationCost": 1,
+	"effect":[{
+		"type": "SimpleResourceEffect",
+		"effect":[{
+			"type": "Coins",
+			"quantity": 1
+		},{
+			"type" : "CouncilPrivilege"
+		}]}]}
 ]
