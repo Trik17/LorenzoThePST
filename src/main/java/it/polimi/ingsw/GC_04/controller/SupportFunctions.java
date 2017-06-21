@@ -39,11 +39,11 @@ public class SupportFunctions {
 	public static boolean isInputValid(String input, int min, int max) {
 		try{
 			if (Integer.parseInt(input) > max || Integer.parseInt(input) < min) {
-				ViewCLI.print("Your input is not valid");
+				System.out.println("Your input is not valid");
 				return false;
 			}
 		}catch(NumberFormatException e) {
-			ViewCLI.print("Your input is not valid");
+			System.out.println("Your input is not valid");
 			return false;
 		}
 		

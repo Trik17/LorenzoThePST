@@ -42,7 +42,6 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void startGame(){
-		views[turn].printCards(initializer.cardsOnTheTable());
 		views[turn].chooseAction();
 	}
 
@@ -169,7 +168,6 @@ public class Controller implements Observer<Action,Resource> {
 			views[turn].chooseAction();
 		}
 		updateTurn();
-		views[turn].printCards(initializer.cardsOnTheTable());
 		views[turn].chooseAction();
 		
 	}

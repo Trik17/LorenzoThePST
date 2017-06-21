@@ -9,24 +9,31 @@ public class StateOfTheGameCLI {
 	public StateOfTheGameCLI() {
 	}
 	
-	public void print(String string) {
+	public static void print(String string) {
 		System.out.println(string);
 	}
 	
-	public void printCards(List<DevelopmentCard> cards) {
+	public static String nameCard(DevelopmentCard card, int cont) {
+		try {
+			String name = cont+")"+card.getName();
+			return name;
+		}catch (NullPointerException e) {
+			String name = cont+")TAKEN";
+			return name;
+		}
+		
+	}
+	
+	public static void printCards(DevelopmentCard[] tCards,DevelopmentCard[] cCards,DevelopmentCard[] bCards,DevelopmentCard[] vCards) {
 		int cont = 1;
 		print("");
-		print("Territory Cards");
+		print("Territory Cards		Character Cards		Building Cards		Venture Cards");
 		for(int i = 0; i < 4; i++) {
-			try {
-				print(cont+")"+cards.get(i).getName());
-				cont++;
-			} catch (NullPointerException e) {
-				print(cont+")TAKEN");
-				cont++;
-			}
+			print(nameCard(tCards[i],cont)+"		"+nameCard(cCards[i],cont)+"		"+cont+")"+nameCard(bCards[i],cont)+"		"+nameCard(vCards[i],cont));
+			cont++;
 		}
-		cont = 1;
+	}
+		/*cont = 1;
 		print("");
 		print("Character Cards");
 		for(int i = 4; i < 8; i++) {
@@ -62,6 +69,6 @@ public class StateOfTheGameCLI {
 				cont++;
 			}
 		}
-	}	
+	}	*/
 
 }

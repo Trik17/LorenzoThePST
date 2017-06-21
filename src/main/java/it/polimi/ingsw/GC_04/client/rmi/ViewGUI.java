@@ -58,10 +58,4 @@ public class ViewGUI extends ViewClient {
 		
 	}
 
-	@Override
-	public void printCards(List<DevelopmentCard> cards) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

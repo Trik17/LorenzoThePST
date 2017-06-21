@@ -10,6 +10,10 @@ import it.polimi.ingsw.GC_04.controller.Controller;
 
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.model.area.BuildingTower;
+import it.polimi.ingsw.GC_04.model.area.CharacterTower;
+import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
+import it.polimi.ingsw.GC_04.model.area.VentureTower;
 
 
 
@@ -78,6 +82,7 @@ public class Main {
 		//fine da cancellare
 				
 		Initializer initializer = new Initializer(players);
+		StateOfTheGameCLI.printCards(TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards());
 		Model model = new Model();
 		model.setPlayers(players);
 		ViewClient[] views =new ViewClient[num];

@@ -41,13 +41,15 @@ public abstract class Action {
 	public abstract void apply();
 	
 	public void checkExtraordinaryEffect() {
-		List<Effect> effects = aSpace.getEffect();
-		if (effects != null) {
-			for(Effect eff: effects) {
-				if (eff.getClass().equals(CouncilPrivilege.class))
-					councilPrivileges.add((CouncilPrivilege) eff);	
-				if (eff.getRequestedAuthorization())
-					requestedAuthorizationEffects.add(eff);
+		if (!player.getActionSpacePenality()) {
+			List<Effect> effects = aSpace.getEffect();
+			if (effects != null) {
+				for(Effect eff: effects) {
+					if (eff.getClass().equals(CouncilPrivilege.class))
+						councilPrivileges.add((CouncilPrivilege) eff);	
+					if (eff.getRequestedAuthorization())
+						requestedAuthorizationEffects.add(eff);
+				}
 			}
 		}
 	}
@@ -91,7 +93,8 @@ public abstract class Action {
 		
 	}
 	public void applyEffects() {
-		aSpace.applyEffects(player);
+		if(!player.getActionSpacePenality())
+			aSpace.applyEffects(player);
 		councilPrivileges.forEach(cp -> cp.apply(player));
 		requestedAuthorizationEffects.forEach(rae -> rae.apply(player));
 	}
