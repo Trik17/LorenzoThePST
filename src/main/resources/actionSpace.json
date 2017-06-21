@@ -116,5 +116,15 @@
 		},{
 			"type" : "CouncilPrivilege"
 		}]
-		}
-]
+		},{
+		"activationCost": 1,
+		"effect":[{
+			"type": "CouncilPrivilege"
+		},{
+			"type": "SimpleResourceEffect",
+			"effect":[{
+				"type": "Coins",
+				"quantity": 2
+					}]
+			}]
+}]
