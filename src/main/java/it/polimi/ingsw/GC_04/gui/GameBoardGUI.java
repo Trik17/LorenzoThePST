@@ -60,6 +60,7 @@ import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Servants;
 import javafx.scene.control.Tab;
 
+/*
 
 public class GameBoardGUI extends JFrame implements ActionListener {
 	private ImageIcon gameboard;
@@ -67,12 +68,10 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	private ImageIcon Card1;
 	private ImageIcon Card5;
 	private ImageIcon[] charachterCards;
-	private ImageIcon[] territoryCards;
 	private ImageIcon[] buldingCards;
 	private ImageIcon[] ventureCards;
 	private JLabel label1;
 	private JLabel label2;
-	private  JButton bT0; 
 	private  JButton bT1; 
 	private  JButton bT2; 
 	private  JButton bT3; 
@@ -88,13 +87,12 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	private  JButton bT13; 
 	private  JButton bT14; 
 	private  JButton bT15; 
-	 
-	private JButton[] territoryBttons = {bT0,bT1,bT2,bT3}; 
-	private JButton[] characterBttons = {bT4,bT5,bT6,bT7}; 
-	private JButton[] buildingBttons = {bT8,bT9,bT10,bT11}; 
-	private JButton[] ventureBttons = {bT12,bT13,bT14,bT15}; 
+	private  JButton bT16; 
+	private JButton[] territoryBttons = {bT1,bT2,bT3,bT4}; 
+	private JButton[] characterBttons = {bT5,bT6,bT7,bT8}; 
+	private JButton[] buildingBttons = {bT9,bT10,bT11,bT12}; 
+	private JButton[] ventureBttons = {bT13,bT14,bT15,bT16}; 
 	
-	private JButton bT16;
 	private JButton bT17;
 	private JButton bT18;
 	private JButton bT19;
@@ -103,6 +101,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	private JButton bT22;
 	private JButton bT23;
 	private JButton bT24;
+	private JButton bT25;
 	private JButton pBoard2;
 	private JButton pBoard3;
 	private JButton pBoard4;
@@ -144,7 +143,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		
 		}
 		
-		*/
+		
 		gameboard = new ImageIcon(getClass().getResource("/immagini/gameboardRid.png"));	
 		Image img = gameboard.getImage();
 		Image newimg = img.getScaledInstance(500, 700, Image.SCALE_DEFAULT);
@@ -176,53 +175,45 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		Image newimg1 = img.getScaledInstance(300, 400, Image.SCALE_DEFAULT);
 		punchboard = new ImageIcon(newimg1);
 		
-		//Random random = new Random();
-		//int casuale = random.nextInt(territoryCards.length);
+		Random random = new Random();
+		int casuale = random.nextInt(territoryCards.length);
 		//Card1 = new ImageIcon(getClass().getResource("/TerritoryCard/devcards_f_en_c_6 ridimensionata.png"));
 		//bT1 = new JButton(Card1); //usato per far diventare un'immagine un bottone
 		//Card5 = new ImageIcon(getClass().getResource("/TerritoryCard/devcards_f_en_c_4 modificata.png"));
 		//bT5 = new JButton(Card5);
-		//bT1.setIcon(territoryCards[casuale]);
-		//bT5.setIcon(territoryCards[casuale]);
-		//bT9.setIcon(territoryCards[casuale]);
-		//bT13.setIcon(territoryCards[casuale]);
-		
-		
-		
-		bT0 = new JButton("0");
-		bT1 = new JButton("1");
-		bT2 = new JButton("2");
-			
-		bT3 = new JButton("3");
-		bT4 = new JButton("4");
-		bT5 = new JButton("5");
-		bT6 = new JButton("6");
-		bT7 = new JButton("7");
-		bT8 = new JButton("8");
-		bT9 = new JButton("9");		
-		
+		bT1 = new JButton();
+		bT1.setIcon(territoryCards[casuale]);
+		bT5 = new JButton();		
+		bT5.setIcon(territoryCards[casuale]);
+		bT9 = new JButton();		
+		bT9.setIcon(territoryCards[casuale]);
+		bT13 = new JButton();		
+		bT13.setIcon(territoryCards[casuale]);
+		bT2 = new JButton("View");
+		bT3 = new JButton("View");
+		bT4 = new JButton("View");
+		bT6 = new JButton("View");
+		bT7 = new JButton("View");
+		bT8 = new JButton("View");
 		//bT9 = new JButton("View");
-		bT10 = new JButton("10");
-		bT11 = new JButton("11");
-		bT12 = new JButton("12");
-		bT13 = new JButton("13");		
-
+		bT10 = new JButton("View");
+		bT11 = new JButton("View");
+		bT12 = new JButton("View");
 		//bT13 = new JButton("View");
-		bT14 = new JButton("14");
-		bT15 = new JButton("15");
-		//bT16 = new JButton("View");
-		bT16 = new JButton("Council Palace");
-		bT17 = new JButton("Run");
+		bT14 = new JButton("View");
+		bT15 = new JButton("View");
+		bT16 = new JButton("View");
+		bT17 = new JButton("Council Palace");
 		bT18 = new JButton("Run");
 		bT19 = new JButton("Run");
-		bT20 = new JButton("Servants");
-		bT21 = new JButton("Coins");
-		bT22 = new JButton("Woods");
-		bT23 = new JButton("Stones");
-		bT24 = new JButton("VictoryPoints");
+		bT20 = new JButton("Run");
+		bT21 = new JButton("Servants");
+		bT22 = new JButton("Coins");
+		bT23 = new JButton("Woods");
+		bT24 = new JButton("Stones");
+		bT25 = new JButton("VictoryPoints");
 		
 		
-		bT0.setContentAreaFilled(false); //usato per annerire la scritta del bottone
 		bT1.setContentAreaFilled(false); //usato per annerire la scritta del bottone
 		bT2.setContentAreaFilled(false);
 		bT3.setContentAreaFilled(false);
@@ -238,54 +229,53 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		bT13.setContentAreaFilled(false);
 		bT14.setContentAreaFilled(false);
 		bT15.setContentAreaFilled(false);
-		//bT16.setContentAreaFilled(false);
 		bT16.setContentAreaFilled(false);
-		bT17.setContentAreaFilled(true);
+		bT17.setContentAreaFilled(false);
 		bT18.setContentAreaFilled(true);
 		bT19.setContentAreaFilled(true);
-		bT20.setContentAreaFilled(false);
+		bT20.setContentAreaFilled(true);
 		bT21.setContentAreaFilled(false);
 		bT22.setContentAreaFilled(false);
 		bT23.setContentAreaFilled(false);
 		bT24.setContentAreaFilled(false);
+		bT25.setContentAreaFilled(false);
 		pBoard2.setContentAreaFilled(true);
 		pBoard3.setContentAreaFilled(true);
 		pBoard4.setContentAreaFilled(true);
 		
 		
 		//bT1.setBounds(35, 50,80 ,90 );
-		bT3.setBounds(60, 70,30 ,30 );
-		bT7.setBounds(150, 70, 30, 30);
-		bT11.setBounds(240, 70, 30, 30);
-		bT15.setBounds(330, 70, 30, 30);
+		bT1.setBounds(60, 70,30 ,30 );
+		bT2.setBounds(150, 70, 30, 30);
+		bT3.setBounds(240, 70, 30, 30);
+		bT4.setBounds(330, 70, 30, 30);
 		//bT5.setBounds(35, 130, 80, 90);
-		bT2.setBounds(60, 150, 30, 30);
+		bT5.setBounds(60, 150, 30, 30);
 		bT6.setBounds(150, 150, 30, 30);
-		bT10.setBounds(240, 150, 30, 30);
-		bT14.setBounds(330, 150, 30, 30);   //(100, 150, 300, 500) queste dimensioni mi servivano solo per ingrandire l'immagine(poi li dovrò cancellare)
-		bT1.setBounds(60, 230, 30, 30);
-		bT5.setBounds(150, 230, 30, 30);
-		bT9.setBounds(240, 230, 30, 30);
-		bT13.setBounds(330, 230, 30, 30);
-		bT0.setBounds(60, 310, 30, 30);
-		bT4.setBounds(150, 310, 30, 30);
-		bT8.setBounds(240, 310, 30, 30);
-		bT12.setBounds(330, 310, 30, 30);
-		bT16.setBounds(240,400,120,30);
-		bT17.setBounds(155, 560, 25, 20);
-		bT18.setBounds(50, 530, 25, 20);
-		bT19.setBounds(155, 615, 25, 20);
-		bT20.setBounds(240, 330, 75, 20);
-		bT21.setBounds(25, 330, 35, 20);
-		bT22.setBounds(105, 330, 45, 20);
-		bT23.setBounds(175, 330, 45, 20);
-		bT24.setBounds(50, 5, 85, 20);
+		bT7.setBounds(240, 150, 30, 30);
+		bT8.setBounds(330, 150, 30, 30);   //(100, 150, 300, 500) queste dimensioni mi servivano solo per ingrandire l'immagine(poi li dovrò cancellare)
+		bT9.setBounds(60, 230, 30, 30);
+		bT10.setBounds(150, 230, 30, 30);
+		bT11.setBounds(240, 230, 30, 30);
+		bT12.setBounds(330, 230, 30, 30);
+		bT13.setBounds(60, 310, 30, 30);
+		bT14.setBounds(150, 310, 30, 30);
+		bT15.setBounds(240, 310, 30, 30);
+		bT16.setBounds(330, 310, 30, 30);
+		bT17.setBounds(240,400,120,30);
+		bT18.setBounds(155, 560, 25, 20);
+		bT19.setBounds(50, 530, 25, 20);
+		bT20.setBounds(155, 615, 25, 20);
+		bT21.setBounds(240, 330, 75, 20);
+		bT22.setBounds(25, 330, 35, 20);
+		bT23.setBounds(105, 330, 45, 20);
+		bT24.setBounds(175, 330, 45, 20);
+		bT25.setBounds(50, 5, 85, 20);
 		//pBoard2.setBounds(10, 240, 80, 25);
 		//pBoard3.setBounds(100, 240, 80, 25);
 		//pBoard4.setBounds(190, 240, 80, 25);
 		
 		
-		label1.add(bT0);
 		label1.add(bT1);
 		label1.add(bT2);
 		label1.add(bT3);
@@ -310,11 +300,11 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		label2.add(bT22);
 		label2.add(bT23);
 		label2.add(bT24);
+		label1.add(bT25);
 		//label2.add(pBoard2);
 		//label2.add(pBoard3);
 		//label2.add(pBoard4);
 		
-		bT0.setBorder(null);
 		bT1.setBorder(null);
 		bT2.setBorder(null);
 		bT3.setBorder(null);
@@ -339,8 +329,8 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		bT22.setBorder(null);
 		bT23.setBorder(null);
 		bT24.setBorder(null);
+		bT25.setBorder(null);
 		
-		bT0.addActionListener(this);
 		bT1.addActionListener(this);
 		bT2.addActionListener(this);
 		bT3.addActionListener(this);
@@ -361,19 +351,20 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		bT21.addActionListener(this);
 		bT23.addActionListener(this);
 		bT24.addActionListener(this);
+		bT25.addActionListener(this);
 		pBoard2.addActionListener(this);
 		pBoard3.addActionListener(this);
 		pBoard4.addActionListener(this);
 		
-		bT20.setToolTipText("You have x Servants");
-		bT21.setToolTipText("You have x Coins");
-		bT22.setToolTipText("You have x Woods");
-		bT23.setToolTipText("You have x Stones");
-		bT24.setToolTipText("You have x Victory Points");
+		bT21.setToolTipText("You have x Servants");
+		bT22.setToolTipText("You have x Coins");
+		bT23.setToolTipText("You have x Woods");
+		bT24.setToolTipText("You have x Stones");
+		bT25.setToolTipText("You have x Victory Points");
 		
 		
 			
-	/*	
+		
 		
 		AudioInputStream audioIn = null;
 		try {
@@ -396,7 +387,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		clip.start();
-		*/
+		
 		//add(tab1);
 		
 		pack();
@@ -413,33 +404,33 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e1) {
-			if(e1.getSource()==bT3){
+			if(e1.getSource()==bT1){
 			Buttons b =	new Buttons();
 			b.getContentPane().setBackground(Color.GREEN);
-			bT3.setVisible(false);
+			bT1.setVisible(false);
 			//label2.add(bT1).setVisible(true);;
 			//bT1.setEnabled(true);
-			bT3.setLocation(10, 150);
+			bT1.setLocation(10, 150);
 			
 			
 			}
 		
-			if(e1.getSource()==bT7){
+			if(e1.getSource()==bT2){
 				Buttons b = new Buttons();
 				b.getContentPane().setBackground(Color.BLUE);
 				
 				
 			}
-			if(e1.getSource()==bT11){
+			if(e1.getSource()==bT3){
 				Buttons b = new Buttons();
 				b.getContentPane().setBackground(Color.yellow);
 				
 			}
-			if(e1.getSource()==bT15){
+			if(e1.getSource()==bT4){
 				Buttons b = new Buttons();
 				b.getContentPane().setBackground(Color.magenta);
 			}
-			if(e1.getSource()==bT2){
+			if(e1.getSource()==bT5){
 				Buttons b =	new Buttons();
 				b.getContentPane().setBackground(Color.GREEN);
 				
@@ -449,46 +440,27 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				b.getContentPane().setBackground(Color.BLUE);
 				
 			}
-			if(e1.getSource()==bT10){
+			if(e1.getSource()==bT7){
 				Buttons b = new Buttons();
 				b.getContentPane().setBackground(Color.yellow);
 			
-			}
-			if(e1.getSource()==bT14){
-				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.magenta);
-			
-			}
-			if(e1.getSource()==bT1){
-				Buttons b =	new Buttons();
-				b.getContentPane().setBackground(Color.GREEN);
-				
-			}
-			if(e1.getSource()==bT5){
-				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.BLUE);
-				
-			}
-			if(e1.getSource()==bT9){
-				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.yellow);
-			
-			}
-			if(e1.getSource()==bT13){
-				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.magenta);
-			
-			}
-			if(e1.getSource()==bT0){
-				Buttons b =	new Buttons();
-				b.getContentPane().setBackground(Color.GREEN);
-							}
-			if(e1.getSource()==bT4){
-				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.BLUE);
-				
 			}
 			if(e1.getSource()==bT8){
+				Buttons b = new Buttons();
+				b.getContentPane().setBackground(Color.magenta);
+			
+			}
+			if(e1.getSource()==bT9){
+				Buttons b =	new Buttons();
+				b.getContentPane().setBackground(Color.GREEN);
+				
+			}
+			if(e1.getSource()==bT10){
+				Buttons b = new Buttons();
+				b.getContentPane().setBackground(Color.BLUE);
+				
+			}
+			if(e1.getSource()==bT11){
 				Buttons b = new Buttons();
 				b.getContentPane().setBackground(Color.yellow);
 			
@@ -498,8 +470,27 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				b.getContentPane().setBackground(Color.magenta);
 			
 			}
+			if(e1.getSource()==bT13){
+				Buttons b =	new Buttons();
+				b.getContentPane().setBackground(Color.GREEN);
+							}
+			if(e1.getSource()==bT14){
+				Buttons b = new Buttons();
+				b.getContentPane().setBackground(Color.BLUE);
+				
+			}
+			if(e1.getSource()==bT15){
+				Buttons b = new Buttons();
+				b.getContentPane().setBackground(Color.yellow);
 			
+			}
 			if(e1.getSource()==bT16){
+				Buttons b = new Buttons();
+				b.getContentPane().setBackground(Color.magenta);
+			
+			}
+			
+			if(e1.getSource()==bT17){
 				JDialog dialogCouncil = new JDialog();
 				dialogCouncil.setTitle("Council Privilege");
 				JCheckBox coins = new JCheckBox("Coins ",true);
@@ -536,6 +527,11 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 					
 					@Override
 					public void itemStateChanged(ItemEvent e) {
+					/*	woodsAndStones.setVisible(false);// TODO Auto-generated method stub
+						servants.setVisible(false);
+						faithpoints.setVisible(false);
+						militarypoints.setVisible(false);
+						coins.setVisible(false);
 						TextField confirm = new TextField("You chose coins,woods and stones");
 						dialogCouncil.getContentPane().add(confirm);
 						confirm.setBounds(50, 100, 200, 25);
@@ -547,6 +543,11 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 					
 					@Override
 					public void itemStateChanged(ItemEvent e) {
+						/*woodsAndStones.setVisible(false);// TODO Auto-generated method stub
+						servants.setVisible(false);
+						faithpoints.setVisible(false);
+						militarypoints.setVisible(false);
+						coins.setVisible(false);
 						TextField confirm = new TextField("You chose coins and Faith Points");
 						dialogCouncil.getContentPane().add(confirm);
 						confirm.setBounds(50, 100, 200, 25);
@@ -558,31 +559,49 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 					
 					@Override
 					public void itemStateChanged(ItemEvent e) {
+						/*woodsAndStones.setVisible(false);// TODO Auto-generated method stub
+						servants.setVisible(false);
+						faithpoints.setVisible(false);
+						militarypoints.setVisible(false);
+						coins.setVisible(false);
 						TextField confirm = new TextField("You chose coins and servants");
 						dialogCouncil.getContentPane().add(confirm);
 						confirm.setBounds(50, 100, 200, 25);
 						confirm.setVisible(true);
-						}
+						//dialogCouncil.dispose();
+					}
 				});
 				militarypoints.addItemListener(new ItemListener() {
 					
 					@Override
 					public void itemStateChanged(ItemEvent e) {
+						/*woodsAndStones.setVisible(false);// TODO Auto-generated method stub
+						servants.setVisible(false);
+						faithpoints.setVisible(false);
+						militarypoints.setVisible(false);
+						coins.setVisible(false);
 						TextField confirm = new TextField("You chose coinsand Military Points");
 						dialogCouncil.getContentPane().add(confirm);
 						confirm.setBounds(50, 100, 200, 25);
 						confirm.setVisible(true);
-						}
+						//dialogCouncil.dispose();
+					}
 				});
 				coins.addItemListener(new ItemListener() {
 					
 					@Override
 					public void itemStateChanged(ItemEvent e) {
+						/*woodsAndStones.setVisible(false);// TODO Auto-generated method stub
+						servants.setVisible(false);
+						faithpoints.setVisible(false);
+						militarypoints.setVisible(false);
+						coins.setVisible(false);
 						TextField confirm = new TextField("You chose coins");
 						dialogCouncil.getContentPane().add(confirm);
 						confirm.setBounds(50, 100, 200, 25);
 						confirm.setVisible(true);
-						}
+						//dialogCouncil.dispose();
+					}
 				});
 				
 			
@@ -646,4 +665,4 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	}		
 	
 
-
+*/
