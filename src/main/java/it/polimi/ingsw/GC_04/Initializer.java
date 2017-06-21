@@ -48,7 +48,7 @@ public class Initializer {
 
 		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		
-		CouncilPalaceArea.instance(players,aSpaces.get(16));
+		CouncilPalaceArea.instance(players,aSpaces.get(20));
 		TerritoryTower.instance(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0,3));
 		CharacterTower.instance(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(4,7));
 		BuildingTower.instance(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(8,11));
@@ -72,8 +72,8 @@ public class Initializer {
 
 		}
 		
-		HarvestArea.instance();
-		ProductionArea.instance();
+		HarvestArea.instance().getASpaces().add(new ActionSpace(1, null));
+		ProductionArea.instance().getASpaces().add(new ActionSpace(1, null));
 		
 		initialPosition = 4;
 		finalPosition = 8;

@@ -177,7 +177,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		
 		Random random = new Random();
 		int casuale = random.nextInt(territoryCards.length);
-		//Card1 = new ImageIcon(getClass().getResource("/TerritoryCard/devcards_f_en_c_6 ridimensionata.png"));
+//		Card1 = new ImageIcon(getClass().getResource("/TerritoryCard/devcards_f_en_c_6 ridimensionata.png"));
 		//bT1 = new JButton(Card1); //usato per far diventare un'immagine un bottone
 		//Card5 = new ImageIcon(getClass().getResource("/TerritoryCard/devcards_f_en_c_4 modificata.png"));
 		//bT5 = new JButton(Card5);
