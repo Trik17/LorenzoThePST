@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.Observable;
 import it.polimi.ingsw.GC_04.Observer;
+import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
@@ -40,7 +41,6 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 	public abstract int[] setRequestedAuthorizationEffects(List<Effect> effects);
 	public abstract int[] setFurtherCheckNeededEffect(Effect effect);
 	public abstract Resource setDiscount(Resource rawMaterial);
-	public abstract void printCards(List<DevelopmentCard> cards);
 	
 	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost){
 		Action action;
@@ -51,10 +51,9 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 		Player player = CouncilPalaceArea.getTurnOrder()[turn];
 		
 		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-		System.out.println(DiceColor.fromString(diceColor).toString());
+	
 		int card = Integer.parseInt(nrOfCard)-1; 
 		int servants = Integer.parseInt(nrOfServants); 
-		int chosenCost = Integer.parseInt(cost);
 		
 		if("1".equals(tower)) {
 			realTower = TerritoryTower.instance();
@@ -69,11 +68,25 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 			realTower = VentureTower.instance();
 			
 		realCard = realTower.getCards()[card];
-			
-		if (chosenCost == 1)
+		
+		if (realCard.getCost1() == null && realCard.getCost2() == null)
+			realCost = null;
+		else if (realCard.getCost2() == null)
 			realCost = realCard.getCost1();
-		if (chosenCost == 2)
-			realCost = realCard.getCost2();
+		else {
+			if (!SupportFunctions.isInputValid(cost, 1, 2)) {
+				chooseAction();
+				return;
+			}
+			else{
+				int chosenCost = Integer.parseInt(cost);
+			
+				if (chosenCost == 1)
+					realCost = realCard.getCost1();
+				if (chosenCost == 2)
+					realCost = realCard.getCost2();
+			}
+		}
 		realASpace = realTower.getASpaces().get(card);
 		
 		action = realCard.takeCard(player, realASpace, fMember, servants, realCost);

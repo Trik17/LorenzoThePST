@@ -38,6 +38,8 @@ public class ActionSpace {
 		return effect;
 	}
 	public void applyEffects(Player player) {
+		if (effect == null)
+			return;
 		effect.forEach(eff -> eff.apply(player));
 		
 	}

@@ -10,8 +10,6 @@ import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
-import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
@@ -20,7 +18,7 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 public class ViewCLI extends ViewClient{
 	
 	
-	public static void print(String string) {
+	public void print(String string) {
 		System.out.println(string);
 	}
 	
@@ -68,11 +66,9 @@ public class ViewCLI extends ViewClient{
 				chooseAction();
 			}
 			print("Which cost do you want to pay?");
-			print("If there's only one cost available, type 1 and press Enter");
+			print("If there's only one cost available, press any key");
 			String cost = in.nextLine();
-			if (!SupportFunctions.isInputValid(cost, 1, 2)) {
-				chooseAction();
-			}
+			
 			input(tower, nrOfCard, diceColor, nrOfServants, cost);
 			
 		}
@@ -330,55 +326,6 @@ public class ViewCLI extends ViewClient{
 			return new Woods(rawMaterial.getQuantity());
 		
 	}
-		
-	@Override
-	public void printCards(List<DevelopmentCard> cards) {
-
-		int cont = 1;
-		print("Territory Cards");
-		for(int i = 0; i < 4; i++) {
-			try {
-				print(cont+")"+cards.get(i).getName());
-				cont++;
-			} catch (NullPointerException e) {
-				print(cont+")TAKEN");
-				cont++;
-			}
-		}
-		cont = 1;
-		print("Character Cards");
-		for(int i = 4; i < 8; i++) {
-			try {
-				print(cont+")"+cards.get(i).getName());
-				cont++;
-			} catch (NullPointerException e) {
-				print(cont+")TAKEN");
-				cont++;
-			}
-		}
-		cont = 1;
-		print("Building Cards");
-		for(int i = 8; i < 12; i++) {
-			try {
-				print(cont+")"+cards.get(i).getName());
-				cont++;
-			} catch (NullPointerException e) {
-				print(cont+")TAKEN");
-				cont++;
-			}
-		}
-		cont = 1;
-		print("Venture Cards");
-		for(int i = 12; i < 16; i++) {
-			try {
-				print(cont+")"+cards.get(i).getName());
-				cont++;
-			} catch (NullPointerException e) {
-				print(cont+")TAKEN");
-				cont++;
-			}
-		}
-	}	
 	
 
 	@Override

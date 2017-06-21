@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;

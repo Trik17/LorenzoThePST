@@ -3,8 +3,6 @@ package it.polimi.ingsw.GC_04.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.javafx.geom.Area;
-
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
@@ -164,7 +162,7 @@ public class Controller implements Observer<Action,Resource> {
 			action.setCouncilPrivilege(councilPrivileges);
 			//TODO: fai attivare i privilegi
 			action.setDiscount(discount);
-			action.apply(); //continuare da qui
+			action.apply(); 
 			
 		}else {
 			System.out.println("Non puoi fare questa mossa");
@@ -181,7 +179,7 @@ public class Controller implements Observer<Action,Resource> {
 		List<Resource> discounts;
 		List<Resource> myDiscounts = SupportFunctions.cloneResources(player.getDiscount().getDiscount(card));
 		if (myDiscounts.isEmpty())
-			return null;
+			return new ArrayList<>();
 		if (!myDiscounts.stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
 			discounts = myDiscounts;
 		else {
@@ -215,13 +213,15 @@ public class Controller implements Observer<Action,Resource> {
 		if (model.getPeriod() == 4 && lastPhase)
 			//TODO: final score
 			return;
-		if (turn == views.length -1) {
-			turn = 0;//TODO: GESTIONE SCOMUNICHE
+		else if (turn == views.length -1) {
+			if (lastPhase)
+				initializer.changeTurn();//TODO: GESTIONE SCOMUNICHE
+			turn = 0;
 		}else {
 			turn++;
 		}
 		lastPhase =!lastPhase;
-		initializer.changeTurn();
+		
 	}
 
 	@Override
