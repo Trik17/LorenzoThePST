@@ -39,9 +39,5 @@ public class VictoryPoints extends Resource{
 		}
 		
 	}
-	/* PER ORA COMMENTATI PERCHé NON HA SENSO CHE ANCHE COSE TIPO I COSTI ABBIANO GLI END VICTORY POINTS
-	public void addEndPoints(int quantity){ 
-		endAccumulator += quantity;
-		
-	}*/    
+	   
 }

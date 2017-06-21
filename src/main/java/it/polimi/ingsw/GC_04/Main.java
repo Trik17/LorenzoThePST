@@ -1,15 +1,20 @@
 package it.polimi.ingsw.GC_04;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.client.rmi.ViewGUI;
 import it.polimi.ingsw.GC_04.controller.Controller;
+import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.model.Dice;
+import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyColor;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.model.effect.Effect;
 
 
 
@@ -26,7 +31,6 @@ public class Main {
 		//i colori li da il server in ordine
 		// turni: a partire da 1
 		
-
 		Scanner in = new Scanner(System.in);
 		int num = 4;
 		int turn = 0;
@@ -46,25 +50,25 @@ public class Main {
 		case 4://se giochiamo con meno di 4 player non funziona
 			print("Player BLUE inserisci il tuo nome");
 			name = in.nextLine();
-			Player player1 = new Player(name, FamilyColor.BLUE, turn, 1);
+			Player player1 = new Player(name, turn, 1);
 			players[turn] = player1;
 			turn++;
 		case 3:
 			print("Player RED inserisci il tuo nome");
 			name = in.nextLine();
-			Player player2 = new Player(name, FamilyColor.RED, turn,2);
+			Player player2 = new Player(name, turn,2);
 			players[turn] = player2;
 			turn++;
 		case 2:
 			print("Player GREEN inserisci il tuo nome");
 			name = in.nextLine();
-			Player player3 = new Player(name, FamilyColor.GREEN, turn,3);
+			Player player3 = new Player(name, turn,3);
 			players[turn] = player3;
 			turn++;
 			
 			print("Player YELLOW inserisci il tuo nome");
 			name = in.nextLine();
-			Player player4 = new Player(name, FamilyColor.YELLOW, turn,4 );
+			Player player4 = new Player(name, turn,4 );
 			players[turn] = player4;
 			turn = 0;
 			break;

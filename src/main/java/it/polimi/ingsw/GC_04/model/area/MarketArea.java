@@ -12,7 +12,8 @@ public class MarketArea extends Area{
 	}
 	
 	public static MarketArea instance(List<ActionSpace> aSpaces){
-		if (instance == null) instance = new MarketArea(aSpaces);	
+		if (instance == null) 
+			instance = new MarketArea(aSpaces);	
 		return instance;
 	}
 	

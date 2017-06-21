@@ -14,7 +14,8 @@ public class VentureTower extends Tower{
 	}
 	
 	public static VentureTower instance(VentureCard[] cards, List<ActionSpace> aSpaces){
-		if (instance==null) instance = new VentureTower(cards, aSpaces);
+		if (instance==null) 
+			instance = new VentureTower(cards, aSpaces);
 		return instance;
 	}
 	

@@ -8,6 +8,10 @@ import java.util.List;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.model.Dice;
+import it.polimi.ingsw.GC_04.model.DiceColor;
+import it.polimi.ingsw.GC_04.model.FamilyColor;
+import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.model.area.CharacterTower;
@@ -24,15 +28,15 @@ import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
 
 public class Initializer {
-	private static int initialPosition = 0;
-	private static int finalPosition = 4;
+	private int initialPosition = 0;
+	private int finalPosition = 4;
 	
 	private final TerritoryCard[] tCards;
 	private final CharacterCard[] cCards;
 	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
 
-	
+										
 	public Initializer(Player[] players) throws JsonMappingException, IOException {
 		JsonMapper jsonMapper=new JsonMapper();		
 		
@@ -45,16 +49,29 @@ public class Initializer {
 
 		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		
-		CouncilPalaceArea.instance(players);
-		TerritoryTower.instance(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0,4));
-		CharacterTower.instance(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(5,8));
-		BuildingTower.instance(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(9,12));
-		VentureTower.instance(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(13,16));
+		CouncilPalaceArea.instance(players,aSpaces.get(16));
+		TerritoryTower.instance(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0,3));
+		CharacterTower.instance(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(4,7));
+		BuildingTower.instance(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(8,11));
+		VentureTower.instance(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(12,15));
 		
 		if (nrOfPlayers < 4)
 			MarketArea.instance(aSpaces.subList(16, aSpaces.size()-2)); 
 		else
 			MarketArea.instance(aSpaces.subList(16, aSpaces.size()));
+		
+		Dice.createDices();
+		
+		switch (nrOfPlayers) {
+		case 4:
+			players[3].setFamily(FamilyMember.createFamily(FamilyColor.BLUE));
+		case 3:
+			players[2].setFamily(FamilyMember.createFamily(FamilyColor.RED));
+		default:
+			players[1].setFamily(FamilyMember.createFamily(FamilyColor.GREEN));
+			players[0].setFamily(FamilyMember.createFamily(FamilyColor.YELLOW));
+
+		}
 		
 		HarvestArea.instance();
 		ProductionArea.instance();
@@ -85,7 +102,6 @@ public class Initializer {
 		cardsOnTheTable.addAll(Arrays.asList(CharacterTower.instance().getCards()));
 		cardsOnTheTable.addAll(Arrays.asList(BuildingTower.instance().getCards()));
 		cardsOnTheTable.addAll(Arrays.asList(VentureTower.instance().getCards()));
-		System.out.println(VentureTower.instance().getASpaces().get(3));
 		
 		return cardsOnTheTable;
 	}

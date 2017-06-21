@@ -3,17 +3,13 @@ package it.polimi.ingsw.GC_04.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.PortableServer.Servant;
-
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.Area;
 import it.polimi.ingsw.GC_04.model.area.ColorReastrictedArea;
-import it.polimi.ingsw.GC_04.model.effect.ActionSpacePenalityEffect;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Servants;
 

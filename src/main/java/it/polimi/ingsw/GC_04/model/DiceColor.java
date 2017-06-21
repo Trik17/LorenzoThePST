@@ -1,18 +1,16 @@
 package it.polimi.ingsw.GC_04.model;
 
-import java.io.IOException;
-
 public enum DiceColor {
 	BLACK, ORANGE, WHITE, NEUTRAL;
 	
 	public static DiceColor fromString(String string){
-		if (string.equalsIgnoreCase("1"))
+		if ("1".equals(string))
 			return BLACK;
-		if (string.equalsIgnoreCase("2"))
+		else if ("2".equals(string))
 			return ORANGE;
-		if (string.equalsIgnoreCase("3"))
+		else if ("3".equals(string))
 			return WHITE;
-		if (string.equalsIgnoreCase("4"))
+		else if ("4".equals(string))
 			return NEUTRAL;
 		else
 			return null;

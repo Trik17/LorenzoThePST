@@ -53,9 +53,79 @@ public class Controller implements Observer<Action,Resource> {
 		((CouncilPrivilege) councilPrivileges.get(cont)).setCouncilPrivilege(resource);
 		
 	}
+	private int[] setFurtherCheckNeeded(List<Effect> requestedAuthorizationEffects) {
+		//it stores in an array the indices of the Resources that offer a choice
+		int[] furtherCheckNeeded = new int[0];
+		if (!requestedAuthorizationEffects.isEmpty()) {
+			furtherCheckNeeded = new int[requestedAuthorizationEffects.size()-1];
+			int cont = 0;
+			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
+				if (requestedAuthorizationEffects.get(i) instanceof ExchangeResourcesEffect)
+					if (!(((ExchangeResourcesEffect) requestedAuthorizationEffects.get(i)).getCost2() == null)) {
+						furtherCheckNeeded[cont] = i;
+						cont ++;
+					}
+			}
+			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
+				if (requestedAuthorizationEffects.get(i) instanceof TakeACardEffect) {
+					furtherCheckNeeded[cont] = i;
+					cont ++;
+					}
+			}
+			
+		}
+		return furtherCheckNeeded;
+	}
+	
+	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) {
+		Effect effect = requestedAuthorizationEffects.get(index);
+		int[] choice = views[turn].setFurtherCheckNeededEffect(effect);
+		if (effect instanceof ExchangeResourcesEffect) {
+			if (choice[0] == 1)
+				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
+			else
+				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect2(), ((ExchangeResourcesEffect) effect).getCost2());		
+		}
+		else if (effect instanceof TakeACardEffect) {
+			Tower tower;
+			if (choice.length == 4) {
+				
+				switch (choice[0]) {
+				case 1:
+					tower = TerritoryTower.instance();
+					break;
+				case 2:
+					tower = CharacterTower.instance();
+					break;
+				case 3:
+					tower = BuildingTower.instance();
+					break;
+				default:
+					tower = VentureTower.instance();
+					break;
+				}
+			}else {
+				tower = ((TakeACardEffect) effect).getCardType().getTower();
+			}
+			DevelopmentCard card = tower.getCards()[choice[1] -1];
+			ActionSpace aSpace = tower.getASpaces().get(choice[1] -1);
+			int servants = choice[2];
+			List<Resource> cost = new ArrayList<Resource>();
+			if (choice[3] == 1)
+				cost = tower.getCards()[choice[1] -1].getCost1();
+			else
+				cost = tower.getCards()[choice[1] -1].getCost2();;
+				((TakeACardEffect) effect).setParameters(player,card,aSpace,servants,cost);
+		}
+	
+	}
+
+	
+		
+	
+	
 	@Override
 	public void updateAction(Action action) {
-		
 		action.checkExtraordinaryEffect();
 		Resource privilege;
 		List<Effect> councilPrivileges = SupportFunctions.cloneEffects(action.getCouncilPrivileges());
@@ -64,71 +134,23 @@ public class Controller implements Observer<Action,Resource> {
 			privilege = views[turn].setCouncilPrivilege();
 			setCouncilPrivilege(councilPrivileges,privilege,cont);
 			cont++;
-			
+			/* it clones all of the instances of CouncilPrivilege present in the effects of the action
+			 * and ask the client which privilege he wants to apply, then set the parameters chosen in the clone
+			 */
 		}
 		List<Effect> requestedAuthorizationEffects = SupportFunctions.cloneEffects(action.getRequestedAuthorizationEffects());
-		int[] furtherCheckNeeded = new int[requestedAuthorizationEffects.size()-1];
-		int cont = 0;
-		for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
-			if (requestedAuthorizationEffects.get(i) instanceof ExchangeResourcesEffect)
-				if (!(((ExchangeResourcesEffect) requestedAuthorizationEffects.get(i)).getCost2() == null)) {
-					furtherCheckNeeded[cont] = i;
-					cont ++;
-				}
-		}
-		for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
-			if (requestedAuthorizationEffects.get(i) instanceof TakeACardEffect) {
-				furtherCheckNeeded[cont] = i;
-				cont ++;
-				}
-		}
+		int[] furtherCheckNeeded = setFurtherCheckNeeded(requestedAuthorizationEffects);
+	
+		requestedAuthorizationEffects = organizeExchangeResourcesEffects(requestedAuthorizationEffects);
+		int[] requestedEffects = views[turn].setRequestedAuthorizationEffects(requestedAuthorizationEffects); //it returns the indices of the effects chosen by the player
 		
-		requestedAuthorizationEffects = organizeRequestedAuthorizationEffects(requestedAuthorizationEffects);
-		int[] requestedEffects = views[turn].setRequestedAuthorizationEffects(requestedAuthorizationEffects);
-		
-		for (int i:furtherCheckNeeded) {
-			for (int j: requestedEffects) {
-				if (furtherCheckNeeded[i] == requestedEffects[j]) {
-					Effect effect = requestedAuthorizationEffects.get(requestedEffects[j]);
-					int[] choice = views[turn].setFurtherCheckNeededEffect(effect);
-					if (effect instanceof ExchangeResourcesEffect) {
-						if (choice[0] == 1)
-							((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
-						else
-							((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect2(), ((ExchangeResourcesEffect) effect).getCost2());		
+		if (furtherCheckNeeded.length != 0 && requestedEffects.length != 0) {
+		//it asks the player which choice he wants to make between those proposed
+			for (int i:furtherCheckNeeded) {
+				for (int j: requestedEffects) {
+					if (furtherCheckNeeded[i] == requestedEffects[j]) {
+						setChoice(requestedAuthorizationEffects, requestedEffects[j],action.getPlayer());
 					}
-					else if (effect instanceof TakeACardEffect) {
-						Tower tower;
-						if (choice.length == 4) {
-							
-							switch (choice[0]) {
-							case 1:
-								tower = TerritoryTower.instance();
-								break;
-							case 2:
-								tower = CharacterTower.instance();
-								break;
-							case 3:
-								tower = BuildingTower.instance();
-								break;
-							default:
-								tower = VentureTower.instance();
-								break;
-							}
-						}else {
-							tower = ((TakeACardEffect) effect).getCardType().getTower();
-						}
-						DevelopmentCard card = tower.getCards()[choice[1] -1];
-						ActionSpace aSpace = tower.getASpaces().get(choice[1] -1);
-						int servants = choice[2];
-						List<Resource> cost = new ArrayList<Resource>();
-						if (choice[3] == 1)
-							cost = tower.getCards()[choice[1] -1].getCost1();
-						else
-							cost = tower.getCards()[choice[1] -1].getCost2();;
-						((TakeACardEffect) requestedAuthorizationEffects.get(j)).setParameters(action.getPlayer(),card,aSpace,servants,cost);
-					}
-					
 				}
 			}
 		}
@@ -151,6 +173,7 @@ public class Controller implements Observer<Action,Resource> {
 		updateTurn();
 		views[turn].printCards(initializer.cardsOnTheTable());
 		views[turn].chooseAction();
+		
 	}
 	
 	public List<Resource> setDiscount(Player player, DevelopmentCard card) {
@@ -170,8 +193,8 @@ public class Controller implements Observer<Action,Resource> {
 			
 	}
 	
-	public List<Effect> organizeRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) {
-		
+	public List<Effect> organizeExchangeResourcesEffects(List<Effect> requestedAuthorizationEffects) {
+		//it finds ExchangeResourcesEffect that offer only one effect and sets it as chosen effect
 		for (Effect eff:requestedAuthorizationEffects) {
 			if (eff instanceof ExchangeResourcesEffect)
 				if (((ExchangeResourcesEffect) eff).getCost2() == null) {
@@ -210,7 +233,6 @@ public class Controller implements Observer<Action,Resource> {
 
 	@Override
 	public void updateResource(Resource resource) {
-		// TODO Auto-generated method stub
 		
 	}
 	

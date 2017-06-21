@@ -11,7 +11,6 @@ import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
-import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class TakeACard extends Action{
@@ -42,7 +41,7 @@ public class TakeACard extends Action{
 		
 		for(ActionSpace aSpace:area.getASpaces()) {//if the tower is occupied it adds three coins to the card's cost
 			if(aSpace.getPresentColor() != null) {
-				List<Resource> penality = new ArrayList<Resource>();
+				List<Resource> penality = new ArrayList<>();
 				penality.add(new Coins(TOWERPENALITY));
 				Resource.addResource(actionCost, penality);
 				
@@ -58,7 +57,8 @@ public class TakeACard extends Action{
 		final int maxSize = 6;
 		int size = player.getCards(card).size();
 	
-		if(size < maxSize) return true;
+		if(size < maxSize) 
+			return true;
 		return false;
 		
 	}
@@ -92,11 +92,13 @@ public class TakeACard extends Action{
 			}
 		
 		effects = aSpace.getEffect();
-		for(Effect eff: effects) {
-			if (eff.getClass().equals(CouncilPrivilege.class))
-				councilPrivileges.add((CouncilPrivilege) eff);
-			if (eff.getRequestedAuthorization())
-				requestedAuthorizationEffects.add(eff);
+		
+		if(effects != null)
+			for(Effect eff: effects) {
+				if (eff.getClass().equals(CouncilPrivilege.class))
+					councilPrivileges.add((CouncilPrivilege) eff);
+				if (eff.getRequestedAuthorization())
+					requestedAuthorizationEffects.add(eff);
 			}
 	
 	}

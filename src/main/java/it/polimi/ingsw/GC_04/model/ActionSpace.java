@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 
-public class ActionSpace {//METTERE LIST<EFFECT> AL POSTO DI UN SINGOLO EFFETTO
+public class ActionSpace {
 	
 	private int activationCost;//necessary dice's value
 	private List<Effect> effect;

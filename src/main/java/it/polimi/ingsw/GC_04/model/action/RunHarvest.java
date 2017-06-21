@@ -9,7 +9,6 @@ import it.polimi.ingsw.GC_04.model.area.ProductionArea;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.effect.EndVictoryPointsEffect;
 
 
 public class RunHarvest extends Action{
@@ -37,7 +36,6 @@ public class RunHarvest extends Action{
 		
 		myTCards.forEach(card -> {//for all the cards which belong to the player
 			for(Effect eff:((TerritoryCard) card).getHarvest().getEffects()){//it scroll through the production effects
-				if(eff instanceof EndVictoryPointsEffect) continue;//it doesn't apply this effect because it will be applied only at the end of the game
 				if(harvValue >= ((TerritoryCard) card).getHarvest().getDiceValue()) { 
 					if (!eff.getRequestedAuthorization())
 						eff.apply(player);
@@ -45,7 +43,6 @@ public class RunHarvest extends Action{
 						requestedAuthorizationEffects.add(eff);
 		}}}); //it apply all the production effects whose dice value is <= than the value of the dice with which the action is performed 
 	
-	//TODO: fai chiedere al controller cosa attivare
 	}
 	
 

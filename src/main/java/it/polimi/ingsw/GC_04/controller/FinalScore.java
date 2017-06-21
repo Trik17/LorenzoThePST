@@ -113,9 +113,9 @@ public class FinalScore {
 		for (int cont=1; cont<=faithPoints; cont++) {
 			if (cont < 6)
 				faithPointsScore++;
-			if (cont >= 6 && cont < 13)
+			else if (cont >= 6 && cont < 13)
 				faithPointsScore += 2;
-			if (cont >= 13 && cont < 15)
+			else if (cont >= 13 && cont < 15)
 				faithPointsScore += 3;
 			else
 				faithPointsScore += 5;

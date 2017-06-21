@@ -73,9 +73,9 @@ public abstract class DevelopmentCard extends Card{
 		
 		if (this instanceof TerritoryCard) 
 			return TerritoryTower.instance();
-		if (this instanceof BuildingCard) 
+		else if (this instanceof BuildingCard) 
 			return BuildingTower.instance();
-		if (this instanceof VentureCard) 
+		else if (this instanceof VentureCard) 
 			return VentureTower.instance();
 		else
 			return CharacterTower.instance();
