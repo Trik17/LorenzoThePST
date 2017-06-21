@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
-import it.polimi.ingsw.GC_04.client.rmi.ViewGUI;
+
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
@@ -86,9 +86,9 @@ public class Main {
 		model.setPlayers(players);
 		ViewClient[] views =new ViewClient[num];
 		for(int i=0; i<num; i++)
-			if(graphic)
-				views[i] = new ViewGUI();
-			else
+			//if(graphic)
+				//views[i] = new ViewGUI();
+			//else
 				views[i] = new ViewCLI();
 		
 		Controller controller=new Controller(model,initializer);
