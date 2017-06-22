@@ -85,7 +85,9 @@ public abstract class DevelopmentCard extends Card{
 	public List<Effect> getEffects() {
 		return effects;
 	}
-	
+	public String getImage() {
+		return image;
+	}
 	
 }
 

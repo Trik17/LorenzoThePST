@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
-import it.polimi.ingsw.GC_04.model.effect.Effect;
-
 @JsonTypeInfo(use = Id.NAME,
 	include = JsonTypeInfo.As.PROPERTY,
 	property = "type")
@@ -46,29 +44,38 @@ public abstract class Resource {
 	
 	public static void addResource(List<Resource> resources, List<Resource> bonus){
 		//for each bonus resource in input it takes the correspondent resource in the parameter resources and adds to it the bonus 
-		for(Resource b:bonus) {
-			for(Resource r:resources) {
-				if(r.getClass().equals(b.getClass())) {
-					r.addQuantity(b.getQuantity());
+		boolean isResPresent = false;
+		
+		for(int i = 0; i < bonus.size(); i++) {
+			for(int j = 0; j < resources.size(); j++) {
+				if(resources.get(j).getClass().equals(bonus.get(i).getClass())) {
+					resources.get(j).addQuantity(bonus.get(i).getQuantity());
+					isResPresent = true;
 					break;
 				}
-				resources.add(b);
 			}
+			if (!isResPresent)
+				resources.add(bonus.get(i));
 			
+			isResPresent = false;
 		}
 	}
 	
 	public static void subtractResource(List<Resource> resources, List<Resource> cost){
 		//for each bonus resource in input it takes the correspondent resource in the parameter resources and subtracts to it the cost 
-		cost.forEach(b->
-		resources.forEach(r-> {
-			if(r.getClass().equals(b.getClass())) {
-				if (r.getClass().equals(MilitaryPoints.class))
-					r.addQuantity(-((MilitaryPoints) b).getMalus());
-				else if (r.getQuantity()-b.getQuantity() < 0)
-					r.quantity = 0;
-				else
-					r.addQuantity(-b.getQuantity());}}));
+		for(int i = 0; i < cost.size(); i++) {
+			for(int j = 0; j < resources.size(); j++) {
+				if (resources.get(j).getClass().equals(cost.get(i).getClass())){ 
+					if (resources.get(j).getClass().equals(MilitaryPoints.class))
+						resources.get(j).addQuantity(-((MilitaryPoints) cost.get(i)).getMalus());
+					else if (resources.get(j).getQuantity()-cost.get(i).getQuantity() < 0) 
+						resources.get(j).quantity = 0;
+					else 
+						resources.get(j).addQuantity(cost.get(i).getQuantity());
+						break;
+				}
+			}
+		}
 	}
 	
 	public static boolean isAffordable(List<Resource> myRes,List<Resource> cost) {

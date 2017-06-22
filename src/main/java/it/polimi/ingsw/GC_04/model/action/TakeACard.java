@@ -27,7 +27,8 @@ public class TakeACard extends Action{
 		this.card = card;
 		this.area = card.getTower();
 		this.value = fMember.getDice().getValue() + player.getExtraDice().getCardExtra(card) + servants; 
-		this.actionCost.addAll(cost);
+		if (cost != null)
+			this.actionCost.addAll(cost);
 	}
 	
 	
@@ -74,7 +75,7 @@ public class TakeACard extends Action{
 		super.applyEffects();
 		
 		for(Effect eff : card.getEffects()){
-			if (!eff.getRequestedAuthorization())
+			if (!eff.getRequestedAuthorization() && !eff.getClass().equals(CouncilPrivilege.class))
 				eff.apply(player);
 		}
 
@@ -83,23 +84,17 @@ public class TakeACard extends Action{
 
 	@Override
 	public void checkExtraordinaryEffect(){
+		super.checkExtraordinaryEffect();
+		
 		List<Effect> effects=card.getEffects();
-		for(Effect eff: effects) {
-			if (eff.getClass().equals(CouncilPrivilege.class))
-				councilPrivileges.add((CouncilPrivilege) eff);
-			if (eff.getRequestedAuthorization())
-				requestedAuthorizationEffects.add(eff);
-			}
-		
-		effects = aSpace.getEffect();
-		
-		if(effects != null)
+		if (effects != null)
 			for(Effect eff: effects) {
 				if (eff.getClass().equals(CouncilPrivilege.class))
 					councilPrivileges.add((CouncilPrivilege) eff);
 				if (eff.getRequestedAuthorization())
 					requestedAuthorizationEffects.add(eff);
-			}
+				}
+		
 	
 	}
 	

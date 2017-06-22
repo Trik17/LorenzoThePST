@@ -55,11 +55,15 @@ public class Player {
 		resources.add(new FaithPoints(0));
 		resources.add(new Coins(turn+4));
 		
-//		family = FamilyMember.createFamily(color);
-		this.extraDice = new ExtraDice();
+		extraDice = new ExtraDice();
 		harvestList = new ArrayList<>();
 		productionList = new ArrayList<>();
+		discount = new Discount();
 		
+		tCards = new ArrayList<>();
+		vCards = new ArrayList<>();
+		bCards = new ArrayList<>();
+		cCards = new ArrayList<>();
 	}
 	
 	public Discount getDiscount(){
