@@ -118,4 +118,16 @@ public class Player {
 		this.family = fMembers;
 	}
 	
+	public FamilyMember[] getFamily() {
+		return family;
+		
+	}
+	
+	public List<Harvest> getHarvest() {
+		return harvestList;
+	}
+	public List<Production> getProduction() {
+		return productionList;
+	}
+	
 }

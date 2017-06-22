@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
+import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
@@ -14,6 +15,15 @@ public class SupportFunctions {
 		List<Effect> clone = new ArrayList<Effect>();
 		for (Effect item:effects)
 			clone.add((Effect) Effect.clone(item));
+		return clone;
+	}
+	
+	public static List<CouncilPrivilege> cloneCouncilPrivilege(List<CouncilPrivilege> councilPrivileges){
+		
+		List<CouncilPrivilege> clone = new ArrayList<>();
+		for (CouncilPrivilege item:councilPrivileges) {
+			clone.add((CouncilPrivilege) Effect.clone(item));
+		}
 		return clone;
 	}
 	

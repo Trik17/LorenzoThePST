@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 	@Type(value = VictoryPoints.class),
 })
 
-public abstract class Resource {
+public abstract class Resource implements Cloneable{
 
 	private int quantity;
 	//constructor needed for Json

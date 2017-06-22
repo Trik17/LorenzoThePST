@@ -9,6 +9,7 @@ public class GoToTheCouncilPalace extends Action{
 	public GoToTheCouncilPalace(Player player, FamilyMember fMember, int servants) {
 		super(player, fMember, servants);
 		this.area = CouncilPalaceArea.instance();	
+		aSpace = area.getASpaces().get(area.getASpaces().size() -1);
 	}
 		
 	
@@ -17,12 +18,15 @@ public class GoToTheCouncilPalace extends Action{
 		return isValueEnough();
 	}
 
+	public void createNewASpace() {
+		CouncilPalaceArea.instance().getASpaces().add(CouncilPalaceArea.instance().getActionSpaceDefault());
+	}
+	
 	@Override
 	public void apply() {
-		CouncilPalaceArea.instance().getASpaces().add(CouncilPalaceArea.instance().getActionSpaceDefault());
 		applyPlayerChanges();
-		//TODO
-		
+		applyEffects();
+		createNewASpace();
 	}
 
 }

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_04.model.effect;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
@@ -25,6 +24,14 @@ public class CouncilPrivilege extends ResourceEffect {
 			effect.add(resources);
 		
 	}
-	
+	/*public static CouncilPrivilege clone(CouncilPrivilege cp) {
+		try {
+			return (CouncilPrivilege) cp.clone();
+		} catch (CloneNotSupportedException e) {
+			System.out.println(222222);
+			return null;
+		}
+		
+	}*/
 
 } 

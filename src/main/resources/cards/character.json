@@ -1,7 +1,7 @@
 [{
    	  "type" : "CharacterCard",
 	  "period" : 1,
-	  "name" : "Warlord",
+	  "name" : "Warlord             ",
 	  "image": "/CharacterCard/devcards_f_en_c_49.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -24,7 +24,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
-	  "name" : "Stonemason",
+	  "name" : "Stonemason          ",
 	  "image": "/CharacterCard/devcards_f_en_c_50.png", 
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -50,7 +50,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
-	  "name" : "Dame",
+	  "name" : "Dame                ",
 	  "image": "/CharacterCard/devcards_f_en_c_51.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -75,7 +75,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
-	  "name" : "Knight",
+	  "name" : "Knight              ",
 	  "image": "/CharacterCard/devcards_f_en_c_52.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -94,7 +94,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
-	  "name" : "Farmer",
+	  "name" : "Farmer              ",
 	  "image": "/CharacterCard/devcards_f_en_c_53.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -107,7 +107,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
-	  "name" : "Artisan",
+	  "name" : "Artisan             ",
 	  "image": "/CharacterCard/devcards_f_en_c_54.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -120,7 +120,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
-	  "name" : "Preacher",
+	  "name" : "Preacher            ",
 	  "image": "/CharacterCard/devcards_f_en_c_55.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -138,7 +138,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 1,
-	  "name" : "Abbess",
+	  "name" : "Abbess              ",
 	  "image": "/CharacterCard/devcards_f_en_c_56.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -158,7 +158,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
-	  "name" : "Captain",
+	  "name" : "Captain             ",
 	  "image": "/CharacterCard/devcards_f_en_c_57.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -182,7 +182,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
-	  "name" : "Architect",
+	  "name" : "Architect           ",
 	  "image": "/CharacterCard/devcards_f_en_c_58.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -207,7 +207,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
-	  "name" : "Patron",
+	  "name" : "Patron              ",
 	  "image": "/CharacterCard/devcards_f_en_c_59.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -229,7 +229,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
-	  "name" : "Hero",
+	  "name" : "Hero                ",
 	  "image": "/CharacterCard/devcards_f_en_c_60.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -249,7 +249,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
-	  "name" : "Peasant",
+	  "name" : "Peasant             ",
 	  "image": "/CharacterCard/devcards_f_en_c_61.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -262,7 +262,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
-	  "name" : "Scholar",
+	  "name" : "Scholar             ",
 	  "image": "/CharacterCard/devcards_f_en_c_62.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -275,7 +275,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
-	  "name" : "Papal Messenger",
+	  "name" : "Papal Messenger     ",
 	  "image": "/CharacterCard/devcards_f_en_c_63.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -291,7 +291,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 2,
-	  "name" : "Royal Messenger",
+	  "name" : "Royal Messenger     ",
 	  "image": "/CharacterCard/devcards_f_en_c_64.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -307,7 +307,7 @@
 },{
 	  "type" : "CharacterCard",
 	  "period" : 3,
-	  "name" : "Noble",
+	  "name" : "Noble               ",
 	  "image": "/CharacterCard/devcards_f_en_c_65.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -326,7 +326,7 @@
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
-	  "name" : "Governor",
+	  "name" : "Governor            ",
 	  "image": "/CharacterCard/devcards_f_en_c_66.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -345,7 +345,7 @@
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
-	  "name" : "Paramour",
+	  "name" : "Paramour            ",
 	  "image": "/CharacterCard/devcards_f_en_c_67.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -364,7 +364,7 @@
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
-	  "name" : "Herald",
+	  "name" : "Herald              ",
 	  "image": "/CharacterCard/devcards_f_en_c_68.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -383,7 +383,7 @@
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
-	  "name" : "Cardinal",
+	  "name" : "Cardinal            ",
 	  "image": "/CharacterCard/devcards_f_en_c_69.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -403,7 +403,7 @@
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
-	  "name" : "Bishop",
+	  "name" : "Bishop              ",
 	  "image": "/CharacterCard/devcards_f_en_c_70.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -423,7 +423,7 @@
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
-	  "name" : "General",
+	  "name" : "General             ",
 	  "image": "/CharacterCard/devcards_f_en_c_71.png",
 	  "cost1" : [ {
       	"type" : "Coins",
@@ -444,7 +444,7 @@
 },{
 	"type" : "CharacterCard",
 	  "period" : 3,
-	  "name" : "Ambassador",
+	  "name" : "Ambassador          ",
 	  "image": "/CharacterCard/devcards_f_en_c_72.png",
 	  "cost1" : [ {
       	"type" : "Coins",

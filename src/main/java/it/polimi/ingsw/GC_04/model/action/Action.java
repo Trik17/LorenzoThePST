@@ -22,17 +22,17 @@ public abstract class Action {
 	protected List<Resource> actionCost;						// and any permanent effects
 	protected Area area;
 	protected List<Effect> requestedAuthorizationEffects;
-	protected List<Effect> councilPrivileges;
+	protected List<CouncilPrivilege> councilPrivileges;
 	protected List<Resource> discount;
 	
 	public Action(Player player, FamilyMember fMember, int servants) {
 		this.player = player;
 		this.fMember = fMember;
 		this.value = fMember.getDice().getValue() + servants;
-		this.actionCost = new ArrayList<Resource>();
+		this.actionCost = new ArrayList<>();
 		this.actionCost.add(new Servants(servants));
-		this.requestedAuthorizationEffects = new ArrayList<Effect>();
-		this.councilPrivileges = new ArrayList<Effect>();
+		this.requestedAuthorizationEffects = new ArrayList<>();
+		this.councilPrivileges = new ArrayList<>();
 
 	}
 
@@ -59,16 +59,16 @@ public abstract class Action {
 		requestedAuthorizationEffects = effects;	
 		
 	}
-	public void setCouncilPrivilege(List<Effect> cp) {
+	public void setCouncilPrivilege(List<CouncilPrivilege> cp) {
 		councilPrivileges = cp;
 		
 	}
 
 	public boolean isValueEnough() {
-
-		if (value >= aSpace.getActivationCost())
-			return true;
-		return false;
+		
+		if (value <= aSpace.getActivationCost())
+			return false;
+		return true;
 	}
 
 	public boolean isColorAvailable() {
@@ -104,7 +104,7 @@ public abstract class Action {
 		
 	}
 	
-	public List<Effect> getCouncilPrivileges() {
+	public List<CouncilPrivilege> getCouncilPrivileges() {
 		return councilPrivileges;
 		
 	}

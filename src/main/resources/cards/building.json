@@ -1,7 +1,7 @@
 [{
 	  "type" : "BuildingCard",
 	  "period" : 1,
-	  "name" : "Mint",
+	  "name" : "Mint                ",
 	  "image": "/BuildingCard/devcards_f_en_c_25.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -32,7 +32,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
-	  "name" : "Tax Office",
+	  "name" : "Tax Office          ",
 	  "image": "/BuildingCard/devcards_f_en_c_26.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -63,7 +63,7 @@
 },{
 	 "type" : "BuildingCard",
 	  "period" : 1,
-	  "name" : "Triunphal Arch",
+	  "name" : "Triunphal Arch      ",
 	  "image": "/BuildingCard/devcards_f_en_c_27.png",  
 	  "cost1" : [ {
 	  	"type" : "Coins",
@@ -94,7 +94,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
-	  "name" : "Theater",
+	  "name" : "Theater             ",
 	  "image": "/BuildingCard/devcards_f_en_c_28.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -125,7 +125,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
-	  "name" : "Carpenter's Shop",
+	  "name" : "Carpenter's Shop    ",
 	  "image": "/BuildingCard/devcards_f_en_c_29.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -170,7 +170,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
-	  "name" : "Stonemason's Shop",
+	  "name" : "Stonemason's Shop   ",
 	  "image": "/BuildingCard/devcards_f_en_c_30.png",
 	  "cost1" : [ {
 	  	"type" : "Coins",
@@ -214,7 +214,7 @@
 },{
       "type" : "BuildingCard",
 	  "period" : 1,
-	  "name" : "Chapel",
+	  "name" : "Chapel              ",
 	  "image": "/BuildingCard/devcards_f_en_c_31.png",
 	  "cost1" : [{
 	  	"type" : "Woods",
@@ -243,7 +243,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 1,
-	  "name" : "Residence",
+	  "name" : "Residence           ",
 	  "image": "/BuildingCard/devcards_f_en_c_32.png",
 	  "cost1" : [ {
 	  	"type" : "Stones",
@@ -270,7 +270,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
-	  "name" : "Marketplace",
+	  "name" : "Marketplace         ",
 	  "image": "/BuildingCard/devcards_f_en_c_33.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -307,7 +307,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
-	  "name" : "Treasury",
+	  "name" : "Treasury            ",
 	  "image": "/BuildingCard/devcards_f_en_c_34.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -348,7 +348,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
-	  "name" : "Painter's Guild",
+	  "name" : "Painter's Guild     ",
 	  "image": "/BuildingCard/devcards_f_en_c_35.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -389,7 +389,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
-	  "name" : "Sculptors's Guild",
+	  "name" : "Sculptors's Guild   ",
 	  "image": "/BuildingCard/devcards_f_en_c_36.png",
 	  "cost1" : [ {
 	  	"type" : "Stones",
@@ -430,7 +430,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
-	  "name" : "Stonemason's Guild",
+	  "name" : "Stonemason's Guild  ",
 	  "image": "/BuildingCard/devcards_f_en_c_37.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -470,7 +470,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
-	  "name" : "Baptistery",
+	  "name" : "Baptistery          ",
 	  "image": "/BuildingCard/devcards_f_en_c_38.png",
 	  "cost1" : [ {
 	  	"type" : "Stones",
@@ -507,7 +507,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
-	  "name" : "Barracks",
+	  "name" : "Barracks            ",
 	  "image": "/BuildingCard/devcards_f_en_c_39.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -542,7 +542,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 2,
-	  "name" : "Stronghold",
+	  "name" : "Stronghold          ",
 	  "image": "/BuildingCard/devcards_f_en_c_40.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -577,7 +577,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
-	  "name" : "Bank",
+	  "name" : "Bank                ",
 	  "image": "/BuildingCard/devcards_f_en_c_41.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -609,7 +609,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
-	  "name" : "Fair",
+	  "name" : "Fair                ",
 	  "image": "/BuildingCard/devcards_f_en_c_42.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -646,7 +646,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
-	  "name" : "Garden",
+	  "name" : "Garden              ",
 	  "image": "/BuildingCard/devcards_f_en_c_43.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -678,7 +678,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
-	  "name" : "Fortress",
+	  "name" : "Fortress            ",
 	  "image": "/BuildingCard/devcards_f_en_c_44.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -711,7 +711,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
-	  "name" : "Palace",
+	  "name" : "Palace              ",
 	  "image": "/BuildingCard/devcards_f_en_c_45.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -751,7 +751,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
-	  "name" : "Church",
+	  "name" : "Church              ",
 	  "image": "/BuildingCard/devcards_f_en_c_46.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -800,7 +800,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
-	  "name" : "Military Academy",
+	  "name" : "Military Academy    ",
 	  "image": "/BuildingCard/devcards_f_en_c_47.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
@@ -841,7 +841,7 @@
 },{
 	  "type" : "BuildingCard",
 	  "period" : 3,
-	  "name" : "Cathedral",
+	  "name" : "Cathedral           ",
 	  "image": "/BuildingCard/devcards_f_en_c_48.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",

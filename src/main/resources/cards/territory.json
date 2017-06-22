@@ -1,7 +1,7 @@
 [{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
-	  "name" : "Commercial Hub",
+	  "name" : "Commercial Hub      ",
 	  "image": "/TerritoryCard/devcards_f_en_c_1.png",
 	  "harvest": {
   		"diceValue": 1,
@@ -16,7 +16,7 @@
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
-	  "name" : "Woods",
+	  "name" : "Woods               ",
 	  "image": "/TerritoryCard/devcards_f_en_c_2.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -38,7 +38,7 @@
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
-	  "name" : "Village",
+	  "name" : "Village             ",
 	  "image": "/TerritoryCard/devcards_f_en_c_3.png",
 	  "harvest": {
   		"diceValue": 3,
@@ -56,7 +56,7 @@
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
-	  "name" : "Gravel Pit",
+	  "name" : "Gravel Pit          ",
 	  "image": "/TerritoryCard/devcards_f_en_c_4.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -78,7 +78,7 @@
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
-	  "name" : "Forest",
+	  "name" : "Forest              ",
 	  "image": "/TerritoryCard/devcards_f_en_c_5.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -100,7 +100,7 @@
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
-	  "name" : "Monastery",
+	  "name" : "Monastery           ",
 	  "image": "/TerritoryCard/devcards_f_en_c_6.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -129,7 +129,7 @@
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
-	  "name" : "Citadel",
+	  "name" : "Citadel             ",
 	  "image": "/TerritoryCard/devcards_f_en_c_7.png",
 	  "harvest": {
   		"diceValue": 5,
@@ -148,7 +148,7 @@
 },{
 	  "type" : "TerritoryCard",
 	  "period" : 1,
-	  "name" : "City",
+	  "name" : "City                ",
 	  "image": "/TerritoryCard/devcards_f_en_c_8.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -166,7 +166,7 @@
 },{
 	 "type" : "TerritoryCard",
 	  "period" : 2,
-	  "name" : "Gold Mine",
+	  "name" : "Gold Mine           ",
 	  "image": "/TerritoryCard/devcards_f_en_c_9.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -188,7 +188,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
-	  "name" : "Mountain Town",
+	  "name" : "Mountain Town       ",
 	  "image": "/TerritoryCard/devcards_f_en_c_10.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -214,7 +214,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
-	  "name" : "Mining Town",
+	  "name" : "Mining Town         ",
 	  "image": "/TerritoryCard/devcards_f_en_c_11.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -242,7 +242,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
-	  "name" : "Rock Pit",
+	  "name" : "Rock Pit            ",
 	  "image": "/TerritoryCard/devcards_f_en_c_12.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -264,7 +264,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
-	  "name" : "Estate",
+	  "name" : "Estate              ",
 	  "image": "/TerritoryCard/devcards_f_en_c_13.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -292,7 +292,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
-	  "name" : "Hermitage",
+	  "name" : "Hermitage           ",
 	  "image": "/TerritoryCard/devcards_f_en_c_14.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -314,7 +314,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
-	  "name" : "Manor House",
+	  "name" : "Manor House         ",
 	  "image": "/TerritoryCard/devcards_f_en_c_15.png",
 	   "harvest": {
   		"diceValue": 5,
@@ -333,7 +333,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 2,
-	  "name" : "Dukedom",
+	  "name" : "Dukedom             ",
 	  "image": "/TerritoryCard/devcards_f_en_c_16.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -361,7 +361,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
-	  "name" : "Trading Town",
+	  "name" : "Trading Town        ",
 	  "image": "/TerritoryCard/devcards_f_en_c_17.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -386,7 +386,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
-	  "name" : "Farm",
+	  "name" : "Farm                ",
 	  "image": "/TerritoryCard/devcards_f_en_c_18.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -414,7 +414,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
-	  "name" : "Colony",
+	  "name" : "Colony              ",
 	  "image": "/TerritoryCard/devcards_f_en_c_19.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -440,7 +440,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
-	  "name" : "Marble Pit",
+	  "name" : "Marble Pit          ",
 	  "image": "/TerritoryCard/devcards_f_en_c_20.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -465,7 +465,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
-	  "name" : "Province",
+	  "name" : "Province            ",
 	  "image": "/TerritoryCard/devcards_f_en_c_21.png",
 	   "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -492,7 +492,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
-	  "name" : "Sanctuary",
+	  "name" : "Sanctuary           ",
 	  "image": "/TerritoryCard/devcards_f_en_c_22.png",
 	   "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -517,7 +517,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
-	  "name" : "Castle",
+	  "name" : "Castle              ",
 	  "image": "/TerritoryCard/devcards_f_en_c_23.png",
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",
@@ -546,7 +546,7 @@
 },{
 	"type" : "TerritoryCard",
 	  "period" : 3,
-	  "name" : "Fortified Town",
+	  "name" : "Fortified Town      ",
 	  "image": "/TerritoryCard/devcards_f_en_c_24.png",  
 	  "effects" : [{
 	  	"type" : "SimpleResourceEffect",

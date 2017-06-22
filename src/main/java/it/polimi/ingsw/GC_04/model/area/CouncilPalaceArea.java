@@ -18,7 +18,8 @@ public class CouncilPalaceArea extends Area{
 		turnOrder = players;
 		int nrOfPlayers = turnOrder.length;
 		nextTurnOrder = new Player[nrOfPlayers];
-		this.aSpaces = new ArrayList<>();
+		aSpaces = new ArrayList<>();
+		aSpaces.add(actionSpaceDefault);
 		this.actionSpaceDefault = actionSpaceDefault;
 	}
 		

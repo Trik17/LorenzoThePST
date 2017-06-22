@@ -74,11 +74,12 @@ public class TakeACard extends Action{
 	public void applyEffects() {
 		super.applyEffects();
 		
-		for(Effect eff : card.getEffects()){
-			if (!eff.getRequestedAuthorization() && !eff.getClass().equals(CouncilPrivilege.class))
-				eff.apply(player);
+		if (card.getEffects() != null) {
+			for(Effect eff : card.getEffects()){
+				if (!eff.getRequestedAuthorization() && !eff.getClass().equals(CouncilPrivilege.class))
+					eff.apply(player);
+			}
 		}
-
 	}
 	
 

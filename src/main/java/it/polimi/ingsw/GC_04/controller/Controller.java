@@ -5,8 +5,12 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
+import it.polimi.ingsw.GC_04.StateOfTheGameCLI;
+import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.model.Dice;
+import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
@@ -42,12 +46,14 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void startGame(){
+		stateOfTheGame();
 		views[turn].chooseAction();
 	}
 
 
-	public void setCouncilPrivilege(List<Effect> councilPrivileges, Resource resource,int cont) {
-		((CouncilPrivilege) councilPrivileges.get(cont)).setCouncilPrivilege(resource);
+	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
+		
+		councilPrivileges.get(cont).setCouncilPrivilege(resource);
 		
 	}
 	private int[] setFurtherCheckNeeded(List<Effect> requestedAuthorizationEffects) {
@@ -122,12 +128,13 @@ public class Controller implements Observer<Action,Resource> {
 	
 	
 	@Override
-	public void updateAction(Action action) {
+	public void update(Action action) {
 		action.checkExtraordinaryEffect();
 		Resource privilege;
-		List<Effect> councilPrivileges = SupportFunctions.cloneEffects(action.getCouncilPrivileges());
-		while(!councilPrivileges.isEmpty()) {
-			int cont = 0;
+		List<CouncilPrivilege> councilPrivileges = SupportFunctions.cloneCouncilPrivilege(action.getCouncilPrivileges());
+		
+		int cont = 0;
+		while(cont < councilPrivileges.size()) {
 			privilege = views[turn].setCouncilPrivilege();
 			setCouncilPrivilege(councilPrivileges,privilege,cont);
 			cont++;
@@ -164,10 +171,12 @@ public class Controller implements Observer<Action,Resource> {
 			action.apply(); 
 			
 		}else {
-			System.out.println("Non puoi fare questa mossa");
+			System.out.println("You can't do this move");
 			views[turn].chooseAction();
+			return;
 		}
 		updateTurn();
+		stateOfTheGame();
 		views[turn].chooseAction();
 		
 	}
@@ -221,16 +230,10 @@ public class Controller implements Observer<Action,Resource> {
 		lastPhase =!lastPhase;
 		
 	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
 	
-
-	@Override
-	public void updateResource(Resource resource) {
+	public void stateOfTheGame() {
+		if (views[turn] instanceof ViewCLI)
+			StateOfTheGameCLI.printStateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
 		
 	}
 	

@@ -34,6 +34,7 @@ public class ViewCLI extends ViewClient{
 		String area = in.nextLine();
 		if (!SupportFunctions.isInputValid(area, 1, 5)) {
 			chooseAction();
+			return;
 		}
 		if (area.equals("1")) {
 			print("Choose a tower between:");
@@ -44,11 +45,13 @@ public class ViewCLI extends ViewClient{
 			String tower = in.nextLine();
 			if (!SupportFunctions.isInputValid(tower, 1, 4)) {
 				chooseAction();
+				return;
 			}
 			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
 			String nrOfCard = in.nextLine();
 			if (!SupportFunctions.isInputValid(nrOfCard, 1, 4)) {
 				chooseAction();
+				return;
 			}
 			print("Choose the dice that you want to use between:");
 			print("1)BLACK");
@@ -58,11 +61,13 @@ public class ViewCLI extends ViewClient{
 			diceColor = in.nextLine();
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
+				return;
 			}
 			print("How many servants do you want to use?");
 			nrOfServants = in.nextLine();
-			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
+			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
 				chooseAction();
+				return;
 			}
 			print("Which cost do you want to pay?");
 			print("If there's only one cost available, press any key");
@@ -80,16 +85,19 @@ public class ViewCLI extends ViewClient{
 			diceColor = in.nextLine();
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
+				return;
 			}
 			print("Choose a shop between 1, 2, 3, 4"); //in realtà di pende dal numero di giocatori
 			String actSpace = in.nextLine();
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
+				return;
 			}
 			print("How many servants do you want to use?");
 			nrOfServants = in.nextLine();
-			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
+			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
 				chooseAction();
+				return;
 			}
 			input(area, diceColor, actSpace, nrOfServants);
 		}else {
@@ -101,11 +109,13 @@ public class ViewCLI extends ViewClient{
 			diceColor = in.nextLine();
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
+				return;
 			}
 			print("How many servants do you want to use?");
 			nrOfServants = in.nextLine();
-			if (!SupportFunctions.isInputValid(nrOfServants, 1, 100)) {
+			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
 				chooseAction();
+				return;
 			}
 			
 			input(area, diceColor, nrOfServants);	
@@ -325,25 +335,13 @@ public class ViewCLI extends ViewClient{
 			return new Woods(rawMaterial.getQuantity());
 		
 	}
-	
 
 	@Override
-	public void update() {
+	public void update(Action action) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void updateAction(Action action) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateResource(Resource resource) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }
