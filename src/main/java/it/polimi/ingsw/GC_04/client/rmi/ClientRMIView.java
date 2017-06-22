@@ -9,9 +9,18 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 	 * 
 	 */
 	private static final long serialVersionUID = -9164262648865618843L;
+	private final String username; 
+	private ViewClient view;
 
-	protected ClientRMIView() throws RemoteException {
+	protected ClientRMIView(String username) throws RemoteException {
 		super();
+		this.username=username;
+		this.view=new ViewCLI();
+	}
+
+	@Override
+	public String getUsername() throws RemoteException {
+		return this.username;		
 	}
 	
 	

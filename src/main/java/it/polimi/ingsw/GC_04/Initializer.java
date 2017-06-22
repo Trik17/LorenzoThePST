@@ -38,7 +38,7 @@ public class Initializer {
 
 	Player[] players;
 										
-	public Initializer(Player[] players) throws JsonMappingException, IOException {
+	public Initializer(Player[] players) {
 		JsonMapper jsonMapper=new JsonMapper();		
 		
 		int nrOfPlayers = players.length;

@@ -1,9 +1,8 @@
 package it.polimi.ingsw.GC_04.server;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,11 +10,12 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.client.rmi.ClientViewRemote;
-import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 //bisogna controllare che sia ancora connesso ogni volta che si comunica con il client
 public class ClientManager {
-	private Set<ClientViewRemote> clients;
+	private Map<String,ClientViewRemote> clients;
+	private Map<String,ClientViewRemote> lastClients; //clients that are waiting for a match
+	private Map<String,StartGame> games;
 	//private boolean isStarted;
 	private boolean timerStarted=false;
 	private Timer timer;
@@ -30,25 +30,31 @@ public class ClientManager {
     };
 	
 	public ClientManager() throws JsonMappingException, IOException {
-		this.clients=new HashSet<ClientViewRemote>();
+		this.clients=new HashMap<>();
+		this.games=new HashMap<>();
+		this.lastClients=new HashMap<>();
 		JsonMapper.TimerFromJson();//inizialize the timer from json file		
 	}
 
-	public synchronized void addClient(ClientViewRemote clientStub){
-		this.clients.add(clientStub);
+	public synchronized void addClient(ClientViewRemote clientStub, String username){
+		if(clients.containsKey(username)){
+			//chiedere un altro username
+		}
+		this.clients.put(username,clientStub);
+		this.lastClients.put(username,clientStub);
 		checkPlayers();
 		//controlla giocatori
 		//username devono essere diversi
 	}
 	
-	public Set<ClientViewRemote> getClients(){
+	public Map<String,ClientViewRemote> getClients(){
 		return this.clients; 
 	} 
 	
 	private synchronized void checkPlayers() {
-		if(clients.size()<2)
+		if(lastClients.size()<2)
 			return;
-		if(clients.size()==4){
+		if(lastClients.size()==4){
 			timer.cancel();
 			startGame();			
 		}			
@@ -62,18 +68,12 @@ public class ClientManager {
 	}	
 	
 	
-	private synchronized void newGame(){
-		//TODO crea un nuovo gestore per le nuove connessioni
-	}
-
 	private synchronized void startGame(){
-		newGame();
 		System.out.println("Starting a new game:");	
-		int nPlayers =clients.size();
-		
-		//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
+		StartGame game=new StartGame(this.lastClients);//va dato in pasto ad un thread
+		lastClients.forEach((username,stub) -> games.put(username, game));
+		this.lastClients.clear();
 	}
-	
 	
 	
 }

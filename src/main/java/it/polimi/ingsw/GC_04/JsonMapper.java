@@ -19,11 +19,11 @@ import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 
 public class JsonMapper { 
-	private FileReader fileT= new FileReader("src/main/resources/cards/territory.json");
-	private FileReader fileC= new FileReader("src/main/resources/cards/character.json"); 
-	private FileReader fileB= new FileReader("src/main/resources/cards/building.json"); 
-	private FileReader fileV= new FileReader("src/main/resources/cards/venture.json"); 	
-	private FileReader fileAS= new FileReader("src/main/resources/actionSpace.json"); 	
+	private FileReader fileT;
+	private FileReader fileC;
+	private FileReader fileB;
+	private FileReader fileV;
+	private FileReader fileAS;
 	private List<ActionSpace> actionSpaces;
 	private List<TerritoryCard> territoryCards;
 	private List<CharacterCard> characterCards;
@@ -31,11 +31,17 @@ public class JsonMapper {
 	private List<VentureCard> ventureCards;
 	
 	
-	public JsonMapper() throws JsonMappingException, IOException{	
+	public JsonMapper() {	
 		ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 				
-		try{		
+		try{	
+			fileT= new FileReader("src/main/resources/cards/territory.json");
+			fileC= new FileReader("src/main/resources/cards/character.json"); 
+			fileB= new FileReader("src/main/resources/cards/building.json"); 
+			fileV= new FileReader("src/main/resources/cards/venture.json"); 	
+			fileAS= new FileReader("src/main/resources/actionSpace.json"); 
+			
 			//Cards
 			TypeReference<List<TerritoryCard>> mapTypeT = new TypeReference<List<TerritoryCard>>() {};
 			territoryCards=mapper.readValue(fileT,mapTypeT);	
@@ -53,8 +59,12 @@ public class JsonMapper {
 	    	TypeReference<List<ActionSpace>> mapTypeAS = new TypeReference<List<ActionSpace>>() {};
 			actionSpaces=mapper.readValue(fileAS,mapTypeAS);
 	    	
-		}catch(JsonParseException e){
-			 e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}	
 		
 	}

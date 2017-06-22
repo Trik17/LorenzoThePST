@@ -17,6 +17,10 @@ public class ClientRMI {
 	private ClientRMIView rmiView;
 	private String username;
 	
+	public ClientRMI(String username) {
+		this.username=username;
+	}
+
 	private String ask(String print){
 		Scanner in = new Scanner(System.in);
 		System.out.println(print);
@@ -33,10 +37,10 @@ public class ClientRMI {
 		//get the stub (local object) of the remote view
 		RMIViewRemote serverStub = (RMIViewRemote) registry.lookup(NAME);
 
-		this.rmiView=new ClientRMIView();
+		this.rmiView=new ClientRMIView(username);
 
 		// register the client view in the server side to receive messages from the server (in ClientManager)
-		serverStub.registerClient(rmiView);
+		serverStub.registerClient(rmiView,username);
 			
 	}
 	

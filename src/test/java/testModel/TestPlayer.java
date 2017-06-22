@@ -24,10 +24,10 @@ public class TestPlayer {
 	
 	@Before
 	public void inizializer(){
-		p1=new Player("AndreaTest", 1,0);
-		p2=new Player("MiriamTest", 2,1);
-		p3=new Player("LuigiTest", 3,2);
-		p4=new Player("MartinTest", 4,3);
+		p1=new Player("AndreaTest", 1);
+		p2=new Player("MiriamTest", 2);
+		p3=new Player("LuigiTest", 3);
+		p4=new Player("MartinTest", 4);
 		players=new ArrayList<Player>();
 		players.add(p1);
 		players.add(p2);
@@ -35,7 +35,8 @@ public class TestPlayer {
 		players.add(p4);
 		
 	}
-	
+	//non c'è più l'id
+	/*
 	@Test
 	public void testInitialResource() {
 		for(Player p : players){
@@ -58,7 +59,7 @@ public class TestPlayer {
 					assertEquals(0, r.getQuantity());				
 			}
 		}		
-	}
+	}*/
 	
 	
 
