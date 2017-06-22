@@ -98,9 +98,9 @@ public class Main {
 			//else
 				views[i] = new ViewCLI();
 		
-		Controller controller=new Controller(model,initializer);
-		controller.setViews(views);
-		controller.startGame();
+//		Controller controller=new Controller(model,initializer);
+//		controller.setViews(views);
+//		controller.startGame();
 		
 		
 		

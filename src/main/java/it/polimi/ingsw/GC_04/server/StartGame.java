@@ -14,29 +14,41 @@ import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.view.ViewHandler;
 
-public class StartGame {//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
+public class StartGame implements Runnable {//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
 	
 	private Map<String,ClientViewRemote> clients;
+	private ViewHandler[] viewClients;
 	private Player[] players;
 	private int turn=0; 
+	private Model model;
+	private Controller controller;
 	//the real turn is (turn+1), 
 	//the variable turn is also the index of players
 	
-	public StartGame(Map<String,ClientViewRemote> clients) {
+	public StartGame(Map<String,ClientViewRemote> clients, Model model, Controller controller) {
 		this.clients=new HashMap<>(clients);
 		this.players=new Player[clients.size()];
+		this.viewClients=new ViewHandler[clients.size()];
+		this.model=model;
+		this.controller=controller;
+	}
+	
+	@Override
+	public void run(){
 		start();
 	}
-
+	
 	private void start() {
 		
 		clients.forEach((username,stub)-> {
 			players[turn]=new Player(username,turn+1);
 			turn++;
+			viewClients[turn]=new ViewHandler(username,stub);
 		});
 		
-		Initializer initializer = new Initializer(players);
+		
 		Model model = new Model();
 		model.setPlayers(players);
 		
@@ -45,18 +57,13 @@ public class StartGame {//va messo il codice che sta in Main ->il controller dev
 		System.out.println("siiiii ahahahha siiiiii");
 		
 		// le view devono essere ClientViewRemote
-		ViewClient[] views =new ViewClient[clients.size()];
-		//ClientViewRemote[] views=new ClientViewRemote[clients.size()];
-		//for(int i=0; i<clients.size(); i++)
-			//if(graphic)
-				//views[i] = new ViewGUI();
-			//else
-				//views[i] = new ViewCLI();
+//		ViewClient[] views =new ViewClient[clients.size()];
 		
 		
-		Controller controller=new Controller(model,initializer);
-		controller.setViews(views);
-		controller.startGame();
+		
+		Controller controller=new Controller(model);
+		controller.setViews(viewClients);
+		controller.initialize(players);
 		
 		
 	}

@@ -26,29 +26,35 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
+import it.polimi.ingsw.GC_04.view.ViewHandler;
 
 public class Controller implements Observer<Action,Resource> {
 	
 	private final static int FINALTURN = 4;
 	private Model model;
-	private ViewClient[] views;
+	private ViewHandler[] views;
 	private Initializer initializer;
 	private int currentPlayer = 0;
 	private int turn = 0;
 	private boolean lastPhase;
 
-	public Controller(Model model, Initializer initializer) {
-		this.model = model;	
-		this.initializer = initializer;
+	public Controller(Model model) {
+		this.model = model;
 	}
 	
-	public void setViews(ViewClient[] views){
+	public void setViews(ViewHandler[] views){
 		this.views = views;
-		for(ViewClient view : views)
+		for(ViewHandler view : views)
 			view.registerObserver(this);
 	}
 	
-	public void startGame(){
+	public void initialize(Player[] players){
+		
+		this.initializer = new Initializer(players);
+		startGame();
+	}
+	
+	private void startGame(){
 		stateOfTheGame();
 		views[currentPlayer].chooseAction();
 	}
@@ -240,7 +246,7 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void stateOfTheGame() {
-		if (views[currentPlayer] instanceof ViewCLI)
+		if (!views[currentPlayer].isGUI())
 			StateOfTheGameCLI.printStateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
 		
 	}
