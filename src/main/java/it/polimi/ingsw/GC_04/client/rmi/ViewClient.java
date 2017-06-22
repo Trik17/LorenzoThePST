@@ -103,7 +103,7 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 		Action action;
 		
 		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-		int aSpace = Integer.parseInt(actSpace); 
+		int aSpace = Integer.parseInt(actSpace)-1; 
 		int servants = Integer.parseInt(nrOfServants); 
 		
 		realArea = MarketArea.instance();

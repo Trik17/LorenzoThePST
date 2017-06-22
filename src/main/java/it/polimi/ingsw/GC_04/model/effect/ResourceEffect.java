@@ -29,7 +29,7 @@ public abstract class ResourceEffect extends Effect {
 
 	@Override
 	public void apply(Player player){
-		Resource.addResource(effect,player.getResources());
+		Resource.addResource(player.getResources(),effect);
 	}
 	
 	public List<Resource> getEffect(){

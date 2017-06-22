@@ -37,7 +37,7 @@ public class RunProduction extends Action {
 				for (Effect eff:effects) {
 					if (eff.getClass().equals(CouncilPrivilege.class))
 						councilPrivileges.add((CouncilPrivilege) eff);
-					if (eff.getRequestedAuthorization())
+					if (eff.isAuthorizationRequested())
 						requestedAuthorizationEffects.add(eff);
 				}
 					
@@ -54,7 +54,7 @@ public class RunProduction extends Action {
 			if (prod.getDiceValue() <= prodValue) {
 				List<Effect> effects = prod.getEffects();
 				for (Effect eff:effects) {
-					if (!eff.getRequestedAuthorization() && !eff.getClass().equals(CouncilPrivilege.class))
+					if (!eff.isAuthorizationRequested() && !eff.getClass().equals(CouncilPrivilege.class))
 						eff.apply(player);
 				}
 			}

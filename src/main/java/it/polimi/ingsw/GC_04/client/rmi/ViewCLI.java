@@ -36,7 +36,7 @@ public class ViewCLI extends ViewClient{
 			chooseAction();
 			return;
 		}
-		if (area.equals("1")) {
+		if ("1".equals(area)) {
 			print("Choose a tower between:");
 			print("1)TERRITORY");
 			print("2)CHARACTER");
@@ -76,7 +76,7 @@ public class ViewCLI extends ViewClient{
 			input(tower, nrOfCard, diceColor, nrOfServants, cost);
 			
 		}
-		else if (area.equals("2")) {
+		else if ("2".equals(area)) {
 			print("Choose the dice that you want to use between:");
 			print("1)BLACK");
 			print("2)ORANGE");
@@ -87,15 +87,15 @@ public class ViewCLI extends ViewClient{
 				chooseAction();
 				return;
 			}
-			print("Choose a shop between 1, 2, 3, 4"); //in realtà di pende dal numero di giocatori
-			String actSpace = in.nextLine();
-			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
-				chooseAction();
-				return;
-			}
 			print("How many servants do you want to use?");
 			nrOfServants = in.nextLine();
 			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
+				chooseAction();
+				return;
+			}
+			print("Choose a shop between 1, 2, 3, 4"); 
+			String actSpace = in.nextLine();
+			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 				return;
 			}

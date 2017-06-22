@@ -10,8 +10,8 @@ public class FamilyMember {
 		FamilyMember[] family = new FamilyMember[4];
 		family[0] = new FamilyMember();
 		family[1] = new FamilyMember(familyColor,Dice.getDice(DiceColor.BLACK));
-		family[2] = new FamilyMember(familyColor,Dice.getDice(DiceColor.WHITE));
-		family[3] = new FamilyMember(familyColor,Dice.getDice(DiceColor.ORANGE));
+		family[2] = new FamilyMember(familyColor,Dice.getDice(DiceColor.ORANGE));
+		family[3] = new FamilyMember(familyColor,Dice.getDice(DiceColor.WHITE));
 		
 		return family;
 			

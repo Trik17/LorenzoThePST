@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_04;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
@@ -14,6 +16,10 @@ import it.polimi.ingsw.GC_04.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.model.area.CharacterTower;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
+import it.polimi.ingsw.GC_04.model.resource.Coins;
+import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.Stones;
+import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 
 

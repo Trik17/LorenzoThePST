@@ -28,9 +28,12 @@ import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
 public class Controller implements Observer<Action,Resource> {
+	
+	private final static int FINALTURN = 4;
 	private Model model;
 	private ViewClient[] views;
 	private Initializer initializer;
+	private int currentPlayer = 0;
 	private int turn = 0;
 	private boolean lastPhase;
 
@@ -47,7 +50,7 @@ public class Controller implements Observer<Action,Resource> {
 	
 	public void startGame(){
 		stateOfTheGame();
-		views[turn].chooseAction();
+		views[currentPlayer].chooseAction();
 	}
 
 
@@ -82,7 +85,7 @@ public class Controller implements Observer<Action,Resource> {
 	
 	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) {
 		Effect effect = requestedAuthorizationEffects.get(index);
-		int[] choice = views[turn].setFurtherCheckNeededEffect(effect);
+		int[] choice = views[currentPlayer].setFurtherCheckNeededEffect(effect);
 		if (effect instanceof ExchangeResourcesEffect) {
 			if (choice[0] == 1)
 				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
@@ -135,7 +138,7 @@ public class Controller implements Observer<Action,Resource> {
 		
 		int cont = 0;
 		while(cont < councilPrivileges.size()) {
-			privilege = views[turn].setCouncilPrivilege();
+			privilege = views[currentPlayer].setCouncilPrivilege();
 			setCouncilPrivilege(councilPrivileges,privilege,cont);
 			cont++;
 			/* it clones all of the instances of CouncilPrivilege present in the effects of the action
@@ -146,7 +149,7 @@ public class Controller implements Observer<Action,Resource> {
 		int[] furtherCheckNeeded = setFurtherCheckNeeded(requestedAuthorizationEffects);
 	
 		requestedAuthorizationEffects = organizeExchangeResourcesEffects(requestedAuthorizationEffects);
-		int[] requestedEffects = views[turn].setRequestedAuthorizationEffects(requestedAuthorizationEffects); //it returns the indices of the effects chosen by the player
+		int[] requestedEffects = views[currentPlayer].setRequestedAuthorizationEffects(requestedAuthorizationEffects); //it returns the indices of the effects chosen by the player
 		
 		if (furtherCheckNeeded.length != 0 && requestedEffects.length != 0) {
 		//it asks the player which choice he wants to make between those proposed
@@ -160,6 +163,11 @@ public class Controller implements Observer<Action,Resource> {
 		}
 		List<Resource> discount = new ArrayList<Resource>();
 		if (action instanceof TakeACard) {
+			if (((TakeACard) action).getCard() == null){
+				System.out.println("You can't do this move");
+				views[currentPlayer].chooseAction();
+				return;
+			}
 			discount = setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
 			
 		}
@@ -172,12 +180,12 @@ public class Controller implements Observer<Action,Resource> {
 			
 		}else {
 			System.out.println("You can't do this move");
-			views[turn].chooseAction();
+			views[currentPlayer].chooseAction();
 			return;
 		}
 		updateTurn();
 		stateOfTheGame();
-		views[turn].chooseAction();
+		views[currentPlayer].chooseAction();
 		
 	}
 	
@@ -190,7 +198,7 @@ public class Controller implements Observer<Action,Resource> {
 		if (!myDiscounts.stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
 			discounts = myDiscounts;
 		else {
-			myDiscounts.forEach(res -> {if (res instanceof RawMaterial) res = views[turn].setDiscount(res);});
+			myDiscounts.forEach(res -> {if (res instanceof RawMaterial) res = views[currentPlayer].setDiscount(res);});
 			discounts = myDiscounts;
 		}
 		return discounts;
@@ -216,23 +224,23 @@ public class Controller implements Observer<Action,Resource> {
 		}
 	}
 	
-	public void updateTurn() {
-		if (model.getPeriod() == 4 && lastPhase)
+	public void updateTurn() {//TODO: tutto
+		if (model.getPeriod() == FINALTURN && lastPhase && turn == FINALTURN )
 			//TODO: final score
 			return;
-		else if (turn == views.length -1) {
+		else if (currentPlayer == views.length -1 && turn == FINALTURN) {
 			if (lastPhase)
 				initializer.changeTurn();//TODO: GESTIONE SCOMUNICHE
-			turn = 0;
+			currentPlayer = 0;
 		}else {
-			turn++;
+			currentPlayer++;
 		}
 		lastPhase =!lastPhase;
 		
 	}
 	
 	public void stateOfTheGame() {
-		if (views[turn] instanceof ViewCLI)
+		if (views[currentPlayer] instanceof ViewCLI)
 			StateOfTheGameCLI.printStateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
 		
 	}

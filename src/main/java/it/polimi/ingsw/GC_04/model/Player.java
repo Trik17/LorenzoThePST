@@ -64,6 +64,8 @@ public class Player {
 		vCards = new ArrayList<>();
 		bCards = new ArrayList<>();
 		cCards = new ArrayList<>();
+		
+		actionSpacePenality = false; 
 	}
 	
 	public Discount getDiscount(){

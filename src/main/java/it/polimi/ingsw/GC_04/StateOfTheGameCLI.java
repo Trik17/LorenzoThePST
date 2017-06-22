@@ -2,7 +2,9 @@ package it.polimi.ingsw.GC_04;
 
 import java.util.List;
 
+import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.Dice;
+import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
@@ -26,21 +28,13 @@ public class StateOfTheGameCLI {
 		printCards(tCards, cCards, bCards, vCards);
 		printDices(bDice, oDice, wDice);
 		
-		for (Player player:model.getPlayers())
-			printPersonalBoard(player);
+		
+		for (Player p:model.getPlayers())
+			printPersonalBoard(p);
 		
 	}
 	
-	public static String nameCard(DevelopmentCard card) {
-		try {
-			String name = ")"+card.getName();
-			return name;
-		}catch (NullPointerException e) {
-			String name = ")EMPTY";
-			return name;
-		}
-		
-	}
+
 	
 	public static void printCards(DevelopmentCard[] tCards,DevelopmentCard[] cCards,DevelopmentCard[] bCards,DevelopmentCard[] vCards) {
 		int cont = 1;
@@ -51,18 +45,20 @@ public class StateOfTheGameCLI {
 		
 		for(int i = 0; i < length; i++) {
 			
-			System.out.printf("%d", cont);
-			System.out.printf(nameCard(tCards[i]));
-			System.out.printf("%d", cont);
-			System.out.printf(nameCard(cCards[i]));			
-			System.out.printf("%d", cont);
-			System.out.printf(nameCard(bCards[i]));
-			System.out.printf("%d", cont);
-			System.out.printf("%s\n",nameCard(vCards[i]));
+				System.out.printf("%d", cont);
+				System.out.printf(SupportFunctions.cardInArray(tCards, i));
+				System.out.printf("%d", cont);
+				System.out.printf(SupportFunctions.cardInArray(cCards, i));			
+				System.out.printf("%d", cont);
+				System.out.printf(SupportFunctions.cardInArray(bCards, i));
+				System.out.printf("%d", cont);
+				System.out.printf("%s\n",SupportFunctions.cardInArray(vCards, i));
 			
 			cont++;
 			
 		}
+		if (length == 0)
+			print("**************        **************        **************        **************   ");
 		print("");
 	}
 	
@@ -71,6 +67,7 @@ public class StateOfTheGameCLI {
 		print(" ");
 		printPersonalCards(player);
 		printResources(player);
+		printFamily(player);
 	}
 	
 	public static void printResources(Player player) {
@@ -96,5 +93,14 @@ public class StateOfTheGameCLI {
 		print("ORANGE DICE: "+ oDice.getValue());
 		print("WHITE DICE: "+ wDice.getValue());
 		print(" ");
+	}
+	
+	public static void printFamily(Player player) {
+		FamilyMember[] family = player.getFamily();
+		print("Family Member NEUTRAL: used = "+family[0].isUsed());
+		print("Family Member BLACK: used = "+family[1].isUsed());
+		print("Family Member ORANGE: used = "+family[2].isUsed());
+		print("Family Member WHITE: used = "+family[3].isUsed());
+		print("");
 	}
 }

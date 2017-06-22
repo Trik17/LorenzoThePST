@@ -71,7 +71,7 @@ public abstract class Resource implements Cloneable{
 					else if (resources.get(j).getQuantity()-cost.get(i).getQuantity() < 0) 
 						resources.get(j).quantity = 0;
 					else 
-						resources.get(j).addQuantity(cost.get(i).getQuantity());
+						resources.get(j).addQuantity(-cost.get(i).getQuantity());
 						break;
 				}
 			}

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
+import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
@@ -58,5 +59,26 @@ public class SupportFunctions {
 		}
 		
 		return true;
+	}
+	
+	public static String nameCard(DevelopmentCard card) {
+		try {
+			String name = ")"+card.getName();
+			return name;
+		}catch (NullPointerException e) {
+			String name = ")EMPTY               ";
+			return name;
+		}
+		
+	}
+	
+	public static String cardInArray(DevelopmentCard[] array,int index) {
+		String card;
+		try {
+			card = nameCard(array[index]);
+		}catch (ArrayIndexOutOfBoundsException e) {
+			card = ")  **************  ";
+		}
+		return card;
 	}
 }
