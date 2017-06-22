@@ -19,7 +19,6 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class Player {
 	private String name;
-	private int id;
 	private Model game;
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
@@ -34,16 +33,14 @@ public class Player {
 	private List<Harvest> harvestList;
 	private List<Production> productionList;
 	
-	public int getId(){
-		return this.id;
-	}
 	
 	
-	public Player(String name, int turn, int id){
+	
+	public Player(String name, int turn){
 		// 1<=turn<=4 only for initial coins
 		// 0<=id<=4
 		this.name = name;
-		this.id=id;
+		
 		
 		resources = new ArrayList<>();
 		
@@ -64,6 +61,8 @@ public class Player {
 		vCards = new ArrayList<>();
 		bCards = new ArrayList<>();
 		cCards = new ArrayList<>();
+		
+		actionSpacePenality = false; 
 	}
 	
 	public Discount getDiscount(){
@@ -116,6 +115,18 @@ public class Player {
 	}
 	public void setFamily(FamilyMember[] fMembers) {
 		this.family = fMembers;
+	}
+	
+	public FamilyMember[] getFamily() {
+		return family;
+		
+	}
+	
+	public List<Harvest> getHarvest() {
+		return harvestList;
+	}
+	public List<Production> getProduction() {
+		return productionList;
 	}
 	
 }

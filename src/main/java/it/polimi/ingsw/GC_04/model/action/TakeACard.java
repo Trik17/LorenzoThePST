@@ -72,13 +72,17 @@ public class TakeACard extends Action{
 	}
 	@Override
 	public void applyEffects() {
-		super.applyEffects();
+		if(!player.getActionSpacePenality())
+			aSpace.applyEffects(player);
+		councilPrivileges.forEach(cp -> cp.apply(player));
+		requestedAuthorizationEffects.forEach(rae -> rae.apply(player));
 		
-		for(Effect eff : card.getEffects()){
-			if (!eff.getRequestedAuthorization() && !eff.getClass().equals(CouncilPrivilege.class))
-				eff.apply(player);
+		if (card.getEffects() != null) {
+			for(Effect eff : card.getEffects()){
+				if (!eff.isAuthorizationRequested() && !eff.getClass().equals(CouncilPrivilege.class))
+					eff.apply(player);
+			}
 		}
-
 	}
 	
 
@@ -91,7 +95,7 @@ public class TakeACard extends Action{
 			for(Effect eff: effects) {
 				if (eff.getClass().equals(CouncilPrivilege.class))
 					councilPrivileges.add((CouncilPrivilege) eff);
-				if (eff.getRequestedAuthorization())
+				if (eff.isAuthorizationRequested())
 					requestedAuthorizationEffects.add(eff);
 				}
 		

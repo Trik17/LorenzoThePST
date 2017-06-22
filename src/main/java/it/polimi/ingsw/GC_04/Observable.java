@@ -22,21 +22,10 @@ public abstract class Observable<A,R> {
 		this.observers.remove(o);
 	}
 
-	public void notifyObservers() {
-		for (Observer<A,R> o : this.observers) {
-			o.update();
-		}
-	}
 
 	public void notifyObserversA(A action) {
 		for (Observer<A,R> o : this.observers) {
-			o.updateAction(action);
-		}
-	}
-	
-	public void notifyObserversR(R resource) {
-		for (Observer<A,R> o : this.observers) {
-			o.updateResource(resource);
+			o.update(action);
 		}
 	}
 	

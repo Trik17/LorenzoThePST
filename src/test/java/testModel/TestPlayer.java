@@ -21,13 +21,17 @@ public class TestPlayer {
 	protected Player p4;
 	protected List<Player> players;
 	protected List<Resource> res;
+	private int p1Turn=1;
+	private int p2Turn=2;
+	private int p3Turn=3;
+	private int p4Turn=4;
 	
 	@Before
 	public void inizializer(){
-		p1=new Player("AndreaTest", 1,0);
-		p2=new Player("MiriamTest", 2,1);
-		p3=new Player("LuigiTest", 3,2);
-		p4=new Player("MartinTest", 4,3);
+		p1=new Player("AndreaTest",p1Turn );
+		p2=new Player("MiriamTest", p2Turn);
+		p3=new Player("LuigiTest", p3Turn);
+		p4=new Player("MartinTest", p4Turn);
 		players=new ArrayList<Player>();
 		players.add(p1);
 		players.add(p2);
@@ -35,7 +39,7 @@ public class TestPlayer {
 		players.add(p4);
 		
 	}
-	
+
 	@Test
 	public void testInitialResource() {
 		for(Player p : players){
@@ -46,13 +50,13 @@ public class TestPlayer {
 				else if(r.getClass().equals(Servants.class))
 					assertEquals(3, r.getQuantity());
 				else if(r.getClass().equals(Coins.class)){
-					if(p.getId()==0)
+					if(p.equals(p1))
 						assertEquals(5, r.getQuantity());
-					if(p.getId()==1)
+					if(p.equals(p2))
 						assertEquals(6, r.getQuantity());
-					if(p.getId()==2)
+					if(p.equals(p3))
 						assertEquals(7, r.getQuantity());
-					if(p.getId()==3)
+					if(p.equals(p4))
 						assertEquals(8, r.getQuantity());
 				}else
 					assertEquals(0, r.getQuantity());				

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
+import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
@@ -35,11 +36,14 @@ public class Initializer {
 	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
 
+	Player[] players;
 										
-	public Initializer(Player[] players) throws JsonMappingException, IOException {
+	public Initializer(Player[] players) {
 		JsonMapper jsonMapper=new JsonMapper();		
 		
 		int nrOfPlayers = players.length;
+		
+		this.players = players;
 		
 		this.tCards = jsonMapper.getTerritoryCardArray();
 		this.cCards = jsonMapper.getCharacterCardArray();
@@ -90,6 +94,14 @@ public class Initializer {
 		MarketArea.instance().reset();
 		HarvestArea.instance().reset();
 		ProductionArea.instance().reset();
+		
+		for(Player player:players) {
+			for (int i = 0; i < player.getFamily().length; i++) {
+				player.getFamily()[i].switchUsed();
+			}
+		}
+		
+		CouncilPalaceArea.setTurnOrder();
 		
 		initialPosition += 4;
 		finalPosition += 4;

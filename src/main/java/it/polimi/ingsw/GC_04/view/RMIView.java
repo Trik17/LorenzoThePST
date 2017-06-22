@@ -18,8 +18,8 @@ public class RMIView implements RMIViewRemote{
 	
 	
 	@Override
-	public synchronized void registerClient(ClientViewRemote clientStub) throws RemoteException {
-		this.clientManager.addClient(clientStub);
+	public synchronized void registerClient(ClientViewRemote clientStub, String username) throws RemoteException {
+		this.clientManager.addClient(clientStub, username);
 		//manca qualcosa
 				
 	}

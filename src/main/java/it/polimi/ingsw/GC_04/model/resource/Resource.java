@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 	@Type(value = VictoryPoints.class),
 })
 
-public abstract class Resource {
+public abstract class Resource implements Cloneable{
 
 	private int quantity;
 	//constructor needed for Json
@@ -71,7 +71,7 @@ public abstract class Resource {
 					else if (resources.get(j).getQuantity()-cost.get(i).getQuantity() < 0) 
 						resources.get(j).quantity = 0;
 					else 
-						resources.get(j).addQuantity(cost.get(i).getQuantity());
+						resources.get(j).addQuantity(-cost.get(i).getQuantity());
 						break;
 				}
 			}

@@ -85,8 +85,18 @@ public abstract class DevelopmentCard extends Card{
 	public List<Effect> getEffects() {
 		return effects;
 	}
+	
+	
 	public String getImage() {
 		return image;
+	}
+	
+	public static DevelopmentCard[] toArray(List<DevelopmentCard> list) {
+		DevelopmentCard[] array = new DevelopmentCard[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			array[i] = list.get(i);
+		}
+		return array;
 	}
 	
 }

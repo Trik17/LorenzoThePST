@@ -20,10 +20,10 @@ property = "type")
 @Type(value = ExchangeResourcesEffect.class),
 })
 
-public abstract class Effect {
+public abstract class Effect implements Cloneable{
 	protected boolean requestedAuthorization;
 	
-	public boolean getRequestedAuthorization() {
+	public boolean isAuthorizationRequested() {
 		return requestedAuthorization;
 		
 	}

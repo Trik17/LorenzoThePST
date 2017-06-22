@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 
 public class ActionSpace {
@@ -40,7 +41,8 @@ public class ActionSpace {
 	public void applyEffects(Player player) {
 		if (effect == null)
 			return;
-		effect.forEach(eff -> eff.apply(player));
+		effect.forEach(eff -> {if (!eff.isAuthorizationRequested() && !(eff instanceof CouncilPrivilege)) 
+			eff.apply(player);});
 		
 	}
 	public FamilyColor getPresentColor(){
