@@ -19,7 +19,7 @@ import it.polimi.ingsw.GC_04.view.ViewHandler;
 public class StartGame implements Runnable {//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
 	
 	private Map<String,ClientViewRemote> clients;
-	private ViewHandler[] viewClients;
+	private ClientViewRemote[] viewClients;
 	private Player[] players;
 	private int turn=0; 
 	private Model model;
@@ -30,7 +30,7 @@ public class StartGame implements Runnable {//va messo il codice che sta in Main
 	public StartGame(Map<String,ClientViewRemote> clients, Model model, Controller controller) {
 		this.clients=new HashMap<>(clients);
 		this.players=new Player[clients.size()];
-		this.viewClients=new ViewHandler[clients.size()];
+		this.viewClients=new ClientViewRemote[clients.size()];
 		this.model=model;
 		this.controller=controller;
 	}
@@ -45,7 +45,7 @@ public class StartGame implements Runnable {//va messo il codice che sta in Main
 		clients.forEach((username,stub)-> {
 			players[turn]=new Player(username,turn+1);
 			turn++;
-			viewClients[turn]=new ViewHandler(username,stub);
+			viewClients[turn]=stub;
 		});
 		System.out.println("aaaaaaaaaa 2222222222");// cancella
 		

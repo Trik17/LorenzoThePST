@@ -6,6 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.StateOfTheGameCLI;
+import it.polimi.ingsw.GC_04.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
@@ -32,7 +33,7 @@ public class Controller implements Observer<Action,Resource> {
 	
 	private final static int FINALTURN = 4;
 	private Model model;
-	private ViewHandler[] views;
+	private ClientViewRemote[] views;
 	private Initializer initializer;
 	private int currentPlayer = 0;
 	private int turn = 0;
@@ -42,10 +43,11 @@ public class Controller implements Observer<Action,Resource> {
 		this.model = model;
 	}
 	
-	public void setViews(ViewHandler[] views){
+	public void setViews(ClientViewRemote[] views){
 		this.views = views;
-		for(ViewHandler view : views)
-			view.registerObserver(this);
+//		IL CONTROLLER OSSERVA rmiView dei vari client-> già registrato come observer
+//		for(ClientViewRemote view : views)
+//			view.registerObserver(this);
 	}
 	
 	public void initialize(Player[] players){

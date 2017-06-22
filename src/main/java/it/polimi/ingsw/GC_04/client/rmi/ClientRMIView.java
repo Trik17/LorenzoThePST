@@ -17,7 +17,8 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 		this.username=username;
 		this.view=new ViewCLI();
 	}
-
+	
+	
 	@Override
 	public String getUsername() throws RemoteException {
 		return this.username;		
