@@ -8,6 +8,8 @@ import java.rmi.RemoteException;
 public interface ClientViewRemote extends Remote {
 	
 	public String getUsername() throws RemoteException;
+
+	public void askSomething(String string) throws RemoteException;
 	
 	
 	
