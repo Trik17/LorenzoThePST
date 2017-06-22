@@ -16,15 +16,16 @@ public class MainClient {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Choose an unsername: ");
 		String username=in.nextLine();
-        System.out.println("Choose RMI or SOCKET: ");
-        String connection=in.nextLine();
-        in.close();      
-        if (connection.equalsIgnoreCase("RMI")){
+//        System.out.println("Choose RMI or SOCKET: ");
+//        String connection=in.nextLine();
+        in.close();  
+        
+//        if (connection.equalsIgnoreCase("RMI")){
         	ClientRMI client=new ClientRMI(username);
         	client.clientConnection();
-        }/*else if(connection.equalsIgnoreCase("SOCKET")){
-        	ClientSocket.main(null);
-        }*/
+//        }else if(connection.equalsIgnoreCase("SOCKET")){
+//        	ClientSocket.main(null);
+//        }
         	
 		
 	}

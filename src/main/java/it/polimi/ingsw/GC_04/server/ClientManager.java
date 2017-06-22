@@ -72,6 +72,7 @@ public class ClientManager {
 		this.lastClients.put(username,clientStub);
 		//controller observes this view
 		rmiView.registerObserver(this.currentController);
+		System.out.println("new client connected");
 		checkPlayers();
 		//controlla giocatori
 		//username devono essere diversi
@@ -82,6 +83,7 @@ public class ClientManager {
 	} 
 	
 	private synchronized void checkPlayers() {
+		System.out.println("Number of new Clients:"+ lastClients.size());
 		if(lastClients.size()<2)
 			return;
 		if(lastClients.size()==4){
@@ -122,7 +124,7 @@ public class ClientManager {
 		
 		System.out.println("Binding the server implementation to the registry");
 		registry.bind(NAME, rmiView);
-		
+		System.out.println("RMI is ready to accept clients");
 		
 	}
 	

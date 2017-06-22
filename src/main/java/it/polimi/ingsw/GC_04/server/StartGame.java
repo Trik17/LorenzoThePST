@@ -41,20 +41,19 @@ public class StartGame implements Runnable {//va messo il codice che sta in Main
 	}
 	
 	private void start() {
-		
+		System.out.println("aaaaaaaaaaaa 1111111");// cancella
 		clients.forEach((username,stub)-> {
 			players[turn]=new Player(username,turn+1);
 			turn++;
 			viewClients[turn]=new ViewHandler(username,stub);
 		});
-		
+		System.out.println("aaaaaaaaaa 2222222222");// cancella
 		
 		Model model = new Model();
 		model.setPlayers(players);
 		
 		
-		//cancella
-		System.out.println("siiiii ahahahha siiiiii");
+		System.out.println("aaaaaaaaaaa  33333333");//cancella
 		
 		// le view devono essere ClientViewRemote
 //		ViewClient[] views =new ViewClient[clients.size()];
