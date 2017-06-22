@@ -29,6 +29,7 @@ import it.polimi.ingsw.GC_04.model.resource.*;
 
 public class Controller implements Observer<Action,Resource> {
 	
+	private final static int FINALPERIOD = 3;
 	private final static int FINALTURN = 4;
 	private Model model;
 	private ViewClient[] views;
@@ -225,12 +226,15 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void updateTurn() {//TODO: tutto
-		if (model.getPeriod() == FINALTURN && lastPhase && turn == FINALTURN )
+		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && currentPlayer == views.length -1)
 			//TODO: final score
 			return;
-		else if (currentPlayer == views.length -1 && turn == FINALTURN) {
-			if (lastPhase)
-				initializer.changeTurn();//TODO: GESTIONE SCOMUNICHE
+		else if (turn == FINALTURN && currentPlayer == views.length -1) {
+			if (lastPhase) {
+				/*TODO: GESTIONE SCOMUNICHE*/
+				model.incrementPeriod();
+				}
+			initializer.changeTurn();
 			currentPlayer = 0;
 		}else {
 			currentPlayer++;

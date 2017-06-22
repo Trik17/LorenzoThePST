@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
@@ -17,7 +18,9 @@ import it.polimi.ingsw.GC_04.model.area.CharacterTower;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
+import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.Servants;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
 
@@ -31,6 +34,16 @@ public class Main {
 	
 
 	public static void main(String[] args) throws IOException {
+		
+		List<Resource> resources = new ArrayList<>();
+		resources.add(new Servants(4));
+		resources.add(new Servants(3));
+		resources.add(new MilitaryPoints(4));
+		resources.add(new Servants(4));
+		
+		
+		
+		System.out.println(cont);;
 		
 		//prendiamo i giocatori dalla rete
 		//per ora li mettiamo qua per fare prove:

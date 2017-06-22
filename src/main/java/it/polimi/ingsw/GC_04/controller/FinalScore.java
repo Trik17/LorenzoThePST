@@ -3,8 +3,11 @@ package it.polimi.ingsw.GC_04.controller;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
@@ -42,11 +45,16 @@ public class FinalScore {
 		List<Resource> playerRes = player.getResources();
 		int finalScore = 0;
 		
-		VictoryPoints.sumEndVictoryPoints(player);
-		calculateResourceScore(player);
-		calculateCharacterCardScore(player);
+		if (!player.isDeleteCardsEffectActive(new VentureCard()))
+			VictoryPoints.sumEndVictoryPoints(player);
+		if (!player.isDeleteCardsEffectActive(new TerritoryCard()))
+			calculateTerritoryCardScore(player);
+		if (!player.isDeleteCardsEffectActive(new CharacterCard()))
+			calculateResourceScore(player);
+		if (player.isDeleteCardsEffectActive(new BuildingCard()))
+			calculateBuildingCardsMalus(player);
+		
 		calculateFaithPointsScore(player);
-		calculateTerritoryCardScore(player);
 		
 		for (Resource res:playerRes) 
 			if (res instanceof VictoryPoints)
@@ -122,6 +130,24 @@ public class FinalScore {
 		}
 		
 		addVictoryPoints(player, faithPointsScore);			
+	}
+	
+	public static void calculateBuildingCardsMalus(Player player) {
+		List<DevelopmentCard> buildingCards = player.getCards(new BuildingCard());
+		
+		int malus = 0;
+		
+		for(DevelopmentCard card:buildingCards) {
+			List<Resource> cost = card.getCost1();
+			
+			Object[] resources = cost.stream().filter(res -> (res instanceof Woods)|| (res instanceof Coins)).toArray();
+			
+			for (Object res : resources) {
+				malus += ((Resource) res).getQuantity();
+			}
+		}
+		
+		addVictoryPoints(player, -malus);
 	}
 	
 

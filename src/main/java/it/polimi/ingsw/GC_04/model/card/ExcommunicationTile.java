@@ -6,6 +6,19 @@ public class ExcommunicationTile extends Card{
 	
 	private int period;
 	private Effect effect;
+	private String image;
 	
+	public ExcommunicationTile(int period, Effect effect) {
+		this.period = period;
+		this.effect = effect;
+		
+	}
 	
+	public int getPeriod() {
+		return period;
+	}
+	
+	public Effect getEffect() {
+		return effect;
+	}
 }
