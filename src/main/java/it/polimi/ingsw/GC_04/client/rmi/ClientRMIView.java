@@ -16,7 +16,7 @@ import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 //implements ClientViewRemote interface
-public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemote, Serializable {
+public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewRemote, Serializable {
 	/**
 	 * 
 	 */

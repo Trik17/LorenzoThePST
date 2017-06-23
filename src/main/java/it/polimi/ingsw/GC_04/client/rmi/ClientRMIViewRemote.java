@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
 
 //is the remote interface of the client to receive and show data from the server through RMI.
-public interface ClientViewRemote extends Remote {
+public interface ClientRMIViewRemote extends Remote {
 	
 	public String getUsername() throws RemoteException;
 
