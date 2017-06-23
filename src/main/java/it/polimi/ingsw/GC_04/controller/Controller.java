@@ -8,7 +8,6 @@ import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.StateOfTheGameCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
