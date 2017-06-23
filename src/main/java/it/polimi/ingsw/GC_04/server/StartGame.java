@@ -14,7 +14,6 @@ import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.view.ViewHandler;
 
 public class StartGame implements Runnable {//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
 	

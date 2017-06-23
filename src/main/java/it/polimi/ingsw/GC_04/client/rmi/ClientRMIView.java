@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_04.client.rmi;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import com.sun.corba.se.spi.activation.Server;
 
@@ -12,6 +13,7 @@ import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
+import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
@@ -61,6 +63,31 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public String getUsername() throws RemoteException {
 		return this.username;		
+	}
+	@Override
+	public void chooseAction() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public int[] setFurtherCheckNeededEffect(Effect effect) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Resource setCouncilPrivilege() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Resource setDiscount(Resource res) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
