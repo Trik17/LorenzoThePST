@@ -18,6 +18,5 @@ public class HarvestArea extends ColorReastrictedArea {
 	}
 	public void reset() {
 		aSpaces = new ArrayList<>();
-		//TODO: dire a tricki come fare per gli effetti
 	}
 }
