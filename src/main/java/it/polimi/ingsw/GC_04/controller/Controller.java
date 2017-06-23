@@ -260,7 +260,7 @@ public class Controller implements Observer<Action,Resource> {
 			return;
 		else if (currentPlayer == views.length -1) {
 			if (lastPhase) {
-				/*TODO: GESTIONE SCOMUNICHE*/
+				
 				model.incrementPeriod();
 				}
 			initializer.changeTurn();
