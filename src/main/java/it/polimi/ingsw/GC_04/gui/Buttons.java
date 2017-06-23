@@ -29,6 +29,12 @@ import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 
 public class Buttons extends JFrame implements ActionListener{
 
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}}
+/*
 	private static final TerritoryCard DevelopmentCard = null;
 	private JLabel labelCard;
 	private JLabel label;
@@ -133,6 +139,7 @@ public class Buttons extends JFrame implements ActionListener{
 		if(e.getSource()==button2){
 			dispose();
 		}
-		}	
-	}}
+		}}	
+}
 
+*/

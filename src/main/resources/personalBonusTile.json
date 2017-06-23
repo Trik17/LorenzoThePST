@@ -1,6 +1,6 @@
 [
 {
-	"prouction":{
+	"production":{
 		"diceValue":1,
  	 	"effects":[{
   			"type":"SimpleResourceEffect",
@@ -29,7 +29,7 @@
 	  	}]}  	  
   	]}
 },{
-	"prouction":{
+	"production":{
 		"diceValue":1,
   		"effects":[{
   			"type":"SimpleResourceEffect",
@@ -58,7 +58,7 @@
 	  	}]}  	  
   	]}
 },{
-	"prouction":{
+	"production":{
 		"diceValue":1,
   		"effects":[{
   			"type":"SimpleResourceEffect",
@@ -87,7 +87,7 @@
 	  	}]}  	  
   		]}
 },{
-	"prouction":{
+	"production":{
 		"diceValue":1,
   		"effects":[{
   			"type":"SimpleResourceEffect",

@@ -1,0 +1,120 @@
+[{
+	  "period" : 1,
+	  "image": "",
+	  "effect" : {
+	  	"type" : "ExtraDiceHarvestEffect",
+	  	"extra" : -3
+  	  }
+},{
+	  "period" : 1,
+	  "image" : "",
+	  "effect" : {
+	  		"type" : "MalusResourceEffect",
+	  			"malus" : {
+	  				"type" : "Servants",
+	  				"quantity" : 1  	  
+  	    		}
+  	  }  
+},{
+	  "period" : 1,
+	  "image" : "",
+	  "effect" : {
+	  		"type" : "MalusResourceEffect",
+	  			"malus" : {
+	  				"type" : "Coins",
+	  				"quantity" : 1  	  
+  	    		}
+  	  		}   
+},{
+	  "period" : 1,
+	  "image" : "",
+	  "effect" : {
+	  		"type" : "MalusResourceEffect",
+	  			"malus" : {
+	  				"type" : "MilitaryPoints",
+	  				"quantity" : 0,
+	  				"malus" : 1  	  
+  	    		}
+  	  		}     	  		 
+},{
+      "period" : 1,
+	  "image": "",
+	  "effect" : {
+	  	"type" : "ExtraDiceProductionEffect",
+	  	"extra" : -3
+      }
+},{
+	  "period" : 2,
+	  "image": "",
+	  "effect" : {
+	  	"type" : "ExtraDiceCardEffect",
+	  		"cardType" : {
+				"type" : "CharacterCard"
+			},
+			"extra" : -4		  
+	  }
+},{	  
+	  "period" : 2,
+	  "image": "",
+	  "effect" : {
+	  	"type" : "ExtraDiceCardEffect",
+	  		"cardType" : {
+				"type" : "VentureCard"
+			},
+			"extra" : -4		  
+	  }
+},{
+	 "period" : 2,
+	 "image": "",
+	 "effect" : {
+	  	"type" : "ExtraDiceCardEffect",
+	  		"cardType" : {
+				"type" : "TerritoryCard"
+			},
+			"extra" : -4		  
+	 }
+},{
+	 "period" : 3,
+	 "image" : "",
+	 "effect" : {
+	 	"type" : "DeleteVPointsCardsEffect",
+	 		"cardType" : {
+	 			"type" : "CharacterCard"
+	 		}
+	 }			
+},{	
+	 "period" : 3,
+	 "image" : "",
+	 "effect" : {
+	 	"type" : "DeleteVPointsCardsEffect",
+	 		"cardType" : {
+	 			"type" : "TerritoryCard"
+	 		}
+	 }			
+},{
+	 "period" : 3,
+	 "image" : "",
+	 "effect" : {
+	 	"type" : "DeleteVPointsCardsEffect",
+	 		"cardType" : {
+	 			"type" : "VentureCard"
+	 		}
+	 }			
+},{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
