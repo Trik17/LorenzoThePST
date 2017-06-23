@@ -338,6 +338,12 @@ public class ViewCLI extends ViewClient{
 
 	@Override
 	public void update(Action action) {
+		
+		
+	}
+
+	@Override
+	public void updateR(Resource resource) {
 		// TODO Auto-generated method stub
 		
 	}

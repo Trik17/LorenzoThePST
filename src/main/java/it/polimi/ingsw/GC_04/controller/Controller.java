@@ -64,7 +64,7 @@ public class Controller implements Observer<Action,Resource> {
 		try {
 			System.out.println("server: provo a salutare");
 			views[1].askSomething("ciao");
-			views[2].askSomething("ciao");
+//			views[2].askSomething("ciao");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -147,11 +147,19 @@ public class Controller implements Observer<Action,Resource> {
 //
 //	
 //		
-	
-	
+	@Override
+	public void updateR(Resource e) {
+		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
+		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
+		System.out.println(e.getQuantity());// cancella
+		
+		
+	}
 	@Override
 	public void update(Action action) {
 		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
+		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
+		System.out.println(action.getPlayer().getName());// cancella
 		/*
 		action.checkExtraordinaryEffect();
 		Resource privilege;

@@ -44,9 +44,10 @@ public class StartGame implements Runnable {//va messo il codice che sta in Main
 		System.out.println("aaaaaaaaaaaa 1111111");// cancella
 		try {clients.forEach((username,stub)-> {
 			players[turn]=new Player(username,turn+1);
-			turn++;
+			
 			System.out.println("conta");
 			viewClients[turn]=stub;
+			turn++;
 		});//si blocca dentro il foreach
 		}catch(Exception e){
 			e.printStackTrace();

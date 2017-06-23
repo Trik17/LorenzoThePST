@@ -61,4 +61,10 @@ public class ViewHandler extends Observable<Action, Resource> implements Observe
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void updateR(Resource resource) {
+		// TODO Auto-generated method stub
+		
+	}
 }

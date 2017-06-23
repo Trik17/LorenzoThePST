@@ -72,6 +72,12 @@ public class ClientManager {
 		this.lastClients.put(username,clientStub);
 		//controller observes this view
 		rmiView.registerObserver(this.currentController);
+		try {
+			clientStub.addServerstub(rmiView);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("new client connected");
 		checkPlayers();
 		//controlla giocatori
