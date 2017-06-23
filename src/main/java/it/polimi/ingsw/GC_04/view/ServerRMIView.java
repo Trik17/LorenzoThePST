@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_04.view;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_04.Observable;
-import it.polimi.ingsw.GC_04.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.ClientManager;
@@ -21,7 +21,7 @@ public class ServerRMIView extends Observable<Action,Resource> implements Server
 	
 	
 	@Override
-	public synchronized void registerClient(ClientViewRemote clientStub, String username) throws RemoteException {
+	public synchronized void registerClient(ClientRMIViewRemote clientStub, String username) throws RemoteException {
 		this.clientManager.addRMIClient(clientStub, username,this);
 				
 	}

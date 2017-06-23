@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.StateOfTheGameCLI;
+import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
@@ -28,14 +29,13 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
-import it.polimi.ingsw.GC_04.view.ViewHandler;
 
 public class Controller implements Observer<Action,Resource> {
 	
 	private final static int FINALPERIOD = 3;
 	private final static int FINALTURN = 4;
 	private Model model;
-	private ClientViewRemote[] views;
+	private ClientRMIViewRemote[] views;
 	private Initializer initializer;
 	private int currentPlayer = 0;
 	private int turn = 0;
@@ -45,11 +45,10 @@ public class Controller implements Observer<Action,Resource> {
 		this.model = model;
 	}
 	
-	public void setViews(ClientViewRemote[] views){
+	
+	public void setViews(ClientRMIViewRemote[] views){
 		this.views = views;
 //		IL CONTROLLER OSSERVA rmiView dei vari client-> già registrato come observer
-//		for(ClientViewRemote view : views)
-//			view.registerObserver(this);
 	}
 	
 	public void initialize(Player[] players){
@@ -60,7 +59,6 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	private void startGame() {
-//		stateOfTheGame();
 		System.out.println("3");
 		try {
 			System.out.println("server: provo a salutare");
@@ -70,84 +68,84 @@ public class Controller implements Observer<Action,Resource> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		views[currentPlayer].chooseAction();
+		views[currentPlayer].chooseAction();
 	}
 
 
-//	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
-//		
-//		councilPrivileges.get(cont).setCouncilPrivilege(resource);
-//		
-//	}
-//	private int[] setFurtherCheckNeeded(List<Effect> requestedAuthorizationEffects) {
-//		//it stores in an array the indices of the Resources that offer a choice
-//		int[] furtherCheckNeeded = new int[0];
-//		if (!requestedAuthorizationEffects.isEmpty()) {
-//			furtherCheckNeeded = new int[requestedAuthorizationEffects.size()-1];
-//			int cont = 0;
-//			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
-//				if (requestedAuthorizationEffects.get(i) instanceof ExchangeResourcesEffect)
-//					if (!(((ExchangeResourcesEffect) requestedAuthorizationEffects.get(i)).getCost2() == null)) {
-//						furtherCheckNeeded[cont] = i;
-//						cont ++;
-//					}
-//			}
-//			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
-//				if (requestedAuthorizationEffects.get(i) instanceof TakeACardEffect) {
-//					furtherCheckNeeded[cont] = i;
-//					cont ++;
-//					}
-//			}
-//			
-//		}
-//		return furtherCheckNeeded;
-//	}
-//	
-//	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) {
-//		Effect effect = requestedAuthorizationEffects.get(index);
-//		int[] choice = views[currentPlayer].setFurtherCheckNeededEffect(effect);
-//		if (effect instanceof ExchangeResourcesEffect) {
-//			if (choice[0] == 1)
-//				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
-//			else
-//				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect2(), ((ExchangeResourcesEffect) effect).getCost2());		
-//		}
-//		else if (effect instanceof TakeACardEffect) {
-//			Tower tower;
-//			if (choice.length == 4) {
-//				
-//				switch (choice[0]) {
-//				case 1:
-//					tower = TerritoryTower.instance();
-//					break;
-//				case 2:
-//					tower = CharacterTower.instance();
-//					break;
-//				case 3:
-//					tower = BuildingTower.instance();
-//					break;
-//				default:
-//					tower = VentureTower.instance();
-//					break;
-//				}
-//			}else {
-//				tower = ((TakeACardEffect) effect).getCardType().getTower();
-//			}
-//			DevelopmentCard card = tower.getCards()[choice[1] -1];
-//			ActionSpace aSpace = tower.getASpaces().get(choice[1] -1);
-//			int servants = choice[2];
-//			List<Resource> cost = new ArrayList<Resource>();
-//			if (choice[3] == 1)
-//				cost = tower.getCards()[choice[1] -1].getCost1();
-//			else
-//				cost = tower.getCards()[choice[1] -1].getCost2();;
-//				((TakeACardEffect) effect).setParameters(player,card,aSpace,servants,cost);
-//		}
-//	
-//	}
-//
-//	
-//		
+	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
+		
+		councilPrivileges.get(cont).setCouncilPrivilege(resource);
+		
+	}
+	private int[] setFurtherCheckNeeded(List<Effect> requestedAuthorizationEffects) {
+		//it stores in an array the indices of the Resources that offer a choice
+		int[] furtherCheckNeeded = new int[0];
+		if (!requestedAuthorizationEffects.isEmpty()) {
+			furtherCheckNeeded = new int[requestedAuthorizationEffects.size()-1];
+			int cont = 0;
+			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
+				if (requestedAuthorizationEffects.get(i) instanceof ExchangeResourcesEffect)
+					if (!(((ExchangeResourcesEffect) requestedAuthorizationEffects.get(i)).getCost2() == null)) {
+						furtherCheckNeeded[cont] = i;
+						cont ++;
+					}
+			}
+			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
+				if (requestedAuthorizationEffects.get(i) instanceof TakeACardEffect) {
+					furtherCheckNeeded[cont] = i;
+					cont ++;
+					}
+			}
+			
+		}
+		return furtherCheckNeeded;
+	}
+	
+	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) {
+		Effect effect = requestedAuthorizationEffects.get(index);
+		int[] choice = views[currentPlayer].setFurtherCheckNeededEffect(effect);
+		if (effect instanceof ExchangeResourcesEffect) {
+			if (choice[0] == 1)
+				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
+			else
+				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect2(), ((ExchangeResourcesEffect) effect).getCost2());		
+		}
+		else if (effect instanceof TakeACardEffect) {
+			Tower tower;
+			if (choice.length == 4) {
+				
+				switch (choice[0]) {
+				case 1:
+					tower = TerritoryTower.instance();
+					break;
+				case 2:
+					tower = CharacterTower.instance();
+					break;
+				case 3:
+					tower = BuildingTower.instance();
+					break;
+				default:
+					tower = VentureTower.instance();
+					break;
+				}
+			}else {
+				tower = ((TakeACardEffect) effect).getCardType().getTower();
+			}
+			DevelopmentCard card = tower.getCards()[choice[1] -1];
+			ActionSpace aSpace = tower.getASpaces().get(choice[1] -1);
+			int servants = choice[2];
+			List<Resource> cost = new ArrayList<Resource>();
+			if (choice[3] == 1)
+				cost = tower.getCards()[choice[1] -1].getCost1();
+			else
+				cost = tower.getCards()[choice[1] -1].getCost2();;
+				((TakeACardEffect) effect).setParameters(player,card,aSpace,servants,cost);
+		}
+	
+	}
+
+	
+		
 	@Override
 	public void updateR(Resource e) {
 		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
@@ -161,7 +159,7 @@ public class Controller implements Observer<Action,Resource> {
 		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
 		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
 		System.out.println(action.getPlayer().getName());// cancella
-		/*
+		
 		action.checkExtraordinaryEffect();
 		Resource privilege;
 		List<CouncilPrivilege> councilPrivileges = SupportFunctions.cloneCouncilPrivilege(action.getCouncilPrivileges());

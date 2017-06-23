@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.JsonMapper;
-import it.polimi.ingsw.GC_04.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
@@ -24,8 +24,8 @@ import it.polimi.ingsw.GC_04.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 //bisogna controllare che sia ancora connesso ogni volta che si comunica con il client
 public class ClientManager {
-	private Map<String,ClientViewRemote> clients;
-	private Map<String,ClientViewRemote> lastClients; //clients that are waiting for a match
+	private Map<String,ClientRMIViewRemote> clients;
+	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
 	private Map<String,StartGame> games;
 	private boolean timerStarted=false;
 	private Timer timer;
@@ -64,7 +64,7 @@ public class ClientManager {
 		}
 	}
 
-	public synchronized void addRMIClient(ClientViewRemote clientStub, String username, ServerRMIView rmiView){
+	public synchronized void addRMIClient(ClientRMIViewRemote clientStub, String username, ServerRMIView rmiView){
 		if(clients.containsKey(username)){
 			//chiedere un altro username
 		}
@@ -84,7 +84,7 @@ public class ClientManager {
 		//username devono essere diversi
 	}
 	
-	public synchronized Map<String,ClientViewRemote> getClients(){
+	public synchronized Map<String,ClientRMIViewRemote> getClients(){
 		return this.clients; 
 	} 
 	
