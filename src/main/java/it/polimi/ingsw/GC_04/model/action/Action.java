@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model.action;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Servants;
 
-public abstract class Action {
+public abstract class Action implements Serializable{
 
 	protected Player player;
 	protected ActionSpace aSpace;

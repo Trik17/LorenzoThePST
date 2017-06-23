@@ -36,7 +36,7 @@ public class Initializer {
 	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
 
-	Player[] players;
+	private Player[] players;
 										
 	public Initializer(Player[] players) {
 		JsonMapper jsonMapper=new JsonMapper();		

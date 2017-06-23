@@ -58,5 +58,10 @@ public class ViewGUI extends ViewClient {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void updateR(Resource resource) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

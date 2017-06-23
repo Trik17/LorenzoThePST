@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model.resource;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 	@Type(value = VictoryPoints.class),
 })
 
-public abstract class Resource implements Cloneable{
+public abstract class Resource implements Cloneable, Serializable{
 
 	private int quantity;
 	//constructor needed for Json

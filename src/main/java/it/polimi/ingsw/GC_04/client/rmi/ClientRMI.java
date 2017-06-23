@@ -7,13 +7,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
-import it.polimi.ingsw.GC_04.view.RMIViewRemote;
+import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
 
 public class ClientRMI {
 	public static final int RMI_PORT = 12008;
 	public static final String HOST = "localhost";
 	public static final String NAME = "lorenzo";
+	private ServerRMIViewRemote serverStub;
 	private ClientRMIView rmiView;
 	private String username;
 	
@@ -35,7 +36,7 @@ public class ClientRMI {
 		Registry registry = LocateRegistry.getRegistry(HOST, RMI_PORT);
 
 		//get the stub (local object) of the remote view
-		RMIViewRemote serverStub = (RMIViewRemote) registry.lookup(NAME);
+		serverStub = (ServerRMIViewRemote) registry.lookup(NAME);
 
 		this.rmiView=new ClientRMIView(username);
 
