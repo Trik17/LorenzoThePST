@@ -35,16 +35,6 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		
-		List<Resource> resources = new ArrayList<>();
-		resources.add(new Servants(4));
-		resources.add(new Servants(3));
-		resources.add(new MilitaryPoints(4));
-		resources.add(new Servants(4));
-		
-		
-		
-		System.out.println(cont);;
-		
 		//prendiamo i giocatori dalla rete
 		//per ora li mettiamo qua per fare prove:
 		//i colori li da il server in ordine

@@ -50,11 +50,12 @@ public class FinalScore {
 		if (!player.isDeleteCardsEffectActive(new TerritoryCard()))
 			calculateTerritoryCardScore(player);
 		if (!player.isDeleteCardsEffectActive(new CharacterCard()))
-			calculateResourceScore(player);
+			calculateCharacterCardScore(player);
 		if (player.isDeleteCardsEffectActive(new BuildingCard()))
 			calculateBuildingCardsMalus(player);
 		
 		calculateFaithPointsScore(player);
+		calculateResourceScore(player);
 		
 		for (Resource res:playerRes) 
 			if (res instanceof VictoryPoints)

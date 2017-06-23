@@ -175,7 +175,6 @@ public class Controller implements Observer<Action,Resource> {
 		if(action.isApplicable()) {
 			action.setRequestedAuthorizationEffects(requestedAuthorizationEffects);
 			action.setCouncilPrivilege(councilPrivileges);
-			//TODO: fai attivare i privilegi
 			action.setDiscount(discount);
 			action.apply(); 
 			
@@ -186,6 +185,7 @@ public class Controller implements Observer<Action,Resource> {
 		}
 		updateTurn();
 		stateOfTheGame();
+
 		views[currentPlayer].chooseAction();
 		
 	}
@@ -229,7 +229,7 @@ public class Controller implements Observer<Action,Resource> {
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && currentPlayer == views.length -1)
 			//TODO: final score
 			return;
-		else if (turn == FINALTURN && currentPlayer == views.length -1) {
+		else if (currentPlayer == views.length -1) {
 			if (lastPhase) {
 				/*TODO: GESTIONE SCOMUNICHE*/
 				model.incrementPeriod();
