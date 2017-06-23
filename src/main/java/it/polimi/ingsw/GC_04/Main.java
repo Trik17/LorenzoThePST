@@ -95,12 +95,12 @@ public class Main {
 		Model model = new Model();
 		model.setPlayers(players);
 		ViewClient[] views =new ViewClient[num];
-		for(int i=0; i<num; i++)
+		/*for(int i=0; i<num; i++)
 			//if(graphic)
 				//views[i] = new ViewGUI();
 			//else
 				views[i] = new ViewCLI();
-		
+		*/
 //		Controller controller=new Controller(model,initializer);
 //		controller.setViews(views);
 //		controller.startGame();

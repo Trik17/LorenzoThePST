@@ -67,7 +67,12 @@ public class Controller implements Observer<Action,Resource> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		views[currentPlayer].chooseAction();
+		try {
+			views[currentPlayer].chooseAction();
+		} catch (RemoteException e) {
+			//FAI CODICE PER SALTARE TURNO -> ERRORE DI CONNESSIONE
+			e.printStackTrace();
+		}
 	}
 
 
@@ -100,7 +105,7 @@ public class Controller implements Observer<Action,Resource> {
 		return furtherCheckNeeded;
 	}
 	
-	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) {
+	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) throws RemoteException {
 		Effect effect = requestedAuthorizationEffects.get(index);
 		int[] choice = views[currentPlayer].setFurtherCheckNeededEffect(effect);
 		if (effect instanceof ExchangeResourcesEffect) {
@@ -154,7 +159,7 @@ public class Controller implements Observer<Action,Resource> {
 		
 	}
 	@Override
-	public void update(Action action) {
+	public void update(Action action) throws RemoteException  {
 		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
 		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
 		System.out.println(action.getPlayer().getName());// cancella
@@ -225,7 +230,13 @@ public class Controller implements Observer<Action,Resource> {
 		if (!myDiscounts.stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
 			discounts = myDiscounts;
 		else {
-			myDiscounts.forEach(res -> {if (res instanceof RawMaterial) res = views[currentPlayer].setDiscount(res);});
+			myDiscounts.forEach(res -> {if (res instanceof RawMaterial)
+				try {
+					res = views[currentPlayer].setDiscount(res);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}});
 			discounts = myDiscounts;
 		}
 		return discounts;

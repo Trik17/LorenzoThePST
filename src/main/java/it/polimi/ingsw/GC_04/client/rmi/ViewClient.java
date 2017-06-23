@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_04.client.rmi;
 
 import java.util.List;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_04.Observable;
@@ -26,14 +27,20 @@ import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.*;
+import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
 
-public abstract class ViewClient extends Observable<Action,Resource> implements Observer<Action, Resource>{
-	
+public abstract class ViewClient {
+	private ServerRMIViewRemote serverStub;
 	private int turn;
 	
 	public ViewClient() {
 		turn = 0;
+	}
+	
+	public void addServerstub(ServerRMIViewRemote serverStub){
+		this.serverStub=serverStub;
+		
 	}
 	
 	public abstract void chooseAction();
@@ -91,7 +98,12 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 		
 		action = realCard.takeCard(player, realASpace, fMember, servants, realCost);
 		
-		notifyObserversA(action);
+		try {
+			serverStub.notifyObserversA(action);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
@@ -109,7 +121,12 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 		realArea = MarketArea.instance();
 		realASpace = realArea.getASpaces().get(aSpace);
 		action = new GoToTheMarket(player, fMember, servants, realASpace);
-		this.notifyObserversA(action);
+		try {
+			this.serverStub.notifyObserversA(action);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 	}
 	
@@ -130,7 +147,12 @@ public abstract class ViewClient extends Observable<Action,Resource> implements 
 		else
 			action = new GoToTheCouncilPalace(player, fMember, servants);
 			
-		this.notifyObserversA(action);
+		try {
+			this.serverStub.notifyObserversA(action);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

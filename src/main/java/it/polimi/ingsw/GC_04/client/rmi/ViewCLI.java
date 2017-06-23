@@ -13,8 +13,10 @@ import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
+import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
 public class ViewCLI extends ViewClient{
+	
 	
 	
 	private void print(String string) {
@@ -336,17 +338,7 @@ public class ViewCLI extends ViewClient{
 		
 	}
 
-	@Override
-	public void update(Action action) {
-		
-		
-	}
-
-	@Override
-	public void updateR(Resource resource) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 	

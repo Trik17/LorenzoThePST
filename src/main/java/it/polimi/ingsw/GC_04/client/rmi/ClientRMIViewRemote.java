@@ -17,15 +17,15 @@ public interface ClientRMIViewRemote extends Remote {
 	public void askSomething(String string) throws RemoteException;
 	public void addServerstub(ServerRMIViewRemote serverStub) throws RemoteException;
 
-	public void chooseAction();
+	public void chooseAction()throws RemoteException;
 
-	public int[] setFurtherCheckNeededEffect(Effect effect);
+	public int[] setFurtherCheckNeededEffect(Effect effect)throws RemoteException;
 
-	public Resource setCouncilPrivilege();
+	public Resource setCouncilPrivilege()throws RemoteException;
 
-	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects);
+	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects)throws RemoteException;
 
-	public Resource setDiscount(Resource res);
+	public Resource setDiscount(Resource res)throws RemoteException;
 	
 	
 	

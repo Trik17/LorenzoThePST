@@ -36,6 +36,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	}
 	public void addServerstub(ServerRMIViewRemote serverStub)throws RemoteException{
 		this.serverStub=serverStub;
+		this.view.addServerstub(serverStub);
 	}
 	@Override
 	public void askSomething(String a) throws RemoteException{
@@ -65,29 +66,24 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		return this.username;		
 	}
 	@Override
-	public void chooseAction() {
-		// TODO Auto-generated method stub
-		
+	public void chooseAction() throws RemoteException{
+		view.chooseAction();		
 	}
 	@Override
-	public int[] setFurtherCheckNeededEffect(Effect effect) {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] setFurtherCheckNeededEffect(Effect effect) throws RemoteException{
+		return view.setFurtherCheckNeededEffect(effect);
 	}
 	@Override
-	public Resource setCouncilPrivilege() {
-		// TODO Auto-generated method stub
-		return null;
+	public Resource setCouncilPrivilege() throws RemoteException{
+		return view.setCouncilPrivilege();
 	}
 	@Override
-	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) throws RemoteException{
+		return view.setRequestedAuthorizationEffects(requestedAuthorizationEffects);
 	}
 	@Override
-	public Resource setDiscount(Resource res) {
-		// TODO Auto-generated method stub
-		return null;
+	public Resource setDiscount(Resource res) throws RemoteException{
+		return view.setDiscount(res);
 	}
 	
 	
