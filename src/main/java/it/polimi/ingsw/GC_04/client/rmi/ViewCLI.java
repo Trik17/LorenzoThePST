@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 public class ViewCLI extends ViewClient{
 	
 	
-	public void print(String string) {
+	private void print(String string) {
 		System.out.println(string);
 	}
 	
@@ -297,7 +297,7 @@ public class ViewCLI extends ViewClient{
 		return cost;
 	}
 			
-	public String calculateEffect(List<ResourceEffect> list) {
+	private String calculateEffect(List<ResourceEffect> list) {
 		String effect = new String();
 		int effectQuantity;
 		String effectType;
