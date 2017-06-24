@@ -9,7 +9,6 @@ import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.StateOfTheGameCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
-import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.DiceColor;
@@ -51,22 +50,19 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void initialize(Player[] players){
-		System.out.println("1");
 		this.initializer = new Initializer(players);
 		startGame();
-		System.out.println("2");
 	}
 	
-	private void startGame() {
-		System.out.println("3");
-		try {
+	private synchronized void startGame() {
+		/*try {
 			System.out.println("server: provo a salutare");
-			views[1].askSomething("ciao");
+			views[currentPlayer].askSomething("ciao");
 //			views[2].askSomething("ciao");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		try {
 			views[currentPlayer].chooseAction();
 		} catch (RemoteException e) {
@@ -153,7 +149,7 @@ public class Controller implements Observer<Action,Resource> {
 	@Override
 	public void updateR(Resource e) {
 		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
-		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
+		System.out.println("stampo quantità risorsa");// cancella
 		System.out.println(e.getQuantity());// cancella
 		
 		

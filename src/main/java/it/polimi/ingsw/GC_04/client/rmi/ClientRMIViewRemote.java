@@ -27,6 +27,7 @@ public interface ClientRMIViewRemote extends Remote {
 
 	public Resource setDiscount(Resource res)throws RemoteException;
 	
+	public ServerRMIViewRemote getServerStub() throws RemoteException;
 	
 	
 }

@@ -5,8 +5,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.Scanner;
-
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
 
@@ -21,14 +19,14 @@ public class ClientRMI {
 	public ClientRMI(String username) {
 		this.username=username;
 	}
-
+/*
 	private String ask(String print){
 		Scanner in = new Scanner(System.in);
 		System.out.println(print);
 		String input=in.nextLine();
 		in.close();
 		return input;
-	}
+	}*/
 	
 	public void clientConnection() throws AccessException, RemoteException, NotBoundException{
 		

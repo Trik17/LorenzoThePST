@@ -33,7 +33,12 @@ public class ViewCLI extends ViewClient{
 		print("3)PRODUCTION");
 		print("4)HARVEST");
 		print("5)COUNCIL PALACE");
-		String area = in.nextLine();
+		String area = null ;
+		try{
+		area = in.nextLine();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		if (!SupportFunctions.isInputValid(area, 1, 5)) {
 			chooseAction();
 			return;

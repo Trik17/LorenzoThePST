@@ -4,15 +4,8 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import java.util.Scanner;
 
-import com.sun.corba.se.spi.activation.Server;
-
-import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
-import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
@@ -41,6 +34,9 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public void askSomething(String a) throws RemoteException{
 		System.out.println("0000");
+		/*Scanner in = new Scanner(System.in);
+		in.nextLine();
+		in.close();*/
 		if (a.equalsIgnoreCase("ciao"))
 			System.out.println("mi hai salutato");
 		else
@@ -84,6 +80,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public Resource setDiscount(Resource res) throws RemoteException{
 		return view.setDiscount(res);
+	}
+	@Override
+	public ServerRMIViewRemote getServerStub() throws RemoteException{
+		return this.serverStub;
 	}
 	
 	

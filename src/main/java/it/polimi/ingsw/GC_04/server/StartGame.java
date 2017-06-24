@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_04.server;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,7 @@ import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.model.resource.Coins;
 
 public class StartGame implements Runnable {//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
 	
@@ -40,38 +42,25 @@ public class StartGame implements Runnable {//va messo il codice che sta in Main
 	}
 	
 	private void start() {
-		System.out.println("aaaaaaaaaaaa 1111111");// cancella
 		try {clients.forEach((username,stub)-> {
 			players[turn]=new Player(username,turn+1);
-			
-			System.out.println("conta");
 			viewClients[turn]=stub;
 			turn++;
-		});//si blocca dentro il foreach
+		});
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println("aaaaaaaaaa 2222222222");// cancella
-		
-		Model model = new Model();
+		/*
+		try {
+			clients.get("a").getServerStub().notifyObserversRremote(new Coins(99));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		model.setPlayers(players);
-		
-		
-		System.out.println("aaaaaaaaaaa  33333333");//cancella
-		
-		// le view devono essere ClientViewRemote
-//		ViewClient[] views =new ViewClient[clients.size()];
-		
-		
-		
-		Controller controller=new Controller(model);
 		controller.setViews(viewClients);
-		controller.initialize(players);
-		
+		controller.initialize(players);		
 		
 	}
-	
-	
-
 	
 }
