@@ -163,6 +163,8 @@ public abstract class ViewClient implements Serializable {
 		
 	}
 	
+//	public void input(String passTurn) {}
+	
 	public Resource input(String privilege) {
 		
 		Resource resource;

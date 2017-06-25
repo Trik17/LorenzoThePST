@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
@@ -33,16 +34,15 @@ public class ViewCLI extends ViewClient{
 		print("3)PRODUCTION");
 		print("4)HARVEST");
 		print("5)COUNCIL PALACE");
-		String area = null ;
-		try{
-		area = in.nextLine();
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		if (!SupportFunctions.isInputValid(area, 1, 5)) {
+		print("0)PASS TURN");
+		String area = in.nextLine();
+		if (!SupportFunctions.isInputValid(area, 0, 5)) {
 			chooseAction();
 			return;
 		}
+		if ("0".equals(area))
+			notifyObserversA(new PassTurn());
+		
 		if ("1".equals(area)) {
 			print("Choose a tower between:");
 			print("1)TERRITORY");

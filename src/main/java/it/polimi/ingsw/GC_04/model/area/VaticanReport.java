@@ -43,7 +43,7 @@ public class VaticanReport {
 	}
 
 public static void excommunicationsManagement() {
-		
+		//TODO
 		
 	}
 }

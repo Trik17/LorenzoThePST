@@ -15,6 +15,7 @@ import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.model.area.CharacterTower;
@@ -163,6 +164,11 @@ public class Controller implements Observer<Action,Resource> {
 		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
 		System.out.println(action.getPlayer().getName());// cancella
 		
+		if (action.getClass().equals(PassTurn.class)) {
+			//TODO:passa alla view successiva
+			views[currentPlayer].chooseAction();
+			return;
+		}
 		action.checkExtraordinaryEffect();
 		Resource privilege;
 		List<CouncilPrivilege> councilPrivileges = SupportFunctions.cloneCouncilPrivilege(action.getCouncilPrivileges());
@@ -267,7 +273,7 @@ public class Controller implements Observer<Action,Resource> {
 			return;
 		else if (currentPlayer == views.length -1) {
 			if (lastPhase) {
-				
+				//TODO SCOMUNICHE
 				model.incrementPeriod();
 				}
 			initializer.changeTurn();

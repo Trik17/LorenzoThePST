@@ -30,6 +30,8 @@ public abstract class Action implements Serializable{
 	protected List<CouncilPrivilege> councilPrivileges;
 	protected List<Resource> discount;
 	
+	public Action() {}
+	
 	public Action(Player player, FamilyMember fMember, int servants) {
 		this.player = player;
 		this.fMember = fMember;
