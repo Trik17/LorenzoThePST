@@ -158,7 +158,8 @@ public class Controller implements Observer<Action,Resource> {
 		
 	
 	@Override
-	public void update(Action action) throws RemoteException  {
+	public void update(Action action)  {
+		try{
 		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
 		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
 		System.out.println(action.getPlayer().getName());// cancella
@@ -217,7 +218,9 @@ public class Controller implements Observer<Action,Resource> {
 		stateOfTheGame();
 
 		views[currentPlayer].chooseAction();
-		
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public List<Resource> setDiscount(Player player, DevelopmentCard card) {

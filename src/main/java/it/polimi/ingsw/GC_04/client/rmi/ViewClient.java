@@ -139,6 +139,7 @@ public abstract class ViewClient implements Serializable {
 	
 	
 	public void input(String area, String diceColor, String nrOfServants) {
+		System.out.println("INPUT VIEWCLIENT DENTRO");
 		Player player = CouncilPalaceArea.getTurnOrder()[turn];
 		Action action;
 		
@@ -152,7 +153,7 @@ public abstract class ViewClient implements Serializable {
 			action = new RunHarvest(player, fMember, servants);
 		else
 			action = new GoToTheCouncilPalace(player, fMember, servants);
-			
+		System.out.println("DENTRO INPUT VIEW CLIENT");
 		try {
 			this.serverStub.notifyObserversA(action);
 		} catch (RemoteException e) {
