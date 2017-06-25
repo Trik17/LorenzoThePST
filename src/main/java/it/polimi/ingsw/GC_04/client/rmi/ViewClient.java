@@ -139,23 +139,22 @@ public abstract class ViewClient implements Serializable {
 	
 	
 	public void input(String area, String diceColor, String nrOfServants) {
-//		Player player = CouncilPalaceArea.getTurnOrder()[turn];
-//		Action action;
-//		
-//		
-//		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-//		int servants = Integer.parseInt(nrOfServants);
-//		
-//		if ("3".equals(area)) 
-//			action = new RunProduction(player, fMember, servants);
-//		else if ("4".equals(area))
-//			action = new RunHarvest(player, fMember, servants);
-//		else
-//			action = new GoToTheCouncilPalace(player, fMember, servants);
-//			
+		Player player = CouncilPalaceArea.getTurnOrder()[turn];
+		Action action;
+		
+		
+		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
+		int servants = Integer.parseInt(nrOfServants);
+		
+		if ("3".equals(area)) 
+			action = new RunProduction(player, fMember, servants);
+		else if ("4".equals(area))
+			action = new RunHarvest(player, fMember, servants);
+		else
+			action = new GoToTheCouncilPalace(player, fMember, servants);
+			
 		try {
-//			this.serverStub.notifyObserversA(action);
-	this.serverStub.notifyObserversRremote(new Coins(4545445));
+			this.serverStub.notifyObserversA(action);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,7 +184,9 @@ public abstract class ViewClient implements Serializable {
 
 
 
-	public abstract void addServerstub(ServerRMIViewRemote serverStub2) ;
+	public void addServerstub(ServerRMIViewRemote serverStub){
+		this.serverStub=serverStub;
+	}
 
 	
 	

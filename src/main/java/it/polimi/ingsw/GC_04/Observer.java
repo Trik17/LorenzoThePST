@@ -6,5 +6,5 @@ public interface Observer<A,R> {
 	
 	public void update(A action)throws RemoteException;;
 
-	public void updateR(R resource);
+//	public void updateR(R resource);
 }

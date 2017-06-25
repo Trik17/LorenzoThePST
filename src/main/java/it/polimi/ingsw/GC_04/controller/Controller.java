@@ -54,16 +54,26 @@ public class Controller implements Observer<Action,Resource> {
 		startGame();
 	}
 	
+//	@Override//cancella
+//	public void updateR(Resource e) {
+//		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
+//		System.out.println("stampo quantità risorsa");// cancella
+//		System.out.println(e.getQuantity());// cancella
+//		
+//		
+//	}
+	
 	private synchronized void startGame() {
-		/*try {
-			System.out.println("server: provo a salutare");
-			views[currentPlayer].askSomething("ciao");
+//		try {
+//			System.out.println("server: provo a salutare");
+//			views[currentPlayer].askSomething("ciao");
 //			views[2].askSomething("ciao");
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		try {
+			stateOfTheGame();
 			views[currentPlayer].chooseAction();
 		} catch (RemoteException e) {
 			//FAI CODICE PER SALTARE TURNO -> ERRORE DI CONNESSIONE
@@ -146,14 +156,7 @@ public class Controller implements Observer<Action,Resource> {
 
 	
 		
-	@Override
-	public void updateR(Resource e) {
-		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
-		System.out.println("stampo quantità risorsa");// cancella
-		System.out.println(e.getQuantity());// cancella
-		
-		
-	}
+	
 	@Override
 	public void update(Action action) throws RemoteException  {
 		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
@@ -277,8 +280,7 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void stateOfTheGame() {
-		if (views[currentPlayer] instanceof ViewCLI)
-			StateOfTheGameCLI.printStateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
+		StateOfTheGameCLI.printStateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
 		
 	}
 	

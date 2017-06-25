@@ -11,7 +11,7 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 public interface ServerRMIViewRemote extends Remote ,  Serializable {
 	
 	public void registerClient(ClientRMIViewRemote clientStub, String username) throws RemoteException;
-	public void notifyObserversRremote(Resource resource)  throws RemoteException;//da cancellare?
+//	public void notifyObserversRremote(Resource resource)  throws RemoteException;//da cancellare?
 	public void notifyObserversA(Action action) throws RemoteException;
 	
 	

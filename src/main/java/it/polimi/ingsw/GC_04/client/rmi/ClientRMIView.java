@@ -31,7 +31,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		this.serverStub=serverStub;
 		this.view.addServerstub(serverStub);
 	}
-	@Override
+	@Override//da cancellare
 	public void askSomething(String a) throws RemoteException{
 		System.out.println("0000");
 		/*Scanner in = new Scanner(System.in);
@@ -48,7 +48,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 //			Action action=new GoToTheCouncilPalace(new Player("and", 3), fm, 1);
 			Resource c=new Coins(3);
 			System.out.println("provo acion");
-			serverStub.notifyObserversRremote(c);
+//			serverStub.notifyObserversRremote(c);
 			
 		}catch (Exception e){
 			e.printStackTrace();
