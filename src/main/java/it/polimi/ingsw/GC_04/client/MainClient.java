@@ -18,7 +18,7 @@ public class MainClient {
 		String username=in.nextLine();
 //        System.out.println("Choose RMI or SOCKET: ");
 //        String connection=in.nextLine();
-        in.close();  
+         
         
 //        if (connection.equalsIgnoreCase("RMI")){
         	ClientRMI client=new ClientRMI(username);

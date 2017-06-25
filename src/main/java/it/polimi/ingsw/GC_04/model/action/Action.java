@@ -16,6 +16,10 @@ import it.polimi.ingsw.GC_04.model.resource.Servants;
 
 public abstract class Action implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4204746344145065227L;
 	protected Player player;
 	protected ActionSpace aSpace;
 	protected FamilyMember fMember;

@@ -1,6 +1,9 @@
 package it.polimi.ingsw.GC_04.client.rmi;
 
 import java.util.List;
+import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -30,18 +33,21 @@ import it.polimi.ingsw.GC_04.model.resource.*;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
 
-public abstract class ViewClient {
-	private ServerRMIViewRemote serverStub;
+public abstract class ViewClient implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6860755801717581167L;
+	protected ServerRMIViewRemote serverStub;
 	private int turn;
+	
+	
 	
 	public ViewClient() {
 		turn = 0;
 	}
 	
-	public void addServerstub(ServerRMIViewRemote serverStub){
-		this.serverStub=serverStub;
-		
-	}
+	
 	
 	public abstract void chooseAction();
 	public abstract Resource setCouncilPrivilege();
@@ -176,5 +182,12 @@ public abstract class ViewClient {
 		return resource;
 			
 	}
+
+
+
+	public abstract void addServerstub(ServerRMIViewRemote serverStub2) ;
+
+	
+	
 	
 }

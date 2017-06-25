@@ -1,7 +1,13 @@
 package it.polimi.ingsw.GC_04.model;
 
-public class FamilyMember {
+import java.io.Serializable;
+
+public class FamilyMember implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6793943971429482018L;
 	private FamilyColor familyColor;
 	private Dice dice;
 	private boolean used;

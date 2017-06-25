@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_04.model.effect;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -20,7 +22,11 @@ property = "type")
 @Type(value = ExchangeResourcesEffect.class),
 })
 
-public abstract class Effect implements Cloneable{
+public abstract class Effect implements Cloneable, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5741007417003532404L;
 	protected boolean requestedAuthorization;
 	
 	public boolean isAuthorizationRequested() {

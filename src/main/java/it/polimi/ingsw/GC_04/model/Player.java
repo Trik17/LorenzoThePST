@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,11 @@ import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.VictoryPoints;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
 
-public class Player {
+public class Player implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7992514360884500251L;
 	private String name;
 	private Model game;
 	private FamilyMember[] family;
