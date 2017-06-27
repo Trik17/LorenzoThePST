@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
 
-public class StartGame implements Runnable {//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
+public class StartGame implements Runnable {
 	
 	private Map<String,ClientRMIViewRemote> clients;
 	private ClientRMIViewRemote[] viewClients;
