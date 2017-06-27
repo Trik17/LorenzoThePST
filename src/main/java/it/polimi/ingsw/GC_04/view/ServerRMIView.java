@@ -30,6 +30,12 @@ public class ServerRMIView extends Observable<Action,Resource> implements Server
 		this.clientManager.addRMIClient(clientStub, username,this);
 				
 	}
+	@Override
+	public void notifyObserversA(Action action) {
+		System.out.println("dentro server rmi view notifyobserver action");
+		notifyObserversA(action);
+		
+	}
 
 
 //	@Override

@@ -24,7 +24,7 @@ public abstract class Observable<A,R> {
 	}
 
 
-	public void notifyObserversA(A action) throws RemoteException {
+	public void notifyObserversA(A action) {
 		for (Observer<A,R> o : this.observers) {
 			o.update(action);
 		}
