@@ -1,11 +1,12 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Dice {
+public class Dice implements Serializable {
 	public static final int NEUTRALDICEVALUE = 0;
 	public static final int MINDICEVALUE = 1;
 	public static final int MAXDICEVALUE = 6;
