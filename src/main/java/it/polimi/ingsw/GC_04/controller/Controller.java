@@ -63,7 +63,7 @@ public class Controller implements Observer<Action,Resource> {
 //		
 //	}
 	
-	private synchronized void startGame() {
+	private void startGame() {
 //		try {
 //			System.out.println("server: provo a salutare");
 //			views[currentPlayer].askSomething("ciao");
