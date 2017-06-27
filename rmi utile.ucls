@@ -11,9 +11,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="2" language="java" name="it.polimi.ingsw.GC_04.client.rmi.ViewCLI" project="LorenzoThePST" 
-    file="/LorenzoThePST/src/main/java/it/polimi/ingsw/GC_04/client/rmi/ViewCLI.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="it.polimi.ingsw.GC_04.client.ViewCLI" project="LorenzoThePST" 
+    file="/LorenzoThePST/src/main/java/it/polimi/ingsw/GC_04/client/ViewCLI.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="176" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -21,8 +20,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="it.polimi.ingsw.GC_04.client.rmi.ViewClient" project="LorenzoThePST" 
-    file="/LorenzoThePST/src/main/java/it/polimi/ingsw/GC_04/client/rmi/ViewClient.java" binary="false" 
+  <class id="3" language="java" name="it.polimi.ingsw.GC_04.client.ViewClient" project="LorenzoThePST" 
+    file="/LorenzoThePST/src/main/java/it/polimi/ingsw/GC_04/client/ViewClient.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="572" y="281"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,48 +90,48 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="10">    
+  <realization id="10">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="11">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="11" name="clientManager">        
+      <attribute id="12" name="clientManager">        
         <position height="0" width="0" x="-117" y="-33"/>      
       </attribute>      
-      <multiplicity id="12" minimum="0" maximum="1">        
+      <multiplicity id="13" minimum="0" maximum="1">        
         <position height="0" width="0" x="-117" y="-33"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="13">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="14" name="rmiView">        
-        <position height="0" width="0" x="-120" y="-394"/>      
+  <association id="14">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="15" name="clients">        
+        <position height="0" width="0" x="-180" y="-16"/>      
       </attribute>      
-      <multiplicity id="15" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-120" y="-394"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-180" y="-16"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="16">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
   <generalization id="17">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
   <association id="18">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="19" name="clients">        
-        <position height="0" width="0" x="-180" y="-16"/>      
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="19" name="rmiView">        
+        <position height="0" width="0" x="-120" y="-394"/>      
       </attribute>      
-      <multiplicity id="20" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-180" y="-16"/>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-120" y="-394"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="21">    

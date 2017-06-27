@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
-import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
-
+import it.polimi.ingsw.GC_04.client.StateOfTheGameCLI;
+import it.polimi.ingsw.GC_04.client.ViewCLI;
+import it.polimi.ingsw.GC_04.client.ViewClient;
 import it.polimi.ingsw.GC_04.controller.Controller;
 
 import it.polimi.ingsw.GC_04.model.Model;

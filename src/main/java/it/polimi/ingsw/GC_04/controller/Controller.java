@@ -7,9 +7,9 @@ import java.util.Map;
 
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
-import it.polimi.ingsw.GC_04.StateOfTheGameCLI;
+import it.polimi.ingsw.GC_04.client.StateOfTheGameCLI;
+import it.polimi.ingsw.GC_04.client.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.DiceColor;
@@ -50,7 +50,6 @@ public class Controller implements Observer<Action,Resource> {
 	
 	public void setViews(Map<String, ClientRMIViewRemote> clients){
 		this.views = clients;
-//		IL CONTROLLER OSSERVA rmiView dei vari client-> già registrato come observer
 	}
 	
 	public void initialize(Player[] players){
@@ -86,8 +85,7 @@ public class Controller implements Observer<Action,Resource> {
 			e.printStackTrace();
 		}
 	}
-
-
+	
 	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
 		
 		councilPrivileges.get(cont).setCouncilPrivilege(resource);
@@ -234,6 +232,11 @@ public class Controller implements Observer<Action,Resource> {
 		}
 	}
 	
+	private void stateOfTheGame() {
+		views.get(player).stateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
+	}
+
+
 	public List<Resource> setDiscount(Player player, DevelopmentCard card) {
 		//this method uploads the action's discounts accumulated by the player 
 		List<Resource> discounts;
@@ -292,11 +295,6 @@ public class Controller implements Observer<Action,Resource> {
 		}
 		player = CouncilPalaceArea.getTurnOrder()[currentPlayer].getName();
 		lastPhase =!lastPhase;
-		
-	}
-	
-	public void stateOfTheGame() {
-		StateOfTheGameCLI.printStateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
 		
 	}
 	

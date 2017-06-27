@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
+import it.polimi.ingsw.GC_04.client.ViewCLI;
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.Model;

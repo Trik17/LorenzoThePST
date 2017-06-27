@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client.rmi;
+package it.polimi.ingsw.GC_04.client;
 
 import java.util.List;
 import java.util.Scanner;
