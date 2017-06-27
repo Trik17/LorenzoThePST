@@ -102,7 +102,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	}
 	@Override
 	public void stateOfTheGame(Model model, DevelopmentCard[] tCards, DevelopmentCard[] cCards, DevelopmentCard[] bCards,
-			DevelopmentCard[] vCards, Dice black, Dice orange, Dice white) {
+			DevelopmentCard[] vCards, Dice black, Dice orange, Dice white) throws RemoteException {
 		StateOfTheGameCLI.printStateOfTheGame(model, tCards, cCards, bCards, vCards, black, orange, white);
 		
 		

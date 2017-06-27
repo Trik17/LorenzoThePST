@@ -169,7 +169,7 @@ public class Controller implements Observer<Action,Resource> {
 		System.out.println(action.getPlayer().getName());// cancella
 		
 		if (action.getClass().equals(PassTurn.class)) {
-			//TODO:passa alla view successiva
+			updateTurn();
 			views.get(player).chooseAction();
 			return;
 		}
