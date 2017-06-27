@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
@@ -19,6 +21,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	private final String username; 
 	private ViewCLI view;
 	private ServerRMIViewRemote serverStub;
+	private ExecutorService executor;
 //mi manca qua il serverstub!!
 	
 	
@@ -26,6 +29,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		super();
 		this.username=username;
 		this.view=new ViewCLI();
+		this.executor = Executors.newCachedThreadPool();
 	}
 	public void addServerstub(ServerRMIViewRemote serverStub)throws RemoteException{
 		this.serverStub=serverStub;
@@ -63,6 +67,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	}
 	@Override
 	public void chooseAction() throws RemoteException{
+//		executor.submit(game);
 		view.chooseAction();		
 	}
 	@Override
