@@ -7,8 +7,6 @@ import java.util.Map;
 
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
-import it.polimi.ingsw.GC_04.client.StateOfTheGameCLI;
-import it.polimi.ingsw.GC_04.client.ViewCLI;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
@@ -279,7 +277,8 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void updateTurn() {//TODO: tutto
-		int nrOfPlayers =CouncilPalaceArea.getTurnOrder().length -1;
+		int nrOfPlayers = CouncilPalaceArea.getTurnOrder().length -1;
+		
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers]))
 			//TODO: final score
 			return;
@@ -287,8 +286,8 @@ public class Controller implements Observer<Action,Resource> {
 			if (lastPhase) {
 				//TODO SCOMUNICHE
 				model.incrementPeriod();
+				initializer.changeTurn();
 				}
-			initializer.changeTurn();
 			currentPlayer = 0;
 		}else {
 			currentPlayer++;
