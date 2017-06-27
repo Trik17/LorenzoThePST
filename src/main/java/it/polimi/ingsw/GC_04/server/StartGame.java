@@ -20,7 +20,6 @@ import it.polimi.ingsw.GC_04.model.resource.Coins;
 public class StartGame implements Runnable {//va messo il codice che sta in Main ->il controller deve avere ClientManager per poter fare getClients
 	
 	private Map<String,ClientRMIViewRemote> clients;
-	private ClientRMIViewRemote[] viewClients;
 	private Player[] players;
 	private int turn=0; 
 	private Model model;
@@ -31,7 +30,6 @@ public class StartGame implements Runnable {//va messo il codice che sta in Main
 	public StartGame(Map<String,ClientRMIViewRemote> clients, Model model, Controller controller) {
 		this.clients=new HashMap<>(clients);
 		this.players=new Player[clients.size()];
-		this.viewClients=new ClientRMIViewRemote[clients.size()];
 		this.model=model;
 		this.controller=controller;
 	}
@@ -44,7 +42,6 @@ public class StartGame implements Runnable {//va messo il codice che sta in Main
 	private void start() {
 		try {clients.forEach((username,stub)-> {
 			players[turn]=new Player(username,turn+1);
-			viewClients[turn]=stub;
 			turn++;
 		});
 		}catch(Exception e){
@@ -58,7 +55,7 @@ public class StartGame implements Runnable {//va messo il codice che sta in Main
 			e.printStackTrace();
 		}*/
 		model.setPlayers(players);
-		controller.setViews(viewClients);
+		controller.setViews(clients);
 		controller.initialize(players);		
 		
 	}
