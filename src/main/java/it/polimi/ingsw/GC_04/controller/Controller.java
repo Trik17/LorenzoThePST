@@ -232,7 +232,7 @@ public class Controller implements Observer<Action,Resource> {
 		}
 	}
 	
-	private void stateOfTheGame() {
+	private void stateOfTheGame() throws RemoteException {
 		views.get(player).stateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
 	}
 
