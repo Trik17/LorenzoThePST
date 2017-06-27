@@ -17,6 +17,7 @@ import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
 import it.polimi.ingsw.GC_04.model.action.GoToTheMarket;
+import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.action.RunHarvest;
 import it.polimi.ingsw.GC_04.model.action.RunProduction;
 import it.polimi.ingsw.GC_04.model.area.Area;
@@ -41,19 +42,13 @@ public abstract class ViewClient implements Serializable {
 	protected ServerRMIViewRemote serverStub;
 	private int turn;
 	
+	public abstract void chooseAction();
 	
 	
 	public ViewClient() {
 		turn = 0;
 	}
 	
-	
-	
-	public abstract void chooseAction();
-	public abstract Resource setCouncilPrivilege();
-	public abstract int[] setRequestedAuthorizationEffects(List<Effect> effects);
-	public abstract int[] setFurtherCheckNeededEffect(Effect effect);
-	public abstract Resource setDiscount(Resource rawMaterial);
 	
 	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost){
 		Action action;
@@ -113,7 +108,7 @@ public abstract class ViewClient implements Serializable {
 		
 		
 	}
-	
+
 	public void input(String area, String diceColor, String actSpace, String nrOfServants) {
 		Player player = CouncilPalaceArea.getTurnOrder()[turn];
 		ActionSpace realASpace;
@@ -162,6 +157,16 @@ public abstract class ViewClient implements Serializable {
 		}
 		
 		
+	}
+	
+	public void passTurn() {
+		Action action = new PassTurn();
+		try {
+			serverStub.notifyObserversA(action);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 //	public void input(String passTurn) {}

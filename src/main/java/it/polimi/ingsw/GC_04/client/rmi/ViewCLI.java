@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.client.rmi;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +20,11 @@ import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 public class ViewCLI extends ViewClient{
 	
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2328795643634959640L;
 	
 	private void print(String string) {
 		System.out.println(string);
@@ -41,8 +47,7 @@ public class ViewCLI extends ViewClient{
 			return;
 		}
 		if ("0".equals(area))
-			notifyObserversA(new PassTurn());
-		
+			passTurn();
 		if ("1".equals(area)) {
 			print("Choose a tower between:");
 			print("1)TERRITORY");

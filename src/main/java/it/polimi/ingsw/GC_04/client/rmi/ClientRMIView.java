@@ -17,7 +17,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	 */
 	private static final long serialVersionUID = -9164262648865618843L;
 	private final String username; 
-	private ViewClient view;
+	private ViewCLI view;
 	private ServerRMIViewRemote serverStub;
 //mi manca qua il serverstub!!
 	
