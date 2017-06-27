@@ -77,8 +77,8 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	}
 	@Override
 	public void chooseAction() throws RemoteException{
-//		executor.submit(game);
-		view.chooseAction();		
+		executor.submit(view);
+		return;		
 	}
 	@Override
 	public int[] setFurtherCheckNeededEffect(Effect effect) throws RemoteException{

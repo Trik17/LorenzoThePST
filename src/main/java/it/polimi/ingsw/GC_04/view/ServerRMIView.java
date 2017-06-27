@@ -31,8 +31,8 @@ public class ServerRMIView extends Observable<Action,Resource> implements Server
 				
 	}
 	@Override
-	public void notifyObserversA(Action action) {
-		System.out.println("dentro server rmi view notifyobserver action");
+	public void notifyObserversARemote(Action action) {
+		System.out.println("dentro server rmi view notifyobserver action");//da cancellare
 		notifyObserversA(action);
 		
 	}

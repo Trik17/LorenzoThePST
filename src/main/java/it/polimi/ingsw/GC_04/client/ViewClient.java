@@ -100,7 +100,7 @@ public abstract class ViewClient implements Serializable {
 		action = realCard.takeCard(player, realASpace, fMember, servants, realCost);
 		
 		try {
-			serverStub.notifyObserversA(action);
+			serverStub.notifyObserversARemote(action);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -123,7 +123,7 @@ public abstract class ViewClient implements Serializable {
 		realASpace = realArea.getASpaces().get(aSpace);
 		action = new GoToTheMarket(player, fMember, servants, realASpace);
 		try {
-			this.serverStub.notifyObserversA(action);
+			this.serverStub.notifyObserversARemote(action);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -150,7 +150,7 @@ public abstract class ViewClient implements Serializable {
 			action = new GoToTheCouncilPalace(player, fMember, servants);
 		System.out.println("DENTRO INPUT VIEW CLIENT");
 		try {
-			this.serverStub.notifyObserversA(action);
+			this.serverStub.notifyObserversARemote(action);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -162,7 +162,7 @@ public abstract class ViewClient implements Serializable {
 	public void passTurn() {
 		Action action = new PassTurn();
 		try {
-			serverStub.notifyObserversA(action);
+			serverStub.notifyObserversARemote(action);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

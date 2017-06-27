@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
-public class ViewCLI extends ViewClient{
+public class ViewCLI extends ViewClient implements Runnable{
 	
 	
 	
@@ -28,6 +28,11 @@ public class ViewCLI extends ViewClient{
 	
 	private void print(String string) {
 		System.out.println(string);
+	}
+	
+	@Override
+	public void run(){
+		chooseAction();
 	}
 	
 	public void chooseAction(){
