@@ -21,8 +21,10 @@ import it.polimi.ingsw.GC_04.model.area.CharacterTower;
 import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
+import it.polimi.ingsw.GC_04.model.area.VaticanReport;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
@@ -288,7 +290,7 @@ public class Controller implements Observer<Action,Resource> {
 			return;
 		else if (player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers])) {
 			if (lastPhase) {
-				//TODO SCOMUNICHE
+				excommunicationsManagement();
 				model.incrementPeriod();
 				initializer.changeTurn();
 				}
@@ -298,6 +300,12 @@ public class Controller implements Observer<Action,Resource> {
 		}
 		player = CouncilPalaceArea.getTurnOrder()[currentPlayer].getName();
 		lastPhase =!lastPhase;
+		
+	}
+
+
+	private void excommunicationsManagement() {
+		views.forEach((player,view) -> view.excommunicationManagement(VaticanReport.instance().getExcommunication(model.getPeriod())));
 		
 	}
 	

@@ -13,6 +13,7 @@ import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
@@ -24,11 +25,13 @@ public class JsonMapper {
 	private FileReader fileB;
 	private FileReader fileV;
 	private FileReader fileAS;
+	private FileReader fileET;
 	private List<ActionSpace> actionSpaces;
 	private List<TerritoryCard> territoryCards;
 	private List<CharacterCard> characterCards;
 	private List<BuildingCard> buildingCards;
 	private List<VentureCard> ventureCards;
+	private List<ExcommunicationTile> excommunicationTiles;
 	
 	
 	public JsonMapper() {	
@@ -41,6 +44,7 @@ public class JsonMapper {
 			fileB= new FileReader("src/main/resources/cards/building.json"); 
 			fileV= new FileReader("src/main/resources/cards/venture.json"); 	
 			fileAS= new FileReader("src/main/resources/actionSpace.json"); 
+			fileET= new FileReader("src/main/resources/cards/excommunicationTiles.json"); 
 			
 			//Cards
 			TypeReference<List<TerritoryCard>> mapTypeT = new TypeReference<List<TerritoryCard>>() {};
@@ -58,6 +62,9 @@ public class JsonMapper {
 	    	//ActionSpaces
 	    	TypeReference<List<ActionSpace>> mapTypeAS = new TypeReference<List<ActionSpace>>() {};
 			actionSpaces=mapper.readValue(fileAS,mapTypeAS);
+
+			TypeReference<List<ActionSpace>> mapTypeET = new TypeReference<List<ExcommunicationTile>>() {};
+			actionSpaces=mapper.readValue(fileET,mapTypeET);
 	    	
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block
@@ -87,6 +94,10 @@ public class JsonMapper {
 	
 	public List<ActionSpace> getActionSpaces(){
 		return actionSpaces;
+	}
+	
+	public List<ExcommunicationTile> getExcommunicationTile(){
+		return excommunicationTiles;
 	}
 	
 	public static void TimerFromJson() throws JsonMappingException, IOException {
