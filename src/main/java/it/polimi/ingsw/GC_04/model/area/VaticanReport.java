@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_04.model.area;
 
-import java.util.ArrayList;
-
 import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 
 public class VaticanReport {

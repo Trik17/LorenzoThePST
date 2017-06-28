@@ -8,6 +8,11 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class Model extends Observable<Action, Resource> implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4908982852125469835L;
+	
 	private Player[] players;
 	private int currentPeriod;
 	

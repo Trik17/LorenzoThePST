@@ -2,9 +2,13 @@ package it.polimi.ingsw.GC_04.model.area;
 
 import java.util.ArrayList;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
 
 public class HarvestArea extends ColorReastrictedArea {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8070328582738658717L;
+	
 	private static HarvestArea instance;
 	
 	private HarvestArea() {
