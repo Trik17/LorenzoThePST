@@ -1,13 +1,20 @@
 [{
 	  "period" : 1,
-	  "image": "",
+	  "image": "/ExcommunicationTiles/excomm_1_5.png",
+	  "description" : "Each time you perform a Harvest
+					   action, decrease its value by
+					   3. You may still spend servants to
+					   increase the action value and you
+					   must apply your Card’s effects.",
 	  "effect" : {
 	  	"type" : "ExtraDiceHarvestEffect",
 	  	"extra" : -3
   	  }
 },{
 	  "period" : 1,
-	  "image" : "",
+	  "image" : "/ExcommunicationTiles/excomm_1_3.png",
+	  "description" : 	"Each time you receive servants, 
+	  					you receive 1 fewer servant.",
 	  "effect" : {
 	  		"type" : "MalusResourceEffect",
 	  			"malus" : {
@@ -17,7 +24,9 @@
   	  }  
 },{
 	  "period" : 1,
-	  "image" : "",
+	  "image" : "/ExcommunicationTiles/excomm_1_2.png",
+	  "description" : 	"Each time you receive coins,
+						you receive 1 fewer coin.",
 	  "effect" : {
 	  		"type" : "MalusResourceEffect",
 	  			"malus" : {
@@ -27,7 +36,10 @@
   	  		}   
 },{
 	  "period" : 1,
-	  "image" : "",
+	  "image" : "/ExcommunicationTiles/excomm_1_1.png",
+	  "description" : 	"Each time you gain Military
+						Points, gain 1 fewer Military
+						Point.",
 	  "effect" : {
 	  		"type" : "MalusResourceEffect",
 	  			"malus" : {
@@ -38,14 +50,26 @@
   	  		}     	  		 
 },{
       "period" : 1,
-	  "image": "",
+	  "image": "/ExcommunicationTiles/excomm_1_6.png",
+	  "description" : 	"Each time you perform a
+						Production action, decrease its
+						value by 3. You may still spend 
+						servants to increase the action 
+						value and you must apply your 
+						Card’s effects.",
 	  "effect" : {
 	  	"type" : "ExtraDiceProductionEffect",
 	  	"extra" : -3
       }
 },{
 	  "period" : 2,
-	  "image": "",
+	  "image": "/ExcommunicationTiles/excomm_2_3.png",
+	  "description" : 	"Each time you take a Character
+						Card, your action receives
+						a -4 reduction of its value.
+						You may still spend servants to
+						increase the action value,and you
+						must apply your Card’s effects.",
 	  "effect" : {
 	  	"type" : "ExtraDiceCardEffect",
 	  		"cardType" : {
@@ -55,7 +79,13 @@
 	  }
 },{	  
 	  "period" : 2,
-	  "image": "",
+	  "image": "/ExcommunicationTiles/excomm_2_4.png",
+	  "description" : 	"Each time you take a Venture
+						Card, your action receives
+						a -4 reduction of its value.
+						You may still spend servants to
+						increase the action value and you
+						must apply your Card’s effects.",
 	  "effect" : {
 	  	"type" : "ExtraDiceCardEffect",
 	  		"cardType" : {
@@ -65,7 +95,13 @@
 	  }
 },{
 	 "period" : 2,
-	 "image": "",
+	 "image": "/ExcommunicationTiles/excomm_2_1.png",
+	 "description" : 	"Each time you take a Territory
+						Card, your action receives
+						a -4 reduction of its value.
+						You may still spend servants to
+						increase the action value and you
+						must apply your Card’s effects.",
 	 "effect" : {
 	  	"type" : "ExtraDiceCardEffect",
 	  		"cardType" : {
@@ -74,8 +110,27 @@
 			"extra" : -4		  
 	 }
 },{
+	 "period" : 2,
+	 "image": "/ExcommunicationTiles/excomm_2_2.png",
+	 "description" : 	"Each time you take a Building
+						Card, your action receives
+						a -4 reduction of its value.
+						You may still spend servants to
+						increase the action value and you
+						must apply your Card’s effects.",
+	 "effect" : {
+	  	"type" : "ExtraDiceCardEffect",
+	  		"cardType" : {
+				"type" : "BuildingCard"
+			},
+			"extra" : -4		  
+	 }
+},{
 	 "period" : 3,
-	 "image" : "",
+	 "image" : "/ExcommunicationTiles/excomm_3_1.png",
+	 "description" : 	"At the end of the game, you
+						don’t score points for any of your
+						Influenced Characters.",
 	 "effect" : {
 	 	"type" : "DeleteVPointsCardsEffect",
 	 		"cardType" : {
@@ -84,7 +139,10 @@
 	 }			
 },{	
 	 "period" : 3,
-	 "image" : "",
+	 "image" : "/ExcommunicationTiles/excomm_3_3.png",
+	 "description" : 	"At the end of the game, you
+						don’t score points for any of your
+						Conquered Territories.",
 	 "effect" : {
 	 	"type" : "DeleteVPointsCardsEffect",
 	 		"cardType" : {
@@ -93,7 +151,10 @@
 	 }			
 },{
 	 "period" : 3,
-	 "image" : "",
+	 "image" : "/ExcommunicationTiles/excomm_3_2.png",
+	 "description" : 	"At the end of the game, you
+						don’t score points for any of your
+						Encouraged Ventures.",
 	 "effect" : {
 	 	"type" : "DeleteVPointsCardsEffect",
 	 		"cardType" : {
