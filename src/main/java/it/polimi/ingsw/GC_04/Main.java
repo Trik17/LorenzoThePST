@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
-import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
-import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
-
+import it.polimi.ingsw.GC_04.client.StateOfTheGameCLI;
+import it.polimi.ingsw.GC_04.client.ViewCLI;
+import it.polimi.ingsw.GC_04.client.ViewClient;
 import it.polimi.ingsw.GC_04.controller.Controller;
 
 import it.polimi.ingsw.GC_04.model.Model;
@@ -17,7 +18,9 @@ import it.polimi.ingsw.GC_04.model.area.CharacterTower;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.resource.Coins;
+import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.model.resource.Servants;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
 
@@ -92,15 +95,15 @@ public class Main {
 		Model model = new Model();
 		model.setPlayers(players);
 		ViewClient[] views =new ViewClient[num];
-		for(int i=0; i<num; i++)
+		/*for(int i=0; i<num; i++)
 			//if(graphic)
 				//views[i] = new ViewGUI();
 			//else
 				views[i] = new ViewCLI();
-		
-		Controller controller=new Controller(model,initializer);
-		controller.setViews(views);
-		controller.startGame();
+		*/
+//		Controller controller=new Controller(model,initializer);
+//		controller.setViews(views);
+//		controller.startGame();
 		
 		
 		

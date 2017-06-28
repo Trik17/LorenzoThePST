@@ -1,3 +1,6 @@
+package it.polimi.ingsw.GC_04.client;
+
+/*
 package it.polimi.ingsw.GC_04.client.rmi;
 
 import it.polimi.ingsw.GC_04.model.action.Action;
@@ -58,5 +61,10 @@ public class ViewGUI extends ViewClient {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void updateR(Resource resource) {
+		// TODO Auto-generated method stub
+		
+	}
 
-}
+}*/

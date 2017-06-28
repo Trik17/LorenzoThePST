@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model.action;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,12 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Servants;
 
-public abstract class Action {
+public abstract class Action implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4204746344145065227L;
 	protected Player player;
 	protected ActionSpace aSpace;
 	protected FamilyMember fMember;
@@ -24,6 +29,8 @@ public abstract class Action {
 	protected List<Effect> requestedAuthorizationEffects;
 	protected List<CouncilPrivilege> councilPrivileges;
 	protected List<Resource> discount;
+	
+	public Action() {}
 	
 	public Action(Player player, FamilyMember fMember, int servants) {
 		this.player = player;

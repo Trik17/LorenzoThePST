@@ -1,22 +1,24 @@
 package it.polimi.ingsw.GC_04.controller;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
-import it.polimi.ingsw.GC_04.StateOfTheGameCLI;
-import it.polimi.ingsw.GC_04.client.rmi.ViewCLI;
-import it.polimi.ingsw.GC_04.client.rmi.ViewClient;
+import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.model.area.CharacterTower;
+import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
@@ -29,31 +31,59 @@ import it.polimi.ingsw.GC_04.model.resource.*;
 
 public class Controller implements Observer<Action,Resource> {
 	
+	private final static int FINALPERIOD = 3;
 	private final static int FINALTURN = 4;
 	private Model model;
-	private ViewClient[] views;
+	private Map<String, ClientRMIViewRemote> views;
 	private Initializer initializer;
+	private String player;
 	private int currentPlayer = 0;
 	private int turn = 0;
 	private boolean lastPhase;
 
-	public Controller(Model model, Initializer initializer) {
-		this.model = model;	
-		this.initializer = initializer;
+	public Controller(Model model) {
+		this.model = model;
 	}
 	
-	public void setViews(ViewClient[] views){
-		this.views = views;
-		for(ViewClient view : views)
-			view.registerObserver(this);
+	
+	public void setViews(Map<String, ClientRMIViewRemote> clients){
+		this.views = clients;
 	}
 	
-	public void startGame(){
-		stateOfTheGame();
-		views[currentPlayer].chooseAction();
+	public void initialize(Player[] players){
+		this.initializer = new Initializer(players);
+		CouncilPalaceArea.instance();
+		this.player = CouncilPalaceArea.getTurnOrder()[0].getName();
+		startGame();
 	}
-
-
+	
+//	@Override//cancella
+//	public void updateR(Resource e) {
+//		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
+//		System.out.println("stampo quantità risorsa");// cancella
+//		System.out.println(e.getQuantity());// cancella
+//		
+//		
+//	}
+	
+	private void startGame() {
+//		try {
+//			System.out.println("server: provo a salutare");
+//			views[currentPlayer].askSomething("ciao");
+//			views[2].askSomething("ciao");
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		try {
+			stateOfTheGame();
+			views.get(player).chooseAction();
+		} catch (RemoteException e) {
+			//FAI CODICE PER SALTARE TURNO -> ERRORE DI CONNESSIONE
+			e.printStackTrace();
+		}
+	}
+	
 	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
 		
 		councilPrivileges.get(cont).setCouncilPrivilege(resource);
@@ -83,9 +113,9 @@ public class Controller implements Observer<Action,Resource> {
 		return furtherCheckNeeded;
 	}
 	
-	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) {
+	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) throws RemoteException {
 		Effect effect = requestedAuthorizationEffects.get(index);
-		int[] choice = views[currentPlayer].setFurtherCheckNeededEffect(effect);
+		int[] choice = views.get(player).setFurtherCheckNeededEffect(effect);
 		if (effect instanceof ExchangeResourcesEffect) {
 			if (choice[0] == 1)
 				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
@@ -129,16 +159,29 @@ public class Controller implements Observer<Action,Resource> {
 	
 		
 	
-	
 	@Override
-	public void update(Action action) {
+	public void update(Action action)  {
+		try{
+		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
+		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
+		try{
+			System.out.println(action.getPlayer().getName());// cancella
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		if (action.getClass().equals(PassTurn.class)) {
+			updateTurn();
+			views.get(player).chooseAction();
+			return;
+		}
 		action.checkExtraordinaryEffect();
 		Resource privilege;
 		List<CouncilPrivilege> councilPrivileges = SupportFunctions.cloneCouncilPrivilege(action.getCouncilPrivileges());
 		
 		int cont = 0;
 		while(cont < councilPrivileges.size()) {
-			privilege = views[currentPlayer].setCouncilPrivilege();
+			privilege = views.get(player).setCouncilPrivilege();
 			setCouncilPrivilege(councilPrivileges,privilege,cont);
 			cont++;
 			/* it clones all of the instances of CouncilPrivilege present in the effects of the action
@@ -149,7 +192,7 @@ public class Controller implements Observer<Action,Resource> {
 		int[] furtherCheckNeeded = setFurtherCheckNeeded(requestedAuthorizationEffects);
 	
 		requestedAuthorizationEffects = organizeExchangeResourcesEffects(requestedAuthorizationEffects);
-		int[] requestedEffects = views[currentPlayer].setRequestedAuthorizationEffects(requestedAuthorizationEffects); //it returns the indices of the effects chosen by the player
+		int[] requestedEffects = views.get(player).setRequestedAuthorizationEffects(requestedAuthorizationEffects); //it returns the indices of the effects chosen by the player
 		
 		if (furtherCheckNeeded.length != 0 && requestedEffects.length != 0) {
 		//it asks the player which choice he wants to make between those proposed
@@ -165,7 +208,7 @@ public class Controller implements Observer<Action,Resource> {
 		if (action instanceof TakeACard) {
 			if (((TakeACard) action).getCard() == null){
 				System.out.println("You can't do this move");
-				views[currentPlayer].chooseAction();
+				views.get(player).chooseAction();
 				return;
 			}
 			discount = setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
@@ -174,21 +217,28 @@ public class Controller implements Observer<Action,Resource> {
 		if(action.isApplicable()) {
 			action.setRequestedAuthorizationEffects(requestedAuthorizationEffects);
 			action.setCouncilPrivilege(councilPrivileges);
-			//TODO: fai attivare i privilegi
 			action.setDiscount(discount);
 			action.apply(); 
 			
 		}else {
 			System.out.println("You can't do this move");
-			views[currentPlayer].chooseAction();
+			views.get(player).chooseAction();
 			return;
 		}
 		updateTurn();
 		stateOfTheGame();
-		views[currentPlayer].chooseAction();
-		
+
+		views.get(player).chooseAction();
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
 	}
 	
+	private void stateOfTheGame() throws RemoteException {
+		views.get(player).stateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
+	}
+
+
 	public List<Resource> setDiscount(Player player, DevelopmentCard card) {
 		//this method uploads the action's discounts accumulated by the player 
 		List<Resource> discounts;
@@ -198,7 +248,13 @@ public class Controller implements Observer<Action,Resource> {
 		if (!myDiscounts.stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
 			discounts = myDiscounts;
 		else {
-			myDiscounts.forEach(res -> {if (res instanceof RawMaterial) res = views[currentPlayer].setDiscount(res);});
+			myDiscounts.forEach(res -> {if (res instanceof RawMaterial)
+				try {
+					res = views.get(player).setDiscount(res);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}});
 			discounts = myDiscounts;
 		}
 		return discounts;
@@ -225,23 +281,23 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void updateTurn() {//TODO: tutto
-		if (model.getPeriod() == FINALTURN && lastPhase && turn == FINALTURN )
+		int nrOfPlayers = CouncilPalaceArea.getTurnOrder().length -1;
+		
+		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers]))
 			//TODO: final score
 			return;
-		else if (currentPlayer == views.length -1 && turn == FINALTURN) {
-			if (lastPhase)
-				initializer.changeTurn();//TODO: GESTIONE SCOMUNICHE
+		else if (player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers])) {
+			if (lastPhase) {
+				//TODO SCOMUNICHE
+				model.incrementPeriod();
+				initializer.changeTurn();
+				}
 			currentPlayer = 0;
 		}else {
 			currentPlayer++;
 		}
+		player = CouncilPalaceArea.getTurnOrder()[currentPlayer].getName();
 		lastPhase =!lastPhase;
-		
-	}
-	
-	public void stateOfTheGame() {
-		if (views[currentPlayer] instanceof ViewCLI)
-			StateOfTheGameCLI.printStateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
 		
 	}
 	

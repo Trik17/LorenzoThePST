@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,11 @@ import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.VictoryPoints;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
 
-public class Player {
+public class Player implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7992514360884500251L;
 	private String name;
 	private Model game;
 	private FamilyMember[] family;
@@ -28,6 +33,8 @@ public class Player {
 	private List<DevelopmentCard> bCards;
 	private List<DevelopmentCard> cCards;
 	private List<Resource> resources;
+	private List<Resource> malus;
+	private List<Boolean> deleteVPointsCardsEffect;
 	private boolean actionSpacePenality;
 	
 	private List<Harvest> harvestList;
@@ -61,6 +68,8 @@ public class Player {
 		vCards = new ArrayList<>();
 		bCards = new ArrayList<>();
 		cCards = new ArrayList<>();
+		
+		malus = new ArrayList<>();
 		
 		actionSpacePenality = false; 
 	}
@@ -97,11 +106,16 @@ public class Player {
 
 	
 	public List<DevelopmentCard> getCards(DevelopmentCard dC){
-		if (dC instanceof TerritoryCard) return tCards;
-		else if (dC instanceof BuildingCard) return bCards;
-		else if (dC instanceof VentureCard) return vCards;
-		else if (dC instanceof CharacterCard) return cCards;
-		else return new ArrayList<>();
+		if (dC instanceof TerritoryCard) 
+			return tCards;
+		else if (dC instanceof BuildingCard) 
+			return bCards;
+		else if (dC instanceof VentureCard) 
+			return vCards;
+		else if (dC instanceof CharacterCard) 
+			return cCards;
+		else 
+			return new ArrayList<>();
 	}
 	
 	
@@ -127,6 +141,29 @@ public class Player {
 	}
 	public List<Production> getProduction() {
 		return productionList;
+	}
+	public List<Resource> getMalus() {
+		return malus;
+	}
+	public boolean isDeleteCardsEffectActive(DevelopmentCard dC) {
+		if (dC instanceof TerritoryCard) 
+			return deleteVPointsCardsEffect.get(0);
+		else if (dC instanceof CharacterCard) 
+			return deleteVPointsCardsEffect.get(1);
+		else if (dC instanceof BuildingCard)
+			return deleteVPointsCardsEffect.get(2);
+		else
+			return deleteVPointsCardsEffect.get(3);
+	}
+	public void setDeleteCardsEffectActive(DevelopmentCard dC) {
+		if (dC instanceof TerritoryCard) 
+			deleteVPointsCardsEffect.set(0, true);
+		else if (dC instanceof CharacterCard) 
+			deleteVPointsCardsEffect.set(1, true);
+		else if (dC instanceof BuildingCard)
+			deleteVPointsCardsEffect.set(2, true);
+		else 
+			deleteVPointsCardsEffect.set(3, true);
 	}
 	
 }

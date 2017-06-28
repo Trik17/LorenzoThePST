@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,5 +29,10 @@ public abstract class Observable<A,R> {
 			o.update(action);
 		}
 	}
+//	public void notifyObserversR(R resource) {
+//		for (Observer<A,R> o : this.observers) {
+//			o.updateR(resource);
+//		}
+//	}
 	
 }

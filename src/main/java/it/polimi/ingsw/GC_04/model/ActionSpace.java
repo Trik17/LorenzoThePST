@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -8,8 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 
-public class ActionSpace {
+public class ActionSpace implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1257106955389829311L;
 	private int activationCost;//necessary dice's value
 	private List<Effect> effect;
 	private FamilyMember fMember;

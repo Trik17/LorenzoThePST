@@ -1,5 +1,6 @@
-package it.polimi.ingsw.GC_04.client.rmi;
+package it.polimi.ingsw.GC_04.client;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,15 +11,28 @@ import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
+import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
-public class ViewCLI extends ViewClient{
+public class ViewCLI extends ViewClient implements Runnable{
 	
 	
-	public void print(String string) {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2328795643634959640L;
+	
+	private void print(String string) {
 		System.out.println(string);
+	}
+	
+	@Override
+	public void run(){
+		chooseAction();
 	}
 	
 	public void chooseAction(){
@@ -31,11 +45,14 @@ public class ViewCLI extends ViewClient{
 		print("3)PRODUCTION");
 		print("4)HARVEST");
 		print("5)COUNCIL PALACE");
+		print("0)PASS TURN");
 		String area = in.nextLine();
-		if (!SupportFunctions.isInputValid(area, 1, 5)) {
+		if (!SupportFunctions.isInputValid(area, 0, 5)) {
 			chooseAction();
 			return;
 		}
+		if ("0".equals(area))
+			passTurn();
 		if ("1".equals(area)) {
 			print("Choose a tower between:");
 			print("1)TERRITORY");
@@ -297,7 +314,7 @@ public class ViewCLI extends ViewClient{
 		return cost;
 	}
 			
-	public String calculateEffect(List<ResourceEffect> list) {
+	private String calculateEffect(List<ResourceEffect> list) {
 		String effect = new String();
 		int effectQuantity;
 		String effectType;
@@ -336,11 +353,8 @@ public class ViewCLI extends ViewClient{
 		
 	}
 
-	@Override
-	public void update(Action action) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
 
 
 	

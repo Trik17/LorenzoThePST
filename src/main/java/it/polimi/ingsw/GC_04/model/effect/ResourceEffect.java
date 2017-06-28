@@ -29,6 +29,7 @@ public abstract class ResourceEffect extends Effect {
 
 	@Override
 	public void apply(Player player){
+		Resource.subtractResource(effect, player.getMalus());
 		Resource.addResource(player.getResources(),effect);
 	}
 	

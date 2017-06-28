@@ -1,15 +1,11 @@
 package it.polimi.ingsw.GC_04;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
-
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Player;
@@ -36,7 +32,7 @@ public class Initializer {
 	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
 
-	Player[] players;
+	private Player[] players;
 										
 	public Initializer(Player[] players) {
 		JsonMapper jsonMapper=new JsonMapper();		
@@ -49,6 +45,8 @@ public class Initializer {
 		this.cCards = jsonMapper.getCharacterCardArray();
 		this.bCards = jsonMapper.getBuildingCardArray();
 		this.vCards = jsonMapper.getVentureCardsArray();
+		
+		//TODO get excommunication 
 
 		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		
@@ -105,6 +103,8 @@ public class Initializer {
 		
 		initialPosition += 4;
 		finalPosition += 4;
+		
+		
 	}
 	
 	public List<DevelopmentCard> cardsOnTheTable() {
@@ -116,5 +116,6 @@ public class Initializer {
 		
 		return cardsOnTheTable;
 	}
+	
 	
 }

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import it.polimi.ingsw.GC_04.model.resource.*;
 //se c'è raw material il controller deve chiedere quale delle due cose vuole che si scontino
 //occhio a non fare andare il costo sotto zero
 //in takeACard fai agire il controller prima di tutto
-public class Discount {
+public class Discount implements Serializable{
 	private List<Resource> territoryDiscount;
 	private List<Resource> buildingDiscount;
 	private List<Resource> ventureDiscount;

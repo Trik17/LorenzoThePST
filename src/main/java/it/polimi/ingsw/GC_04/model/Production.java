@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -7,7 +8,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 
-public class Production {
+public class Production implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3723034948693266684L;
 	private int diceValue;
 	private List<Effect> effects;
 
