@@ -33,10 +33,11 @@ public interface ClientRMIViewRemote extends Remote {
 	
 	public ServerRMIViewRemote getServerStub() throws RemoteException;
 
-	public void stateOfTheGame(Model model, DevelopmentCard[] tCards, DevelopmentCard[] cCards, DevelopmentCard[] bCards,
-			DevelopmentCard[] vCards, Dice black, Dice orange, Dice white) throws RemoteException;
+	public void stateOfTheGame(String state) throws RemoteException;
 
 	public void excommunicationManagement(String description)throws RemoteException;
+
+	public void setState(String stateCLI)throws RemoteException;
 	
 	
 }

@@ -36,12 +36,17 @@ public abstract class ViewClient implements Serializable {
 	private static final long serialVersionUID = 6860755801717581167L;
 	protected ServerRMIViewRemote serverStub;
 	private int turn;
+	protected String state;
 	
 	public abstract void chooseAction();
 	
 	
 	public ViewClient() {
 		turn = 0;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 	

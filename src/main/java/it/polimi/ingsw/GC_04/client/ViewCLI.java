@@ -16,7 +16,6 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 public class ViewCLI extends ViewClient implements Runnable{
 	
 	
-	
 	/**
 	 * 
 	 */
@@ -26,12 +25,14 @@ public class ViewCLI extends ViewClient implements Runnable{
 		System.out.println(string);
 	}
 	
+	
 	@Override
 	public void run(){
 		chooseAction();
 	}
 	
 	public void chooseAction(){
+		printStateOfTheGame(state);
 		Scanner in = new Scanner(System.in);
 		String diceColor;
 		String nrOfServants;
@@ -346,6 +347,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 			return new Stones(rawMaterial.getQuantity());
 		else
 			return new Woods(rawMaterial.getQuantity());
+		
+	}
+
+	public void printStateOfTheGame(String state) {
+		print(state);
 		
 	}
 

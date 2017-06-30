@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import it.polimi.ingsw.GC_04.client.StateOfTheGameCLI;
 import it.polimi.ingsw.GC_04.client.ViewCLI;
+import it.polimi.ingsw.GC_04.controller.StateOfTheGameCLI;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
@@ -95,16 +95,21 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	public ServerRMIViewRemote getServerStub() throws RemoteException{
 		return this.serverStub;
 	}
-	@Override
-	public void stateOfTheGame(Model model, DevelopmentCard[] tCards, DevelopmentCard[] cCards, DevelopmentCard[] bCards,
-			DevelopmentCard[] vCards, Dice black, Dice orange, Dice white) throws RemoteException {
-		StateOfTheGameCLI.printStateOfTheGame(model, tCards, cCards, bCards, vCards, black, orange, white);
-		
-		
-	}
+
 	@Override
 	public void excommunicationManagement(String description) throws RemoteException {
 		//TODO: INVENTARE LA FUNZIONE VERA SULLA VIEW
+		
+	}
+	@Override
+	public void stateOfTheGame(String state) throws RemoteException {
+		view.printStateOfTheGame(state);
+		
+	}
+	
+	@Override
+	public void setState(String stateCLI) throws RemoteException {
+		view.setState(stateCLI);
 		
 	}
 	
