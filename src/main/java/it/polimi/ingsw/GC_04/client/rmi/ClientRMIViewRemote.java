@@ -36,7 +36,7 @@ public interface ClientRMIViewRemote extends Remote {
 	public void stateOfTheGame(Model model, DevelopmentCard[] tCards, DevelopmentCard[] cCards, DevelopmentCard[] bCards,
 			DevelopmentCard[] vCards, Dice black, Dice orange, Dice white) throws RemoteException;
 
-	public void excommunicationManagement(ExcommunicationTile excommunication);
+	public void excommunicationManagement(String description)throws RemoteException;
 	
 	
 }

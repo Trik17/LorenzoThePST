@@ -103,7 +103,11 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		
 	}
 	@Override
-	public void excommunicationManagement(ExcommunicationTile excommunication) {
+	public void excommunicationManagement(String description) throws RemoteException {
+		//TODO: INVENTARE LA FUNZIONE VERA SULLA VIEW
+		
+	}
+	
 	
 	
 	

@@ -44,7 +44,7 @@ public class JsonMapper {
 			fileB= new FileReader("src/main/resources/cards/building.json"); 
 			fileV= new FileReader("src/main/resources/cards/venture.json"); 	
 			fileAS= new FileReader("src/main/resources/actionSpace.json"); 
-			fileET= new FileReader("src/main/resources/cards/excommunicationTiles.json"); 
+			fileET= new FileReader("src/main/resources/excommunicationTiles.json"); 
 			
 			//Cards
 			TypeReference<List<TerritoryCard>> mapTypeT = new TypeReference<List<TerritoryCard>>() {};
@@ -63,8 +63,8 @@ public class JsonMapper {
 	    	TypeReference<List<ActionSpace>> mapTypeAS = new TypeReference<List<ActionSpace>>() {};
 			actionSpaces=mapper.readValue(fileAS,mapTypeAS);
 
-			TypeReference<List<ActionSpace>> mapTypeET = new TypeReference<List<ExcommunicationTile>>() {};
-			actionSpaces=mapper.readValue(fileET,mapTypeET);
+//			TypeReference<List<ExcommunicationTile>> mapTypeET = new TypeReference<List<ExcommunicationTile>>() {};
+//			excommunicationTiles=mapper.readValue(fileET,mapTypeET);
 	    	
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block

@@ -1,11 +1,7 @@
 [{
 	  "period" : 1,
 	  "image": "/ExcommunicationTiles/excomm_1_5.png",
-	  "description" : "Each time you perform a Harvest
-					   action, decrease its value by
-					   3. You may still spend servants to
-					   increase the action value and you
-					   must apply your Card’s effects.",
+	  "description" : "Each time you perform a Harvest action, decrease its value by 3.\n You may still spend servants to increase the action value and you must apply your Card’s effects.",
 	  "effect" : {
 	  	"type" : "ExtraDiceHarvestEffect",
 	  	"extra" : -3

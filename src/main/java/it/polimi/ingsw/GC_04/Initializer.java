@@ -63,7 +63,7 @@ public class Initializer {
 			period++;
 		}
 
-		VaticanReport.instance(excommunications[0],excommunications[1], excommunications[2]);
+		VaticanReport.instance(excommunications);
 		
 		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		

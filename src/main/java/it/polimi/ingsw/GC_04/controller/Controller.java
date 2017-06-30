@@ -305,7 +305,14 @@ public class Controller implements Observer<Action,Resource> {
 
 
 	private void excommunicationsManagement() {
-		views.forEach((player,view) -> view.excommunicationManagement(VaticanReport.instance().getExcommunication(model.getPeriod())));
+		views.forEach((player,view) -> {
+			try {
+				view.excommunicationManagement(VaticanReport.instance().getExcommunication(model.getPeriod()).getDescription());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 		
 	}
 	
