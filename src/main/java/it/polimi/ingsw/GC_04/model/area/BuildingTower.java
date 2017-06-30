@@ -6,21 +6,32 @@ import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 
 public class BuildingTower extends Tower{
-	private static BuildingTower instance;
+
+	private static final long serialVersionUID = -1484399818590572658L;
+	private static final ThreadLocal<BuildingTower> instance=new ThreadLocal<BuildingTower>(){ 
+	    @Override 
+	    protected BuildingTower initialValue() { 
+	        //initialize YourObject 
+	      return new BuildingTower(); 
+	      } 
+	};
+	public static BuildingTower instance() {
+		return instance.get();		
+	}
+	public static BuildingTower instance(BuildingCard[] cards, List<ActionSpace> aSpaces){
+		instance.set(new BuildingTower(cards, aSpaces));
+		return instance.get();
+	}
+	  
 	
-	public BuildingTower(BuildingCard[] cards, List<ActionSpace> aSpaces) {
+	private BuildingTower(BuildingCard[] cards, List<ActionSpace> aSpaces) {
 		this.cards = cards;
 		this.aSpaces = aSpaces;
 	}
 	
-	public static BuildingTower instance() {
-		return instance;
-		
+	private BuildingTower() {
 	}
-	public static BuildingTower instance(BuildingCard[] cards, List<ActionSpace> aSpaces){
-		if (instance==null) 
-			instance = new BuildingTower(cards, aSpaces);
-		return instance;
-	}
+
 	
+
 }
