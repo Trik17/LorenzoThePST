@@ -164,11 +164,6 @@ public class Controller implements Observer<Action,Resource> {
 		try{
 		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
 		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
-		try{
-			System.out.println(action.getPlayer().getName());// cancella
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 		
 		if (action.getClass().equals(PassTurn.class)) {
 			updateTurn();
