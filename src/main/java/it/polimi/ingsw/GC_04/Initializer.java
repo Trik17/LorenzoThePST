@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_04;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
@@ -16,21 +17,25 @@ import it.polimi.ingsw.GC_04.model.area.HarvestArea;
 import it.polimi.ingsw.GC_04.model.area.MarketArea;
 import it.polimi.ingsw.GC_04.model.area.ProductionArea;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
+import it.polimi.ingsw.GC_04.model.area.VaticanReport;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
 
 public class Initializer {
 	private int initialPosition = 0;
 	private int finalPosition = 4;
+	private int period = 1;
 	
 	private final TerritoryCard[] tCards;
 	private final CharacterCard[] cCards;
 	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
+	private final List<ExcommunicationTile> eTiles;
 
 	private Player[] players;
 										
@@ -45,9 +50,21 @@ public class Initializer {
 		this.cCards = jsonMapper.getCharacterCardArray();
 		this.bCards = jsonMapper.getBuildingCardArray();
 		this.vCards = jsonMapper.getVentureCardsArray();
+		this.eTiles = jsonMapper.getExcommunicationTile();
 		
-		//TODO get excommunication 
+		ExcommunicationTile[] excommunications = new ExcommunicationTile[3];
+		
+		Random rnd = new Random();
+		
+		for (int i = 0; i < 4; i++) {
+			ExcommunicationTile[] tiles = (ExcommunicationTile[]) eTiles.stream().filter(tile -> tile.getPeriod() == period).toArray();
+			int selected = rnd.nextInt(tiles.length);
+			excommunications[i] = tiles[selected];
+			period++;
+		}
 
+		VaticanReport.instance(excommunications);
+		
 		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		
 		CouncilPalaceArea.instance(players,aSpaces.get(20));

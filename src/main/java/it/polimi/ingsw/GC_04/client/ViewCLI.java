@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.client;
 
-import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,15 +9,11 @@ import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
-import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
-import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 
 public class ViewCLI extends ViewClient implements Runnable{
-	
 	
 	
 	/**
@@ -30,12 +25,14 @@ public class ViewCLI extends ViewClient implements Runnable{
 		System.out.println(string);
 	}
 	
+	
 	@Override
 	public void run(){
 		chooseAction();
 	}
 	
 	public void chooseAction(){
+		printStateOfTheGame(state);
 		Scanner in = new Scanner(System.in);
 		String diceColor;
 		String nrOfServants;
@@ -350,6 +347,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 			return new Stones(rawMaterial.getQuantity());
 		else
 			return new Woods(rawMaterial.getQuantity());
+		
+	}
+
+	public void printStateOfTheGame(String state) {
+		print(state);
 		
 	}
 

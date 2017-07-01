@@ -9,8 +9,6 @@ import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
@@ -21,6 +19,7 @@ import it.polimi.ingsw.GC_04.model.area.CharacterTower;
 import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
 import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
+import it.polimi.ingsw.GC_04.model.area.VaticanReport;
 import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
@@ -76,7 +75,7 @@ public class Controller implements Observer<Action,Resource> {
 //			e.printStackTrace();
 //		}
 		try {
-			stateOfTheGame();
+			views.get(player).setState(model.getStateCLI());
 			views.get(player).chooseAction();
 		} catch (RemoteException e) {
 			//FAI CODICE PER SALTARE TURNO -> ERRORE DI CONNESSIONE
@@ -235,7 +234,7 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	private void stateOfTheGame() throws RemoteException {
-		views.get(player).stateOfTheGame(model, TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
+		views.get(player).stateOfTheGame(model.getStateCLI());
 	}
 
 
@@ -288,7 +287,7 @@ public class Controller implements Observer<Action,Resource> {
 			return;
 		else if (player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers])) {
 			if (lastPhase) {
-				//TODO SCOMUNICHE
+				excommunicationsManagement();
 				model.incrementPeriod();
 				initializer.changeTurn();
 				}
@@ -298,6 +297,20 @@ public class Controller implements Observer<Action,Resource> {
 		}
 		player = CouncilPalaceArea.getTurnOrder()[currentPlayer].getName();
 		lastPhase =!lastPhase;
+		model.setStateCLI();
+		
+	}
+
+
+	private void excommunicationsManagement() {
+		views.forEach((player,view) -> {
+			try {
+				view.excommunicationManagement(VaticanReport.instance().getExcommunication(model.getPeriod()).getDescription());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 		
 	}
 	

@@ -13,8 +13,6 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
-
 import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.controller.Controller;

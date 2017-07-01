@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
@@ -32,8 +33,11 @@ public interface ClientRMIViewRemote extends Remote {
 	
 	public ServerRMIViewRemote getServerStub() throws RemoteException;
 
-	public void stateOfTheGame(Model model, DevelopmentCard[] tCards, DevelopmentCard[] cCards, DevelopmentCard[] bCards,
-			DevelopmentCard[] vCards, Dice black, Dice orange, Dice white) throws RemoteException;
+	public void stateOfTheGame(String state) throws RemoteException;
+
+	public void excommunicationManagement(String description)throws RemoteException;
+
+	public void setState(String stateCLI)throws RemoteException;
 	
 	
 }
