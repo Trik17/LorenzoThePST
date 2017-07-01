@@ -4,7 +4,6 @@ package it.polimi.ingsw.GC_04.gui;
 import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
@@ -12,26 +11,16 @@ import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.awt.Panel;
-import java.awt.PopupMenu;
 import java.awt.TextField;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Random;
 
 import javax.sound.sampled.AudioInputStream;
@@ -46,22 +35,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.RootPaneContainer;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.colorchooser.ColorSelectionModel;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.text.Element;
-import javax.swing.text.html.ImageView;
 
-import com.sun.glass.events.WindowEvent;
-import com.sun.media.sound.ModelAbstractChannelMixer;
-
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.resource.Coins;
-import it.polimi.ingsw.GC_04.model.resource.Servants;
-import javafx.scene.control.Tab;
 
 
 
@@ -138,7 +112,6 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	private JButton[] pBoardTerritory; 
 	private Clip clip;
 	private Dimension dimension;
-	private JTabbedPane tab1;
 	private JButton excommTile1;
 	private JButton excommTile2;
 	private JButton excommTile3;
@@ -197,17 +170,16 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		//getContentPane().add(label1);
 		label1.setIcon(gameboard);
 		//this.getContentPane().setBackground(Color.orange);
-		tab1 = new JTabbedPane();
 		pBoard2 = new JButton(" Player2");
 		pBoard3 = new JButton(" Player3");
 		pBoard4 = new JButton(" Player4");
-		add(tab1);
-		tab1.addTab("Player2",pBoard2 );
-		tab1.addTab("Player3",pBoard3 );
-		tab1.addTab("Player4",pBoard4 );
-		tab1.setTabPlacement(JTabbedPane.RIGHT);
-		tab1.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
-		tab1.setVisible(true);
+//		add(tab1);
+		//tab1.addTab("Player2",pBoard2 );
+		//tab1.addTab("Player3",pBoard3 );
+		//tab1.addTab("Player4",pBoard4 );
+//		tab1.setTabPlacement(JTabbedPane.RIGHT);
+//		tab1.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
+//		tab1.setVisible(true);
 	
 		punchboard = new ImageIcon(getClass().getResource("/immagini/punchboard_f_c_03.jpg"));
 		label2 = new JLabel(punchboard);
@@ -261,7 +233,6 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		
 		label1.setBounds(5,5, 500, 700);
 		label2.setBounds(550,50,500,352);
-		tab1.setBounds(505, 5, 300, 40);
 		label3.setBounds(510, 50,50,352);
 		label4.setBounds(500, 405, 580, 110);
 		label5.setBounds(500, 515, 580, 110);
@@ -457,6 +428,13 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		bT21.setBorder(null);
 		bT22.setBorder(null);
 		
+		panel.add(pBoard2);
+		panel.add(pBoard3);
+		panel.add(pBoard4);
+		pBoard2.setBounds(520, 10, 80, 35);
+		pBoard3.setBounds(620, 10, 80, 35);
+		pBoard4.setBounds(720, 10, 80, 35);
+		
 		panel.add(CB1);
 		panel.add(CB2);
 		panel.add(CB3);
@@ -478,6 +456,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		panel.add(leaderCard3P1);
 		panel.add(leaderCard4P1);
 		panel.add(leaderCard5P1);
+		
 		
 		bT0.addActionListener(this);
 		bT1.addActionListener(this);
@@ -595,6 +574,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			if(e1.getSource()==bT4){
 				Buttons b = new Buttons();
 				b.getContentPane().setBackground(Color.blue);
+				
 			}
 			if(e1.getSource()==bT5){
 				Buttons b =	new Buttons();
