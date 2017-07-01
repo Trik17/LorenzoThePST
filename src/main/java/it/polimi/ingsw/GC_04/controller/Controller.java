@@ -99,7 +99,9 @@ public class Controller implements Observer<Action,Resource> {
 	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) throws RemoteException {
 		Effect effect = requestedAuthorizationEffects.get(index);
 		int[] choice = views.get(player).setFurtherCheckNeededEffect(effect);
-		if (effect instanceof ExchangeResourcesEffect) {
+		if (choice == null)
+			return;
+		else if (effect instanceof ExchangeResourcesEffect) {
 			if (choice[0] == 1)
 				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
 			else
@@ -145,9 +147,7 @@ public class Controller implements Observer<Action,Resource> {
 	@Override
 	public void update(Action action)  {
 		try{
-		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
-		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
-		
+			
 		if (action.getClass().equals(PassTurn.class)) {
 			updateTurn();
 			views.get(player).chooseAction();

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_04.client;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 
@@ -43,12 +45,14 @@ public abstract class ViewClient implements Serializable {
 	private int turn;
 	protected String state;
 	protected JsonMapper timerJson;
+	private ExecutorService executor;
 	
-	public abstract void chooseAction();
+	public abstract void chooseAction()throws RemoteException;
 	
 	
 	public ViewClient() {
 		turn = 0;
+		this.executor = Executors.newCachedThreadPool();
 		try {
 			timerJson.TimerFromJson();
 		} catch (JsonMappingException e) {
@@ -65,7 +69,7 @@ public abstract class ViewClient implements Serializable {
 	}
 	
 	
-	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost){
+	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost) throws RemoteException{
 		Action action;
 		Tower realTower;
 		ActionSpace realASpace;
