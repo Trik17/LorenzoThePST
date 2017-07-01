@@ -57,7 +57,7 @@ public class StartGame implements Runnable {
 		model.setPlayers(players);
 		controller.setViews(clients);
 		controller.initialize(players);	
-		model.setStateCLI();
+		
 		
 	}
 	
