@@ -33,6 +33,7 @@ public class ClientManager {
 	private Controller currentController;
 	private Timer timer;
 	private TimerTask task; 
+	private JsonMapper timerJson;
 	
 	//this is the timer that starts the countdown (to start a match) when two players connect to the server 
 	private void newTimer(){
@@ -55,7 +56,7 @@ public class ClientManager {
 		this.currentController=new Controller(currentModel);
 		this.executor = Executors.newCachedThreadPool();
 		try {
-			JsonMapper.TimerFromJson();//inizialize the timer from json file	
+			timerJson.TimerFromJson();//inizialize the timer from json file	
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
