@@ -32,15 +32,20 @@ public class ClientManager {
 	private ExecutorService executor;
 	private Model currentModel;
 	private Controller currentController;
-	
+	TimerTask task; 
 	
 	//this is the timer that starts the countdown (to start a match) when two players connect to the server 
-	TimerTask task = new TimerTask(){
-    	public void run(){
-        	System.out.println( "Time out: starting the game" );
-        	startGame();	
-        }    
-    };
+	private void newTimer(){
+		this.timer=new Timer();
+		this.task= new TimerTask(){
+	    	public void run(){
+	        	System.out.println( "Time out: starting the game" );
+	        	timerStarted=false;
+	        	startGame();
+	        	timer.cancel();
+	        }    
+	    };
+	}
 	
 	public ClientManager() {
 		this.clients=new HashMap<>();
@@ -98,7 +103,7 @@ public class ClientManager {
 			return;
 		else{
 			timerStarted=true;
-			timer=new Timer();
+			newTimer();
 			timer.schedule(task, TimerJson.getStartTimer());
 		}		
 	}	
