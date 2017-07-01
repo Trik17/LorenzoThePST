@@ -43,6 +43,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 				}
 			}
 		};	
+		executor.submit(new ScannerInputThread());
 		timer.schedule( task, TimerJson.getActionTimer()); //timer
 		while(ViewCLI.strInput=="" || !timeout){
 			
@@ -55,6 +56,8 @@ public class ViewCLI extends ViewClient implements Runnable{
 		
 		//TODO: possibile problema: se inserisce input dopo scadenza timer. risolto?
 		
+		
+		//TODO penso che qualcosa ancora non vada
 		return ViewCLI.strInput;
 	}
 	

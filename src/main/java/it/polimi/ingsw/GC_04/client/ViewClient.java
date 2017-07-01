@@ -45,7 +45,7 @@ public abstract class ViewClient implements Serializable {
 	private int turn;
 	protected String state;
 	protected JsonMapper timerJson;
-	private ExecutorService executor;
+	protected ExecutorService executor;
 	
 	public abstract void chooseAction()throws RemoteException;
 	
