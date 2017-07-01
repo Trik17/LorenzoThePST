@@ -51,7 +51,7 @@ public class Initializer {
 		this.bCards = jsonMapper.getBuildingCardArray();
 		this.vCards = jsonMapper.getVentureCardsArray();
 		this.eTiles = jsonMapper.getExcommunicationTile();
-		
+//		System.out.println(eTiles.size());
 		ExcommunicationTile[] excommunications = new ExcommunicationTile[3];
 		
 		Random rnd = new Random();
