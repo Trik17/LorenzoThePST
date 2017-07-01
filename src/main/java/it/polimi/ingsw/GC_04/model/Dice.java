@@ -11,13 +11,34 @@ public class Dice implements Serializable {
 	public static final int NEUTRALDICEVALUE = 0;
 	public static final int MINDICEVALUE = 1;
 	public static final int MAXDICEVALUE = 6;
-	
-	private static Dice blackDice;
-	private static Dice whiteDice;
-	private static Dice orangeDice;
-	private static Dice neutralDice; //this Dice only serves to be associated to the neutral family member. Its value never changes
 	private int value; // 1<=value<=6
 	
+	private static final ThreadLocal<Dice> blackDice=new ThreadLocal<Dice>(){
+		@Override
+		protected Dice initialValue(){
+			return new Dice();
+		}
+	};
+	private static final ThreadLocal<Dice> whiteDice=new ThreadLocal<Dice>(){
+		@Override
+		protected Dice initialValue(){
+			return new Dice();
+		}
+	};
+	private static final ThreadLocal<Dice> orangeDice=new ThreadLocal<Dice>(){
+		@Override
+		protected Dice initialValue(){
+			return new Dice();
+		}
+	};
+	//this Dice only serves to be associated to the neutral family member. Its value never changes
+	private static final ThreadLocal<Dice> neutralDice=new ThreadLocal<Dice>(){
+		@Override
+		protected Dice initialValue(){
+			return new Dice(NEUTRALDICEVALUE);
+		}
+	};
+		
 	private Dice() {
 		Random rnd = new Random();
 		value = MINDICEVALUE + rnd.nextInt(MAXDICEVALUE);
@@ -31,10 +52,10 @@ public class Dice implements Serializable {
 	}
 	
 	public static void createDices() {
-			blackDice = new Dice();
-			whiteDice = new Dice();
-			orangeDice = new Dice();	
-			neutralDice = new Dice(NEUTRALDICEVALUE);
+			blackDice.get();
+			whiteDice.get();
+			orangeDice.get();
+			neutralDice.get();
 	}
 	
 	
@@ -42,10 +63,10 @@ public class Dice implements Serializable {
 	
 	public static void rollTheDices(){
 		//it associates a random number between 1 and 6 with the attribute value
-		Random rnd = new Random();
-		blackDice.value = MINDICEVALUE + rnd.nextInt(MAXDICEVALUE);
-		whiteDice.value = MINDICEVALUE + rnd.nextInt(MAXDICEVALUE);
-		orangeDice.value = MINDICEVALUE + rnd.nextInt(MAXDICEVALUE);
+		blackDice.set(new Dice());
+		orangeDice.set(new Dice());
+		whiteDice.set(new Dice());
+
 	}
 	
 	public int getValue(){
@@ -54,13 +75,13 @@ public class Dice implements Serializable {
 	
 	public static Dice getDice(DiceColor color) {
 		if (color == DiceColor.BLACK)
-			return blackDice;
+			return blackDice.get();
 		else if (color == DiceColor.ORANGE)
-			return orangeDice;
+			return orangeDice.get();
 		else if (color == DiceColor.WHITE)
-			return whiteDice;
+			return whiteDice.get();
 		else
-			return neutralDice;
+			return neutralDice.get();
 	}
 	
 	
