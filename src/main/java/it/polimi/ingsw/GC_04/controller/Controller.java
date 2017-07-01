@@ -50,7 +50,7 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void initialize(Player[] players){
-		this.initializer = new Initializer(players);
+		this.initializer = new Initializer(players,model);
 		CouncilPalaceArea.instance();
 		this.player = CouncilPalaceArea.getTurnOrder()[0].getName();
 		model.setStateCLI();
@@ -162,11 +162,11 @@ public class Controller implements Observer<Action,Resource> {
 	@Override
 	public void update(Action action)  {
 		try{
-		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
-		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
 		
 		if (action.getClass().equals(PassTurn.class)) {
+			System.out.println("cerco di passare il turno");
 			updateTurn();
+			System.out.println("l'ho passato");
 			views.get(player).chooseAction();
 			return;
 		}
@@ -275,7 +275,7 @@ public class Controller implements Observer<Action,Resource> {
 		}
 	}
 	
-	public void updateTurn() {//TODO: tutto
+	public void updateTurn() {
 		int nrOfPlayers = CouncilPalaceArea.getTurnOrder().length -1;
 		
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers]))
@@ -293,7 +293,13 @@ public class Controller implements Observer<Action,Resource> {
 		}
 		player = CouncilPalaceArea.getTurnOrder()[currentPlayer].getName();
 		lastPhase =!lastPhase;
-		model.setStateCLI();
+		
+		try {
+			model.setStateCLI();
+		
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 		
 	}
 
@@ -301,7 +307,7 @@ public class Controller implements Observer<Action,Resource> {
 	private void excommunicationsManagement() {
 		views.forEach((player,view) -> {
 			try {
-				view.excommunicationManagement(VaticanReport.instance().getExcommunication(model.getPeriod()).getDescription());
+				view.excommunicationManagement(model.getVaticanReport().getExcommunication(model.getPeriod()).getDescription());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

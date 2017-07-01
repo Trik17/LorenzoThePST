@@ -41,6 +41,11 @@ public class StateOfTheGameCLI {
 		
 		String cards = "\nTERRITORY CARDS:      CHARACTER CARDS:      BUILDING CARDS:       VENTURE CARDS:";
 		
+		System.out.println(tCards.length);
+		System.out.println(cCards.length);
+		System.out.println(bCards.length);
+		System.out.println(vCards.length);
+		
 		int length = Integer.max(Integer.max(Integer.max(tCards.length, cCards.length),bCards.length),vCards.length);
 		
 		for(int i = 0; i < length; i++) {
@@ -51,16 +56,6 @@ public class StateOfTheGameCLI {
 			cards += cont+SupportFunctions.cardInArray(vCards, i)+"\n";
 			
 			cont++;
-				/*System.out.printf("%d", cont);
-				System.out.printf(SupportFunctions.cardInArray(tCards, i));
-				System.out.printf("%d", cont);
-				System.out.printf(SupportFunctions.cardInArray(cCards, i));			
-				System.out.printf("%d", cont);
-				System.out.printf(SupportFunctions.cardInArray(bCards, i));
-				System.out.printf("%d", cont);
-				System.out.printf("%s\n",SupportFunctions.cardInArray(vCards, i));*/
-			
-			
 			
 		}
 		if (length == 0)
