@@ -55,13 +55,13 @@ public class Initializer {
 		Object[] excommunications = new ExcommunicationTile[3];
 		
 		Random rnd = new Random();
-		
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 			Object[] tiles = eTiles.stream().filter(tile -> tile.getPeriod() == period).toArray();
 			int selected = rnd.nextInt(tiles.length);
 			excommunications[i] = tiles[selected];
 			period++;
 		}
+		
 
 		VaticanReport.instance((ExcommunicationTile[]) excommunications);
 		
