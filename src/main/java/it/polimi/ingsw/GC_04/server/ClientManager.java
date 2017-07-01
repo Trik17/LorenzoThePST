@@ -26,13 +26,13 @@ public class ClientManager {
 	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
 	private Map<String,StartGame> games;
 	private boolean timerStarted=false;
-	private Timer timer;
 	public static final int RMI_PORT = 12008;
 	public static final String NAME = "lorenzo";
 	private ExecutorService executor;
 	private Model currentModel;
 	private Controller currentController;
-	TimerTask task; 
+	private Timer timer;
+	private TimerTask task; 
 	
 	//this is the timer that starts the countdown (to start a match) when two players connect to the server 
 	private void newTimer(){

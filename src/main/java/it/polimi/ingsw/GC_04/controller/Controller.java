@@ -62,8 +62,8 @@ public class Controller implements Observer<Action,Resource> {
 			views.get(player).setState(model.getStateCLI());
 			views.get(player).chooseAction();
 		} catch (RemoteException e) {
-			//FAI CODICE PER SALTARE TURNO -> ERRORE DI CONNESSIONE
-			e.printStackTrace();
+			updateTurn();
+			startGame();			
 		}
 	}
 	
@@ -208,7 +208,8 @@ public class Controller implements Observer<Action,Resource> {
 
 		views.get(player).chooseAction();
 		}catch(RemoteException e){
-			e.printStackTrace();
+			updateTurn();
+			startGame();
 		}
 	}
 	

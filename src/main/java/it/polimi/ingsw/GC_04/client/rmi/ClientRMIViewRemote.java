@@ -18,7 +18,6 @@ public interface ClientRMIViewRemote extends Remote {
 	
 	public String getUsername() throws RemoteException;
 
-	public void askSomething(String string) throws RemoteException;
 	public void addServerstub(ServerRMIViewRemote serverStub) throws RemoteException;
 
 	public void chooseAction()throws RemoteException;
