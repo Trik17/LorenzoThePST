@@ -53,6 +53,7 @@ public class Controller implements Observer<Action,Resource> {
 		this.initializer = new Initializer(players);
 		CouncilPalaceArea.instance();
 		this.player = CouncilPalaceArea.getTurnOrder()[0].getName();
+		model.setStateCLI();
 		startGame();
 	}
 	
