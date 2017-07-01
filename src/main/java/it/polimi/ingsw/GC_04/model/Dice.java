@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Dice implements Serializable {
+	private static final long serialVersionUID = -1756458801038562978L;
 	public static final int NEUTRALDICEVALUE = 0;
 	public static final int MINDICEVALUE = 1;
 	public static final int MAXDICEVALUE = 6;

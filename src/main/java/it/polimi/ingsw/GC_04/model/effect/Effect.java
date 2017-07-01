@@ -20,6 +20,8 @@ property = "type")
 @Type(value = DiscountEffect.class), 
 @Type(value = ActionSpacePenalityEffect.class), 
 @Type(value = ExchangeResourcesEffect.class),
+@Type(value = MalusResourceEffect.class),
+@Type(value = DeleteVPointsCardsEffect.class),
 })
 
 public abstract class Effect implements Cloneable, Serializable {

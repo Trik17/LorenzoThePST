@@ -62,9 +62,10 @@ public class JsonMapper {
 	    	//ActionSpaces
 	    	TypeReference<List<ActionSpace>> mapTypeAS = new TypeReference<List<ActionSpace>>() {};
 			actionSpaces=mapper.readValue(fileAS,mapTypeAS);
-
-//			TypeReference<List<ExcommunicationTile>> mapTypeET = new TypeReference<List<ExcommunicationTile>>() {};
-//			excommunicationTiles=mapper.readValue(fileET,mapTypeET);
+			
+			//excommunicationTiles
+			TypeReference<List<ExcommunicationTile>> mapTypeET = new TypeReference<List<ExcommunicationTile>>() {};
+			excommunicationTiles=mapper.readValue(fileET,mapTypeET);
 	    	
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block
