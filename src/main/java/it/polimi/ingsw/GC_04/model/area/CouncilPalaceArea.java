@@ -2,16 +2,29 @@ package it.polimi.ingsw.GC_04.model.area;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.effect.Effect;
 
 public class CouncilPalaceArea extends Area{ 
-	private static CouncilPalaceArea instance;
+	private static final long serialVersionUID = 2892765005021763947L;
 	private static Player[] turnOrder; 
 	private static Player[] nextTurnOrder;
 	private ActionSpace actionSpaceDefault;
+	
+	private static final ThreadLocal<CouncilPalaceArea> instance=new ThreadLocal<CouncilPalaceArea>(){ 
+	    @Override 
+	    protected CouncilPalaceArea initialValue() { 
+	        //initialize YourObject 
+	      return new CouncilPalaceArea(); 
+	      } 
+	};
+	public static CouncilPalaceArea instance() {
+		return instance.get();		
+	}
+	public static CouncilPalaceArea instance(Player[] players,ActionSpace actionSpaceDefault){
+		instance.set(new CouncilPalaceArea(players,actionSpaceDefault));
+		return instance.get();
+	}
 	
 	
 	private CouncilPalaceArea(Player[] players,ActionSpace actionSpaceDefault){ 
@@ -23,17 +36,8 @@ public class CouncilPalaceArea extends Area{
 		this.actionSpaceDefault = actionSpaceDefault;
 	}
 		
-	public static CouncilPalaceArea instance() {
-		return instance;		
+	private CouncilPalaceArea() {
 	}
-	
-	public static CouncilPalaceArea instance(Player[] players,ActionSpace actionSpaceDefault){
-		if (instance==null) 
-			instance = new CouncilPalaceArea(players,actionSpaceDefault);
-		return instance;
-	}
-	
-	
 	public static Player[] getTurnOrder(){
 		return turnOrder;
 		

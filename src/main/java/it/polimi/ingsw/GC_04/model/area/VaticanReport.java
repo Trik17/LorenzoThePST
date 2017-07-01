@@ -4,7 +4,20 @@ import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 
 public class VaticanReport {
 
-	private static VaticanReport instance;
+	private static final ThreadLocal<VaticanReport> instance=new ThreadLocal<VaticanReport>(){ 
+	    @Override 
+	    protected VaticanReport initialValue() { 
+	        //initialize YourObject 
+	      return new VaticanReport(); 
+	      } 
+	};
+	public static VaticanReport instance() {
+		return instance.get();		
+	}
+	public static VaticanReport instance(ExcommunicationTile[] excommunications){
+		instance.set(new VaticanReport(excommunications));
+		return instance.get();
+	}
 	
 	private ExcommunicationTile[] excommunications;
 
@@ -12,14 +25,9 @@ public class VaticanReport {
 		this.excommunications = excommunications;
 	}
 	
-	public static VaticanReport instance(ExcommunicationTile[] excommunications){
-		if (instance==null) 
-			instance = new VaticanReport(excommunications);
-		return instance;
+	private VaticanReport() {
 	}
-	public static VaticanReport  instance() {
-		return instance;
-	}
+	
 
 	public ExcommunicationTile getExcommunication(int period) {
 		return excommunications[period -1];

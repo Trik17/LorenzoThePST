@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 
 public abstract class Tower extends ColorReastrictedArea {
+	private static final long serialVersionUID = -7474104011804860543L;
 	protected DevelopmentCard[] cards;
 	
 	public DevelopmentCard[] getCards() {
