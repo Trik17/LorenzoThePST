@@ -4,8 +4,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import it.polimi.ingsw.GC_04.Initializer;
+import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
@@ -38,15 +40,58 @@ public class Controller implements Observer<String,Resource> {
 	private int currentPlayer = 0;
 	private int turn = 0;
 	private boolean lastPhase;
+	private Timer timer;
+	private TimerTask task;
 
 	public Controller(Model model) {
 		this.model = model;
+		JsonMapper.TimerFromJson();
 	}
 	
-	private void disconnection(){
-		//TODO
+	private void disconnect(String username){//da chiamare ad ogni remoteexception
+		for(Player p: model.getPlayers()){
+			if(p.getName().equals(username))
+				p.disconnect();
+		}
+		updateTurn();
+		chooseAction();
 	}
 	
+	private void chooseAction(){
+		if (!isPlayerConnected(player)){
+			updateTurn();
+			chooseAction();
+		}		
+//		this.timer=new Timer();
+//		this.task=new TimerTask(){
+//			public void run(){
+//				disconnect(player);
+//			}
+//		};	
+//		timer.schedule( task,TimerJson.getActionTimer()); //timer
+//		
+		//TODO risistemalo e metti timer.cancel in update()
+		try {
+			views.get(player).setState(model.getStateCLI());
+			views.get(player).chooseAction();
+		} catch (RemoteException e) {
+			disconnect(player);
+		}
+	}
+	
+	private boolean isPlayerConnected(String player) {
+		for(Player p: model.getPlayers()){
+			if(p.getName().equals(player)){
+				if(p.isDisconnected())
+					return false;
+				else
+					return true;
+			}
+				
+		}
+		return false;
+	}
+
 	public void setViews(Map<String, ClientRMIViewRemote> clients){
 		this.views = clients;
 	}
@@ -59,13 +104,7 @@ public class Controller implements Observer<String,Resource> {
 	}
 		
 	private void startGame() {
-		try {
-			views.get(player).setState(model.getStateCLI());
-			views.get(player).chooseAction();
-		} catch (RemoteException e) {
-			updateTurn();
-			startGame();			
-		}
+		chooseAction();
 	}
 	
 	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
@@ -171,8 +210,7 @@ public class Controller implements Observer<String,Resource> {
 		}
 		if (action.getClass().equals(PassTurn.class) || !isPlayerConnected(action.getPlayer())) {
 			updateTurn();
-			System.out.println("l'ho passato");
-			views.get(player).chooseAction();
+			chooseAction();
 			return;
 		}
 		action.checkExtraordinaryEffect();
@@ -208,7 +246,7 @@ public class Controller implements Observer<String,Resource> {
 		if (action instanceof TakeACard) {
 			if (((TakeACard) action).getCard() == null){
 				System.out.println("You can't do this move");
-				views.get(player).chooseAction();
+				chooseAction();
 				return;
 			}
 			discount = setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
@@ -222,16 +260,17 @@ public class Controller implements Observer<String,Resource> {
 			
 		}else {
 			System.out.println("You can't do this move");
-			views.get(player).chooseAction();
+			chooseAction();
 			return;
 		}
 		updateTurn();
 		stateOfTheGame();
 
-		views.get(player).chooseAction();
+		chooseAction();
 		}catch(RemoteException e){
 			updateTurn();
-			startGame();
+			chooseAction();
+			
 		}
 	}
 	

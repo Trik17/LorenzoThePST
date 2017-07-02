@@ -77,7 +77,7 @@ public class TestJson {
 			//TIMER:
 			FileReader file2= new FileReader("src/main/resources/timer.json"); 
 			assertEquals(0, TimerJson.getStartTimer());
-			assertEquals(0, TimerJson.getActionTimer());
+			assertEquals(0, TimerJson.getInputTimer());
 			@SuppressWarnings("unused")
 			TimerJson t=mapper.readValue(file2, TimerJson.class);
 			

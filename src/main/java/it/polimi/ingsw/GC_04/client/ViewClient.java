@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
-
-import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -44,7 +41,6 @@ public abstract class ViewClient implements Serializable {
 	protected ServerRMIViewRemote serverStub;
 	private int turn;
 	protected String state;
-	protected JsonMapper timerJson;
 	protected ExecutorService executor;
 	
 	public abstract void chooseAction()throws RemoteException;
@@ -53,15 +49,7 @@ public abstract class ViewClient implements Serializable {
 	public ViewClient() {
 		turn = 0;
 		this.executor = Executors.newCachedThreadPool();
-		try {
-			timerJson.TimerFromJson();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}//inizialize the timer from json file
+		JsonMapper.TimerFromJson();
 	}
 
 	public void setState(String state) {

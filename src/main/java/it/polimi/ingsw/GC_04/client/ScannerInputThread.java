@@ -8,7 +8,7 @@ public class ScannerInputThread implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println( "Inserisci azione entro "+ TimerJson.getActionTimer()/1000 +" secondi: " );
+		System.out.println( "Inserisci azione entro "+ TimerJson.getInputTimer()/1000 +" secondi: " );
 		Scanner reader = new Scanner(System.in);
 		ViewCLI.strInput = reader.next();
 		

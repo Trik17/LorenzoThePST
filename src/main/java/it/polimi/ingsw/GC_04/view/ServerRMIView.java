@@ -8,7 +8,7 @@ import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.controller.InputInterpreter;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.server.ClientManager;
+import it.polimi.ingsw.GC_04.server.MainServer;
 
 
 // implements the methods. Given that this example is implemented using the Observer pattern, each methods only calls to
@@ -19,9 +19,9 @@ public class ServerRMIView extends Observable<String,Resource> implements Server
 	 * 
 	 */
 	private static final long serialVersionUID = -225339130175226319L;
-	private ClientManager clientManager;
+	private MainServer clientManager;
 	
-	public ServerRMIView(ClientManager clientManager) {
+	public ServerRMIView(MainServer clientManager) {
 		this.clientManager=clientManager;
 	}
 	
