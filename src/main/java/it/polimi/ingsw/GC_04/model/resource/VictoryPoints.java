@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_04.model.Player;
 
 public class VictoryPoints extends Resource{
 	
+	private static final long serialVersionUID = -786583972309692082L;
 	private int endVictoryPoints;
 	
 	@JsonCreator

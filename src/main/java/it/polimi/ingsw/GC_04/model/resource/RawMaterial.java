@@ -15,6 +15,7 @@ property = "type")
 	@Type(value = Stones.class),
 })
 public class RawMaterial extends Resource {
+	private static final long serialVersionUID = -3543670743338776434L;
 
 	public RawMaterial() {
 	}

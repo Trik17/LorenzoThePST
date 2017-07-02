@@ -1,21 +1,11 @@
 package it.polimi.ingsw.GC_04.server;
 
-import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-
-import com.fasterxml.jackson.databind.JsonMappingException;
-
-import it.polimi.ingsw.GC_04.Initializer;
-import it.polimi.ingsw.GC_04.client.ViewCLI;
-import it.polimi.ingsw.GC_04.client.ViewClient;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.resource.Coins;
 
 public class StartGame implements Runnable {
 	
