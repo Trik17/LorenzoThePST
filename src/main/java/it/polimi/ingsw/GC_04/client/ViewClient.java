@@ -68,147 +68,15 @@ public abstract class ViewClient implements Serializable {
 		this.state = state;
 	}
 	
-	
-	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost) throws RemoteException{
-		Action action;
-		Tower realTower;
-		ActionSpace realASpace;
-		DevelopmentCard realCard;
-		List<Resource> realCost = new ArrayList<>();
-		Player player = CouncilPalaceArea.getTurnOrder()[turn];
-		
-		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-	
-		int card = Integer.parseInt(nrOfCard)-1; 
-		int servants = Integer.parseInt(nrOfServants); 
-		
-		if("1".equals(tower)) {
-			realTower = TerritoryTower.instance();
-		}
-		else if("2".equals(tower)) {
-			realTower = CharacterTower.instance();
-		}
-		else if("3".equals(tower)) {
-			realTower = BuildingTower.instance();
-		}
-		else 
-			realTower = VentureTower.instance();
-			
-		realCard = realTower.getCards()[card];
-		
-		if (realCard.getCost1() == null && realCard.getCost2() == null)
-			realCost = null;
-		else if (realCard.getCost2() == null)
-			realCost = realCard.getCost1();
-		else {
-			if (!SupportFunctions.isInputValid(cost, 1, 2)) {
-				chooseAction();
-				return;
-			}
-			else{
-				int chosenCost = Integer.parseInt(cost);
-			
-				if (chosenCost == 1)
-					realCost = realCard.getCost1();
-				if (chosenCost == 2)
-					realCost = realCard.getCost2();
-			}
-		}
-		realASpace = realTower.getASpaces().get(card);
-		
-		action = realCard.takeCard(player, realASpace, fMember, servants, realCost);
-		
-		try {
-			serverStub.notifyObserversARemote(action);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
 
-	public void input(String area, String diceColor, String actSpace, String nrOfServants) {
-		Player player = CouncilPalaceArea.getTurnOrder()[turn];
-		ActionSpace realASpace;
-		Area realArea;
-		Action action;
-		
-		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-		int aSpace = Integer.parseInt(actSpace)-1; 
-		int servants = Integer.parseInt(nrOfServants); 
-		
-		realArea = MarketArea.instance();
-		realASpace = realArea.getASpaces().get(aSpace);
-		action = new GoToTheMarket(player, fMember, servants, realASpace);
-		try {
-			this.serverStub.notifyObserversARemote(action);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-	}
-	
-	
-	
-	public void input(String area, String diceColor, String nrOfServants) {
-		System.out.println("INPUT VIEWCLIENT DENTRO");
-		Player player = CouncilPalaceArea.getTurnOrder()[turn];
-		Action action;
-		
-		
-		FamilyMember fMember = player.getFamilyMember(DiceColor.fromString(diceColor));
-		int servants = Integer.parseInt(nrOfServants);
-		
-		if ("3".equals(area)) 
-			action = new RunProduction(player, fMember, servants);
-		else if ("4".equals(area))
-			action = new RunHarvest(player, fMember, servants);
-		else
-			action = new GoToTheCouncilPalace(player, fMember, servants);
-		System.out.println("DENTRO INPUT VIEW CLIENT");
-		try {
-			this.serverStub.notifyObserversARemote(action);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
 	public void passTurn() {
-		Action action = new PassTurn();
 		try {
-			serverStub.notifyObserversARemote(action);
+			serverStub.notifyObserversARemote("pass");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-//	public void input(String passTurn) {}
-	
-	public Resource input(String privilege) {
-		
-		Resource resource;
-		
-		if ("1".equals(privilege))
-			resource = new RawMaterial(1);
-		else if ("2".equals(privilege))
-			resource = new Servants(2);
-		else if ("3".equals(privilege))
-			resource = new Coins(2);
-		else if ("4".equals(privilege))
-			resource = new MilitaryPoints(2);
-		else
-			resource = new FaithPoints(1);
-		
-		return resource;
-			
-	}
-
 
 
 	public void addServerstub(ServerRMIViewRemote serverStub){

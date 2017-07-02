@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.Tower;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
@@ -15,17 +16,23 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class TakeACard extends Action{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6026167798041850327L;
+
+
 	protected DevelopmentCard card;
 	
 	
 	protected static final int TOWERPENALITY = 3;
 	
 	
-	public TakeACard(Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants, List<Resource> cost){
-		super(player, fMember, servants);
+	public TakeACard(Model model, Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants, List<Resource> cost){
+		super(model, player, fMember, servants);
 		this.aSpace = aSpace;
 		this.card = card;
-		this.area = card.getTower();
+		this.area = card.getTower(model);
 		this.value = fMember.getDice().getValue() + player.getExtraDice().getCardExtra(card) + servants; 
 		if (cost != null)
 			this.actionCost.addAll(cost);
@@ -67,7 +74,7 @@ public class TakeACard extends Action{
 	public void applyCardChanges(){
 		
 		player.getCards(card).add(card);
-		((Tower) area).deleteCard(card);
+		((Tower) area).deleteCard(model,card);
 		
 	}
 	@Override

@@ -47,7 +47,7 @@ public class SupportFunctions {
 	public static int[] parseIntArray (String str){
 	    StringTokenizer strTok = new StringTokenizer(str);
 
-	    int size = strTok.countTokens ();
+	    int size = strTok.countTokens();
 	    int[] vint = new int[size];
 
 	    for (int i = 0; i < size; i++)

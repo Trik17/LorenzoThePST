@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_04.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import it.polimi.ingsw.GC_04.Observable;
 import it.polimi.ingsw.GC_04.controller.StateOfTheGameCLI;
@@ -41,10 +42,13 @@ public class Model extends Observable<Action, Resource> implements Serializable{
 	private MarketArea marketArea;
 	private VaticanReport vaticanReport;
 	
+	private Map<DiceColor, Dice> dices;
+	
 	private String stateCLI;
 	
     public Model() {
-    	currentPeriod = 1;
+    	this.dices = Dice.rollTheDices();
+    	this.currentPeriod = 1;
     	
 	}
     
@@ -101,7 +105,7 @@ public class Model extends Observable<Action, Resource> implements Serializable{
 		
 	}
     public void setStateCLI() {
-    	this.stateCLI = StateOfTheGameCLI.printStateOfTheGame(this,TerritoryTower.instance().getCards(), CharacterTower.instance().getCards(), BuildingTower.instance().getCards(), VentureTower.instance().getCards(), Dice.getDice(DiceColor.BLACK), Dice.getDice(DiceColor.ORANGE), Dice.getDice(DiceColor.WHITE));
+    	this.stateCLI = StateOfTheGameCLI.printStateOfTheGame(this,territoryTower.getCards(),characterTower.getCards(), buildingTower.getCards(), ventureTower.getCards(), dices);
     	
     }
     public void setAreas(TerritoryTower tTower,CharacterTower cTower, BuildingTower bTower, VentureTower vTower, MarketArea market, CouncilPalaceArea councilPalace, HarvestArea harvest, ProductionArea production, VaticanReport vaticanReport) {
@@ -118,6 +122,16 @@ public class Model extends Observable<Action, Resource> implements Serializable{
     		areasSetted = !areasSetted;
     	}
 		
+	}
+    public Dice getDice(DiceColor color) {
+		if (color.equals(DiceColor.BLACK))
+			return dices.get(DiceColor.BLACK);
+		else if (color.equals(DiceColor.ORANGE))
+			return dices.get(DiceColor.ORANGE);
+		else if (color.equals(DiceColor.WHITE))
+			return dices.get(DiceColor.WHITE);
+		else
+			return dices.get(DiceColor.NEUTRAL);
 	}
 
 }

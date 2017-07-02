@@ -12,12 +12,12 @@ public class FamilyMember implements Serializable {
 	private Dice dice;
 	private boolean used;
 	
-	public static FamilyMember[] createFamily(FamilyColor familyColor) {
+	public static FamilyMember[] createFamily(FamilyColor familyColor,Model model) {
 		FamilyMember[] family = new FamilyMember[4];
 		family[0] = new FamilyMember();
-		family[1] = new FamilyMember(familyColor,Dice.getDice(DiceColor.BLACK));
-		family[2] = new FamilyMember(familyColor,Dice.getDice(DiceColor.ORANGE));
-		family[3] = new FamilyMember(familyColor,Dice.getDice(DiceColor.WHITE));
+		family[1] = new FamilyMember(familyColor,model.getDice(DiceColor.BLACK));
+		family[2] = new FamilyMember(familyColor,model.getDice(DiceColor.ORANGE));
+		family[3] = new FamilyMember(familyColor,model.getDice(DiceColor.WHITE));
 		
 		return family;
 			
@@ -25,7 +25,7 @@ public class FamilyMember implements Serializable {
 	
 	private FamilyMember(){ //it creates neutral family members
 		this.familyColor = FamilyColor.NEUTRAL;
-		this.dice = Dice.getDice(DiceColor.NEUTRAL);
+		this.dice = new Dice(0);
 	}
 	
 	private FamilyMember(FamilyColor familyColor, Dice dice){

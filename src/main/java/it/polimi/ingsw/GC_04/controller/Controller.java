@@ -12,23 +12,22 @@ import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.model.action.ErrorInput;
 import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
-import it.polimi.ingsw.GC_04.model.area.BuildingTower;
-import it.polimi.ingsw.GC_04.model.area.CharacterTower;
-import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
-import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
-import it.polimi.ingsw.GC_04.model.area.VaticanReport;
-import it.polimi.ingsw.GC_04.model.area.VentureTower;
+import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
-public class Controller implements Observer<Action,Resource> {
+public class Controller implements Observer<String,Resource> {
 	
 	private final static int FINALPERIOD = 3;
 	private final static int FINALTURN = 4;
@@ -54,8 +53,7 @@ public class Controller implements Observer<Action,Resource> {
 	
 	public void initialize(Player[] players){
 		this.initializer = new Initializer(players,model);
-		CouncilPalaceArea.instance();
-		this.player = CouncilPalaceArea.getTurnOrder()[0].getName();
+		this.player = model.getCouncilPalace().getTurnOrder()[0].getName();
 		model.setStateCLI();
 		startGame();
 	}
@@ -116,20 +114,20 @@ public class Controller implements Observer<Action,Resource> {
 				
 				switch (choice[0]) {
 				case 1:
-					tower = TerritoryTower.instance();
+					tower = model.getTower(new TerritoryCard());
 					break;
 				case 2:
-					tower = CharacterTower.instance();
+					tower = model.getTower(new CharacterCard());
 					break;
 				case 3:
-					tower = BuildingTower.instance();
+					tower = model.getTower(new BuildingCard());
 					break;
 				default:
-					tower = VentureTower.instance();
+					tower = model.getTower(new VentureCard());
 					break;
 				}
 			}else {
-				tower = ((TakeACardEffect) effect).getCardType().getTower();
+				tower = model.getTower(((TakeACardEffect) effect).getCardType());
 			}
 			DevelopmentCard card = tower.getCards()[choice[1] -1];
 			ActionSpace aSpace = tower.getASpaces().get(choice[1] -1);
@@ -139,7 +137,7 @@ public class Controller implements Observer<Action,Resource> {
 				cost = tower.getCards()[choice[1] -1].getCost1();
 			else
 				cost = tower.getCards()[choice[1] -1].getCost2();;
-				((TakeACardEffect) effect).setParameters(player,card,aSpace,servants,cost);
+				((TakeACardEffect) effect).setParameters(model,player,card,aSpace,servants,cost);
 		}
 	
 	}
@@ -162,10 +160,15 @@ public class Controller implements Observer<Action,Resource> {
 		
 	
 	@Override
-	public synchronized void update(Action action)  {
-		
-			
+	public synchronized void update(String input)  {
+		Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
+		InputInterpreter interpreter = new InputInterpreter(input, model, currPlayer);
+		Action action = interpreter.getAction();
 	try{
+		if (action.getClass().equals(ErrorInput.class)) {
+			chooseAction();
+			return;
+		}
 		if (action.getClass().equals(PassTurn.class) || !isPlayerConnected(action.getPlayer())) {
 			updateTurn();
 			System.out.println("l'ho passato");
@@ -279,12 +282,12 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void updateTurn() {
-		int nrOfPlayers = CouncilPalaceArea.getTurnOrder().length -1;
+		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
-		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers]))
+		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers]))
 			//TODO: final score
 			return;
-		else if (player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers])) {
+		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers])) {
 			if (lastPhase) {
 				excommunicationsManagement();
 				model.incrementPeriod();
@@ -294,7 +297,7 @@ public class Controller implements Observer<Action,Resource> {
 		}else {
 			currentPlayer++;
 		}
-		player = CouncilPalaceArea.getTurnOrder()[currentPlayer].getName();
+		player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
 		lastPhase =!lastPhase;
 		
 		try {

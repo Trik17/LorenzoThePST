@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.FamilyColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Model;
@@ -54,7 +53,6 @@ public class Initializer {
 		this.bCards = jsonMapper.getBuildingCardArray();
 		this.vCards = jsonMapper.getVentureCardsArray();
 		this.eTiles = jsonMapper.getExcommunicationTile();
-//		System.out.println(eTiles.size());
 		ExcommunicationTile[] excommunications = new ExcommunicationTile[3];
 		
 		Random rnd = new Random();
@@ -82,30 +80,27 @@ public class Initializer {
 		else
 			marketArea = new MarketArea(aSpaces.subList(16, aSpaces.size()));
 		
-		Dice.createDices();
-		
 		switch (nrOfPlayers) {
 		case 4:
-			players[3].setFamily(FamilyMember.createFamily(FamilyColor.BLUE));
+			players[3].setFamily(FamilyMember.createFamily(FamilyColor.BLUE,model));
 		case 3:
-			players[2].setFamily(FamilyMember.createFamily(FamilyColor.RED));
+			players[2].setFamily(FamilyMember.createFamily(FamilyColor.RED,model));
 		default:
-			players[1].setFamily(FamilyMember.createFamily(FamilyColor.GREEN));
-			players[0].setFamily(FamilyMember.createFamily(FamilyColor.YELLOW));
+			players[1].setFamily(FamilyMember.createFamily(FamilyColor.GREEN,model));
+			players[0].setFamily(FamilyMember.createFamily(FamilyColor.YELLOW,model));
 
 		}
 		
 		HarvestArea harvest = new HarvestArea();
 		ProductionArea production = new ProductionArea();
 		
-		model.getHarvest().getASpaces().add(new ActionSpace(1, null));
-		model.getProduction().getASpaces().add(new ActionSpace(1, null));
+		harvest.getASpaces().add(new ActionSpace(1, null));
+		production.getASpaces().add(new ActionSpace(1, null));
 		
 		initialPosition = 4;
 		finalPosition = 8;
 		
 		model.setAreas(territoryTower, characterTower, buildingTower, ventureTower, marketArea, councilPalaceArea, harvest, production, vaticanReport);
-		
 	}
 	
 	

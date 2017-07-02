@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 

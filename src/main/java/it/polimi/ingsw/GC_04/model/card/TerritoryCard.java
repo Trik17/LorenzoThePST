@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Harvest;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.TakeTerritory;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
@@ -15,6 +16,10 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class TerritoryCard extends DevelopmentCard {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9221532984542459713L;
 	private Harvest harvest;
 	
 	@JsonCreator
@@ -28,8 +33,8 @@ public class TerritoryCard extends DevelopmentCard {
 		}
 
 //	@Override
-	public TakeTerritory takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost){
-		return new TakeTerritory(player, this, aSpace, fMember,servants, cost);
+	public TakeTerritory takeCard(Model model, Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost){
+		return new TakeTerritory(model, player, this, aSpace, fMember,servants, cost);
 //		if (check.isApplicable()){check.apply();}
 		
 	}

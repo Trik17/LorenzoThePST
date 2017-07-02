@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
+import it.polimi.ingsw.GC_04.controller.InputInterpreter;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
@@ -99,7 +100,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
 			String nrOfCard =getInput();
 			if(nrOfCard.equals("error"))
-				serverStub.notifyObserversARemote(new PassTurn());
+				serverStub.notifyObserversARemote("passTurn");
 			if (!SupportFunctions.isInputValid(nrOfCard, 1, 4)) {
 				chooseAction();
 				return;
@@ -113,7 +114,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 			if(SupportFunctions.timeout(diceColor, this))
 				return;
 			if(diceColor.equals("error"))
-				serverStub.notifyObserversARemote(new PassTurn());
+				serverStub.notifyObserversARemote("passTurn");
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 				return;
@@ -123,7 +124,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 			if(SupportFunctions.timeout(nrOfServants, this))
 				return;
 			if(nrOfServants.equals("error"))
-				serverStub.notifyObserversARemote(new PassTurn());
+				serverStub.notifyObserversARemote("passTurn");
 			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
 				chooseAction();
 				return;
@@ -134,7 +135,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 			if(SupportFunctions.timeout(cost, this))
 				return;
 			
-			input(tower, nrOfCard, diceColor, nrOfServants, cost);
+			serverStub.notifyObserversARemote(tower+" "+nrOfCard+" "+diceColor+" "+nrOfServants+" "+cost);
 			
 		}
 		else if ("2".equals(area)) {
@@ -166,7 +167,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 				chooseAction();
 				return;
 			}
-			input(area, diceColor, actSpace, nrOfServants);
+			serverStub.notifyObserversARemote(area+" "+diceColor+" "+actSpace+" "+nrOfServants);
 		}else {
 			print("Choose the dice that you want to use between:");
 			print("1)BLACK");
@@ -189,7 +190,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 				return;
 			}
 			
-			input(area, diceColor, nrOfServants);	
+			serverStub.notifyObserversARemote(area+" "+diceColor+" "+nrOfServants);	
 		}
 	}
 
