@@ -53,11 +53,6 @@ public class ViewCLI extends ViewClient implements Runnable{
 			strInput="";
 			timeout=false;
 		}
-		
-		//TODO: possibile problema: se inserisce input dopo scadenza timer. risolto?
-		
-		
-		//TODO penso che qualcosa ancora non vada
 		return ViewCLI.strInput;
 	}
 	
