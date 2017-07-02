@@ -44,6 +44,9 @@ public class Controller implements Observer<Action,Resource> {
 		this.model = model;
 	}
 	
+	private void disconnection(){
+		//TODO
+	}
 	
 	public void setViews(Map<String, ClientRMIViewRemote> clients){
 		this.views = clients;
@@ -140,15 +143,30 @@ public class Controller implements Observer<Action,Resource> {
 		}
 	
 	}
-
+	
+	private boolean isPlayerConnected(Player player){
+		String name=player.getName();
+		for(Player p: model.getPlayers()){
+			if(p.getName().equals(name)){
+				if(p.isDisconnected())
+					return false;
+				else
+					return true;
+			}
+				
+		}
+		return false;
+		
+	}
 	
 		
 	
 	@Override
-	public void update(Action action)  {
-		try{
+	public synchronized void update(Action action)  {
+		
 			
-		if (action.getClass().equals(PassTurn.class)) {
+	try{
+		if (action.getClass().equals(PassTurn.class) || !isPlayerConnected(action.getPlayer())) {
 			updateTurn();
 			views.get(player).chooseAction();
 			return;

@@ -36,14 +36,27 @@ public class Player implements Serializable {
 	private List<Resource> malus;
 	private List<Boolean> deleteVPointsCardsEffect;
 	private boolean actionSpacePenality;
-	
+	private boolean disconnected=false;	
 	private List<Harvest> harvestList;
 	private List<Production> productionList;
+	private Model model;
+	
+	
+	public boolean isDisconnected(){
+		return disconnected;
+	}
+	
+	public void disconnect(){
+		this.disconnected=true;
+	}
+	public void reConnect(){
+		this.disconnected=false;
+	}
 	
 	
 	
-	
-	public Player(String name, int turn){
+	public Player(String name, int turn, Model model){
+		this.model=model;
 		// 1<=turn<=4 only for initial coins
 		// 0<=id<=4
 		this.name = name;
