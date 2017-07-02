@@ -28,10 +28,10 @@ public class TestPlayer {
 	
 	@Before
 	public void inizializer(){
-		p1=new Player("AndreaTest",p1Turn );
-		p2=new Player("MiriamTest", p2Turn);
-		p3=new Player("LuigiTest", p3Turn);
-		p4=new Player("MartinTest", p4Turn);
+		p1=new Player("AndreaTest",p1Turn ,null);
+		p2=new Player("MiriamTest", p2Turn,null);
+		p3=new Player("LuigiTest", p3Turn,null);
+		p4=new Player("MartinTest", p4Turn,null);
 		players=new ArrayList<Player>();
 		players.add(p1);
 		players.add(p2);

@@ -2,11 +2,8 @@ package it.polimi.ingsw.GC_04.client;
 
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ExecutorService;
-
 import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
@@ -22,50 +19,52 @@ import it.polimi.ingsw.GC_04.timer.TimerJson;
 public class ViewCLI extends ViewClient implements Runnable{
 	
 	private static final long serialVersionUID = -2328795643634959640L;
-	private String strInput = ""; 
+	static String strInput = ""; 
+	private boolean timeout=false;
+
 	
 	private void print(String string) {
 		System.out.println(string);
 	}
 	
 	
-	private String getInput(){
-		this.strInput = "";
+	private synchronized String getInput(){
+		ViewCLI.strInput = "";		
 		Timer timer=new Timer();
-		TimerTask task=new TimerTask(){ // Definizione del timer
+		TimerTask task=new TimerTask(){
 			public void run(){
 				if( strInput.equals("") ){
 					System.out.println( "Time out for input" );
-					try {
-						serverStub.notifyObserversARemote(new PassTurn());
-					} catch (RemoteException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					timeout=true;
 				}
 			}
-		};		
-		timer.schedule( task, TimerJson.getActionTimer()); //definisce il valore di timeout in	MILISECONDI(10 * 1000 = 10 Secondi)
-		System.out.println( "Inserisci azione entro "+ TimerJson.getActionTimer()/1000 +" secondi: " );
-		Scanner reader = new Scanner(System.in); // Dichiarazione input da tastiera
-		this.strInput = reader.next();
-		timer.cancel(); // Cancella il timer
-		
-		System.out.println( "HAI SBAGLIATO" );//CANCELLA
-		
-		
-		return strInput;
+		};	
+		executor.submit(new ScannerInputThread());
+		timer.schedule( task, TimerJson.getActionTimer()); //timer
+		while(ViewCLI.strInput=="" && !timeout){
+			
+		}		
+		timer.cancel(); 
+		if (timeout){
+			strInput="";
+			timeout=false;
+		}
+		return ViewCLI.strInput;
 	}
 	
 	
 	@Override
 	public void run(){
-		chooseAction();
+		try {
+			chooseAction();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public void chooseAction(){
+	public void chooseAction() throws RemoteException{
 		printStateOfTheGame(state);
-		Scanner in = new Scanner(System.in);
 		String diceColor;
 		String nrOfServants;
 		print("Choose an area between:"); 
@@ -75,7 +74,9 @@ public class ViewCLI extends ViewClient implements Runnable{
 		print("4)HARVEST");
 		print("5)COUNCIL PALACE");
 		print("0)PASS TURN");
-		String area = in.nextLine();
+		String area = getInput();
+		if(SupportFunctions.timeout(area, this))
+			return;
 		if (!SupportFunctions.isInputValid(area, 0, 5)) {
 			chooseAction();
 			return;
@@ -88,13 +89,17 @@ public class ViewCLI extends ViewClient implements Runnable{
 			print("2)CHARACTER");
 			print("3)BUILDING");
 			print("4)VENTURE");
-			String tower = in.nextLine();
+			String tower = getInput();
+			if(SupportFunctions.timeout(tower, this))
+				return;
 			if (!SupportFunctions.isInputValid(tower, 1, 4)) {
 				chooseAction();
 				return;
 			}
 			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
-			String nrOfCard = in.nextLine();
+			String nrOfCard =getInput();
+			if(nrOfCard.equals("error"))
+				serverStub.notifyObserversARemote(new PassTurn());
 			if (!SupportFunctions.isInputValid(nrOfCard, 1, 4)) {
 				chooseAction();
 				return;
@@ -104,20 +109,30 @@ public class ViewCLI extends ViewClient implements Runnable{
 			print("2)ORANGE");
 			print("3)WHITE");
 			print("4)NEUTRAL");
-			diceColor = in.nextLine();
+			diceColor = getInput();
+			if(SupportFunctions.timeout(diceColor, this))
+				return;
+			if(diceColor.equals("error"))
+				serverStub.notifyObserversARemote(new PassTurn());
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 				return;
 			}
 			print("How many servants do you want to use?");
-			nrOfServants = in.nextLine();
+			nrOfServants = getInput();
+			if(SupportFunctions.timeout(nrOfServants, this))
+				return;
+			if(nrOfServants.equals("error"))
+				serverStub.notifyObserversARemote(new PassTurn());
 			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
 				chooseAction();
 				return;
 			}
 			print("Which cost do you want to pay?");
 			print("If there's only one cost available, press any key");
-			String cost = in.nextLine();
+			String cost = getInput();
+			if(SupportFunctions.timeout(cost, this))
+				return;
 			
 			input(tower, nrOfCard, diceColor, nrOfServants, cost);
 			
@@ -128,19 +143,25 @@ public class ViewCLI extends ViewClient implements Runnable{
 			print("2)ORANGE");
 			print("3)WHITE");
 			print("4)NEUTRAL");
-			diceColor = in.nextLine();
+			diceColor =getInput(); 
+			if(SupportFunctions.timeout(diceColor, this))
+				return;
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 				return;
 			}
 			print("How many servants do you want to use?");
-			nrOfServants = in.nextLine();
+			nrOfServants = getInput();
+			if(SupportFunctions.timeout(nrOfServants, this))
+				return;
 			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
 				chooseAction();
 				return;
 			}
 			print("Choose a shop between 1, 2, 3, 4"); 
-			String actSpace = in.nextLine();
+			String actSpace = getInput();
+			if(SupportFunctions.timeout(actSpace, this))
+				return;
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 				return;
@@ -152,13 +173,17 @@ public class ViewCLI extends ViewClient implements Runnable{
 			print("2)ORANGE");
 			print("3)WHITE");
 			print("4)NEUTRAL");
-			diceColor = in.nextLine();
+			diceColor = getInput();
+			if(SupportFunctions.timeout(diceColor, this))
+				return;
 			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
 				chooseAction();
 				return;
 			}
 			print("How many servants do you want to use?");
-			nrOfServants = in.nextLine();
+			nrOfServants = getInput();
+			if(SupportFunctions.timeout(nrOfServants, this))
+				return;
 			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
 				chooseAction();
 				return;
@@ -169,7 +194,6 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 
 	public Resource setCouncilPrivilege() {
-		Scanner in = new Scanner(System.in);
 		print("Choose your privilege between:");
 		print("1) 1 Stone and 1 Wood");
 		print("2) 2 Servants");
@@ -177,20 +201,19 @@ public class ViewCLI extends ViewClient implements Runnable{
 		print("4) 2 Military Points");
 		print("5) 1 Faith Point");
 		
-		String resource = in.nextLine();
+		String resource =getInput();
+		if(SupportFunctions.timeout(resource, this))
+			return input("1");
 		if (!SupportFunctions.isInputValid(resource, 1, 5)) {
 			return setCouncilPrivilege();
 		}
-		return input(resource);
-		
-		
+		return input(resource);		
 		
 	}
 	
 	public int[] setRequestedAuthorizationEffects(List<Effect> effects) {
 		if (effects.isEmpty())
 			return new int[0];
-		Scanner in = new Scanner(System.in);
 		String input = new String();
 		String output = new String();
 		int effectCounter = 1;
@@ -240,7 +263,9 @@ public class ViewCLI extends ViewClient implements Runnable{
 		}
 		
 		while(true) {
-			input = in.nextLine();
+			input = getInput();
+			if(SupportFunctions.timeout(input, this))
+				return null;
 			if (input.equalsIgnoreCase("OK"))
 				break;
 			
@@ -260,7 +285,6 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 	
 	public int[] setFurtherCheckNeededEffect(Effect effect) {
-		Scanner in = new Scanner(System.in);
 		String input = new String();
 		print("Which of these options do you want to activate?");
 		print("After every number, press Enter");
@@ -277,7 +301,9 @@ public class ViewCLI extends ViewClient implements Runnable{
 			effect2 = calculateEffect(((ExchangeResourcesEffect) effect).getEffect2());
 			print("1)Pay "+cost1+" to receive "+effect1);
 			print("2)Pay "+cost2+" to receive "+effect2);	
-			input = in.nextLine();
+			input =getInput();
+			if(SupportFunctions.timeout(input, this))
+				return null;
 			if (!SupportFunctions.isInputValid(input, 1, 2)) {
 				return setFurtherCheckNeededEffect(effect);
 			}
@@ -289,22 +315,27 @@ public class ViewCLI extends ViewClient implements Runnable{
 				print("2)Take a card from Character Tower");
 				print("3)Take a card from Building Tower");
 				print("4)Take a card from Venture Tower");
-				input = in.nextLine();
+				input = getInput();
+				if(SupportFunctions.timeout(input, this))
+					return null;
 				if (!SupportFunctions.isInputValid(input, 1, 4)) {
 					return setFurtherCheckNeededEffect(effect);
 				}
 			}
 			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
 			
-			String string = in.nextLine();
+			String string = getInput();
+			if(SupportFunctions.timeout(input, this))
+				return null;
 			if (!SupportFunctions.isInputValid(input, 1, 4)) {
 				return setFurtherCheckNeededEffect(effect);
 			}
 			input = input + " " + string;
 			print("How many servants do you want to use?");
 
-			string = in.nextLine();
-			
+			string = getInput();
+			if(SupportFunctions.timeout(input, this))
+				return null;			
 			if (!SupportFunctions.isInputValid(input, 1, 100)) {
 				return setFurtherCheckNeededEffect(effect);
 			}
@@ -314,7 +345,9 @@ public class ViewCLI extends ViewClient implements Runnable{
 			print("Which cost do you want to pay?");
 			print("If there's only one cost available, type 1 and press Enter");
 			
-			string = in.nextLine();
+			string = getInput();
+			if(SupportFunctions.timeout(input, this))
+				return null;
 			
 			if (!SupportFunctions.isInputValid(input, 1, 2)) {
 				return setFurtherCheckNeededEffect(effect);
@@ -365,13 +398,14 @@ public class ViewCLI extends ViewClient implements Runnable{
 		
 	}	
 	public Resource setDiscount(Resource rawMaterial) {
-		Scanner in = new Scanner(System.in);
 		String input;
 		print("You can choose between two discounts, what do you prefer?");
 		print("1) "+ rawMaterial.getQuantity() +" Stone");
 		print("2) "+ rawMaterial.getQuantity() +" Wood");
 		
-		input = in.nextLine();
+		input = getInput();
+		if(SupportFunctions.timeout(input, this))
+			return null;
 		if (!SupportFunctions.isInputValid(input, 1, 2)) {
 			return setDiscount(rawMaterial);	
 		}
