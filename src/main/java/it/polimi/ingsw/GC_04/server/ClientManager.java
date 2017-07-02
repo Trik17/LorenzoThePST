@@ -26,21 +26,26 @@ public class ClientManager {
 	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
 	private Map<String,StartGame> games;
 	private boolean timerStarted=false;
-	private Timer timer;
 	public static final int RMI_PORT = 12008;
 	public static final String NAME = "lorenzo";
 	private ExecutorService executor;
 	private Model currentModel;
 	private Controller currentController;
-	
+	private Timer timer;
+	private TimerTask task; 
 	
 	//this is the timer that starts the countdown (to start a match) when two players connect to the server 
-	TimerTask task = new TimerTask(){
-    	public void run(){
-        	System.out.println( "Time out: starting the game" );
-        	startGame();	
-        }    
-    };
+	private void newTimer(){
+		this.timer=new Timer();
+		this.task= new TimerTask(){
+	    	public void run(){
+	        	System.out.println( "Time out: starting the game" );
+	        	timerStarted=false;
+	        	startGame();
+	        	timer.cancel();
+	        }    
+	    };
+	}
 	
 	public ClientManager() {
 		this.clients=new HashMap<>();
@@ -98,7 +103,7 @@ public class ClientManager {
 			return;
 		else{
 			timerStarted=true;
-			timer=new Timer();
+			newTimer();
 			timer.schedule(task, TimerJson.getStartTimer());
 		}		
 	}	

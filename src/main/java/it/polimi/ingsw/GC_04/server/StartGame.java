@@ -47,13 +47,6 @@ public class StartGame implements Runnable {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		/*
-		try {
-			clients.get("a").getServerStub().notifyObserversRremote(new Coins(99));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		model.setPlayers(players);
 		controller.setViews(clients);
 		controller.initialize(players);	

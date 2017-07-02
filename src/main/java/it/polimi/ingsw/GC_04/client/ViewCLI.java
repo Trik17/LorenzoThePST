@@ -1,8 +1,13 @@
 package it.polimi.ingsw.GC_04.client;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
 
+import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
@@ -12,17 +17,44 @@ import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.model.resource.Stones;
 import it.polimi.ingsw.GC_04.model.resource.Woods;
+import it.polimi.ingsw.GC_04.timer.TimerJson;
 
 public class ViewCLI extends ViewClient implements Runnable{
 	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2328795643634959640L;
+	private String strInput = ""; 
 	
 	private void print(String string) {
 		System.out.println(string);
+	}
+	
+	
+	private String getInput(){
+		this.strInput = "";
+		Timer timer=new Timer();
+		TimerTask task=new TimerTask(){ // Definizione del timer
+			public void run(){
+				if( strInput.equals("") ){
+					System.out.println( "Time out for input" );
+					try {
+						serverStub.notifyObserversARemote(new PassTurn());
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		};		
+		timer.schedule( task, TimerJson.getActionTimer()); //definisce il valore di timeout in	MILISECONDI(10 * 1000 = 10 Secondi)
+		System.out.println( "Inserisci azione entro "+ TimerJson.getActionTimer()/1000 +" secondi: " );
+		Scanner reader = new Scanner(System.in); // Dichiarazione input da tastiera
+		this.strInput = reader.next();
+		timer.cancel(); // Cancella il timer
+		
+		System.out.println( "HAI SBAGLIATO" );//CANCELLA
+		
+		
+		return strInput;
 	}
 	
 	

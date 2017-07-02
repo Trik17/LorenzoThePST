@@ -56,31 +56,14 @@ public class Controller implements Observer<Action,Resource> {
 		model.setStateCLI();
 		startGame();
 	}
-	
-//	@Override//cancella
-//	public void updateR(Resource e) {
-//		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
-//		System.out.println("stampo quantità risorsa");// cancella
-//		System.out.println(e.getQuantity());// cancella
-//		
-//		
-//	}
-	
+		
 	private void startGame() {
-//		try {
-//			System.out.println("server: provo a salutare");
-//			views[currentPlayer].askSomething("ciao");
-//			views[2].askSomething("ciao");
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		try {
 			views.get(player).setState(model.getStateCLI());
 			views.get(player).chooseAction();
 		} catch (RemoteException e) {
-			//FAI CODICE PER SALTARE TURNO -> ERRORE DI CONNESSIONE
-			e.printStackTrace();
+			updateTurn();
+			startGame();			
 		}
 	}
 	
@@ -225,7 +208,8 @@ public class Controller implements Observer<Action,Resource> {
 
 		views.get(player).chooseAction();
 		}catch(RemoteException e){
-			e.printStackTrace();
+			updateTurn();
+			startGame();
 		}
 	}
 	
