@@ -45,7 +45,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		};	
 		executor.submit(new ScannerInputThread());
 		timer.schedule( task, TimerJson.getActionTimer()); //timer
-		while(ViewCLI.strInput=="" || !timeout){
+		while(ViewCLI.strInput=="" && !timeout){
 			
 		}		
 		timer.cancel(); 
