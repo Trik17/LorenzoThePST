@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.server;
 
-import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -20,8 +19,8 @@ import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 import it.polimi.ingsw.GC_04.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
-//bisogna controllare che sia ancora connesso ogni volta che si comunica con il client
-public class ClientManager {
+
+public class MainServer {
 	private Map<String,ClientRMIViewRemote> clients;
 	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
 	private Map<String,StartGame> games;
@@ -33,7 +32,10 @@ public class ClientManager {
 	private Controller currentController;
 	private Timer timer;
 	private TimerTask task; 
-	private JsonMapper timerJson;
+	private static MainServer instance;
+	
+	
+	
 	
 	//this is the timer that starts the countdown (to start a match) when two players connect to the server 
 	private void newTimer(){
@@ -47,19 +49,21 @@ public class ClientManager {
 	        }    
 	    };
 	}
+	public static MainServer instance() {
+		if (instance == null) {
+			instance = new MainServer();
+		}
+		return instance;
+	}
 	
-	public ClientManager() {
+	private MainServer() {
 		this.clients=new HashMap<>();
 		this.games=new HashMap<>();
 		this.lastClients=new HashMap<>();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel);
 		this.executor = Executors.newCachedThreadPool();
-		try {
-			timerJson.TimerFromJson();//inizialize the timer from json file	
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
+		JsonMapper.TimerFromJson();//inizialize the timer from json file	
 		System.out.println("START RMI");
 		try {
 			startRMI();
@@ -85,7 +89,7 @@ public class ClientManager {
 		System.out.println("new client connected");
 		checkPlayers();
 		//controlla giocatori
-		//username devono essere diversi
+		//username devono essere diversi...
 	}
 	
 	public synchronized Map<String,ClientRMIViewRemote> getClients(){
@@ -130,6 +134,7 @@ public class ClientManager {
 		ServerRMIView rmiView=new ServerRMIView(this);
 				
 		// publish the view in the registry as a remote object
+		@SuppressWarnings("unused")
 		ServerRMIViewRemote viewRemote=(ServerRMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		
 		System.out.println("Binding the server implementation to the registry");
@@ -138,5 +143,8 @@ public class ClientManager {
 		
 	}
 	
+	public static void main(String[] args){
+		MainServer.instance();
+	}
 	
 }
