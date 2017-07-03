@@ -11,6 +11,11 @@ import it.polimi.ingsw.GC_04.model.resource.Woods;
 
 public class CouncilPrivilege extends ResourceEffect {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4648246690795498386L;
+
 	@JsonCreator
 	public CouncilPrivilege(){
 		this.effect = new ArrayList<Resource>();

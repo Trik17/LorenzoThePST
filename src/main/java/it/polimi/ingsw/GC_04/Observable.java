@@ -28,10 +28,10 @@ public abstract class Observable<A,R> {
 			o.update(action);
 		}
 	}
-//	public void notifyObserversR(R resource) {
-//		for (Observer<A,R> o : this.observers) {
-//			o.updateR(resource);
-//		}
-//	}
+	public void notifyObserversR(A resource) {
+		for (Observer<A,R> o : this.observers) {
+			o.updateR(resource);
+		}
+	}
 	
 }

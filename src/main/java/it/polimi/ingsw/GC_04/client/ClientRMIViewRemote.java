@@ -1,13 +1,9 @@
-package it.polimi.ingsw.GC_04.client.rmi;
+package it.polimi.ingsw.GC_04.client;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
@@ -22,9 +18,9 @@ public interface ClientRMIViewRemote extends Remote {
 
 	public void chooseAction()throws RemoteException;
 
-	public int[] setFurtherCheckNeededEffect(Effect effect)throws RemoteException;
+	public void setFurtherCheckNeededEffect(List<Effect> requestedAuthorizationEffects, int[] furtherCheckNeeded)throws RemoteException;
 
-	public Resource setCouncilPrivilege()throws RemoteException;
+	public Resource setCouncilPrivilege(int nrOfPrivileges)throws RemoteException;
 
 	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects)throws RemoteException;
 

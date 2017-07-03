@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_04.Observable;
-import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.controller.InputInterpreter;
-import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.MainServer;
 
@@ -32,9 +30,15 @@ public class ServerRMIView extends Observable<String,Resource> implements Server
 				
 	}
 	@Override
-	public void notifyObserversARemote(String action) {
-		System.out.println("dentro server rmi view notifyobserver action");//da cancellare
+	public void notifyObserversARemote(String action)  throws RemoteException {
 		notifyObserversA(action);
+		
+	}
+
+
+	@Override
+	public void notifyObserversRRemote(String resource) {
+		notifyObserversR(resource);
 		
 	}
 

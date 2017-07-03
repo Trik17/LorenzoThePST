@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client.rmi;
+package it.polimi.ingsw.GC_04.client;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -7,14 +7,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import it.polimi.ingsw.GC_04.client.ViewCLI;
-import it.polimi.ingsw.GC_04.controller.StateOfTheGameCLI;
-import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.resource.Coins;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 //implements ClientViewRemote interface
@@ -27,7 +20,6 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	private ViewCLI view;
 	private ServerRMIViewRemote serverStub;
 	private ExecutorService executor;
-//mi manca qua il serverstub!!
 	
 	
 	protected ClientRMIView(String username) throws RemoteException {
@@ -47,24 +39,36 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	}
 	@Override
 	public void chooseAction() throws RemoteException{
+		view.setRun = SetRun.CHOOSEACTION;
 		executor.submit(view);
-		return;		
+			
 	}
 	@Override
-	public int[] setFurtherCheckNeededEffect(Effect effect) throws RemoteException{
-		return view.setFurtherCheckNeededEffect(effect);
+	public void setFurtherCheckNeededEffect(List<Effect> requestedAuthorizationEffects, int[] furtherCheckNeeded) throws RemoteException{
+		view.inputParameter1 = requestedAuthorizationEffects;
+		view.inputParameter1 = furtherCheckNeeded;
+		view.setRun = SetRun.SETFURTHERCHECKNEEDEDEFFECT;
+		executor.submit(view);
+		
 	}
 	@Override
-	public Resource setCouncilPrivilege() throws RemoteException{
-		return view.setCouncilPrivilege();
+	public void setCouncilPrivilege(int nrOfPrivileges) throws RemoteException{
+		view.inputParameter1 = nrOfPrivileges;
+		view.setRun = SetRun.SETCOUNCILPRIVILEGE;
+		executor.submit(view);
+		
 	}
 	@Override
-	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) throws RemoteException{
-		return view.setRequestedAuthorizationEffects(requestedAuthorizationEffects);
+	public void setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) throws RemoteException{
+		view.inputParameter1 = requestedAuthorizationEffects;
+		view.setRun = SetRun.SETREQUESTEDAUTHORIZATIONEFFECTS;
+		executor.submit(view);
 	}
 	@Override
-	public Resource setDiscount(Resource res) throws RemoteException{
-		return view.setDiscount(res);
+	public void setDiscount(Resource res) throws RemoteException{
+		view.inputParameter1 = res;
+		view.setRun = SetRun.SETDISCOUNT;
+		executor.submit(view);
 	}
 	@Override
 	public ServerRMIViewRemote getServerStub() throws RemoteException{

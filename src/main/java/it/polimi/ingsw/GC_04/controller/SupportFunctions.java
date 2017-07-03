@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import it.polimi.ingsw.GC_04.client.ViewCLI;
 import it.polimi.ingsw.GC_04.client.ViewClient;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
@@ -20,6 +19,7 @@ public class SupportFunctions {
 		}
 		return false;		
 	}
+	
 	
 	public static List<Effect> cloneEffects(List<Effect> effects){
 		List<Effect> clone = new ArrayList<Effect>();
@@ -47,7 +47,12 @@ public class SupportFunctions {
 	public static int[] parseIntArray (String str){
 	    StringTokenizer strTok = new StringTokenizer(str);
 
-	    int size = strTok.countTokens();
+	    strTok.nextToken(); 
+	    //it has to jump the first and the last token because they aren't numbers. 
+	    //first token is a string that identified the function of origin
+	    //last token is "ok" that inform that the player's inputs are finished
+	    
+	    int size = strTok.countTokens() -1;
 	    int[] vint = new int[size];
 
 	    for (int i = 0; i < size; i++)
