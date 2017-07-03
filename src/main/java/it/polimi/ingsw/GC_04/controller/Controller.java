@@ -336,6 +336,8 @@ public class Controller implements Observer<Action,Resource> {
 		
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers]))
 			//TODO: final score
+			
+			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
 			return;
 		else if (player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers])) {
 			if (lastPhase) {
