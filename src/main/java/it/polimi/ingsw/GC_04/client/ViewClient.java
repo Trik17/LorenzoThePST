@@ -1,10 +1,14 @@
 package it.polimi.ingsw.GC_04.client;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.DiceColor;
@@ -37,12 +41,15 @@ public abstract class ViewClient implements Serializable {
 	protected ServerRMIViewRemote serverStub;
 	private int turn;
 	protected String state;
+	protected ExecutorService executor;
 	
-	public abstract void chooseAction();
+	public abstract void chooseAction()throws RemoteException;
 	
 	
 	public ViewClient() {
 		turn = 0;
+		this.executor = Executors.newCachedThreadPool();
+		JsonMapper.TimerFromJson();
 	}
 
 	public void setState(String state) {
@@ -50,7 +57,7 @@ public abstract class ViewClient implements Serializable {
 	}
 	
 	
-	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost){
+	public void input(String tower,String nrOfCard, String diceColor, String nrOfServants, String cost) throws RemoteException{
 		Action action;
 		Tower realTower;
 		ActionSpace realASpace;

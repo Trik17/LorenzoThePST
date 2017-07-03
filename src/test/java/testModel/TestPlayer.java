@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.model.FamilyColor;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
@@ -21,6 +20,7 @@ public class TestPlayer {
 	protected Player p4;
 	protected List<Player> players;
 	protected List<Resource> res;
+	protected List<Resource> cost;
 	private int p1Turn=1;
 	private int p2Turn=2;
 	private int p3Turn=3;
@@ -28,15 +28,18 @@ public class TestPlayer {
 	
 	@Before
 	public void inizializer(){
-		p1=new Player("AndreaTest",p1Turn );
-		p2=new Player("MiriamTest", p2Turn);
-		p3=new Player("LuigiTest", p3Turn);
-		p4=new Player("MartinTest", p4Turn);
+		p1=new Player("AndreaTest",p1Turn ,null);
+		p2=new Player("MiriamTest", p2Turn,null);
+		p3=new Player("LuigiTest", p3Turn,null);
+		p4=new Player("MartinTest", p4Turn,null);
 		players=new ArrayList<Player>();
 		players.add(p1);
 		players.add(p2);
 		players.add(p3);
 		players.add(p4);
+		cost=new ArrayList<>();
+		cost.add(new Coins(1));
+		cost.add(new Woods(1));
 		
 	}
 
@@ -62,6 +65,15 @@ public class TestPlayer {
 					assertEquals(0, r.getQuantity());				
 			}
 		}		
+	}
+	
+	@Test
+	public void testIsAffordable(){
+		assertTrue(Resource.isAffordable(p1.getResources(), cost));
+		cost.add(new Coins(1));
+		assertTrue(Resource.isAffordable(p1.getResources(), cost));
+		cost.add(new Woods(50));
+		assertFalse(Resource.isAffordable(p1.getResources(), cost));
 	}
 	
 	

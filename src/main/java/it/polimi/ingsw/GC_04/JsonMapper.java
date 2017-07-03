@@ -3,20 +3,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 
 public class JsonMapper { 
@@ -67,13 +63,10 @@ public class JsonMapper {
 			TypeReference<List<ExcommunicationTile>> mapTypeET = new TypeReference<List<ExcommunicationTile>>() {};
 			excommunicationTiles=mapper.readValue(fileET,mapTypeET);
 	    	
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		} 
 		
 	}
 	
@@ -101,15 +94,13 @@ public class JsonMapper {
 		return excommunicationTiles;
 	}
 	
-	public static void TimerFromJson() throws JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
-		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-		
-		try{			
+	public static void TimerFromJson()  {		
+		try{	
+			ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
+			mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 			FileReader fileTimer= new FileReader("src/main/resources/timer.json"); 
-			@SuppressWarnings("unused")
-			TimerJson t=mapper.readValue(fileTimer, TimerJson.class);		
-		}catch (JsonParseException e) {
+			/*TimerJson t=*/mapper.readValue(fileTimer, TimerJson.class);		
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

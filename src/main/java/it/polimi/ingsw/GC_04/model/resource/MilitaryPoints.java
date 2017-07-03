@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MilitaryPoints extends Resource{
+	private static final long serialVersionUID = -5760885375488786478L;
 	private int malus;//necessary for the costs
 	
 	@JsonCreator

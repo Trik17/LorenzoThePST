@@ -51,19 +51,19 @@ public class Initializer {
 		this.bCards = jsonMapper.getBuildingCardArray();
 		this.vCards = jsonMapper.getVentureCardsArray();
 		this.eTiles = jsonMapper.getExcommunicationTile();
-		
+//		System.out.println(eTiles.size());
 		ExcommunicationTile[] excommunications = new ExcommunicationTile[3];
 		
 		Random rnd = new Random();
-		
-		for (int i = 0; i < 4; i++) {
-			ExcommunicationTile[] tiles = (ExcommunicationTile[]) eTiles.stream().filter(tile -> tile.getPeriod() == period).toArray();
+		for (int i = 0; i < 3; i++) {
+			Object[] tiles = eTiles.stream().filter(tile -> tile.getPeriod() == period).toArray();
 			int selected = rnd.nextInt(tiles.length);
-			excommunications[i] = tiles[selected];
+			excommunications[i] = (ExcommunicationTile) tiles[selected];
 			period++;
 		}
+		
 
-		VaticanReport.instance(excommunications);
+		VaticanReport.instance((ExcommunicationTile[]) excommunications);
 		
 		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		

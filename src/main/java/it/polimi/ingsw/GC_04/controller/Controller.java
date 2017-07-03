@@ -4,8 +4,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import it.polimi.ingsw.GC_04.Initializer;
+import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
@@ -27,6 +29,7 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
+import it.polimi.ingsw.GC_04.server.MainServer;
 
 public class Controller implements Observer<Action,Resource> {
 	
@@ -39,12 +42,71 @@ public class Controller implements Observer<Action,Resource> {
 	private int currentPlayer = 0;
 	private int turn = 0;
 	private boolean lastPhase;
+	private Timer timer;
+	private TimerTask task;
+	private MainServer server;
 
-	public Controller(Model model) {
+	public Controller(Model model,MainServer server) {
 		this.model = model;
+		this.server=server;
+		JsonMapper.TimerFromJson();
 	}
 	
 	
+	
+	private void disconnect(String username){//da chiamare ad ogni remoteexception
+		for(Player p: model.getPlayers()){
+			if(p.getName().equals(username))
+				p.disconnect();
+		}
+		server.disconnectPlayer(username);
+		views.forEach((name,stub) -> {
+			try {
+				if(isPlayerConnected(name))
+					stub.print(username+" disconnected");
+			} catch (RemoteException e) {
+			}
+		});
+		updateTurn();
+		chooseAction();
+	}
+	
+	private void chooseAction(){
+		if (!isPlayerConnected(player)){
+			updateTurn();
+			chooseAction();
+			
+		}		
+//		this.timer=new Timer();
+//		this.task=new TimerTask(){
+//			public void run(){
+//				disconnect(player);
+//			}
+//		};	
+//		timer.schedule( task,TimerJson.getActionTimer()); //timer
+//		
+		//TODO risistemalo e metti timer.cancel in update()
+		try {
+			views.get(player).setState(model.getStateCLI());
+			views.get(player).chooseAction();
+		} catch (RemoteException e) {
+			disconnect(player);
+		}
+	}
+	
+	private boolean isPlayerConnected(String player) {
+		for(Player p: model.getPlayers()){
+			if(p.getName().equals(player)){
+				if(p.isDisconnected())
+					return false;
+				else
+					return true;
+			}
+				
+		}
+		return false;
+	}
+
 	public void setViews(Map<String, ClientRMIViewRemote> clients){
 		this.views = clients;
 	}
@@ -56,32 +118,9 @@ public class Controller implements Observer<Action,Resource> {
 		model.setStateCLI();
 		startGame();
 	}
-	
-//	@Override//cancella
-//	public void updateR(Resource e) {
-//		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
-//		System.out.println("stampo quantità risorsa");// cancella
-//		System.out.println(e.getQuantity());// cancella
-//		
-//		
-//	}
-	
+		
 	private void startGame() {
-//		try {
-//			System.out.println("server: provo a salutare");
-//			views[currentPlayer].askSomething("ciao");
-//			views[2].askSomething("ciao");
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		try {
-			views.get(player).setState(model.getStateCLI());
-			views.get(player).chooseAction();
-		} catch (RemoteException e) {
-			//FAI CODICE PER SALTARE TURNO -> ERRORE DI CONNESSIONE
-			e.printStackTrace();
-		}
+		chooseAction();
 	}
 	
 	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
@@ -116,7 +155,9 @@ public class Controller implements Observer<Action,Resource> {
 	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) throws RemoteException {
 		Effect effect = requestedAuthorizationEffects.get(index);
 		int[] choice = views.get(player).setFurtherCheckNeededEffect(effect);
-		if (effect instanceof ExchangeResourcesEffect) {
+		if (choice == null)
+			return;
+		else if (effect instanceof ExchangeResourcesEffect) {
 			if (choice[0] == 1)
 				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
 			else
@@ -155,24 +196,32 @@ public class Controller implements Observer<Action,Resource> {
 		}
 	
 	}
-
+	
+	private boolean isPlayerConnected(Player player){
+		String name=player.getName();
+		for(Player p: model.getPlayers()){
+			if(p.getName().equals(name)){
+				if(p.isDisconnected())
+					return false;
+				else
+					return true;
+			}
+				
+		}
+		return false;
+		
+	}
 	
 		
 	
 	@Override
-	public void update(Action action)  {
-		try{
-		System.out.println("DENTRO UPDATE DEL MODEL");// cancella
-		System.out.println("stampo il nome el player che mi ha inviato l'azione (sono il controller");// cancella
-		try{
-			System.out.println(action.getPlayer().getName());// cancella
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	public synchronized void update(Action action)  {
 		
-		if (action.getClass().equals(PassTurn.class)) {
+			
+	try{
+		if (action.getClass().equals(PassTurn.class) || !isPlayerConnected(action.getPlayer())) {
 			updateTurn();
-			views.get(player).chooseAction();
+			chooseAction();
 			return;
 		}
 		action.checkExtraordinaryEffect();
@@ -208,7 +257,7 @@ public class Controller implements Observer<Action,Resource> {
 		if (action instanceof TakeACard) {
 			if (((TakeACard) action).getCard() == null){
 				System.out.println("You can't do this move");
-				views.get(player).chooseAction();
+				chooseAction();
 				return;
 			}
 			discount = setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
@@ -222,15 +271,17 @@ public class Controller implements Observer<Action,Resource> {
 			
 		}else {
 			System.out.println("You can't do this move");
-			views.get(player).chooseAction();
+			chooseAction();
 			return;
 		}
 		updateTurn();
 		stateOfTheGame();
 
-		views.get(player).chooseAction();
+		chooseAction();
 		}catch(RemoteException e){
-			e.printStackTrace();
+			updateTurn();
+			chooseAction();
+			
 		}
 	}
 	
@@ -312,6 +363,19 @@ public class Controller implements Observer<Action,Resource> {
 				e.printStackTrace();
 			}
 		});
+		
+	}
+
+
+
+	public void reconnect(String username) {
+		for (int i = 0; i < model.getPlayers().length; i++) {
+			if(model.getPlayers()[i].getName().equals(username)){
+				model.getPlayers()[i].reConnect();
+				return;
+			}			
+		}			
+		
 		
 	}
 	

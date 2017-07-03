@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_04.model.area;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.VentureCard;
 
 public class VentureTower extends Tower{
