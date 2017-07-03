@@ -37,26 +37,26 @@ public class Buttons extends JFrame implements ActionListener{
 	private TextField textField;
 	private TextField textFMember;
 	public  Buttons(){	
-		super("Carta Selezionata");
-		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		super("Selected Card");
 		setLocation(500,100);
 		setResizable(true);
 		
-
+		this.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage
+				(this.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
 		
-		//setLayout(new FlowLayout(10, 10, 10));
 		setLayout(new FlowLayout());//setLocation(150,0);
-		//textField = new TextField(20);
 		labelCard = new JLabel(Card);
 		labelCard.setLayout(null);
 		Card = new ImageIcon(getClass().getResource("/TerritoryCard/devcards_f_en_c_6.png"));
 		Card1= new ImageIcon(getClass().getResource(("/TerritoryCard/devcards_f_en_c_6.png")));
-		
+	
 		add(labelCard);
 		labelCard.setIcon(Card);
 		
 		labelCard.setLayout(null);
 		label = new JLabel("Do you want to take this card?");
+		label.setForeground(Color.darkGray);
 		
 		button1 = new JButton("Yes");
 		button2 = new JButton("No");
@@ -70,11 +70,7 @@ public class Buttons extends JFrame implements ActionListener{
 		add(label);
 		button1.addActionListener(this);
 		button2.addActionListener(this);
-		/*NeutralFMember.addActionListener(this);
-		BlackFMember.addActionListener(this);
-		OrangeFMember.addActionListener(this);
-		WhiteFMember.addActionListener(this);
-		*/
+	
  		pack();
 		setVisible(true);
 		
@@ -105,7 +101,11 @@ public class Buttons extends JFrame implements ActionListener{
 			Buttons buttons = new Buttons();
 			buttons.setVisible(false);			 
 			JDialog dialog = new JDialog();
-			TextField textField = new TextField("Quale family member vuoi mettere?");
+			dialog.setTitle("Family Member");
+			dialog.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage
+					(dialog.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
+			TextField textField = new TextField("Which Family Member do you want to use?");
+			textField.setEditable(false);
 			ButtonGroup group = new ButtonGroup();
 			JRadioButton BlackFMember = new JRadioButton("Black");
 			JRadioButton WhiteFMember = new JRadioButton("White");
@@ -198,7 +198,7 @@ public class Buttons extends JFrame implements ActionListener{
 			});
 			
 			dialog.setVisible(true);
-			//dialog.getContentPane().setBackground(Color.green);
+			dialog.getContentPane().setBackground(Color.red);
 			dispose();
 			
 		
@@ -210,6 +210,7 @@ public class Buttons extends JFrame implements ActionListener{
 	}
 		
 }
+	
 		
 }
 
