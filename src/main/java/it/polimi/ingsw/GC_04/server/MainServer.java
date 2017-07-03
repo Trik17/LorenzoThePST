@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_04.server;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -21,13 +24,15 @@ import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 import it.polimi.ingsw.GC_04.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
+import it.polimi.ingsw.GC_04.view.ServerSocketView;
 
-public class MainServer {
+public class MainServer implements Runnable{
 	private Map<String,ClientRMIViewRemote> clients;
 	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
 	private List<String> disconnectedPlayers;
 	private Map<String,StartGame> games; //associations beetween games and players
 	private boolean timerStarted=false;
+	public static final int SOCKET_PORT = 17000;
 	public static final int RMI_PORT = 12008;
 	public static final String NAME = "lorenzo";
 	private ExecutorService executor;
@@ -68,14 +73,17 @@ public class MainServer {
 		this.currentController=new Controller(currentModel,this);
 		this.executor = Executors.newCachedThreadPool();
 		JsonMapper.TimerFromJson();//inizialize the timer from json file	
-		System.out.println("START RMI");
 		try {
+			System.out.println("STARTING RMI");
 			startRMI();
+			System.out.println("STARTING SOCKET");
+			executor.submit(this);
 		} catch (RemoteException | AlreadyBoundException e) {
 			e.printStackTrace();
 		}
 	}
 
+	
 	public synchronized void addRMIClient(ClientRMIViewRemote clientStub, String username, ServerRMIView rmiView) throws RemoteException{
 		if(clients.containsKey(username)){
 			if(disconnectedPlayers.contains(username)){
@@ -159,6 +167,38 @@ public class MainServer {
 	
 	public static void main(String[] args){
 		MainServer.instance();
+	}
+	
+	//Start Socket:
+	@Override
+	public void run() {
+		try {
+			//creats the socket
+			ServerSocket serverSocket;			
+			serverSocket = new ServerSocket(SOCKET_PORT);	
+			System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
+	
+//			while (true) {
+//				//Waits for a new client to connect
+//				Socket socket = serverSocket.accept();
+//	
+//				// creates the view (server side) associated with the new client
+//				ServerSocketView view = new ServerSocketView(socket, this.currentController);
+//	
+	//			// the view observes the model
+	//			this.gioco.registerObserver(view);
+	//
+	//			// the controller observes the view
+	//			view.registerObserver(this.controller);
+	//
+	//			// a new thread handle the connection with the view
+	//			executor.submit(view);
+//			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }
