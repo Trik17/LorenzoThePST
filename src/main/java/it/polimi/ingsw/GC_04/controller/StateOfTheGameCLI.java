@@ -41,7 +41,7 @@ public class StateOfTheGameCLI {
 	public static String printCards(DevelopmentCard[] tCards,DevelopmentCard[] cCards,DevelopmentCard[] bCards,DevelopmentCard[] vCards) {
 		int cont = 1;
 		
-		String cards = "\nTERRITORY CARDS:      CHARACTER CARDS:      BUILDING CARDS:       VENTURE CARDS:";
+		String cards = "\nTERRITORY CARDS:      CHARACTER CARDS:      BUILDING CARDS:       VENTURE CARDS:\n";
 		
 		int length = Integer.max(Integer.max(Integer.max(tCards.length, cCards.length),bCards.length),vCards.length);
 		

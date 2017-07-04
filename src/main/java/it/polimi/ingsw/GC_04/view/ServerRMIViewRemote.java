@@ -5,8 +5,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.controller.InputActionInterpreter;
-import it.polimi.ingsw.GC_04.model.action.Action;
 
 //defines the methods exposed to the clients. implemented by RMIView
 public interface ServerRMIViewRemote extends Remote ,  Serializable {

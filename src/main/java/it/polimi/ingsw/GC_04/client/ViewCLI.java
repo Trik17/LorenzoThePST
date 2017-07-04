@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_04.client;
 
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
@@ -27,28 +28,32 @@ public class ViewCLI extends ViewClient implements Runnable{
 		System.out.println(string);
 	}
 	
-	
-	private synchronized String getInput(){
+	//TODO non syncron ma mgari semafori
+	private String getInput(){
 		ViewCLI.strInput = "";		
-		Timer timer=new Timer();
-		TimerTask task=new TimerTask(){
-			public void run(){
-				if( strInput.equals("") ){
-					System.out.println( "Time out for input" );
-					timeout=true;
-				}
-			}
-		};	
-		executor.submit(new ScannerInputThread());
-		timer.schedule( task, TimerJson.getInputTimer()); //timer
-		while(ViewCLI.strInput=="" && !timeout){
-			
-		}		
-		timer.cancel(); 
-		if (timeout){
-			strInput="";
-			timeout=false;
-		}
+//		Timer timer=new Timer();
+//		TimerTask task=new TimerTask(){
+//			public void run(){
+//				if( strInput.equals("") ){
+//					System.out.println( "Time out for input" );
+//					timeout=true;
+//				}
+//			}
+//		};	
+//		executor.submit(new ScannerInputThread());
+//		timer.schedule( task, TimerJson.getInputTimer()); //timer
+//		while(ViewCLI.strInput=="" && !timeout){
+//			
+//		}		
+//		timer.cancel(); 
+//		if (timeout){
+//			strInput="";
+//			timeout=false;
+//		}
+		Scanner reader = new Scanner(System.in);
+		ViewCLI.strInput = reader.nextLine();
+		//////////////////////////////////////////////////
+		
 		return ViewCLI.strInput+" ";
 	}
 	
@@ -100,9 +105,9 @@ public class ViewCLI extends ViewClient implements Runnable{
 			chooseAction();
 			return;
 		}
-		if ("0".equals(area))
+		if ("0 ".equals(area))
 			passTurn();
-		if ("1".equals(area)) {
+		if ("1 ".equals(area)) {
 			input += "TOWER ";
 			input += chooseATower();
 			input += chooseACard();
@@ -112,7 +117,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 			serverStub.notifyObserversARemote(input);
 			
 		}
-		else if ("2".equals(area)) {
+		else if ("2 ".equals(area)) {
 			input += "MARKET ";
 			input += chooseDice();
 			input += chooseNrOfServants();
@@ -120,11 +125,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 			
 			serverStub.notifyObserversARemote(input);
 		}else {
-			if ("3".equals(area))
+			if ("3 ".equals(area))
 				input += "PRODUCTION ";
-			if ("4".equals(area))
+			if ("4 ".equals(area))
 				input += "HARVEST ";
-			if ("5".equals(area))
+			if ("5 ".equals(area))
 				input += "COUNCILPALACE ";
 			input += chooseDice();
 			input += chooseNrOfServants();

@@ -10,7 +10,7 @@ public class ScannerInputThread implements Runnable {
 	public void run() {
 		System.out.println( "Insert action in "+ TimerJson.getInputTimer()/1000 +" seconds: " );
 		Scanner reader = new Scanner(System.in);
-		ViewCLI.strInput = reader.next();
+		ViewCLI.strInput = reader.nextLine();
 		
 	}
 
