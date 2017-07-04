@@ -48,7 +48,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		strInput=string;
 	}
 	//TODO va bene la sync o si blocca???
-	private synchronized String getInput(){
+	private /*synchronized*/ String getInput(){
 		setStrInput("");	
 		Timer timer=new Timer();
 		TimerTask task=new TimerTask(){
