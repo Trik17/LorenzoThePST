@@ -2,17 +2,13 @@ package it.polimi.ingsw.GC_04.client;
 
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Executors;
-
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
-import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
@@ -45,9 +41,8 @@ public class ViewCLI extends ViewClient implements Runnable{
 		strInput=string;
 	}
 	
-	//TODO non syncron ma mgari semafori
 	private String getInput(){
-		setStrInput("");;		
+		setStrInput("");	
 		Timer timer=new Timer();
 		TimerTask task=new TimerTask(){
 			public void run(){
@@ -64,7 +59,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		timer.cancel(); 
 				
 		if (timeout){
-			setStrInput("");
+			setStrInput("ERRORTIME");
 			timeout=false;
 		}
 		
