@@ -104,7 +104,7 @@ public class Controller implements Observer<String,Resource> {
 	}
 	
 	public void initialize(Player[] players){
-		this.initializer = new Initializer(players,model);
+		this.initializer = new Initializer(players,this.model);
 		this.player = model.getCouncilPalace().getTurnOrder()[0].getName();
 		model.setStateCLI();
 		startGame();
@@ -154,6 +154,7 @@ public class Controller implements Observer<String,Resource> {
 	public synchronized void update(String input)  {
 		Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
 		InputActionInterpreter interpreter = new InputActionInterpreter(input, model, currPlayer);
+		
 		Action action = interpreter.getAction();
 	try{
 		if (action instanceof TakeACard) {
@@ -198,7 +199,7 @@ public class Controller implements Observer<String,Resource> {
 			action.apply(); 
 			
 		}else {
-			System.out.println("You can't do this move");
+			views.get(player).print("You can't do this move");
 			chooseAction();
 			return;
 		}
@@ -210,6 +211,8 @@ public class Controller implements Observer<String,Resource> {
 			updateTurn();
 			chooseAction();
 			
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

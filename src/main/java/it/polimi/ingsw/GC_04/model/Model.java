@@ -30,8 +30,8 @@ public class Model extends Observable<Action, Resource> implements Serializable{
 	private static final long serialVersionUID = 4908982852125469835L;
 	private boolean areasSetted;
 	
-	private Player[] players;
-	private int currentPeriod;
+	public Player[] players;///////////////
+	public int currentPeriod;///////////////////////////
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
 	private TerritoryTower territoryTower;
@@ -41,6 +41,7 @@ public class Model extends Observable<Action, Resource> implements Serializable{
 	private CouncilPalaceArea councilPalaceArea;
 	private MarketArea marketArea;
 	private VaticanReport vaticanReport;
+	public static int counteeeee;///////////////
 	
 	private Map<DiceColor, Dice> dices;
 	

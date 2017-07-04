@@ -35,6 +35,7 @@ public abstract class Action implements Serializable{
 	public Action() {}
 	
 	public Action(Model model, Player player, FamilyMember fMember, int servants) {
+		this.model = model;
 		this.player = player;
 		this.fMember = fMember;
 		this.value = fMember.getDice().getValue() + servants;

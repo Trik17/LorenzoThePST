@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_04.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;

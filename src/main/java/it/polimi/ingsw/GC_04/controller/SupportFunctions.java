@@ -63,6 +63,10 @@ public class SupportFunctions {
 	
 	public static boolean isInputValid(String input, int min, int max) {
 		try{
+			if (input.equals(" ")) {
+				System.out.println("Your input is not valid");
+				return false;
+			}
 			StringTokenizer strTok = new StringTokenizer(input);
 			int num = Integer.parseInt(strTok.nextToken());
 			if (num > max || num < min) {

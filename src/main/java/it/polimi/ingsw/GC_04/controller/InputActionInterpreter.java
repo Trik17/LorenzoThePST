@@ -29,39 +29,45 @@ public class InputActionInterpreter {
 	private Action action;
 	private Model model;
 	private Player player;
+	String area;
+	String tower;
+	String nrOfCard;
+	String cost;
+	String diceColor;
+	String nrOfServants;
+	String actSpace;
 	
 	InputActionInterpreter(String input, Model model, Player player){
 		this.model = model;
 		this.player = player;
 		StringTokenizer strTok = new StringTokenizer(input);
 		
-		String area = strTok.nextToken();
+		area = strTok.nextToken();
 		int cont = strTok.countTokens();
 		
 		if (area.equals("TOWER")) {
 			if (cont != 5)
 				this.action = new PassTurn();
-			String tower = strTok.nextToken();
-			String nrOfCard = strTok.nextToken();
-			String cost = strTok.nextToken();
-			String diceColor = strTok.nextToken();
-			String nrOfServants = strTok.nextToken();
-			takeACard(tower,nrOfCard,diceColor,nrOfServants,cost);
+			tower = strTok.nextToken();
+			nrOfCard = strTok.nextToken();
+			cost = strTok.nextToken();
+			diceColor = strTok.nextToken();
+			nrOfServants = strTok.nextToken();
+			
 		}
 		else if (area.equals("MARKET")) {
 			if (cont != 3)
 				this.action = new PassTurn();
-			String diceColor = strTok.nextToken();
-			String nrOfServants = strTok.nextToken();
-			String actSpace = strTok.nextToken();
-			goToTheMarket(diceColor, actSpace, nrOfServants);
+			diceColor = strTok.nextToken();
+			nrOfServants = strTok.nextToken();
+			actSpace = strTok.nextToken();
+			
 		}
 		else if (area.equals("PRODUCTION") || area.equals("HARVEST") || area.equals("COUNCIL PALACE")) {
 			if (cont != 2)
 				this.action = new PassTurn();
-			String diceColor = strTok.nextToken();
-			String nrOfServants = strTok.nextToken();
-			otherActions(area, diceColor, nrOfServants);
+			diceColor = strTok.nextToken();
+			nrOfServants = strTok.nextToken();
 		}
 		else if (area.equals("0")) {
 			this.action = new PassTurn();
@@ -156,6 +162,12 @@ public class InputActionInterpreter {
 	
 	
 	public Action getAction() {
+		if (area.equals("TOWER"))
+			takeACard(tower,nrOfCard,diceColor,nrOfServants,cost);
+		else if (area.equals("MARKET"))
+			goToTheMarket(diceColor, actSpace, nrOfServants);
+		else if (area.equals("PRODUCTION") || area.equals("HARVEST") || area.equals("COUNCIL PALACE"))
+			otherActions(area, diceColor, nrOfServants);
 		return action;
 		
 	}

@@ -71,6 +71,7 @@ public class RunProduction extends Action {
 	}
 	
 	public void createNewASpace() {
+		
 		if(model.getCouncilPalace().getTurnOrder().length < 3)
 			area.getASpaces().add(new ActionSpace(1, null));
 	}

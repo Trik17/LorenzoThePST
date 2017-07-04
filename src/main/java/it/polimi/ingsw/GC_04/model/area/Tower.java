@@ -9,8 +9,6 @@ public abstract class Tower extends ColorReastrictedArea {
 	protected DevelopmentCard[] cards;
 	
 	public DevelopmentCard[] getCards() {
-		System.out.println("CARTE");
-		System.out.println(cards.length);
 		return cards;
 		
 	}
