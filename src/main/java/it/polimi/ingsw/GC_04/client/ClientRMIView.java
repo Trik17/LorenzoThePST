@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -89,6 +90,21 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public void setState(String stateCLI) throws RemoteException {
 		view.setState(stateCLI);
+		
+	}
+	@Override
+	public void print(String username) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void notifyReconnection(String username) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void changeUsername(Set<String> set) throws RemoteException {
+		// TODO Auto-generated method stub
 		
 	}
 	
