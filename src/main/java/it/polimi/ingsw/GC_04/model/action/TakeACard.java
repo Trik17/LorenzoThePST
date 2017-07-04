@@ -43,7 +43,7 @@ public class TakeACard extends Action{
 	public boolean isAffordable(){
 		
 		List<Resource> myRes = player.getResources(); //player's resources
-		List<Resource> myDiscount = player.getDiscount().getDiscount(card);
+		List<Resource> myDiscount = discount;
 		
 		Resource.subtractResource(actionCost, myDiscount);
 		

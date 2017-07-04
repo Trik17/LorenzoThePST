@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_04.controller;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -10,23 +9,14 @@ import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.Observer;
 import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.action.ErrorInput;
 import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
-import it.polimi.ingsw.GC_04.model.area.Tower;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
-import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 
 public class Controller implements Observer<String,Resource> {
@@ -152,6 +142,21 @@ public class Controller implements Observer<String,Resource> {
 		InputActionInterpreter interpreter = new InputActionInterpreter(input, model, currPlayer);
 		Action action = interpreter.getAction();
 	try{
+		if (action instanceof TakeACard) {
+			if (((TakeACard) action).getCard() == null){
+				System.out.println("You can't do this move");
+				chooseAction();
+				return;
+			}
+			
+			clonedAction.setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
+			
+			if (!clonedAction.getRawMaterials().isEmpty()) 
+				askPlayersDiscounts();
+			
+			action.setDiscount(clonedAction.getDiscount());	
+		}
+		
 		if (action.getClass().equals(ErrorInput.class)) {
 			chooseAction();
 			return;
@@ -162,7 +167,6 @@ public class Controller implements Observer<String,Resource> {
 			return;
 		}
 		action.checkExtraordinaryEffect();
-		Resource privilege;
 			
 		int nrOfPrivileges = action.getCouncilPrivileges().size();
 		
@@ -173,21 +177,10 @@ public class Controller implements Observer<String,Resource> {
 		if (!clonedAction.getRequestedAuthorizationEffects().isEmpty()) {
 			askPlayerAuthorizations(clonedAction.getRequestedAuthorizationEffects());//TODO fallo fare a un thread magari
 		}
-				//TODO da quiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
-		List<Resource> discount = new ArrayList<Resource>();
-		if (action instanceof TakeACard) {
-			if (((TakeACard) action).getCard() == null){
-				System.out.println("You can't do this move");
-				chooseAction();
-				return;
-			}
-			discount = setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
-			
-		}
+		
 		if(action.isApplicable()) {
-			action.setRequestedAuthorizationEffects(requestedAuthorizationEffects);
-			action.setCouncilPrivilege(councilPrivileges);
-			action.setDiscount(discount);
+			action.setRequestedAuthorizationEffects(clonedAction.getRequestedAuthorizationEffects());
+			action.setCouncilPrivilege(clonedAction.getCouncilPrivileges());
 			action.apply(); 
 			
 		}else {
@@ -206,6 +199,16 @@ public class Controller implements Observer<String,Resource> {
 		}
 	}
 	
+	private void askPlayersDiscounts() {
+		try {
+			views.get(player).setDiscount(clonedAction.getRawMaterials());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	private void askPlayerAuthorizations(List<Effect> requestedAuthorizationEffects) {
 		try {
 			views.get(player).setRequestedAuthorizationEffects(requestedAuthorizationEffects);
@@ -221,28 +224,6 @@ public class Controller implements Observer<String,Resource> {
 	}
 
 
-	public List<Resource> setDiscount(Player player, DevelopmentCard card) {
-		//this method uploads the action's discounts accumulated by the player 
-		List<Resource> discounts;
-		List<Resource> myDiscounts = SupportFunctions.cloneResources(player.getDiscount().getDiscount(card));
-		if (myDiscounts.isEmpty())
-			return new ArrayList<>();
-		if (!myDiscounts.stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
-			discounts = myDiscounts;
-		else {
-			myDiscounts.forEach(res -> {if (res instanceof RawMaterial)
-				try {
-					res = views.get(player).setDiscount(res);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}});
-			discounts = myDiscounts;
-		}
-		return discounts;
-			
-			
-	}
 	
 	public void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
@@ -299,6 +280,9 @@ public class Controller implements Observer<String,Resource> {
 			Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
 			InputChoicesInterpreter interpreter2 = new InputChoicesInterpreter(model,currPlayer,resource,clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());
 			clonedAction.setRequestedAuthorizationEffects(interpreter2.getEffects());
+		}
+		else if (type.equals("DISCOUNT")) {
+			clonedAction.setRawMaterialsDiscount(resource);
 		}
 	}
 

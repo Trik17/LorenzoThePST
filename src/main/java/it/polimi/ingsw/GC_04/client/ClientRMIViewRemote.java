@@ -20,11 +20,11 @@ public interface ClientRMIViewRemote extends Remote {
 
 	public void setFurtherCheckNeededEffect(List<Effect> requestedAuthorizationEffects, int[] furtherCheckNeeded)throws RemoteException;
 
-	public Resource setCouncilPrivilege(int nrOfPrivileges)throws RemoteException;
+	public void setCouncilPrivilege(int nrOfPrivileges)throws RemoteException;
 
-	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects)throws RemoteException;
+	public void setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects)throws RemoteException;
 
-	public Resource setDiscount(Resource res)throws RemoteException;
+	public void setDiscount(List<Resource> rawMaterials)throws RemoteException;
 	
 	public ServerRMIViewRemote getServerStub() throws RemoteException;
 

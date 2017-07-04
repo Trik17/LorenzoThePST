@@ -11,8 +11,6 @@ import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.model.resource.Stones;
-import it.polimi.ingsw.GC_04.model.resource.Woods;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 
 public class ViewCLI extends ViewClient implements Runnable{
@@ -72,7 +70,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 				setRequestedAuthorizationEffects((List<Effect>) inputParameter1);
 				break;
 			case SETDISCOUNT:
-				setDiscount((Resource) inputParameter1);
+				setDiscount((List<Resource>) inputParameter1);
 				break;
 			default:
 				break;
@@ -364,23 +362,22 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return effect;
 		
 	}	
-	public Resource setDiscount(Resource rawMaterial) {
-		String input;
-		print("You can choose between two discounts, what do you prefer?");
-		print("1) "+ rawMaterial.getQuantity() +" Stone");
-		print("2) "+ rawMaterial.getQuantity() +" Wood");
+	public void setDiscount(List<Resource> rawMaterials) {
+		String input = "DISCOUNT ";
 		
-		input = getInput();
-		if(SupportFunctions.timeout(input, this))
-			return null;
-		if (!SupportFunctions.isInputValid(input, 1, 2)) {
-			return setDiscount(rawMaterial);	
+		for (int i = 0; i < rawMaterials.size(); i++) {
+			print("You can choose between two discounts, what do you prefer?");
+			print("1) "+ rawMaterials.get(i).getQuantity() +" Stone");
+			print("2) "+ rawMaterials.get(i).getQuantity() +" Wood");
+		
+			input += getInput();
+			if(SupportFunctions.timeout(input, this))
+				serverStub.notifyObserversRRemote(input);
+			if (!SupportFunctions.isInputValid(input, 1, 2)) {
+				input += "1 ";	
+			}
 		}
-		if (Integer.parseInt(input) == 1) 
-			return new Stones(rawMaterial.getQuantity());
-		else
-			return new Woods(rawMaterial.getQuantity());
-		
+		serverStub.notifyObserversRRemote(input);
 	}
 
 	public void printStateOfTheGame(String state) {

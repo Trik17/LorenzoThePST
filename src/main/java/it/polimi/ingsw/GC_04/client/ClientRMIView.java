@@ -65,8 +65,8 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		executor.submit(view);
 	}
 	@Override
-	public void setDiscount(Resource res) throws RemoteException{
-		view.inputParameter1 = res;
+	public void setDiscount(List<Resource> rawMaterials) throws RemoteException{
+		view.inputParameter1 = rawMaterials;
 		view.setRun = SetRun.SETDISCOUNT;
 		executor.submit(view);
 	}
