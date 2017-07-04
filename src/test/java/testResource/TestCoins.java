@@ -47,6 +47,14 @@ public class TestCoins {
 		c.addQuantity(0);
 		assertEquals(1, c.getQuantity());
 	}
+	
+	@Test
+	public void testClone(){
+		c=new Coins(3);
+		c.addQuantity(2);
+		Resource c1=Resource.clone(c);
+		assertEquals(5, c1.getQuantity());
+	}
 
 	
 

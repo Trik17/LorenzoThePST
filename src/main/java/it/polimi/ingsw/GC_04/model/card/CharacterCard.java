@@ -13,6 +13,7 @@ import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class CharacterCard extends DevelopmentCard {
+	private static final long serialVersionUID = -4060758132158559318L;
 
 	/**
 	 * 

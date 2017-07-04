@@ -22,11 +22,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 })
 
 public abstract class Resource implements Cloneable, Serializable{
-
+	private static final long serialVersionUID = -7651579067817205629L;
 	private int quantity;
 	//constructor needed for Json
 	public Resource() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Resource(@JsonProperty("quantity")int quantity){

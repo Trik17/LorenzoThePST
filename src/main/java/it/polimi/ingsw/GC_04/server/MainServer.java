@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Timer;
@@ -24,7 +26,8 @@ import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
 public class MainServer {
 	private Map<String,ClientRMIViewRemote> clients;
 	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
-	private Map<String,StartGame> games;
+	private List<String> disconnectedPlayers;
+	private Map<String,StartGame> games; //associations beetween games and players
 	private boolean timerStarted=false;
 	public static final int RMI_PORT = 12008;
 	public static final String NAME = "lorenzo";
@@ -58,11 +61,12 @@ public class MainServer {
 	}
 	
 	private MainServer() {
+		this.disconnectedPlayers=new ArrayList<>();
 		this.clients=new HashMap<>();
 		this.games=new HashMap<>();
 		this.lastClients=new HashMap<>();
 		this.currentModel=new Model();
-		this.currentController=new Controller(currentModel);
+		this.currentController=new Controller(currentModel,this);
 		this.executor = Executors.newCachedThreadPool();
 		JsonMapper.TimerFromJson();//inizialize the timer from json file	
 		System.out.println("START RMI");
@@ -73,9 +77,16 @@ public class MainServer {
 		}
 	}
 
-	public synchronized void addRMIClient(ClientRMIViewRemote clientStub, String username, ServerRMIView rmiView){
+	public synchronized void addRMIClient(ClientRMIViewRemote clientStub, String username, ServerRMIView rmiView) throws RemoteException{
 		if(clients.containsKey(username)){
-			//chiedere un altro username
+			if(disconnectedPlayers.contains(username)){
+				games.get(username).reconnectPlayer(username);
+				disconnectedPlayers.remove(username);
+				return;
+			}else{
+				clientStub.changeUsername(this.clients.keySet());
+				return;
+			}
 		}
 		this.clients.put(username,clientStub);
 		this.lastClients.put(username,clientStub);
@@ -84,13 +95,12 @@ public class MainServer {
 		try {
 			clientStub.addServerstub(rmiView);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			this.clients.remove(username,clientStub);
+			this.lastClients.remove(username,clientStub);
+			return;
 		}
 		System.out.println("new client connected");
 		checkPlayers();
-		//controlla giocatori
-		//username devono essere diversi...
 	}
 	
 	public synchronized Map<String,ClientRMIViewRemote> getClients(){
@@ -122,7 +132,7 @@ public class MainServer {
 		lastClients.forEach((username,stub) -> games.put(username, game));
 		this.lastClients.clear();
 		this.currentModel=new Model();
-		this.currentController=new Controller(currentModel);
+		this.currentController=new Controller(currentModel,this);
 	}
 	
 	private void startRMI() throws RemoteException, AlreadyBoundException{
@@ -142,6 +152,10 @@ public class MainServer {
 		registry.bind(NAME, rmiView);
 		System.out.println("RMI is ready to accept clients");
 		
+	}
+	
+	public synchronized void disconnectPlayer(String username){
+		this.disconnectedPlayers.add(username);
 	}
 	
 	public static void main(String[] args){

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.client;
 
-import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -28,7 +27,7 @@ public class ClientRMI {
 		return input;
 	}*/
 	
-	public void clientConnection() throws AccessException, RemoteException, NotBoundException{
+	public void clientConnection() throws RemoteException, NotBoundException{
 		
 		//Get the remote registry
 		Registry registry = LocateRegistry.getRegistry(HOST, RMI_PORT);

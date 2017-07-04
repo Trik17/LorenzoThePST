@@ -1,22 +1,5 @@
 package testView;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import it.polimi.ingsw.GC_04.client.ViewCLI;
-import it.polimi.ingsw.GC_04.controller.Controller;
-import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.effect.*;
-import it.polimi.ingsw.GC_04.model.resource.*;
-
 public class testViewCLI {//it isn't a real test
 	
 	

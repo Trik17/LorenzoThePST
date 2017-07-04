@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Coins extends Resource{
+	private static final long serialVersionUID = -8378648965909241301L;
 	@JsonCreator
 	public Coins(@JsonProperty("quantity")int quantity){
 		super(quantity);

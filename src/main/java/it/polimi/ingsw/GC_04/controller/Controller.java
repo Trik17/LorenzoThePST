@@ -18,6 +18,7 @@ import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.*;
+import it.polimi.ingsw.GC_04.server.MainServer;
 
 public class Controller implements Observer<String,Resource> {
 	
@@ -32,20 +33,32 @@ public class Controller implements Observer<String,Resource> {
 	private boolean lastPhase;
 	private Timer timer;
 	private TimerTask task;
+	private MainServer server;
 	
 	private ClonedAction clonedAction;
 
-	public Controller(Model model) {
+	public Controller(Model model,MainServer server) {
 		this.model = model;
 		clonedAction = new ClonedAction();
+		this.server=server;
 		JsonMapper.TimerFromJson();
 	}
+	
+	
 	
 	private void disconnect(String username){//da chiamare ad ogni remoteexception
 		for(Player p: model.getPlayers()){
 			if(p.getName().equals(username))
 				p.disconnect();
 		}
+		server.disconnectPlayer(username);
+		views.forEach((name,stub) -> {
+			try {
+				if(isPlayerConnected(name))
+					stub.print(username+" disconnected");
+			} catch (RemoteException e) {
+			}
+		});
 		updateTurn();
 		chooseAction();
 	}
@@ -54,6 +67,7 @@ public class Controller implements Observer<String,Resource> {
 		if (!isPlayerConnected(player)){
 			updateTurn();
 			chooseAction();
+			
 		}		
 //		this.timer=new Timer();
 //		this.task=new TimerTask(){
@@ -230,6 +244,8 @@ public class Controller implements Observer<String,Resource> {
 		
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers]))
 			//TODO: final score
+			
+			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
 			return;
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers])) {
 			if (lastPhase) {
@@ -263,6 +279,19 @@ public class Controller implements Observer<String,Resource> {
 				e.printStackTrace();
 			}
 		});
+		
+	}
+
+
+
+	public void reconnect(String username) {
+		for (int i = 0; i < model.getPlayers().length; i++) {
+			if(model.getPlayers()[i].getName().equals(username)){
+				model.getPlayers()[i].reConnect();
+				return;
+			}			
+		}			
+		
 		
 	}
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Stones extends RawMaterial{
+	private static final long serialVersionUID = -5262283298519991506L;
 	@JsonCreator
 	public Stones(@JsonProperty("quantity")int quantity){
 		super(quantity);

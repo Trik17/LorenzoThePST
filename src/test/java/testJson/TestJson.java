@@ -4,15 +4,12 @@ import static org.junit.Assert.*;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import it.polimi.ingsw.GC_04.JsonMapper;
-import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
@@ -47,7 +44,7 @@ public class TestJson {
 	@Test
 	public void testGetJson() throws JsonMappingException, IOException {
 		//actionSpaces
-		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
+		jsonMapper.getActionSpaces();
 		//cards
 		this.tCards = jsonMapper.getTerritoryCardArray();
 		this.cCards = jsonMapper.getCharacterCardArray();
@@ -74,15 +71,14 @@ public class TestJson {
 			assertEquals(3, m.getQuantity());
 			assertEquals(2, m.getMalus());
 			
-			//TIMER:
-			FileReader file2= new FileReader("src/main/resources/timer.json"); 
+			//TIMER: 
 			assertEquals(0, TimerJson.getStartTimer());
 			assertEquals(0, TimerJson.getInputTimer());
-			@SuppressWarnings("unused")
-			TimerJson t=mapper.readValue(file2, TimerJson.class);
+			JsonMapper.TimerFromJson();
 			
-//			assertEquals(30000, TimerJson.getStartTimer());
-//			assertEquals(600000, TimerJson.getActionTimer());
+//			assertEquals(METTI VALORE FINALE, TimerJson.getStartTimer());
+//			assertEquals(METTI VALORE FINALE, TimerJson.getInputTimer());
+//			assertEquals(METTI VALORE FINALE, TimerJson.getActionTimer());
 			
 	}catch(JsonParseException e){
 		fail("failed for an exception of Json");
