@@ -250,7 +250,7 @@ public class Controller implements Observer<String,Resource> {
 			
 			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
 			return;
-		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers])) {
+		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
 			if (lastPhase) {
 				excommunicationsManagement();
 				model.incrementPeriod();

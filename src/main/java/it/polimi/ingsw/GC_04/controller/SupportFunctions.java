@@ -13,7 +13,7 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 public class SupportFunctions {
 
 	public static boolean timeout(String s,ViewClient view){
-		if("".equals(s)){
+		if("ERRORTIME ".equals(s)){
 			view.passTurn();
 			return true;
 		}
@@ -63,7 +63,7 @@ public class SupportFunctions {
 	
 	public static boolean isInputValid(String input, int min, int max) {
 		try{
-			if (input.equals(" ")) {
+			if (input.equals("EMPTY ")) {// "EMPTY " is the input if the user press only ENTER (instead of "" for the condition in the whileLoop in getInput
 				System.out.println("Your input is not valid");
 				return false;
 			}

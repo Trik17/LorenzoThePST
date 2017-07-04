@@ -34,6 +34,8 @@ public class ScannerInputThread implements Runnable {
 	public void run() {
 		System.out.println( "Insert action in "+ TimerJson.getInputTimer()/1000 +" seconds: " );
 		String string=reader.next();
+		if(string.equals(""))
+			string="EMPTY";
 		view.setStrInput(string);
 		
 	}
