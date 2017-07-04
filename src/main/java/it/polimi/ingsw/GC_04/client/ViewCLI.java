@@ -188,7 +188,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		
 	}
 	
-	public void setRequestedAuthorizationEffects(List<Effect> effects) {
+	public void setRequestedAuthorizationEffects(List<Effect> effects) throws RemoteException {
 		String output = "AUTHORIZATION";
 		if (effects.isEmpty())
 			serverStub.notifyObserversRRemote(output);
@@ -257,7 +257,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	
 	}
 	
-	private String chooseExchangeResourcesEffect(Effect effect) {
+	private String chooseExchangeResourcesEffect(Effect effect) throws RemoteException {
 		String input;
 		String cost1;
 		String effect1;
@@ -279,7 +279,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 
 
-	public void setFurtherCheckNeededEffect(List<Effect> rAE, int[] fCN) {
+	public void setFurtherCheckNeededEffect(List<Effect> rAE, int[] fCN) throws RemoteException {
 		
 		/*rAE = RequestedAuthorizationEffects
 		 *fCN = FurtherCheckNeededEffect -> it contains the indices of the effects of rAE that need a player choice
@@ -362,7 +362,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return effect;
 		
 	}	
-	public void setDiscount(List<Resource> rawMaterials) {
+	public void setDiscount(List<Resource> rawMaterials) throws RemoteException {
 		String input = "DISCOUNT ";
 		
 		for (int i = 0; i < rawMaterials.size(); i++) {

@@ -13,7 +13,7 @@ public interface ServerRMIViewRemote extends Remote ,  Serializable {
 	
 	public void registerClient(ClientRMIViewRemote clientStub, String username) throws RemoteException;
 	public void notifyObserversARemote(String action) throws RemoteException;
-	public void notifyObserversRRemote(String privileges);
+	public void notifyObserversRRemote(String privileges)throws RemoteException;
 	
 	
 }

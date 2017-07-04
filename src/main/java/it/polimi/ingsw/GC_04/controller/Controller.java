@@ -158,7 +158,7 @@ public class Controller implements Observer<String,Resource> {
 	try{
 		if (action instanceof TakeACard) {
 			if (((TakeACard) action).getCard() == null){
-				System.out.println("You can't do this move");
+				views.get(player).print("You can't do this move");
 				chooseAction();
 				return;
 			}

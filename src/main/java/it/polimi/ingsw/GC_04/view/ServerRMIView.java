@@ -37,7 +37,7 @@ public class ServerRMIView extends Observable<String,Resource> implements Server
 
 
 	@Override
-	public void notifyObserversRRemote(String resource) {
+	public void notifyObserversRRemote(String resource) throws RemoteException{
 		notifyObserversR(resource);
 		
 	}

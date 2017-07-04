@@ -167,12 +167,8 @@ public class MainServer implements Runnable{
 	}
 	
 	public static void main(String[] args){
-		String aString = "CIAO COME STAI";
-		StringTokenizer stringTokenizer = new StringTokenizer(aString);
-		System.out.println("CIAO".equals(stringTokenizer.nextToken()));
-		System.out.println("COME ".equals(stringTokenizer.nextToken()));
-		
-//		MainServer.instance();
+
+		MainServer.instance();
 	}
 	
 	//Start Socket:
