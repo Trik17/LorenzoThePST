@@ -93,8 +93,9 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		
 	}
 	@Override
-	public void print(String username) throws RemoteException {
+	public void print(String string) throws RemoteException {
 		// TODO Auto-generated method stub
+		//TODO usala per stampare che un utente si è disconnesso o riconnesso
 		
 	}
 	@Override
