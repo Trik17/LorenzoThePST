@@ -22,12 +22,19 @@ public class ViewCLI extends ViewClient implements Runnable{
 	Object inputParameter2;
 	SetRun setRun;
 	private ScannerInputThread scanner;
+	private boolean whileSecurity=false;
 	
 	public ViewCLI() {
 		super();
 		this.scanner=ScannerInputThread.instance(this);
-		
+		executor.submit(this);
 	} 
+	public  synchronized boolean getWhileSecurity(){
+		return whileSecurity;
+	}
+	public  synchronized void setWhileSecurity(boolean set){
+		whileSecurity=set;
+	}
 	
 	private void print(String string) {
 		System.out.println(string);
@@ -40,8 +47,8 @@ public class ViewCLI extends ViewClient implements Runnable{
 	public synchronized void setStrInput(String string){
 		strInput=string;
 	}
-	
-	private String getInput(){
+	//TODO va bene la sync o si blocca???
+	private synchronized String getInput(){
 		setStrInput("");	
 		Timer timer=new Timer();
 		TimerTask task=new TimerTask(){
@@ -70,30 +77,36 @@ public class ViewCLI extends ViewClient implements Runnable{
 	
 	@Override
 	public void run(){
-		try {
-			switch (setRun) {
-			case CHOOSEACTION:
-				chooseAction();
-				break;
-			case SETFURTHERCHECKNEEDEDEFFECT:
-				setFurtherCheckNeededEffect((List<Effect>) inputParameter1,(int[]) inputParameter2);
-				break;
-			case SETCOUNCILPRIVILEGE:
-				setCouncilPrivilege((int) inputParameter1);
-				break;
-			case SETREQUESTEDAUTHORIZATIONEFFECTS:
-				setRequestedAuthorizationEffects((List<Effect>) inputParameter1);
-				break;
-			case SETDISCOUNT:
-				setDiscount((List<Resource>) inputParameter1);
-				break;
-			default:
-				break;
+		if(getWhileSecurity()){
+			try {
+				switch (setRun) {
+				case CHOOSEACTION:
+					chooseAction();
+					break;
+				case SETFURTHERCHECKNEEDEDEFFECT:
+					setFurtherCheckNeededEffect((List<Effect>) inputParameter1,(int[]) inputParameter2);
+					break;
+				case SETCOUNCILPRIVILEGE:
+					setCouncilPrivilege((int) inputParameter1);
+					break;
+				case SETREQUESTEDAUTHORIZATIONEFFECTS:
+					setRequestedAuthorizationEffects((List<Effect>) inputParameter1);
+					break;
+				case SETDISCOUNT:
+					setDiscount((List<Resource>) inputParameter1);
+					break;
+				default:
+					break;
+				}
+				
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}else{
+			setWhileSecurity(true);
+			while(true){				
+			}
 		}
 	}
 	

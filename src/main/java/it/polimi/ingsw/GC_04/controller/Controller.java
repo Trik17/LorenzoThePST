@@ -12,7 +12,6 @@ import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.action.ErrorInput;
 import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
@@ -67,7 +66,7 @@ public class Controller implements Observer<String,Resource> {
 		if (!isPlayerConnected(player)){
 			updateTurn();
 			chooseAction();
-			
+			return;
 		}		
 //		this.timer=new Timer();
 //		this.task=new TimerTask(){
@@ -82,6 +81,7 @@ public class Controller implements Observer<String,Resource> {
 			views.get(player).setState(model.getStateCLI());
 			views.get(player).chooseAction();
 		} catch (RemoteException e) {
+			e.printStackTrace();//TODO CANCELLA
 			disconnect(player);
 		}
 	}
@@ -172,10 +172,10 @@ public class Controller implements Observer<String,Resource> {
 			action.setDiscount(clonedAction.getDiscount());	
 		}
 		
-		if (action.getClass().equals(ErrorInput.class)) {
-			chooseAction();
-			return;
-		}
+//		if (action.getClass().equals(ErrorInput.class)) {
+//			chooseAction();
+//			return;
+//		}
 		if (action.getClass().equals(PassTurn.class) || !isPlayerConnected(action.getPlayer())) {
 			updateTurn();
 			chooseAction();
@@ -205,11 +205,11 @@ public class Controller implements Observer<String,Resource> {
 		}
 		updateTurn();
 		stateOfTheGame();
-
 		chooseAction();
+		return;
 		}catch(RemoteException e){
-			updateTurn();
-			chooseAction();
+			disconnect(player);//TODO giusto?
+			return;
 			
 		}catch (Exception e) {
 			e.printStackTrace();

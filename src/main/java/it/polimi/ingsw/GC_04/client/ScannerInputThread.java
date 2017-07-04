@@ -11,6 +11,7 @@ public class ScannerInputThread implements Runnable {
 	private static ScannerInputThread instance;
 	private ExecutorService executor;
 	private ViewCLI view;
+	private static boolean whileSecurity=false;
 	
 	public static ScannerInputThread instance(ViewCLI view){
 		if(instance==null)
@@ -28,15 +29,28 @@ public class ScannerInputThread implements Runnable {
 		executor.submit(this);
 	}
 	
+	public static synchronized boolean getWhileSecurity(){
+		return ScannerInputThread.whileSecurity;
+	}
+	public static synchronized void setWhileSecurity(boolean set){
+		ScannerInputThread.whileSecurity=set;
+	}
 	
 
 	@Override
 	public void run() {
+		if (getWhileSecurity()){
 		System.out.println( "Insert action in "+ TimerJson.getInputTimer()/1000 +" seconds: " );
 		String string=reader.next();
 		if(string.equals(""))
 			string="EMPTY";
 		view.setStrInput(string);
+		}else{
+			setWhileSecurity(true);
+			executor.submit(this);
+			while(true){				
+			}
+		}
 		
 	}
 
