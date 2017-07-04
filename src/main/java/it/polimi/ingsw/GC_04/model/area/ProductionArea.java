@@ -9,18 +9,8 @@ public class ProductionArea extends ColorReastrictedArea{
 	private static final long serialVersionUID = 2343078907285078515L;
 	private ActionSpace actionSpaceDefault;
 	
-	private static final ThreadLocal<ProductionArea> instance=new ThreadLocal<ProductionArea>(){ 
-	    @Override 
-	    protected ProductionArea initialValue() { 
-	        //initialize YourObject 
-	      return new ProductionArea(); 
-	      } 
-	};
-	public static ProductionArea instance() {
-		return instance.get();		
-	}
 	
-	private ProductionArea(){
+	public ProductionArea(){
 		this.aSpaces = new ArrayList<>();		
 	}
 	
@@ -30,8 +20,7 @@ public class ProductionArea extends ColorReastrictedArea{
 	}
 	public void reset() {
 		aSpaces = new ArrayList<ActionSpace>();
-		//TODO: dire a tricki come fare per gli effetti
-	}
+			}
 	public ActionSpace getActionSpaceDefault() {
 		return actionSpaceDefault;
 	}

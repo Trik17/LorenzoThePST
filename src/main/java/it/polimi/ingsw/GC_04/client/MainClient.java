@@ -4,10 +4,10 @@ import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import it.polimi.ingsw.GC_04.client.rmi.ClientRMI;
 import it.polimi.ingsw.GC_04.client.socket.ClientSocket;
-
 
 
 public class MainClient {

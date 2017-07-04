@@ -12,13 +12,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.GC_04.JsonMapper;
-import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
+import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.controller.Controller;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
@@ -166,7 +167,12 @@ public class MainServer implements Runnable{
 	}
 	
 	public static void main(String[] args){
-		MainServer.instance();
+		String aString = "CIAO COME STAI";
+		StringTokenizer stringTokenizer = new StringTokenizer(aString);
+		System.out.println("CIAO".equals(stringTokenizer.nextToken()));
+		System.out.println("COME ".equals(stringTokenizer.nextToken()));
+		
+//		MainServer.instance();
 	}
 	
 	//Start Socket:

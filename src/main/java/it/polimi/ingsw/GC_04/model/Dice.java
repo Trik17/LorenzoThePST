@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_04.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -13,32 +15,6 @@ public class Dice implements Serializable {
 	public static final int MAXDICEVALUE = 6;
 	private int value; // 1<=value<=6
 	
-	private static final ThreadLocal<Dice> blackDice=new ThreadLocal<Dice>(){
-		@Override
-		protected Dice initialValue(){
-			return new Dice();
-		}
-	};
-	private static final ThreadLocal<Dice> whiteDice=new ThreadLocal<Dice>(){
-		@Override
-		protected Dice initialValue(){
-			return new Dice();
-		}
-	};
-	private static final ThreadLocal<Dice> orangeDice=new ThreadLocal<Dice>(){
-		@Override
-		protected Dice initialValue(){
-			return new Dice();
-		}
-	};
-	//this Dice only serves to be associated to the neutral family member. Its value never changes
-	private static final ThreadLocal<Dice> neutralDice=new ThreadLocal<Dice>(){
-		@Override
-		protected Dice initialValue(){
-			return new Dice(NEUTRALDICEVALUE);
-		}
-	};
-		
 	private Dice() {
 		Random rnd = new Random();
 		value = MINDICEVALUE + rnd.nextInt(MAXDICEVALUE);
@@ -51,38 +27,20 @@ public class Dice implements Serializable {
 			this.value = value;
 	}
 	
-	public static void createDices() {
-			blackDice.get();
-			whiteDice.get();
-			orangeDice.get();
-			neutralDice.get();
-	}
-	
-	
-	
-	
-	public static void rollTheDices(){
-		//it associates a random number between 1 and 6 with the attribute value
-		blackDice.set(new Dice());
-		orangeDice.set(new Dice());
-		whiteDice.set(new Dice());
-
+	public static Map<DiceColor, Dice> rollTheDices() {
+		Map<DiceColor, Dice> dices = new HashMap<>();
+		dices.put(DiceColor.BLACK, new Dice());
+		dices.put(DiceColor.ORANGE, new Dice());
+		dices.put(DiceColor.WHITE, new Dice());
+		dices.put(DiceColor.NEUTRAL, new Dice(0));
+		return dices;
 	}
 	
 	public int getValue(){
 		return this.value;
 	}
 	
-	public static Dice getDice(DiceColor color) {
-		if (color == DiceColor.BLACK)
-			return blackDice.get();
-		else if (color == DiceColor.ORANGE)
-			return orangeDice.get();
-		else if (color == DiceColor.WHITE)
-			return whiteDice.get();
-		else
-			return neutralDice.get();
-	}
+	
 	
 	
 }

@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_04.Observable;
-import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.model.action.Action;
+import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.MainServer;
 
@@ -13,7 +12,7 @@ import it.polimi.ingsw.GC_04.server.MainServer;
 // implements the methods. Given that this example is implemented using the Observer pattern, each methods only calls to
 //notify() with the corresponding action. The controller that is observing the view will be notified and translate this in
 //actual actions upon the model.
-public class ServerRMIView extends Observable<Action,Resource> implements ServerRMIViewRemote, Serializable {
+public class ServerRMIView extends Observable<String,Resource> implements ServerRMIViewRemote, Serializable {
 	/**
 	 * 
 	 */
@@ -31,18 +30,17 @@ public class ServerRMIView extends Observable<Action,Resource> implements Server
 				
 	}
 	@Override
-	public void notifyObserversARemote(Action action) {
-		System.out.println("dentro server rmi view notifyobserver action");//da cancellare
+	public void notifyObserversARemote(String action)  throws RemoteException {
 		notifyObserversA(action);
 		
 	}
 
 
-//	@Override
-//	public void notifyObserversRremote(Resource resource) throws RemoteException  {
-//		notifyObserversR(resource);
-//		
-//	}
+	@Override
+	public void notifyObserversRRemote(String resource) {
+		notifyObserversR(resource);
+		
+	}
 
 
 }

@@ -5,23 +5,26 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Harvest;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
-import it.polimi.ingsw.GC_04.model.area.HarvestArea;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 
-
+//TODO se ci sono meno giocatori non si puo avere tutto il raccolto
 public class RunHarvest extends Action{
-	 private static final int HARVPENALITY = 3; 
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4903615777627741577L;
+	private static final int HARVPENALITY = 3; 
 	  private int harvValue; 
 	   
-	  public RunHarvest(Player player, FamilyMember fMember, int servants) { 
-	    super(player, fMember, servants); 
-	    this.area = HarvestArea.instance(); 
+	  public RunHarvest(Model model, Player player, FamilyMember fMember, int servants) { 
+	    super(model, player, fMember, servants); 
+	    this.area = model.getHarvest(); 
 	    aSpace = area.getASpaces().get(area.getASpaces().size()-1);
 	     
-	    if (HarvestArea.instance().getASpaces().size() < 2) 
+	    if (area.getASpaces().size() < 2) 
 	    	harvValue = value; 
 	    else 
 	    	harvValue = value - HARVPENALITY; 
@@ -73,8 +76,8 @@ public class RunHarvest extends Action{
 	}
 
 	public void createNewASpace() {
-		if(CouncilPalaceArea.getTurnOrder().length < 3)
-			HarvestArea.instance().getASpaces().add(new ActionSpace(1, null));
+		if(model.getCouncilPalace().getTurnOrder().length < 3)
+			area.getASpaces().add(new ActionSpace(1, null));
 	}
 
 	

@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_04.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import it.polimi.ingsw.GC_04.model.Dice;
+import it.polimi.ingsw.GC_04.model.DiceColor;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
@@ -22,10 +24,10 @@ public class StateOfTheGameCLI {
 		System.out.println(string);
 	}
 	
-	public static String printStateOfTheGame(Model model,DevelopmentCard[] tCards,DevelopmentCard[] cCards,DevelopmentCard[] bCards,DevelopmentCard[] vCards,Dice bDice,Dice oDice,Dice wDice) {
+	public static String printStateOfTheGame(Model model,DevelopmentCard[] tCards,DevelopmentCard[] cCards,DevelopmentCard[] bCards,DevelopmentCard[] vCards,Map<DiceColor, Dice> dices) {
 		String state = "BOARD:";
 		state += printCards(tCards, cCards, bCards, vCards);
-		state += printDices(bDice, oDice, wDice);
+		state += printDices(dices);
 		
 		
 		for (Player p:model.getPlayers())
@@ -51,16 +53,6 @@ public class StateOfTheGameCLI {
 			cards += cont+SupportFunctions.cardInArray(vCards, i)+"\n";
 			
 			cont++;
-				/*System.out.printf("%d", cont);
-				System.out.printf(SupportFunctions.cardInArray(tCards, i));
-				System.out.printf("%d", cont);
-				System.out.printf(SupportFunctions.cardInArray(cCards, i));			
-				System.out.printf("%d", cont);
-				System.out.printf(SupportFunctions.cardInArray(bCards, i));
-				System.out.printf("%d", cont);
-				System.out.printf("%s\n",SupportFunctions.cardInArray(vCards, i));*/
-			
-			
 			
 		}
 		if (length == 0)
@@ -96,10 +88,10 @@ public class StateOfTheGameCLI {
 		return cards;
 	}
 	
-	public static String printDices(Dice bDice,Dice oDice,Dice wDice) {
-		String dices = "BLACK DICE: "+ bDice.getValue()+"\n";
-		dices += "ORANGE DICE: "+ oDice.getValue()+"\n";
-		dices += "WHITE DICE: "+ wDice.getValue()+"\n";
+	public static String printDices(Map<DiceColor, Dice> dicesMap) {
+		String dices = "BLACK DICE: "+ dicesMap.get(DiceColor.BLACK).getValue()+"\n";
+		dices += "ORANGE DICE: "+ dicesMap.get(DiceColor.ORANGE).getValue()+"\n";
+		dices += "WHITE DICE: "+ dicesMap.get(DiceColor.WHITE).getValue()+"\n";
 		return dices;
 		
 	}

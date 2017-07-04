@@ -1,14 +1,20 @@
 package it.polimi.ingsw.GC_04.model.action;
 
 import it.polimi.ingsw.GC_04.model.FamilyMember;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
 
 public class GoToTheCouncilPalace extends Action{
 
-	public GoToTheCouncilPalace(Player player, FamilyMember fMember, int servants) {
-		super(player, fMember, servants);
-		this.area = CouncilPalaceArea.instance();	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3757433623773347938L;
+
+	public GoToTheCouncilPalace(Model model, Player player, FamilyMember fMember, int servants) {
+		super(model, player, fMember, servants);
+		this.area = model.getCouncilPalace();
 		aSpace = area.getASpaces().get(area.getASpaces().size() -1);
 	}
 		
@@ -19,7 +25,7 @@ public class GoToTheCouncilPalace extends Action{
 	}
 
 	public void createNewASpace() {
-		CouncilPalaceArea.instance().getASpaces().add(CouncilPalaceArea.instance().getActionSpaceDefault());
+		area.getASpaces().add(((CouncilPalaceArea) area).getActionSpaceDefault());
 	}
 	
 	@Override

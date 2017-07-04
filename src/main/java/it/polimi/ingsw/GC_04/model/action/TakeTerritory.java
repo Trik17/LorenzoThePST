@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
@@ -11,10 +12,14 @@ import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class TakeTerritory extends TakeACard{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4957143844441537647L;
 	int accumulatedMP;
 	
-	public TakeTerritory(Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
-		super(player, card, aSpace, fMember, servants, cost);
+	public TakeTerritory(Model model, Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
+		super(model, player, card, aSpace, fMember, servants, cost);
 	}
 
 	

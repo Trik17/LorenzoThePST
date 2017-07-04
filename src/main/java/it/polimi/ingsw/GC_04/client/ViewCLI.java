@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
@@ -12,8 +11,6 @@ import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.model.resource.Stones;
-import it.polimi.ingsw.GC_04.model.resource.Woods;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 
 public class ViewCLI extends ViewClient implements Runnable{
@@ -21,6 +18,9 @@ public class ViewCLI extends ViewClient implements Runnable{
 	private static final long serialVersionUID = -2328795643634959640L;
 	static String strInput = ""; 
 	private boolean timeout=false;
+	Object inputParameter1;
+	Object inputParameter2;
+	SetRun setRun;
 
 	
 	private void print(String string) {
@@ -49,14 +49,33 @@ public class ViewCLI extends ViewClient implements Runnable{
 			strInput="";
 			timeout=false;
 		}
-		return ViewCLI.strInput;
+		return ViewCLI.strInput+" ";
 	}
 	
 	
 	@Override
 	public void run(){
 		try {
-			chooseAction();
+			switch (setRun) {
+			case CHOOSEACTION:
+				chooseAction();
+				break;
+			case SETFURTHERCHECKNEEDEDEFFECT:
+				setFurtherCheckNeededEffect((List<Effect>) inputParameter1,(int[]) inputParameter2);
+				break;
+			case SETCOUNCILPRIVILEGE:
+				setCouncilPrivilege((int) inputParameter1);
+				break;
+			case SETREQUESTEDAUTHORIZATIONEFFECTS:
+				setRequestedAuthorizationEffects((List<Effect>) inputParameter1);
+				break;
+			case SETDISCOUNT:
+				setDiscount((List<Resource>) inputParameter1);
+				break;
+			default:
+				break;
+			}
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,8 +84,8 @@ public class ViewCLI extends ViewClient implements Runnable{
 	
 	public void chooseAction() throws RemoteException{
 		printStateOfTheGame(state);
-		String diceColor;
-		String nrOfServants;
+		String input = new String();
+		
 		print("Choose an area between:"); 
 		print("1)TOWER");
 		print("2)MARKET");
@@ -84,138 +103,96 @@ public class ViewCLI extends ViewClient implements Runnable{
 		if ("0".equals(area))
 			passTurn();
 		if ("1".equals(area)) {
-			print("Choose a tower between:");
-			print("1)TERRITORY");
-			print("2)CHARACTER");
-			print("3)BUILDING");
-			print("4)VENTURE");
-			String tower = getInput();
-			if(SupportFunctions.timeout(tower, this))
-				return;
-			if (!SupportFunctions.isInputValid(tower, 1, 4)) {
-				chooseAction();
-				return;
-			}
-			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
-			String nrOfCard =getInput();
-			if(nrOfCard.equals("error"))
-				serverStub.notifyObserversARemote(new PassTurn());
-			if (!SupportFunctions.isInputValid(nrOfCard, 1, 4)) {
-				chooseAction();
-				return;
-			}
-			print("Choose the dice that you want to use between:");
-			print("1)BLACK");
-			print("2)ORANGE");
-			print("3)WHITE");
-			print("4)NEUTRAL");
-			diceColor = getInput();
-			if(SupportFunctions.timeout(diceColor, this))
-				return;
-			if(diceColor.equals("error"))
-				serverStub.notifyObserversARemote(new PassTurn());
-			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
-				chooseAction();
-				return;
-			}
-			print("How many servants do you want to use?");
-			nrOfServants = getInput();
-			if(SupportFunctions.timeout(nrOfServants, this))
-				return;
-			if(nrOfServants.equals("error"))
-				serverStub.notifyObserversARemote(new PassTurn());
-			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
-				chooseAction();
-				return;
-			}
-			print("Which cost do you want to pay?");
-			print("If there's only one cost available, press any key");
-			String cost = getInput();
-			if(SupportFunctions.timeout(cost, this))
-				return;
+			input += "TOWER ";
+			input += chooseATower();
+			input += chooseACard();
+			input += chooseDice();
+			input += chooseNrOfServants();
 			
-			input(tower, nrOfCard, diceColor, nrOfServants, cost);
+			serverStub.notifyObserversARemote(input);
 			
 		}
 		else if ("2".equals(area)) {
-			print("Choose the dice that you want to use between:");
-			print("1)BLACK");
-			print("2)ORANGE");
-			print("3)WHITE");
-			print("4)NEUTRAL");
-			diceColor =getInput(); 
-			if(SupportFunctions.timeout(diceColor, this))
-				return;
-			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
-				chooseAction();
-				return;
-			}
-			print("How many servants do you want to use?");
-			nrOfServants = getInput();
-			if(SupportFunctions.timeout(nrOfServants, this))
-				return;
-			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
-				chooseAction();
-				return;
-			}
-			print("Choose a shop between 1, 2, 3, 4"); 
-			String actSpace = getInput();
-			if(SupportFunctions.timeout(actSpace, this))
-				return;
-			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
-				chooseAction();
-				return;
-			}
-			input(area, diceColor, actSpace, nrOfServants);
-		}else {
-			print("Choose the dice that you want to use between:");
-			print("1)BLACK");
-			print("2)ORANGE");
-			print("3)WHITE");
-			print("4)NEUTRAL");
-			diceColor = getInput();
-			if(SupportFunctions.timeout(diceColor, this))
-				return;
-			if (!SupportFunctions.isInputValid(diceColor, 1, 4)) {
-				chooseAction();
-				return;
-			}
-			print("How many servants do you want to use?");
-			nrOfServants = getInput();
-			if(SupportFunctions.timeout(nrOfServants, this))
-				return;
-			if (!SupportFunctions.isInputValid(nrOfServants, 0, 100)) {
-				chooseAction();
-				return;
-			}
+			input += "MARKET ";
+			input += chooseDice();
+			input += chooseNrOfServants();
+			input += chooseAShop();
 			
-			input(area, diceColor, nrOfServants);	
+			serverStub.notifyObserversARemote(input);
+		}else {
+			if ("3".equals(area))
+				input += "PRODUCTION ";
+			if ("4".equals(area))
+				input += "HARVEST ";
+			if ("5".equals(area))
+				input += "COUNCILPALACE ";
+			input += chooseDice();
+			input += chooseNrOfServants();
+			
+			serverStub.notifyObserversARemote(input);	
 		}
+	}//TODO AGGIUSTARE INTERPRETE
+
+	private String chooseAShop() {
+		print("Choose a shop between 1, 2, 3, 4"); 
+		String actSpace = getInput();
+		if(SupportFunctions.timeout(actSpace, this))
+			return actSpace;
+		if (!SupportFunctions.isInputValid(actSpace, 1, 4)) {
+			return chooseAShop();
+		}
+		return actSpace;
 	}
 
-	public Resource setCouncilPrivilege() {
-		print("Choose your privilege between:");
-		print("1) 1 Stone and 1 Wood");
-		print("2) 2 Servants");
-		print("3) 2 Coins");
-		print("4) 2 Military Points");
-		print("5) 1 Faith Point");
-		
-		String resource =getInput();
-		if(SupportFunctions.timeout(resource, this))
-			return input("1");
-		if (!SupportFunctions.isInputValid(resource, 1, 5)) {
-			return setCouncilPrivilege();
+
+	private String chooseDice() {
+		String input = new String();
+		print("Choose the dice that you want to use between:");
+		print("1)BLACK");
+		print("2)ORANGE");
+		print("3)WHITE");
+		print("4)NEUTRAL");
+		input = getInput();
+		if(SupportFunctions.timeout(input, this))
+			return input;
+		if (!SupportFunctions.isInputValid(input, 1, 4)) {
+			return chooseDice();
+			
 		}
-		return input(resource);		
+		return input;
+	}
+
+
+	public void setCouncilPrivilege(int nrOfPrivileges) throws RemoteException {
+		String privileges = "COUNCIL ";
+		while (nrOfPrivileges > 0) {
+			print("Choose your privilege between:");
+			print("1) 1 Stone and 1 Wood");
+			print("2) 2 Servants");
+			print("3) 2 Coins");
+			print("4) 2 Military Points");
+			print("5) 1 Faith Point");
+		
+			String resource =getInput();
+			if(SupportFunctions.timeout(resource, this)) {
+				serverStub.notifyObserversARemote(privileges);
+				return;
+			}
+			else if (!SupportFunctions.isInputValid(resource, 1, 5)) {
+				privileges += "1 ";
+			}else {
+				privileges += resource+" ";
+			}
+		serverStub.notifyObserversRRemote(privileges);	
+		}
 		
 	}
 	
-	public int[] setRequestedAuthorizationEffects(List<Effect> effects) {
+	public void setRequestedAuthorizationEffects(List<Effect> effects) {
+		String output = "AUTHORIZATION";
 		if (effects.isEmpty())
-			return new int[0];
+			serverStub.notifyObserversRRemote(output);
 		String input = new String();
-		String output = new String();
 		int effectCounter = 1;
 		print("Which of these effects do you want to activate?");
 		print("After every number, press Enter");
@@ -224,7 +201,6 @@ public class ViewCLI extends ViewClient implements Runnable{
 		
 		for(Effect eff:effects) {
 			if (eff instanceof ExchangeResourcesEffect) {
-				
 				if (((ExchangeResourcesEffect) eff).getCost2() == null) {
 					String cost = new String();
 					String effect = new String();
@@ -257,7 +233,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 					effectCounter++;
 				}
 			}else {
-				return new int[0];
+				serverStub.notifyObserversRRemote(output);
 			}
 			
 		}
@@ -265,104 +241,93 @@ public class ViewCLI extends ViewClient implements Runnable{
 		while(true) {
 			input = getInput();
 			if(SupportFunctions.timeout(input, this))
-				return null;
+				serverStub.notifyObserversRRemote(output);
 			if (input.equalsIgnoreCase("OK"))
 				break;
 			
 			if (!SupportFunctions.isInputValid(input, 1, effectCounter -1)) {
-				return setRequestedAuthorizationEffects(effects);
+				setRequestedAuthorizationEffects(effects);
+				return;
 			}
 			
 			output = output+ " " +input;
 		}
-		int[] out = SupportFunctions.parseIntArray(output);
 		
-		return out;
-		
-		
-		
-		
+		serverStub.notifyObserversRRemote(output);
+	
 	}
 	
-	public int[] setFurtherCheckNeededEffect(Effect effect) {
-		String input = new String();
+	private String chooseExchangeResourcesEffect(Effect effect) {
+		String input;
+		String cost1;
+		String effect1;
+		String cost2;
+		String effect2;
+		cost1 = calculateCost(((ExchangeResourcesEffect) effect).getCost1());
+		effect1 = calculateEffect(((ExchangeResourcesEffect) effect).getEffect1());
+		cost2 = calculateCost(((ExchangeResourcesEffect) effect).getCost2());
+		effect2 = calculateEffect(((ExchangeResourcesEffect) effect).getEffect2());
+		print("1)Pay "+cost1+" to receive "+effect1);
+		print("2)Pay "+cost2+" to receive "+effect2);	
+		input = getInput();
+		if(SupportFunctions.timeout(input, this))
+			serverStub.notifyObserversRRemote(input);
+		if (!SupportFunctions.isInputValid(input, 1, 2)) {
+			return chooseExchangeResourcesEffect(effect);
+		}
+		return input;
+	}
+
+
+	public void setFurtherCheckNeededEffect(List<Effect> rAE, int[] fCN) {
+		
+		/*rAE = RequestedAuthorizationEffects
+		 *fCN = FurtherCheckNeededEffect -> it contains the indices of the effects of rAE that need a player choice
+		 */
+		String input = "CHECKNEEDED ";
 		print("Which of these options do you want to activate?");
 		print("After every number, press Enter");
 		print("");
 		
-		if (effect instanceof ExchangeResourcesEffect) {
-			String cost1 = new String();
-			String effect1 = new String();
-			String cost2 = new String();
-			String effect2 = new String();
-			cost1 = calculateCost(((ExchangeResourcesEffect) effect).getCost1());
-			effect1 = calculateEffect(((ExchangeResourcesEffect) effect).getEffect1());
-			cost2 = calculateCost(((ExchangeResourcesEffect) effect).getCost2());
-			effect2 = calculateEffect(((ExchangeResourcesEffect) effect).getEffect2());
-			print("1)Pay "+cost1+" to receive "+effect1);
-			print("2)Pay "+cost2+" to receive "+effect2);	
-			input =getInput();
-			if(SupportFunctions.timeout(input, this))
-				return null;
-			if (!SupportFunctions.isInputValid(input, 1, 2)) {
-				return setFurtherCheckNeededEffect(effect);
+		int cont = 0;
+		
+		while (cont < fCN.length) {
+			Effect effect = rAE.get(fCN[cont]);
+			if (effect instanceof ExchangeResourcesEffect) {
+				input += "RESOURCE ";
+				chooseExchangeResourcesEffect(effect);
+		
+			}
+			else if (effect instanceof TakeACardEffect) {
+				input += "CARD ";
+				if (((TakeACardEffect) effect).getCardType() == null) 
+					input += chooseATower();
+				else 
+					input += "DEFAULT ";
+				input += chooseACard();
+				input += chooseNrOfServants();
 			}
 			
+			cont++;
 		}
-		else if (effect instanceof TakeACardEffect) {
-			if (((TakeACardEffect) effect).getCardType() == null) {
-				print("1)Take a card from Territory Tower");
-				print("2)Take a card from Character Tower");
-				print("3)Take a card from Building Tower");
-				print("4)Take a card from Venture Tower");
-				input = getInput();
-				if(SupportFunctions.timeout(input, this))
-					return null;
-				if (!SupportFunctions.isInputValid(input, 1, 4)) {
-					return setFurtherCheckNeededEffect(effect);
-				}
-			}
-			print("Choose a card between 1,2,3,4 (starting from the bottom), then  press Enter");
-			
-			String string = getInput();
-			if(SupportFunctions.timeout(input, this))
-				return null;
-			if (!SupportFunctions.isInputValid(input, 1, 4)) {
-				return setFurtherCheckNeededEffect(effect);
-			}
-			input = input + " " + string;
-			print("How many servants do you want to use?");
-
-			string = getInput();
-			if(SupportFunctions.timeout(input, this))
-				return null;			
-			if (!SupportFunctions.isInputValid(input, 1, 100)) {
-				return setFurtherCheckNeededEffect(effect);
-			}
-			
-			input = input + " " + string;
-			
-			print("Which cost do you want to pay?");
-			print("If there's only one cost available, type 1 and press Enter");
-			
-			string = getInput();
-			if(SupportFunctions.timeout(input, this))
-				return null;
-			
-			if (!SupportFunctions.isInputValid(input, 1, 2)) {
-				return setFurtherCheckNeededEffect(effect);
-			}
-			
-			input = input + " " + string;
-		
-		}
-		
-		int[] out = SupportFunctions.parseIntArray(input);
-		return out;
-		
-		
+		serverStub.notifyObserversRRemote(input);
 	}
 	
+	private String chooseNrOfServants() {
+		String input = new String();
+	
+		print("How many servants do you want to use?");
+
+		input = getInput();
+		if(SupportFunctions.timeout(input, this))
+			return input;			
+		if (!SupportFunctions.isInputValid(input, 1, 100)) {
+			return chooseNrOfServants();
+		}
+		return input;
+	}
+
+
 	public String calculateCost(List<Resource> costs) {
 		String cost = new String();
 		int costQuantity;
@@ -397,23 +362,22 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return effect;
 		
 	}	
-	public Resource setDiscount(Resource rawMaterial) {
-		String input;
-		print("You can choose between two discounts, what do you prefer?");
-		print("1) "+ rawMaterial.getQuantity() +" Stone");
-		print("2) "+ rawMaterial.getQuantity() +" Wood");
+	public void setDiscount(List<Resource> rawMaterials) {
+		String input = "DISCOUNT ";
 		
-		input = getInput();
-		if(SupportFunctions.timeout(input, this))
-			return null;
-		if (!SupportFunctions.isInputValid(input, 1, 2)) {
-			return setDiscount(rawMaterial);	
+		for (int i = 0; i < rawMaterials.size(); i++) {
+			print("You can choose between two discounts, what do you prefer?");
+			print("1) "+ rawMaterials.get(i).getQuantity() +" Stone");
+			print("2) "+ rawMaterials.get(i).getQuantity() +" Wood");
+		
+			input += getInput();
+			if(SupportFunctions.timeout(input, this))
+				serverStub.notifyObserversRRemote(input);
+			if (!SupportFunctions.isInputValid(input, 1, 2)) {
+				input += "1 ";	
+			}
 		}
-		if (Integer.parseInt(input) == 1) 
-			return new Stones(rawMaterial.getQuantity());
-		else
-			return new Woods(rawMaterial.getQuantity());
-		
+		serverStub.notifyObserversRRemote(input);
 	}
 
 	public void printStateOfTheGame(String state) {
@@ -422,8 +386,50 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 
 
+	public String chooseATower() {
+		String input = new String();
+		
+		print("1)Take a card from Territory Tower");
+		print("2)Take a card from Character Tower");
+		print("3)Take a card from Building Tower");
+		print("4)Take a card from Venture Tower");
+		input = getInput();
+		if(SupportFunctions.timeout(input, this))
+			return input;
+		if (!SupportFunctions.isInputValid(input, 1, 4)) {
+			return chooseATower();
+		}
+		return input;
+	}
+		
+	public String chooseACard() {
+		String input = new String();
+		print("Choose a card between 1,2,3,4, then  press Enter");
+		
+		String string = getInput();
+		if(SupportFunctions.timeout(input, this))
+			return input;
+		if (!SupportFunctions.isInputValid(input, 1, 4)) {
+			return chooseACard();
+		}
+		input = input + " " + string;
+		print("Which cost do you want to pay?");
+		print("If there's only one cost available, type 1 and press Enter");
 	
-
+		string = getInput();
+		if(SupportFunctions.timeout(input, this))
+			return input;
+	
+		if (!SupportFunctions.isInputValid(input, 1, 2)) {
+			return chooseACard();
+		}
+	
+		input = input + " " + string;
+		
+		return input;
+	}
+		
+	
 
 	
 }
