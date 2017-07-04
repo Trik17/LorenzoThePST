@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
 import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
+import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
@@ -17,44 +20,56 @@ import it.polimi.ingsw.GC_04.timer.TimerJson;
 public class ViewCLI extends ViewClient implements Runnable{
 	
 	private static final long serialVersionUID = -2328795643634959640L;
-	static String strInput = ""; 
+	private String strInput = ""; 
 	private boolean timeout=false;
 	Object inputParameter1;
 	Object inputParameter2;
 	SetRun setRun;
-
+	private ScannerInputThread scanner;
+	
+	public ViewCLI() {
+		super();
+		this.scanner=ScannerInputThread.instance(this);
+		
+	} 
 	
 	private void print(String string) {
 		System.out.println(string);
 	}
 	
+	public synchronized String getStrInput(){
+		String str=strInput;
+		return str;
+	}
+	public synchronized void setStrInput(String string){
+		strInput=string;
+	}
+	
 	//TODO non syncron ma mgari semafori
 	private String getInput(){
-		ViewCLI.strInput = "";		
-//		Timer timer=new Timer();
-//		TimerTask task=new TimerTask(){
-//			public void run(){
-//				if( strInput.equals("") ){
-//					System.out.println( "Time out for input" );
-//					timeout=true;
-//				}
-//			}
-//		};	
-//		executor.submit(new ScannerInputThread());
-//		timer.schedule( task, TimerJson.getInputTimer()); //timer
-//		while(ViewCLI.strInput=="" && !timeout){
-//			
-//		}		
-//		timer.cancel(); 
-//		if (timeout){
-//			strInput="";
-//			timeout=false;
-//		}
-		Scanner reader = new Scanner(System.in);
-		ViewCLI.strInput = reader.nextLine();
-		//////////////////////////////////////////////////
+		setStrInput("");;		
+		Timer timer=new Timer();
+		TimerTask task=new TimerTask(){
+			public void run(){
+				if( getStrInput().equals("") ){
+					System.out.println( "Time out for input" );
+					timeout=true;
+				}
+			}
+		};			
+		timer.schedule( task, TimerJson.getInputTimer()); //timer
+		scanner.scan();
+		while(getStrInput()=="" && !timeout){			
+		}		
+		timer.cancel(); 
+				
+		if (timeout){
+			setStrInput("");
+			timeout=false;
+		}
 		
-		return ViewCLI.strInput+" ";
+		
+		return getStrInput()+" ";
 	}
 	
 	
