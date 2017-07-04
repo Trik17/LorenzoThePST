@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
@@ -25,7 +24,6 @@ import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.timer.TimerJson;
 import it.polimi.ingsw.GC_04.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
-import it.polimi.ingsw.GC_04.view.ServerSocketView;
 
 public class MainServer implements Runnable{
 	private Map<String,ClientRMIViewRemote> clients;
@@ -180,11 +178,11 @@ public class MainServer implements Runnable{
 			serverSocket = new ServerSocket(SOCKET_PORT);	
 			System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
 	
-//			while (true) {
-//				//Waits for a new client to connect
-//				Socket socket = serverSocket.accept();
-//	
-//				// creates the view (server side) associated with the new client
+			while (true) {
+				//Waits for a new client to connect
+				Socket socket = serverSocket.accept();
+	
+				// creates the view (server side) associated with the new client
 //				ServerSocketView view = new ServerSocketView(socket, this.currentController);
 //	
 	//			// the view observes the model
@@ -195,7 +193,7 @@ public class MainServer implements Runnable{
 	//
 	//			// a new thread handle the connection with the view
 	//			executor.submit(view);
-//			}
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
