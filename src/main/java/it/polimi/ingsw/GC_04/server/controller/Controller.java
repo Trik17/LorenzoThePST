@@ -290,7 +290,7 @@ public class Controller implements Observer<String,Resource> , Runnable {
 			currentPlayer++;
 		}
 		player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
-		lastPhase =!lastPhase;
+		lastPhase = !lastPhase;
 		
 		try {
 			model.setStateCLI();

@@ -180,7 +180,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 
 
 	private String chooseDice() {
-		String input = new String();
+		String input;
 		print("Choose the dice that you want to use between:");
 		print("1)BLACK");
 		print("2)ORANGE");
@@ -236,18 +236,18 @@ public class ViewCLI extends ViewClient implements Runnable{
 		for(Effect eff:effects) {
 			if (eff instanceof ExchangeResourcesEffect) {
 				if (((ExchangeResourcesEffect) eff).getCost2() == null) {
-					String cost = new String();
-					String effect = new String();
+					String cost = "";
+					String effect = "";
 					cost = cost + calculateCost(((ExchangeResourcesEffect) eff).getChosenCost());
 					effect = effect + calculateEffect(((ExchangeResourcesEffect) eff).getEffect());			
 					print(effectCounter+")Pay "+cost+" to receive "+effect);	
 					effectCounter++;	
 			
 				}else {
-					String cost1 = new String();
-					String effect1 = new String();
-					String cost2 = new String();
-					String effect2 = new String();
+					String cost1;
+					String effect1;
+					String cost2;
+					String effect2;
 					cost1 = calculateCost(((ExchangeResourcesEffect) eff).getCost1());
 					effect1 = calculateEffect(((ExchangeResourcesEffect) eff).getEffect1());
 					cost2 = calculateCost(((ExchangeResourcesEffect) eff).getCost2());
@@ -348,14 +348,14 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 	
 	private String chooseNrOfServants() {
-		String input = new String();
+		String input;
 	
 		print("How many servants do you want to use?");
 
 		input = getInput();
 		if(SupportFunctions.timeout(input, this))
 			return input;			
-		if (!SupportFunctions.isInputValid(input, 1, 100)) {
+		if (!SupportFunctions.isInputValid(input, 0, 100)) {
 			return chooseNrOfServants();
 		}
 		return input;
@@ -421,7 +421,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 
 
 	public String chooseATower() {
-		String input = new String();
+		String input;
 		
 		print("1)Take a card from Territory Tower");
 		print("2)Take a card from Character Tower");
@@ -437,28 +437,28 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 		
 	public String chooseACard() {
-		String input = new String();
+		String input;
 		print("Choose a card between 1,2,3,4, then  press Enter");
 		
-		String string = getInput();
+		input = getInput();
 		if(SupportFunctions.timeout(input, this))
 			return input;
 		if (!SupportFunctions.isInputValid(input, 1, 4)) {
 			return chooseACard();
 		}
-		input = input + " " + string;
+
 		print("Which cost do you want to pay?");
 		print("If there's only one cost available, type 1 and press Enter");
-	
-		string = getInput();
+		
+		String cost = getInput();
+		
 		if(SupportFunctions.timeout(input, this))
 			return input;
 	
-		if (!SupportFunctions.isInputValid(input, 1, 2)) {
+		if (!SupportFunctions.isInputValid(cost, 1, 2)) {
 			return chooseACard();
 		}
-	
-		input = input + " " + string;
+		input += cost;
 		
 		return input;
 	}

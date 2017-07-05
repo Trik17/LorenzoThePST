@@ -69,10 +69,10 @@ public class Initializer {
 		List<ActionSpace> aSpaces=jsonMapper.getActionSpaces();
 		
 		CouncilPalaceArea councilPalaceArea = new CouncilPalaceArea(players,aSpaces.get(20));
-		TerritoryTower territoryTower = new TerritoryTower(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0,3));
-		CharacterTower characterTower = new CharacterTower(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(4,7));
-		BuildingTower buildingTower = new BuildingTower(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(8,11));
-		VentureTower ventureTower = new VentureTower(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(12,15));
+		TerritoryTower territoryTower = new TerritoryTower(Arrays.copyOfRange(tCards, initialPosition, finalPosition), aSpaces.subList(0,4));
+		CharacterTower characterTower = new CharacterTower(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(4,8));
+		BuildingTower buildingTower = new BuildingTower(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(8,12));
+		VentureTower ventureTower = new VentureTower(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(12,16));
 		
 		MarketArea marketArea;
 		if (nrOfPlayers < 4)
