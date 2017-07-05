@@ -17,13 +17,14 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import it.polimi.ingsw.GC_04.JsonMapper;
-import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.controller.Controller;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.timer.TimerJson;
-import it.polimi.ingsw.GC_04.view.ServerRMIView;
-import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
+import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
+import it.polimi.ingsw.GC_04.server.controller.Controller;
+import it.polimi.ingsw.GC_04.server.controller.JsonMapper;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.timer.TimerJson;
+import it.polimi.ingsw.GC_04.server.view.ServerRMIView;
+import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
+import it.polimi.ingsw.GC_04.server.view.ServerSocketView;
 
 public class MainServer implements Runnable{
 	private Map<String,ClientRMIViewRemote> clients;
@@ -165,7 +166,6 @@ public class MainServer implements Runnable{
 	}
 	
 	public static void main(String[] args){
-
 		MainServer.instance();
 	}
 	
@@ -183,22 +183,17 @@ public class MainServer implements Runnable{
 				Socket socket = serverSocket.accept();
 	
 				// creates the view (server side) associated with the new client
-//				ServerSocketView view = new ServerSocketView(socket, this.currentController);
-//	
-	//			// the view observes the model
-	//			this.gioco.registerObserver(view);
-	//
-	//			// the controller observes the view
-	//			view.registerObserver(this.controller);
-	//
-	//			// a new thread handle the connection with the view
-	//			executor.submit(view);
+				ServerSocketView view = new ServerSocketView(socket, this.currentController);
+	
+				// the controller observes the view
+				view.registerObserver(this.currentController);
+	
+				// a new thread handle the connection with the view
+				executor.submit(view);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-	}
-	
+		}		
+	}	
 }

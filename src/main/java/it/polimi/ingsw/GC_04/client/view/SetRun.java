@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client;
+package it.polimi.ingsw.GC_04.client.view;
 
 public enum SetRun {
 

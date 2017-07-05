@@ -1,20 +1,20 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.resource.Coins;
-import it.polimi.ingsw.GC_04.model.resource.FaithPoints;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.model.resource.Servants;
-import it.polimi.ingsw.GC_04.model.resource.Stones;
-import it.polimi.ingsw.GC_04.model.resource.VictoryPoints;
-import it.polimi.ingsw.GC_04.model.resource.Woods;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.resource.Coins;
+import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.resource.Servants;
+import it.polimi.ingsw.GC_04.server.model.resource.Stones;
+import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
+import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 
 public class FinalScore {
 	

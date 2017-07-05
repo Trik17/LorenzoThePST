@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.model.ExtraDice;
-import it.polimi.ingsw.GC_04.model.effect.ExtraDiceProductionEffect;
+import it.polimi.ingsw.GC_04.server.model.ExtraDice;
+import it.polimi.ingsw.GC_04.server.model.effect.ExtraDiceProductionEffect;
 import testModel.TestPlayer;
 
 public class TestExtraDiceProduction extends TestPlayer{

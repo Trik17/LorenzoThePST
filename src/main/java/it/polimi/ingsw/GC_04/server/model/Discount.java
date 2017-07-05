@@ -1,15 +1,15 @@
-package it.polimi.ingsw.GC_04.model;
+package it.polimi.ingsw.GC_04.server.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.resource.*;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.resource.*;
 
 //se c'è raw material il controller deve chiedere quale delle due cose vuole che si scontino
 //occhio a non fare andare il costo sotto zero

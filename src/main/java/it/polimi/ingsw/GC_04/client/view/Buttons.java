@@ -1,5 +1,5 @@
 
-package it.polimi.ingsw.GC_04.gui;
+package it.polimi.ingsw.GC_04.client.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

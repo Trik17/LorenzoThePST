@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.model;
+package it.polimi.ingsw.GC_04.server.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.polimi.ingsw.GC_04.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 
 public class Production implements Serializable  {
 	/**

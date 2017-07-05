@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.model;
+package it.polimi.ingsw.GC_04.server.model;
 
 public enum DiceColor {
 	BLACK, ORANGE, WHITE, NEUTRAL;

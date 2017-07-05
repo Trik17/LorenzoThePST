@@ -1,9 +1,9 @@
-package it.polimi.ingsw.GC_04.model.effect;
+package it.polimi.ingsw.GC_04.server.model.effect;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.server.model.Player;
 
 public class ExtraDiceProductionEffect extends ExtraDiceEffect{
 

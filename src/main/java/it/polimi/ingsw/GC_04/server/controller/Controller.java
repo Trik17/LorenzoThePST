@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.server.controller;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -9,19 +9,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import it.polimi.ingsw.GC_04.Initializer;
-import it.polimi.ingsw.GC_04.JsonMapper;
-import it.polimi.ingsw.GC_04.Observer;
-import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.action.PassTurn;
-import it.polimi.ingsw.GC_04.model.action.TakeACard;
-import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
-import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.resource.*;
+import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.MainServer;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.action.Action;
+import it.polimi.ingsw.GC_04.server.model.action.PassTurn;
+import it.polimi.ingsw.GC_04.server.model.action.TakeACard;
+import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.resource.*;
 //TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
 //nella gestione della disconnessione e nel catch delle remote exception
 public class Controller implements Observer<String,Resource> , Runnable {

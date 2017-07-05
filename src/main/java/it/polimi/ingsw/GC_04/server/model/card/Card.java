@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.model.card;
+package it.polimi.ingsw.GC_04.server.model.card;
 
 import java.io.Serializable;
 

@@ -1,14 +1,14 @@
-package it.polimi.ingsw.GC_04.view;
+package it.polimi.ingsw.GC_04.server.view;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import it.polimi.ingsw.GC_04.Observable;
-import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.MainServer;
+import it.polimi.ingsw.GC_04.server.controller.Observable;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 
 // implements the methods. Given that this example is implemented using the Observer pattern, each methods only calls to

@@ -1,12 +1,13 @@
-package it.polimi.ingsw.GC_04.client;
+package it.polimi.ingsw.GC_04.client.view;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import it.polimi.ingsw.GC_04.JsonMapper;
-import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
+
+import it.polimi.ingsw.GC_04.server.controller.JsonMapper;
+import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 
 
 public abstract class ViewClient implements Serializable {

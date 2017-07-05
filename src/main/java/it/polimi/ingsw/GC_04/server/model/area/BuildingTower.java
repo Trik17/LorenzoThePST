@@ -1,9 +1,9 @@
-package it.polimi.ingsw.GC_04.model.area;
+package it.polimi.ingsw.GC_04.server.model.area;
 
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 
 public class BuildingTower extends Tower{
 

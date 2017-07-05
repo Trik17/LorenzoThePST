@@ -1,25 +1,25 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.area.Tower;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.effect.*;
-import it.polimi.ingsw.GC_04.model.resource.Coins;
-import it.polimi.ingsw.GC_04.model.resource.FaithPoints;
-import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
-import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.model.resource.Servants;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.area.Tower;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.effect.*;
+import it.polimi.ingsw.GC_04.server.model.resource.Coins;
+import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
+import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
+import it.polimi.ingsw.GC_04.server.model.resource.RawMaterial;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.resource.Servants;
 
 public class InputChoicesInterpreter {
 	private String type;

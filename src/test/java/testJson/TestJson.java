@@ -8,20 +8,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
-
-import it.polimi.ingsw.GC_04.JsonMapper;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
-import it.polimi.ingsw.GC_04.timer.TimerJson;
+import it.polimi.ingsw.GC_04.server.controller.JsonMapper;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
+import it.polimi.ingsw.GC_04.server.timer.TimerJson;
 
 
 

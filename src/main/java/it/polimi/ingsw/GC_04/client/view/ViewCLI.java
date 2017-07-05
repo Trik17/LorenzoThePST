@@ -1,17 +1,18 @@
-package it.polimi.ingsw.GC_04.client;
+package it.polimi.ingsw.GC_04.client.view;
 
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
-import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
-import it.polimi.ingsw.GC_04.model.effect.ResourceEffect;
-import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
-import it.polimi.ingsw.GC_04.controller.SupportFunctions;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.timer.TimerJson;
+
+import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
+import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.effect.ExchangeResourcesEffect;
+import it.polimi.ingsw.GC_04.server.model.effect.ResourceEffect;
+import it.polimi.ingsw.GC_04.server.model.effect.TakeACardEffect;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.timer.TimerJson;
 
 public class ViewCLI extends ViewClient implements Runnable{
 	

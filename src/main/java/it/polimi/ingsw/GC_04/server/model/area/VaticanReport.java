@@ -1,6 +1,6 @@
-package it.polimi.ingsw.GC_04.model.area;
+package it.polimi.ingsw.GC_04.server.model.area;
 
-import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
+import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
 
 public class VaticanReport {
 	

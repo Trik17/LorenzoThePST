@@ -1,29 +1,29 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.DiceColor;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.action.ErrorInput;
-import it.polimi.ingsw.GC_04.model.action.GoToTheCouncilPalace;
-import it.polimi.ingsw.GC_04.model.action.GoToTheMarket;
-import it.polimi.ingsw.GC_04.model.action.PassTurn;
-import it.polimi.ingsw.GC_04.model.action.RunHarvest;
-import it.polimi.ingsw.GC_04.model.action.RunProduction;
-import it.polimi.ingsw.GC_04.model.area.Area;
-import it.polimi.ingsw.GC_04.model.area.Tower;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.DiceColor;
+import it.polimi.ingsw.GC_04.server.model.FamilyMember;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.action.Action;
+import it.polimi.ingsw.GC_04.server.model.action.ErrorInput;
+import it.polimi.ingsw.GC_04.server.model.action.GoToTheCouncilPalace;
+import it.polimi.ingsw.GC_04.server.model.action.GoToTheMarket;
+import it.polimi.ingsw.GC_04.server.model.action.PassTurn;
+import it.polimi.ingsw.GC_04.server.model.action.RunHarvest;
+import it.polimi.ingsw.GC_04.server.model.action.RunProduction;
+import it.polimi.ingsw.GC_04.server.model.area.Area;
+import it.polimi.ingsw.GC_04.server.model.area.Tower;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class InputActionInterpreter {
 	private Action action;

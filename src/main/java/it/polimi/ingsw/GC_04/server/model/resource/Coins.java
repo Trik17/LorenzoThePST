@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.model.resource;
+package it.polimi.ingsw.GC_04.server.model.resource;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

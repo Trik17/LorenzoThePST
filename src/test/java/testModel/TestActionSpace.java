@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 
 public class TestActionSpace {
 	ActionSpace actionSpace;

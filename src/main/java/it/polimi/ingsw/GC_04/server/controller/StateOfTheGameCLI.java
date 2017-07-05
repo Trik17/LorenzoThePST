@@ -1,19 +1,19 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.List;
 import java.util.Map;
 
-import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.DiceColor;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.Dice;
+import it.polimi.ingsw.GC_04.server.model.DiceColor;
+import it.polimi.ingsw.GC_04.server.model.FamilyMember;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class StateOfTheGameCLI {
 

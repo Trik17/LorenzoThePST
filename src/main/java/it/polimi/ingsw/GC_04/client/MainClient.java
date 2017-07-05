@@ -5,9 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.StringTokenizer;
-
-import it.polimi.ingsw.GC_04.client.socket.ClientSocket;
+import it.polimi.ingsw.GC_04.client.view.ClientRMI;
 
 
 public class MainClient {

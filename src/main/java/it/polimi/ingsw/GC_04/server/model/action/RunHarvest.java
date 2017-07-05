@@ -1,14 +1,14 @@
-package it.polimi.ingsw.GC_04.model.action;
+package it.polimi.ingsw.GC_04.server.model.action;
 
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Harvest;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
-import it.polimi.ingsw.GC_04.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.FamilyMember;
+import it.polimi.ingsw.GC_04.server.model.Harvest;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 
 //TODO se ci sono meno giocatori non si puo avere tutto il raccolto
 public class RunHarvest extends Action{

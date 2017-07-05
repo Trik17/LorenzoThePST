@@ -1,13 +1,13 @@
-package it.polimi.ingsw.GC_04.model.effect;
+package it.polimi.ingsw.GC_04.server.model.effect;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.polimi.ingsw.GC_04.model.Dice;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.action.RunProduction;
+import it.polimi.ingsw.GC_04.server.model.Dice;
+import it.polimi.ingsw.GC_04.server.model.FamilyMember;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.action.RunProduction;
 
 public class RunProductionEffect extends ActionEffect {
 	/**

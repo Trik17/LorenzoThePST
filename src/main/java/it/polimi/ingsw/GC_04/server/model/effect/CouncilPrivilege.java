@@ -1,13 +1,13 @@
-package it.polimi.ingsw.GC_04.model.effect;
+package it.polimi.ingsw.GC_04.server.model.effect;
 
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.model.resource.Stones;
-import it.polimi.ingsw.GC_04.model.resource.Woods;
+import it.polimi.ingsw.GC_04.server.model.resource.RawMaterial;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.resource.Stones;
+import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 
 public class CouncilPrivilege extends ResourceEffect {
 	

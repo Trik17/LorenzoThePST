@@ -1,10 +1,10 @@
-package it.polimi.ingsw.GC_04.client;
+package it.polimi.ingsw.GC_04.client.view;
 
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import it.polimi.ingsw.GC_04.timer.TimerJson;
+import it.polimi.ingsw.GC_04.server.timer.TimerJson;
 
 public class ScannerInputThread implements Runnable {
 	private Scanner reader; 

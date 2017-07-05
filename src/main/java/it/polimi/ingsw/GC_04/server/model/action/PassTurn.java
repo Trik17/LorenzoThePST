@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.model.action;
+package it.polimi.ingsw.GC_04.server.model.action;
 
 public class PassTurn extends Action {
 

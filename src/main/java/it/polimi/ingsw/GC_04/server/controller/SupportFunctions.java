@@ -1,14 +1,14 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import it.polimi.ingsw.GC_04.client.ViewClient;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
-import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.client.view.ViewClient;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class SupportFunctions {
 

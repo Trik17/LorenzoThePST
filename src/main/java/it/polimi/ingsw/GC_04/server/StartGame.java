@@ -6,13 +6,13 @@ import java.util.Set;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import it.polimi.ingsw.GC_04.Initializer;
-import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.client.ViewCLI;
-import it.polimi.ingsw.GC_04.client.ViewClient;
-import it.polimi.ingsw.GC_04.controller.Controller;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
+import it.polimi.ingsw.GC_04.client.view.ViewCLI;
+import it.polimi.ingsw.GC_04.client.view.ViewClient;
+import it.polimi.ingsw.GC_04.server.controller.Controller;
+import it.polimi.ingsw.GC_04.server.controller.Initializer;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
 
 public class StartGame implements Runnable {
 	

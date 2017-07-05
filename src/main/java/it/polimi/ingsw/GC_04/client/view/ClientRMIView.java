@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client;
+package it.polimi.ingsw.GC_04.client.view;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -8,9 +8,9 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 //implements ClientViewRemote interface
 public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewRemote, Serializable {
 	/**

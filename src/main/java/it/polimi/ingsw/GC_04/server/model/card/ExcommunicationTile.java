@@ -1,9 +1,9 @@
-package it.polimi.ingsw.GC_04.model.card;
+package it.polimi.ingsw.GC_04.server.model.card;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.polimi.ingsw.GC_04.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 
 public class ExcommunicationTile extends Card{
 	

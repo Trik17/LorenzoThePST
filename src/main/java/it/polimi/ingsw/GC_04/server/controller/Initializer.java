@@ -1,30 +1,30 @@
-package it.polimi.ingsw.GC_04;
+package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.FamilyColor;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.area.BuildingTower;
-import it.polimi.ingsw.GC_04.model.area.CharacterTower;
-import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
-import it.polimi.ingsw.GC_04.model.area.HarvestArea;
-import it.polimi.ingsw.GC_04.model.area.MarketArea;
-import it.polimi.ingsw.GC_04.model.area.ProductionArea;
-import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
-import it.polimi.ingsw.GC_04.model.area.VaticanReport;
-import it.polimi.ingsw.GC_04.model.area.VentureTower;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.ExcommunicationTile;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.FamilyColor;
+import it.polimi.ingsw.GC_04.server.model.FamilyMember;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.area.BuildingTower;
+import it.polimi.ingsw.GC_04.server.model.area.CharacterTower;
+import it.polimi.ingsw.GC_04.server.model.area.CouncilPalaceArea;
+import it.polimi.ingsw.GC_04.server.model.area.HarvestArea;
+import it.polimi.ingsw.GC_04.server.model.area.MarketArea;
+import it.polimi.ingsw.GC_04.server.model.area.ProductionArea;
+import it.polimi.ingsw.GC_04.server.model.area.TerritoryTower;
+import it.polimi.ingsw.GC_04.server.model.area.VaticanReport;
+import it.polimi.ingsw.GC_04.server.model.area.VentureTower;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 
 public class Initializer {
 	private int initialPosition = 0;

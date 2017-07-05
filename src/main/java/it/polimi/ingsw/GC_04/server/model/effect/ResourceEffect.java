@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.model.effect;
+package it.polimi.ingsw.GC_04.server.model.effect;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 
 @JsonTypeInfo(use = Id.NAME,

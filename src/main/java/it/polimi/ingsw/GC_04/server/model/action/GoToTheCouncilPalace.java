@@ -1,9 +1,9 @@
-package it.polimi.ingsw.GC_04.model.action;
+package it.polimi.ingsw.GC_04.server.model.action;
 
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
+import it.polimi.ingsw.GC_04.server.model.FamilyMember;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.area.CouncilPalaceArea;
 
 public class GoToTheCouncilPalace extends Action{
 

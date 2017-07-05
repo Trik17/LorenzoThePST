@@ -1,9 +1,10 @@
-package it.polimi.ingsw.GC_04.model.area;
+package it.polimi.ingsw.GC_04.server.model.area;
 
 import java.util.ArrayList;
 import java.util.List;
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.Player;
+
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.Player;
 
 public class CouncilPalaceArea extends Area{ 
 	private static final long serialVersionUID = 2892765005021763947L;

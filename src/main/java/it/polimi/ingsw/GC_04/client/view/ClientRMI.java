@@ -1,10 +1,11 @@
-package it.polimi.ingsw.GC_04.client;
+package it.polimi.ingsw.GC_04.client.view;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import it.polimi.ingsw.GC_04.view.ServerRMIViewRemote;
+
+import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 
 
 public class ClientRMI {

@@ -1,26 +1,26 @@
-package it.polimi.ingsw.GC_04.model;
+package it.polimi.ingsw.GC_04.server.model;
 
 import java.io.Serializable;
 import java.util.Map;
 
-import it.polimi.ingsw.GC_04.Observable;
-import it.polimi.ingsw.GC_04.controller.StateOfTheGameCLI;
-import it.polimi.ingsw.GC_04.model.action.Action;
-import it.polimi.ingsw.GC_04.model.area.BuildingTower;
-import it.polimi.ingsw.GC_04.model.area.CharacterTower;
-import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
-import it.polimi.ingsw.GC_04.model.area.HarvestArea;
-import it.polimi.ingsw.GC_04.model.area.MarketArea;
-import it.polimi.ingsw.GC_04.model.area.ProductionArea;
-import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
-import it.polimi.ingsw.GC_04.model.area.Tower;
-import it.polimi.ingsw.GC_04.model.area.VaticanReport;
-import it.polimi.ingsw.GC_04.model.area.VentureTower;
-import it.polimi.ingsw.GC_04.model.card.BuildingCard;
-import it.polimi.ingsw.GC_04.model.card.CharacterCard;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.card.TerritoryCard;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.controller.Observable;
+import it.polimi.ingsw.GC_04.server.controller.StateOfTheGameCLI;
+import it.polimi.ingsw.GC_04.server.model.action.Action;
+import it.polimi.ingsw.GC_04.server.model.area.BuildingTower;
+import it.polimi.ingsw.GC_04.server.model.area.CharacterTower;
+import it.polimi.ingsw.GC_04.server.model.area.CouncilPalaceArea;
+import it.polimi.ingsw.GC_04.server.model.area.HarvestArea;
+import it.polimi.ingsw.GC_04.server.model.area.MarketArea;
+import it.polimi.ingsw.GC_04.server.model.area.ProductionArea;
+import it.polimi.ingsw.GC_04.server.model.area.TerritoryTower;
+import it.polimi.ingsw.GC_04.server.model.area.Tower;
+import it.polimi.ingsw.GC_04.server.model.area.VaticanReport;
+import it.polimi.ingsw.GC_04.server.model.area.VentureTower;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class Model extends Observable<Action, Resource> implements Serializable{
 	

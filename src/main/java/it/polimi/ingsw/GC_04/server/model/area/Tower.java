@@ -1,8 +1,8 @@
-package it.polimi.ingsw.GC_04.model.area;
+package it.polimi.ingsw.GC_04.server.model.area;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 
 public abstract class Tower extends ColorReastrictedArea {
 	private static final long serialVersionUID = -7474104011804860543L;

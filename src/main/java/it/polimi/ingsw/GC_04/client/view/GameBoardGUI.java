@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.gui;
+package it.polimi.ingsw.GC_04.client.view;
 
 
 import java.applet.AudioClip;
@@ -38,7 +38,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
+import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
 
 
 

@@ -1,11 +1,11 @@
-package it.polimi.ingsw.GC_04.model.resource;
+package it.polimi.ingsw.GC_04.server.model.resource;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import it.polimi.ingsw.GC_04.model.Player;
+import it.polimi.ingsw.GC_04.server.model.Player;
 
 public class VictoryPoints extends Resource{
 	

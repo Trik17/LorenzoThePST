@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04;
+package it.polimi.ingsw.GC_04.server.controller;
 
 public interface Observer<A,R> {
 	

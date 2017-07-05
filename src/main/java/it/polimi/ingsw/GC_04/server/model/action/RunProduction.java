@@ -1,15 +1,15 @@
-package it.polimi.ingsw.GC_04.model.action;
+package it.polimi.ingsw.GC_04.server.model.action;
 
 
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
-import it.polimi.ingsw.GC_04.model.FamilyMember;
-import it.polimi.ingsw.GC_04.model.Model;
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.Production;
-import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
-import it.polimi.ingsw.GC_04.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.FamilyMember;
+import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.Production;
+import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 
 public class RunProduction extends Action {
 	 /**

@@ -1,9 +1,9 @@
-package it.polimi.ingsw.GC_04.model.area;
+package it.polimi.ingsw.GC_04.server.model.area;
 
 import java.io.Serializable;
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 
 public abstract class Area implements Serializable {
 	/**

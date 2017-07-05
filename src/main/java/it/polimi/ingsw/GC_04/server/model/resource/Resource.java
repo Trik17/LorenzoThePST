@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.model.resource;
+package it.polimi.ingsw.GC_04.server.model.resource;
 
 import java.io.Serializable;
 import java.util.List;

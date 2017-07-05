@@ -1,18 +1,18 @@
-package it.polimi.ingsw.GC_04.controller;
+package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.model.Player;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
-import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
-import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
-import it.polimi.ingsw.GC_04.model.resource.RawMaterial;
-import it.polimi.ingsw.GC_04.model.resource.Resource;
-import it.polimi.ingsw.GC_04.model.resource.Stones;
-import it.polimi.ingsw.GC_04.model.resource.Woods;
+import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.effect.ExchangeResourcesEffect;
+import it.polimi.ingsw.GC_04.server.model.effect.TakeACardEffect;
+import it.polimi.ingsw.GC_04.server.model.resource.RawMaterial;
+import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.resource.Stones;
+import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 
 public class ClonedAction {
 	
