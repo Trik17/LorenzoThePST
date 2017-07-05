@@ -10,13 +10,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
-import it.polimi.ingsw.GC_04.model.area.BuildingTower;
-import it.polimi.ingsw.GC_04.model.area.CharacterTower;
-import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
 import it.polimi.ingsw.GC_04.model.area.Tower;
-import it.polimi.ingsw.GC_04.model.area.VentureTower;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
@@ -57,7 +54,7 @@ public abstract class DevelopmentCard extends Card{
 	
 
 
-	public abstract TakeACard takeCard(Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost);
+	public abstract TakeACard takeCard(Model model, Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost);
 	
 	public List<Resource> getCost1(){
 		return cost1;
@@ -74,16 +71,16 @@ public abstract class DevelopmentCard extends Card{
 	}
 	
 	
-	public Tower getTower() {
+	public Tower getTower(Model model) {
 		
 		if (this instanceof TerritoryCard) 
-			return TerritoryTower.instance();
+			return model.getTower(new TerritoryCard());
 		else if (this instanceof BuildingCard) 
-			return BuildingTower.instance();
+			return model.getTower(new BuildingCard());
 		else if (this instanceof VentureCard) 
-			return VentureTower.instance();
+			return model.getTower(new VentureCard());
 		else
-			return CharacterTower.instance();
+			return model.getTower(new CharacterCard());
 			
 		
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.area.Area;
 import it.polimi.ingsw.GC_04.model.area.ColorReastrictedArea;
@@ -20,6 +21,7 @@ public abstract class Action implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 4204746344145065227L;
+	protected Model model;
 	protected Player player;
 	protected ActionSpace aSpace;
 	protected FamilyMember fMember;
@@ -32,7 +34,8 @@ public abstract class Action implements Serializable{
 	
 	public Action() {}
 	
-	public Action(Player player, FamilyMember fMember, int servants) {
+	public Action(Model model, Player player, FamilyMember fMember, int servants) {
+		this.model = model;
 		this.player = player;
 		this.fMember = fMember;
 		this.value = fMember.getDice().getValue() + servants;

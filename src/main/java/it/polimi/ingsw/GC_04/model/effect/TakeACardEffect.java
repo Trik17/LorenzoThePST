@@ -8,12 +8,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_04.model.ActionSpace;
 import it.polimi.ingsw.GC_04.model.Dice;
 import it.polimi.ingsw.GC_04.model.FamilyMember;
+import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.resource.Resource;
 
 public class TakeACardEffect extends ActionEffect {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8953133432924803293L;
 	private DevelopmentCard cardType;
 	private TakeACard takeACard;
 	private List<Resource> discount;
@@ -27,14 +32,14 @@ public class TakeACardEffect extends ActionEffect {
 		
 		}
 
-	public void setParameters(Player player,DevelopmentCard card, ActionSpace aSpace,int servants,List<Resource> cost) {
+	public void setParameters(Model model,Player player,DevelopmentCard card, ActionSpace aSpace,int servants,List<Resource> cost) {
 		FamilyMember fMember = new FamilyMember(dice);
 		Resource.subtractResource(cost, discount);
 		try{if(card.getClass().equals(cardType.getClass()))
-			takeACard = new TakeACard(player, card, aSpace, fMember, servants, cost);
+			takeACard = new TakeACard(model, player, card, aSpace, fMember, servants, cost);
 		//altrimenti richiama il controller
 		}catch (NullPointerException e) {
-			takeACard = new TakeACard(player, card, aSpace, fMember, servants, cost);
+			takeACard = new TakeACard(model, player, card, aSpace, fMember, servants, cost);
 		}
 	}
 	

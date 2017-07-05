@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client.rmi;
+package it.polimi.ingsw.GC_04.client;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -15,8 +15,9 @@ public class ClientRMI {
 	private ClientRMIView rmiView;
 	private String username;
 	
-	public ClientRMI(String username) {
+	public ClientRMI(String username) throws RemoteException, NotBoundException {
 		this.username=username;
+		clientConnection();
 	}
 /*
 	private String ask(String print){

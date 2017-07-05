@@ -1,37 +1,30 @@
 package it.polimi.ingsw.GC_04.controller;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.Observer;
-import it.polimi.ingsw.GC_04.client.rmi.ClientRMIViewRemote;
-import it.polimi.ingsw.GC_04.model.ActionSpace;
+import it.polimi.ingsw.GC_04.client.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.model.Model;
 import it.polimi.ingsw.GC_04.model.Player;
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.model.action.TakeACard;
-import it.polimi.ingsw.GC_04.model.area.BuildingTower;
-import it.polimi.ingsw.GC_04.model.area.CharacterTower;
-import it.polimi.ingsw.GC_04.model.area.CouncilPalaceArea;
-import it.polimi.ingsw.GC_04.model.area.TerritoryTower;
-import it.polimi.ingsw.GC_04.model.area.Tower;
-import it.polimi.ingsw.GC_04.model.area.VaticanReport;
-import it.polimi.ingsw.GC_04.model.area.VentureTower;
-import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
-import it.polimi.ingsw.GC_04.model.effect.ExchangeResourcesEffect;
-import it.polimi.ingsw.GC_04.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 import it.polimi.ingsw.GC_04.server.MainServer;
-
-public class Controller implements Observer<Action,Resource> {
+//TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
+//nella gestione della disconnessione e nel catch delle remote exception
+public class Controller implements Observer<String,Resource> , Runnable {
 	
 	private final static int FINALPERIOD = 3;
 	private final static int FINALTURN = 4;
@@ -46,10 +39,19 @@ public class Controller implements Observer<Action,Resource> {
 	private TimerTask task;
 	private MainServer server;
 
+	private ExecutorService executor;
+//	private String resource;
+	private AtomicBoolean isWaiting;
+	
+	private ClonedAction clonedAction;
+
 	public Controller(Model model,MainServer server) {
 		this.model = model;
+		clonedAction = new ClonedAction();
 		this.server=server;
 		JsonMapper.TimerFromJson();
+		this.isWaiting=new AtomicBoolean(false);
+		this.executor = Executors.newCachedThreadPool();
 	}
 	
 	
@@ -75,7 +77,7 @@ public class Controller implements Observer<Action,Resource> {
 		if (!isPlayerConnected(player)){
 			updateTurn();
 			chooseAction();
-			
+			return;
 		}		
 //		this.timer=new Timer();
 //		this.task=new TimerTask(){
@@ -90,6 +92,7 @@ public class Controller implements Observer<Action,Resource> {
 			views.get(player).setState(model.getStateCLI());
 			views.get(player).chooseAction();
 		} catch (RemoteException e) {
+			e.printStackTrace();//TODO CANCELLA
 			disconnect(player);
 		}
 	}
@@ -112,9 +115,8 @@ public class Controller implements Observer<Action,Resource> {
 	}
 	
 	public void initialize(Player[] players){
-		this.initializer = new Initializer(players);
-		CouncilPalaceArea.instance();
-		this.player = CouncilPalaceArea.getTurnOrder()[0].getName();
+		this.initializer = new Initializer(players,this.model);
+		this.player = model.getCouncilPalace().getTurnOrder()[0].getName();
 		model.setStateCLI();
 		startGame();
 	}
@@ -128,74 +130,8 @@ public class Controller implements Observer<Action,Resource> {
 		councilPrivileges.get(cont).setCouncilPrivilege(resource);
 		
 	}
-	private int[] setFurtherCheckNeeded(List<Effect> requestedAuthorizationEffects) {
-		//it stores in an array the indices of the Resources that offer a choice
-		int[] furtherCheckNeeded = new int[0];
-		if (!requestedAuthorizationEffects.isEmpty()) {
-			furtherCheckNeeded = new int[requestedAuthorizationEffects.size()-1];
-			int cont = 0;
-			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
-				if (requestedAuthorizationEffects.get(i) instanceof ExchangeResourcesEffect)
-					if (!(((ExchangeResourcesEffect) requestedAuthorizationEffects.get(i)).getCost2() == null)) {
-						furtherCheckNeeded[cont] = i;
-						cont ++;
-					}
-			}
-			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
-				if (requestedAuthorizationEffects.get(i) instanceof TakeACardEffect) {
-					furtherCheckNeeded[cont] = i;
-					cont ++;
-					}
-			}
-			
-		}
-		return furtherCheckNeeded;
-	}
 	
-	public void setChoice(List<Effect> requestedAuthorizationEffects, int index,Player player) throws RemoteException {
-		Effect effect = requestedAuthorizationEffects.get(index);
-		int[] choice = views.get(player).setFurtherCheckNeededEffect(effect);
-		if (choice == null)
-			return;
-		else if (effect instanceof ExchangeResourcesEffect) {
-			if (choice[0] == 1)
-				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect1(), ((ExchangeResourcesEffect) effect).getCost1());
-			else
-				((ExchangeResourcesEffect) effect).setEffect(((ExchangeResourcesEffect) effect).getEffect2(), ((ExchangeResourcesEffect) effect).getCost2());		
-		}
-		else if (effect instanceof TakeACardEffect) {
-			Tower tower;
-			if (choice.length == 4) {
-				
-				switch (choice[0]) {
-				case 1:
-					tower = TerritoryTower.instance();
-					break;
-				case 2:
-					tower = CharacterTower.instance();
-					break;
-				case 3:
-					tower = BuildingTower.instance();
-					break;
-				default:
-					tower = VentureTower.instance();
-					break;
-				}
-			}else {
-				tower = ((TakeACardEffect) effect).getCardType().getTower();
-			}
-			DevelopmentCard card = tower.getCards()[choice[1] -1];
-			ActionSpace aSpace = tower.getASpaces().get(choice[1] -1);
-			int servants = choice[2];
-			List<Resource> cost = new ArrayList<Resource>();
-			if (choice[3] == 1)
-				cost = tower.getCards()[choice[1] -1].getCost1();
-			else
-				cost = tower.getCards()[choice[1] -1].getCost2();;
-				((TakeACardEffect) effect).setParameters(player,card,aSpace,servants,cost);
-		}
 	
-	}
 	
 	private boolean isPlayerConnected(Player player){
 		String name=player.getName();
@@ -212,132 +148,141 @@ public class Controller implements Observer<Action,Resource> {
 		
 	}
 	
+	private void setCouncilPrivilege(int nrOfPrivileges) {
 		
+		try {
+			views.get(player).setCouncilPrivilege(nrOfPrivileges);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+	}
 	
 	@Override
-	public synchronized void update(Action action)  {
+	public void update(String input)  {
+		Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
+		InputActionInterpreter interpreter = new InputActionInterpreter(input, model, currPlayer);
 		
-			
+		Action action = interpreter.getAction();
 	try{
+		if (action instanceof TakeACard) {
+			if (((TakeACard) action).getCard() == null){
+				views.get(player).print("You can't do this move");
+				chooseAction();
+				return;
+			}
+			
+			clonedAction.setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
+			
+			if (!clonedAction.getRawMaterials().isEmpty()) {
+				synchronized(this){
+					askPlayersDiscounts();
+					isWaiting.set(true);
+					while(isWaiting.get()){
+						wait(800);		
+					}
+				}
+			}
+				
+			
+			action.setDiscount(clonedAction.getDiscount());	
+		}
+		
+//		if (action.getClass().equals(ErrorInput.class)) {
+//			chooseAction();
+//			return;
+//		}
 		if (action.getClass().equals(PassTurn.class) || !isPlayerConnected(action.getPlayer())) {
 			updateTurn();
 			chooseAction();
 			return;
 		}
 		action.checkExtraordinaryEffect();
-		Resource privilege;
-		List<CouncilPrivilege> councilPrivileges = SupportFunctions.cloneCouncilPrivilege(action.getCouncilPrivileges());
+			
+		int nrOfPrivileges = action.getCouncilPrivileges().size();
 		
-		int cont = 0;
-		while(cont < councilPrivileges.size()) {
-			privilege = views.get(player).setCouncilPrivilege();
-			setCouncilPrivilege(councilPrivileges,privilege,cont);
-			cont++;
-			/* it clones all of the instances of CouncilPrivilege present in the effects of the action
-			 * and ask the client which privilege he wants to apply, then set the parameters chosen in the clone
-			 */
+		if (nrOfPrivileges != 0) {
+			synchronized (this) {
+				setCouncilPrivilege(nrOfPrivileges);
+				isWaiting.set(true);
+				while(isWaiting.get()){
+					wait(800);		
+				}
+			}				
 		}
-		List<Effect> requestedAuthorizationEffects = SupportFunctions.cloneEffects(action.getRequestedAuthorizationEffects());
-		int[] furtherCheckNeeded = setFurtherCheckNeeded(requestedAuthorizationEffects);
-	
-		requestedAuthorizationEffects = organizeExchangeResourcesEffects(requestedAuthorizationEffects);
-		int[] requestedEffects = views.get(player).setRequestedAuthorizationEffects(requestedAuthorizationEffects); //it returns the indices of the effects chosen by the player
+		clonedAction.setRequestedAuthorizationEffects(SupportFunctions.cloneEffects(action.getRequestedAuthorizationEffects()));
 		
-		if (furtherCheckNeeded.length != 0 && requestedEffects.length != 0) {
-		//it asks the player which choice he wants to make between those proposed
-			for (int i:furtherCheckNeeded) {
-				for (int j: requestedEffects) {
-					if (furtherCheckNeeded[i] == requestedEffects[j]) {
-						setChoice(requestedAuthorizationEffects, requestedEffects[j],action.getPlayer());
-					}
+		if (!clonedAction.getRequestedAuthorizationEffects().isEmpty()) {
+			synchronized (this) {
+				askPlayerAuthorizations(clonedAction.getRequestedAuthorizationEffects());
+				isWaiting.set(true);
+				while(isWaiting.get()){
+					wait(800);		
 				}
 			}
-		}
-		List<Resource> discount = new ArrayList<Resource>();
-		if (action instanceof TakeACard) {
-			if (((TakeACard) action).getCard() == null){
-				System.out.println("You can't do this move");
-				chooseAction();
-				return;
-			}
-			discount = setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
 			
 		}
+		
 		if(action.isApplicable()) {
-			action.setRequestedAuthorizationEffects(requestedAuthorizationEffects);
-			action.setCouncilPrivilege(councilPrivileges);
-			action.setDiscount(discount);
+			action.setRequestedAuthorizationEffects(clonedAction.getRequestedAuthorizationEffects());
+			action.setCouncilPrivilege(clonedAction.getCouncilPrivileges());
 			action.apply(); 
 			
 		}else {
-			System.out.println("You can't do this move");
+			views.get(player).print("You can't do this move");
 			chooseAction();
 			return;
 		}
 		updateTurn();
 		stateOfTheGame();
-
 		chooseAction();
+		return;
 		}catch(RemoteException e){
-			updateTurn();
-			chooseAction();
+			disconnect(player);//TODO giusto?
+			return;
 			
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
+	private void askPlayersDiscounts() {
+		try {
+			views.get(player).setDiscount(clonedAction.getRawMaterials());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	private void askPlayerAuthorizations(List<Effect> requestedAuthorizationEffects) {
+		try {
+			views.get(player).setRequestedAuthorizationEffects(requestedAuthorizationEffects);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	private void stateOfTheGame() throws RemoteException {
 		views.get(player).stateOfTheGame(model.getStateCLI());
 	}
 
 
-	public List<Resource> setDiscount(Player player, DevelopmentCard card) {
-		//this method uploads the action's discounts accumulated by the player 
-		List<Resource> discounts;
-		List<Resource> myDiscounts = SupportFunctions.cloneResources(player.getDiscount().getDiscount(card));
-		if (myDiscounts.isEmpty())
-			return new ArrayList<>();
-		if (!myDiscounts.stream().anyMatch(res -> res.getClass().equals(RawMaterial.class)))
-			discounts = myDiscounts;
-		else {
-			myDiscounts.forEach(res -> {if (res instanceof RawMaterial)
-				try {
-					res = views.get(player).setDiscount(res);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}});
-			discounts = myDiscounts;
-		}
-		return discounts;
-			
-			
-	}
 	
-	public List<Effect> organizeExchangeResourcesEffects(List<Effect> requestedAuthorizationEffects) {
-		//it finds ExchangeResourcesEffect that offer only one effect and sets it as chosen effect
-		for (Effect eff:requestedAuthorizationEffects) {
-			if (eff instanceof ExchangeResourcesEffect)
-				if (((ExchangeResourcesEffect) eff).getCost2() == null) {
-					((ExchangeResourcesEffect) eff).setEffect(((ExchangeResourcesEffect) eff).getEffect1(), ((ExchangeResourcesEffect) eff).getCost1());
-				}
-		}
-		return requestedAuthorizationEffects;
+	public /*synchronized*/ void updateTurn() {
+		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
-	}
-
-	public void setFurtherCheckNeededEffect(List<Effect> effects,int index) {
-		if (effects.get(index) instanceof ExchangeResourcesEffect) {
-			
-		}
-	}
-	
-	public void updateTurn() {//TODO: tutto
-		int nrOfPlayers = CouncilPalaceArea.getTurnOrder().length -1;
-		
-		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers]))
+		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers]))
 			//TODO: final score
+			
+			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
 			return;
-		else if (player.equals(CouncilPalaceArea.getTurnOrder()[nrOfPlayers])) {
+		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
 			if (lastPhase) {
 				excommunicationsManagement();
 				model.incrementPeriod();
@@ -347,9 +292,15 @@ public class Controller implements Observer<Action,Resource> {
 		}else {
 			currentPlayer++;
 		}
-		player = CouncilPalaceArea.getTurnOrder()[currentPlayer].getName();
+		player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
 		lastPhase =!lastPhase;
-		model.setStateCLI();
+		
+		try {
+			model.setStateCLI();
+		
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 		
 	}
 
@@ -357,7 +308,7 @@ public class Controller implements Observer<Action,Resource> {
 	private void excommunicationsManagement() {
 		views.forEach((player,view) -> {
 			try {
-				view.excommunicationManagement(VaticanReport.instance().getExcommunication(model.getPeriod()).getDescription());
+				view.excommunicationManagement(model.getVaticanReport().getExcommunication(model.getPeriod()).getDescription());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -376,6 +327,61 @@ public class Controller implements Observer<Action,Resource> {
 			}			
 		}			
 		
+		
+	}
+	/*UpdateR :
+	 * it is the method called from the clients (using the observer pattern) to 
+	 * notify his choises requested by the functions of the controller 
+	 * 1)askPlayersDiscounts
+	 * 2)askPlayerChoices
+	 * 3)askPlayerAuthorizations
+	 * 4)askPlayerChoices
+	 */
+	
+	@Override
+	public void updateR(String resource) {
+//		this.resource=resource;
+//		executor.submit(this);
+		InputChoicesInterpreter interpreter = new InputChoicesInterpreter(resource);
+		String type = interpreter.getType();
+		if (type.equals("COUNCIL")){
+			clonedAction.setCouncilPrivileges(interpreter.getEffects());
+			isWaiting.set(false);
+			notify();
+		}
+		else if (type == "AUTHORIZATION") {
+			clonedAction.setRequestedEffects(interpreter.getRequestedEffects());
+			askPlayerChoices(clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());	
+			
+		}
+		else if (type.equals("CHECKNEEDED")) {
+			Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
+			InputChoicesInterpreter interpreter2 = new InputChoicesInterpreter(model,currPlayer,resource,clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());
+			clonedAction.setRequestedAuthorizationEffects(interpreter2.getEffects());
+			isWaiting.set(false);
+			notify();
+		}
+		else if (type.equals("DISCOUNT")) {
+			clonedAction.setRawMaterialsDiscount(resource);
+			isWaiting.set(false);
+			notify();
+		}
+	}
+
+	private void askPlayerChoices(List<Effect> requestedAuthorizationEffects, int[] furtherCheckNeeded) {
+		 try {
+			views.get(player).setFurtherCheckNeededEffect(requestedAuthorizationEffects,furtherCheckNeeded);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
+	@Override
+	public void run() {
 		
 	}
 	

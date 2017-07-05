@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client.rmi;
+package it.polimi.ingsw.GC_04.client;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -19,13 +19,13 @@ public interface ClientRMIViewRemote extends Remote {
 
 	public void chooseAction()throws RemoteException;
 
-	public int[] setFurtherCheckNeededEffect(Effect effect)throws RemoteException;
+	public void setFurtherCheckNeededEffect(List<Effect> requestedAuthorizationEffects, int[] furtherCheckNeeded)throws RemoteException;
 
-	public Resource setCouncilPrivilege()throws RemoteException;
+	public void setCouncilPrivilege(int nrOfPrivileges)throws RemoteException;
 
-	public int[] setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects)throws RemoteException;
+	public void setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects)throws RemoteException;
 
-	public Resource setDiscount(Resource res)throws RemoteException;
+	public void setDiscount(List<Resource> rawMaterials)throws RemoteException;
 	
 	public ServerRMIViewRemote getServerStub() throws RemoteException;
 
@@ -35,7 +35,7 @@ public interface ClientRMIViewRemote extends Remote {
 
 	public void setState(String stateCLI)throws RemoteException;
 
-	public void print(String username)  throws RemoteException;
+	public void print(String string)  throws RemoteException;
 
 	public void notifyReconnection(String username) throws RemoteException;
 	
