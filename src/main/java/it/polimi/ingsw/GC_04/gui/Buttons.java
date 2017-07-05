@@ -56,7 +56,7 @@ public class Buttons extends JFrame implements ActionListener{
 		
 		labelCard.setLayout(null);
 		label = new JLabel("Do you want to take this card?");
-		label.setForeground(Color.darkGray);
+		label.setForeground(Color.black);
 		
 		button1 = new JButton("Yes");
 		button2 = new JButton("No");
@@ -116,7 +116,7 @@ public class Buttons extends JFrame implements ActionListener{
 			BlackFMember.setForeground(Color.white);
 			NeutralFMember.setBackground(Color.LIGHT_GRAY);
 			WhiteFMember.setBackground(Color.white);
-			OrangeFMember.setBackground(Color.orange);
+			OrangeFMember.setBackground(Color.getHSBColor(100, 1200, 5000));
 			group.add(NeutralFMember);
 			group.add(BlackFMember);
 			group.add(WhiteFMember);

@@ -14,6 +14,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.awt.Panel;
 import java.awt.TextField;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -44,6 +45,8 @@ import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
 
 
 public class GameBoardGUI extends JFrame implements ActionListener {
+	private Color colorC;
+	private Color colorV;
 	private ImageIcon gameboard;
 	private ImageIcon punchboard;
 	private ImageIcon personalTile;
@@ -122,19 +125,15 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	
 	
 	public GameBoardGUI() throws IOException, InterruptedException {
-		
+		setExtendedState(MAXIMIZED_BOTH);
 		this.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage				//to change the icon in the frame
 				(this.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
 		setTitle("Lorenzo il Magnifico");
-		//setLocation(0,0);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//getContentPane().setLayout(new FlowLayout(5));
 		dimension = new Dimension(1358, 720);
 		setSize(dimension);
 		setLayout(new BorderLayout());
 		setPreferredSize(getSize(dimension));
-		setPreferredSize(getSize());
-		//getPreferredSize();
 		setResizable(true);
 		
 		
@@ -174,6 +173,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		gameboard = new ImageIcon(getClass().getResource("/immagini/gameboardRid.png"));	
 		Image img = gameboard.getImage();
 		Image newimg = img.getScaledInstance(500, 700, Image.SCALE_DEFAULT);
+		
 		gameboard = new ImageIcon(newimg);
 		label1 = new JLabel(gameboard);
 		//getContentPane().add(label1);
@@ -232,7 +232,6 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		
 		getContentPane().add(panel);
 		
-		
 		label1.setBounds(5,5, 500, 700);
 		label2.setBounds(550,50,500,352);
 		label3.setBounds(510, 50,50,352);
@@ -244,7 +243,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		panel.add(label3);
 		
 		Image img1 = punchboard.getImage();
-		Image newimg1 = img.getScaledInstance(300, 400, Image.SCALE_DEFAULT);
+		Image newimg1 = img.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
 		punchboard = new ImageIcon(newimg1);
 		
 		bT0 = new JButton();		
@@ -514,7 +513,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		numberOfStones.setVisible(true);
 		
 		AudioInputStream audioIn = null;
-		AudioInputStream audioIn2 = null;
+		
 		try {
 			audioIn = AudioSystem.getAudioInputStream(GameBoardGUI.class.getResource("/immagini/Crash Bandicoot Medieval Music.wav"));
 			
@@ -541,6 +540,11 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		clip.start();
+		
+		colorC = new Color(0, 140, 255);
+		colorV = new Color(170,0 ,220 );
+		
+		
 		
 		
 		pack();
@@ -586,7 +590,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			}
 			if(e1.getSource()==bT4){
 				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.blue);
+				b.getContentPane().setBackground(colorC);
 				bT4.setVisible(false);
 				b.getContentPane().setForeground(Color.white);
 				CB1.setDisabledIcon(Card1);
@@ -602,18 +606,18 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			}
 			if(e1.getSource()==bT5){
 				Buttons b =	new Buttons();
-				b.getContentPane().setBackground(Color.blue);
+				b.getContentPane().setBackground(colorC);
 				b.getContentPane().setForeground(Color.white);
 				
 			}
 			if(e1.getSource()==bT6){
 				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.BLUE);
+				b.getContentPane().setBackground(colorC );
 				b.getContentPane().setForeground(Color.white);
 			}
 			if(e1.getSource()==bT7){
 				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.blue);
+				b.getContentPane().setBackground(colorC);
 				b.getContentPane().setForeground(Color.white);
 			}
 			if(e1.getSource()==bT8){
@@ -638,26 +642,27 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			}
 			if(e1.getSource()==bT12){
 				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.magenta);
+				b.getContentPane().setBackground(colorV);
 			
 			}
 			if(e1.getSource()==bT13){
 				Buttons b =	new Buttons();
-				b.getContentPane().setBackground(Color.magenta);
+				b.getContentPane().setBackground(colorV);
 							}
 			if(e1.getSource()==bT14){
 				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.magenta);
+				b.getContentPane().setBackground(colorV);
 				
 			}
 			if(e1.getSource()==bT15){
 				Buttons b = new Buttons();
-				b.getContentPane().setBackground(Color.magenta);
+				b.getContentPane().setBackground(colorV);
 			
 			}
 			
 			
 			if(e1.getSource()==bT16){
+				Color colorCP = new Color(255, 240, 190);
 				JDialog dialogCouncil = new JDialog();
 				dialogCouncil.setTitle("Council Privilege");
 				dialogCouncil.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage
@@ -699,7 +704,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				faithPoints.setContentAreaFilled(false);
 				militaryPoints.setContentAreaFilled(false);
 				woodsAndStones.setContentAreaFilled(false);
-				dialogCouncil.getContentPane().setBackground(Color.orange);
+				dialogCouncil.getContentPane().setBackground(colorCP);
 				button.addActionListener(new ActionListener() {
 					
 					@Override
@@ -708,45 +713,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 							dialogCouncil.dispose();
 					}
 				});
-				/*JRadioButton coins = new JRadioButton("Coins ",true);
-				coins.setSelected(true);
-				ButtonGroup group = new ButtonGroup();
-				JRadioButton woodsAndStones = new JRadioButton("Woods and Stones ",false);
-				JRadioButton faithpoints = new JRadioButton("Faith Points ",false);
-				JRadioButton servants = new JRadioButton("Servants ",false);
-				JRadioButton militarypoints = new JRadioButton("Military Points ",false);
-				JButton button = new JButton("OK");
-				JLabel label = new JLabel("What do you want to take? \n 2 Coins and?");
-				dialogCouncil.getContentPane().setLayout(null);
-				dialogCouncil.setLocation(200,150);
-				dialogCouncil.setSize(800,400);
-				group.add(militarypoints);
-				group.add(woodsAndStones);
-				group.add(faithpoints);
-				group.add(servants);
-				group.add(coins);
-				dialogCouncil.getContentPane().add(label);
-				dialogCouncil.getContentPane().add(coins);
-				dialogCouncil.getContentPane().add(woodsAndStones);	
-				dialogCouncil.getContentPane().add(faithpoints);   
-				dialogCouncil.getContentPane().add(servants);
-				dialogCouncil.getContentPane().add(militarypoints);
-			//	dialogCouncil.getContentPane().add(councilprivilege);
-				dialogCouncil.getContentPane().add(button);
-				//councilprivilege.setBounds(100, 10, 150, 45);
-				label.setBounds(100, 10, 300, 45);
-				coins.setBounds(370, 70, 70, 25);
-				woodsAndStones.setBounds(470, 70, 150, 25);
-				servants.setBounds(370, 170, 80, 25);
-				faithpoints.setBounds(470, 170, 100, 25);
-				militarypoints.setBounds(580, 170, 120, 25);
-				button.setBounds(200, 250, 55, 65);
-				coins.setVisible(true);
-				woodsAndStones.setVisible(true);
-				servants.setVisible(true);
-				faithpoints.setVisible(true);
-				militarypoints.setVisible(true);
-				button.setVisible(true);*/
+				
 				
 				dialogCouncil.setVisible(true);
 				button.addActionListener(new ActionListener() {
@@ -759,62 +726,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 					}
 				});
 				
-				/*woodsAndStones.addItemListener(new ItemListener() {
 					
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						TextField confirm = new TextField("You chose coins,woods and stones");
-						dialogCouncil.getContentPane().add(confirm);
-						confirm.setBounds(50, 100, 200, 25);
-						confirm.setVisible(true);
-						//dialogCouncil.dispose();
-					}	
-				});
-				faithpoints.addItemListener(new ItemListener() {
-					
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						TextField confirm = new TextField("You chose coins and Faith Points");
-						dialogCouncil.getContentPane().add(confirm);
-						confirm.setBounds(50, 100, 200, 25);
-						confirm.setVisible(true);
-						//dialogCouncil.dispose();
-					}
-				});
-				servants.addItemListener(new ItemListener() {
-					
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						TextField confirm = new TextField("You chose coins and servants");
-						dialogCouncil.getContentPane().add(confirm);
-						confirm.setBounds(50, 100, 200, 25);
-						confirm.setVisible(true);
-						//dialogCouncil.dispose();
-					}
-				});
-				militarypoints.addItemListener(new ItemListener() {
-					
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						TextField confirm = new TextField("You chose coinsand Military Points");
-						dialogCouncil.getContentPane().add(confirm);
-						confirm.setBounds(50, 100, 200, 25);
-						confirm.setVisible(true);
-						//dialogCouncil.dispose();
-					}
-				});
-				coins.addItemListener(new ItemListener() {
-					
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						TextField confirm = new TextField("You chose coins");
-						dialogCouncil.getContentPane().add(confirm);
-						confirm.setBounds(50, 100, 200, 25);
-						confirm.setVisible(true);
-						//dialogCouncil.dispose();
-					}
-				});
-			*/	
 			}
 			if(e1.getSource()==pBoard2){
 				JDialog dialog1 = new JDialog();
@@ -840,6 +752,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				punchboard = new ImageIcon(getClass().getResource("/immagini/punchboard_f_c_03.jpg"));
 				slotVentureCards = new ImageIcon(getClass().getResource("/immagini/venturePBoard.jpg"));
 				slotCharacterCards = new ImageIcon(getClass().getResource("/immagini/characterPBoard.jpg"));
+								
 				leaderCardBack = new ImageIcon(getClass().getResource("/LeaderCards/leaders_b_c_00.jpg"));
 				personalTile = new ImageIcon(getClass().getResource("/ExcommunicationTiles/personalbonustile_2.png"));
 				
