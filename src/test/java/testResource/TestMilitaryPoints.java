@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.model.resource.MilitaryPoints;
+import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
 
 public class TestMilitaryPoints {
 	MilitaryPoints m;

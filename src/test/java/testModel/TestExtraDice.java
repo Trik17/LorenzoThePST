@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.model.ExtraDice;
-import it.polimi.ingsw.GC_04.model.card.*;
+import it.polimi.ingsw.GC_04.server.model.ExtraDice;
+import it.polimi.ingsw.GC_04.server.model.card.*;
 
 public class TestExtraDice {
 	DevelopmentCard c;
