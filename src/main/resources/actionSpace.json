@@ -124,7 +124,7 @@
 			"type": "SimpleResourceEffect",
 			"effect":[{
 				"type": "Coins",
-				"quantity": 2
+				"quantity": 1
 					}]
 			}]
 }]
