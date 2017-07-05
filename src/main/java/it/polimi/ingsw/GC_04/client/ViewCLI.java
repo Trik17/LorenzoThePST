@@ -82,18 +82,23 @@ public class ViewCLI extends ViewClient implements Runnable{
 				switch (setRun) {
 				case CHOOSEACTION:
 					chooseAction();
+					setRun=null;
 					break;
 				case SETFURTHERCHECKNEEDEDEFFECT:
 					setFurtherCheckNeededEffect((List<Effect>) inputParameter1,(int[]) inputParameter2);
+					setRun=null;
 					break;
 				case SETCOUNCILPRIVILEGE:
 					setCouncilPrivilege((int) inputParameter1);
+					setRun=null;
 					break;
 				case SETREQUESTEDAUTHORIZATIONEFFECTS:
 					setRequestedAuthorizationEffects((List<Effect>) inputParameter1);
+					setRun=null;
 					break;
 				case SETDISCOUNT:
 					setDiscount((List<Resource>) inputParameter1);
+					setRun=null;
 					break;
 				default:
 					break;
@@ -211,9 +216,9 @@ public class ViewCLI extends ViewClient implements Runnable{
 			}else {
 				privileges += resource+" ";
 			}
-		serverStub.notifyObserversRRemote(privileges);	
+			nrOfPrivileges--;
 		}
-		
+		serverStub.notifyObserversRRemote(privileges);
 	}
 	
 	public void setRequestedAuthorizationEffects(List<Effect> effects) throws RemoteException {

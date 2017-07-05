@@ -26,11 +26,13 @@ public abstract class Observable<A,R> {
 	public void notifyObserversA(A action) {
 		for (Observer<A,R> o : this.observers) {
 			o.update(action);
+			return;//TODO
 		}
 	}
 	public void notifyObserversR(A resource) {
 		for (Observer<A,R> o : this.observers) {
 			o.updateR(resource);
+			return;//TODO
 		}
 	}
 	

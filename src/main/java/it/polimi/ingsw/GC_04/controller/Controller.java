@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import it.polimi.ingsw.GC_04.Initializer;
 import it.polimi.ingsw.GC_04.JsonMapper;
 import it.polimi.ingsw.GC_04.Observer;
@@ -18,8 +22,9 @@ import it.polimi.ingsw.GC_04.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.model.effect.Effect;
 import it.polimi.ingsw.GC_04.model.resource.*;
 import it.polimi.ingsw.GC_04.server.MainServer;
-
-public class Controller implements Observer<String,Resource> {
+//TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
+//nella gestione della disconnessione e nel catch delle remote exception
+public class Controller implements Observer<String,Resource> , Runnable {
 	
 	private final static int FINALPERIOD = 3;
 	private final static int FINALTURN = 4;
@@ -33,6 +38,10 @@ public class Controller implements Observer<String,Resource> {
 	private Timer timer;
 	private TimerTask task;
 	private MainServer server;
+
+	private ExecutorService executor;
+//	private String resource;
+	private AtomicBoolean isWaiting;
 	
 	private ClonedAction clonedAction;
 
@@ -41,6 +50,8 @@ public class Controller implements Observer<String,Resource> {
 		clonedAction = new ClonedAction();
 		this.server=server;
 		JsonMapper.TimerFromJson();
+		this.isWaiting=new AtomicBoolean(false);
+		this.executor = Executors.newCachedThreadPool();
 	}
 	
 	
@@ -138,8 +149,7 @@ public class Controller implements Observer<String,Resource> {
 	}
 	
 	private void setCouncilPrivilege(int nrOfPrivileges) {
-		if (nrOfPrivileges == 0) 
-			return;
+		
 		try {
 			views.get(player).setCouncilPrivilege(nrOfPrivileges);
 		} catch (RemoteException e) {
@@ -151,7 +161,7 @@ public class Controller implements Observer<String,Resource> {
 	}
 	
 	@Override
-	public synchronized void update(String input)  {
+	public void update(String input)  {
 		Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
 		InputActionInterpreter interpreter = new InputActionInterpreter(input, model, currPlayer);
 		
@@ -166,8 +176,16 @@ public class Controller implements Observer<String,Resource> {
 			
 			clonedAction.setDiscount(action.getPlayer(), ((TakeACard) action).getCard());
 			
-			if (!clonedAction.getRawMaterials().isEmpty()) 
-				askPlayersDiscounts();
+			if (!clonedAction.getRawMaterials().isEmpty()) {
+				synchronized(this){
+					askPlayersDiscounts();
+					isWaiting.set(true);
+					while(isWaiting.get()){
+						wait(800);		
+					}
+				}
+			}
+				
 			
 			action.setDiscount(clonedAction.getDiscount());	
 		}
@@ -185,12 +203,26 @@ public class Controller implements Observer<String,Resource> {
 			
 		int nrOfPrivileges = action.getCouncilPrivileges().size();
 		
-		setCouncilPrivilege(nrOfPrivileges);//TODO fallo fare a un thread magari
-		
+		if (nrOfPrivileges != 0) {
+			synchronized (this) {
+				setCouncilPrivilege(nrOfPrivileges);
+				isWaiting.set(true);
+				while(isWaiting.get()){
+					wait(800);		
+				}
+			}				
+		}
 		clonedAction.setRequestedAuthorizationEffects(SupportFunctions.cloneEffects(action.getRequestedAuthorizationEffects()));
 		
 		if (!clonedAction.getRequestedAuthorizationEffects().isEmpty()) {
-			askPlayerAuthorizations(clonedAction.getRequestedAuthorizationEffects());//TODO fallo fare a un thread magari
+			synchronized (this) {
+				askPlayerAuthorizations(clonedAction.getRequestedAuthorizationEffects());
+				isWaiting.set(true);
+				while(isWaiting.get()){
+					wait(800);		
+				}
+			}
+			
 		}
 		
 		if(action.isApplicable()) {
@@ -242,7 +274,7 @@ public class Controller implements Observer<String,Resource> {
 
 
 	
-	public void updateTurn() {
+	public /*synchronized*/ void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers]))
@@ -297,24 +329,42 @@ public class Controller implements Observer<String,Resource> {
 		
 		
 	}
-
+	/*UpdateR :
+	 * it is the method called from the clients (using the observer pattern) to 
+	 * notify his choises requested by the functions of the controller 
+	 * 1)askPlayersDiscounts
+	 * 2)askPlayerChoices
+	 * 3)askPlayerAuthorizations
+	 * 4)askPlayerChoices
+	 */
+	
 	@Override
 	public void updateR(String resource) {
+//		this.resource=resource;
+//		executor.submit(this);
 		InputChoicesInterpreter interpreter = new InputChoicesInterpreter(resource);
 		String type = interpreter.getType();
-		if (type.equals("COUNCIL"))
+		if (type.equals("COUNCIL")){
 			clonedAction.setCouncilPrivileges(interpreter.getEffects());
+			isWaiting.set(false);
+			notify();
+		}
 		else if (type == "AUTHORIZATION") {
 			clonedAction.setRequestedEffects(interpreter.getRequestedEffects());
 			askPlayerChoices(clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());	
+			
 		}
 		else if (type.equals("CHECKNEEDED")) {
 			Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
 			InputChoicesInterpreter interpreter2 = new InputChoicesInterpreter(model,currPlayer,resource,clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());
 			clonedAction.setRequestedAuthorizationEffects(interpreter2.getEffects());
+			isWaiting.set(false);
+			notify();
 		}
 		else if (type.equals("DISCOUNT")) {
 			clonedAction.setRawMaterialsDiscount(resource);
+			isWaiting.set(false);
+			notify();
 		}
 	}
 
@@ -325,6 +375,13 @@ public class Controller implements Observer<String,Resource> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+
+
+
+	@Override
+	public void run() {
 		
 	}
 	

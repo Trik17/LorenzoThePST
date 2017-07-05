@@ -40,7 +40,7 @@ public class ScannerInputThread implements Runnable {
 	@Override
 	public void run() {
 		if (getWhileSecurity()){
-		System.out.println( "Insert action in "+ TimerJson.getInputTimer()/1000 +" seconds: " );
+		System.out.println( "\nInsert action in "+ TimerJson.getInputTimer()/1000 +" seconds: \n" );
 		String string=reader.next();
 		if(string.equals(""))
 			string="EMPTY";
