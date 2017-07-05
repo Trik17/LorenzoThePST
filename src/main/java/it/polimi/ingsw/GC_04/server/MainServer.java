@@ -41,6 +41,7 @@ public class MainServer implements Runnable{
 	private Timer timer;
 	private TimerTask task; 
 	private static MainServer instance;
+	private ServerSocket serverSocket;	
 	
 	
 	
@@ -174,7 +175,7 @@ public class MainServer implements Runnable{
 	public void run() {
 		try {
 			//creats the socket
-			ServerSocket serverSocket;			
+					
 			serverSocket = new ServerSocket(SOCKET_PORT);	
 			System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
 	
@@ -192,8 +193,7 @@ public class MainServer implements Runnable{
 				executor.submit(view);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			executor.submit(this);
 		}		
 	}	
 }
