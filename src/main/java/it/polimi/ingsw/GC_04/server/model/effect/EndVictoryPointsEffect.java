@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 
 public class EndVictoryPointsEffect extends Effect{
+	private static final long serialVersionUID = -540540163323448550L;
 	private VictoryPoints effect;
 		
 	@JsonCreator
