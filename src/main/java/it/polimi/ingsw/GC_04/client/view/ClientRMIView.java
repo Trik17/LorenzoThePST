@@ -94,6 +94,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public void print(String string) throws RemoteException {
 		System.out.println(string);
+		return;
 	}
 	
 
