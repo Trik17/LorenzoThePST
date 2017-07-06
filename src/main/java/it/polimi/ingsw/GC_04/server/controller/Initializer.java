@@ -73,7 +73,7 @@ public class Initializer {
 		CharacterTower characterTower = new CharacterTower(Arrays.copyOfRange(cCards, initialPosition, finalPosition), aSpaces.subList(4,8));
 		BuildingTower buildingTower = new BuildingTower(Arrays.copyOfRange(bCards, initialPosition, finalPosition), aSpaces.subList(8,12));
 		VentureTower ventureTower = new VentureTower(Arrays.copyOfRange(vCards, initialPosition, finalPosition), aSpaces.subList(12,16));
-		
+				
 		MarketArea marketArea;
 		if (nrOfPlayers < 4)
 			marketArea = new MarketArea(aSpaces.subList(16, aSpaces.size()-2)); 
