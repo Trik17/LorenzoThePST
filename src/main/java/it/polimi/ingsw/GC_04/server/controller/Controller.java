@@ -272,12 +272,14 @@ public class Controller implements Observer<String> {
 	public synchronized void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
-		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers]))
-			//TODO: final score
+		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers])) {
+			Player[] ranking = FinalScore.getRanking(model.getPlayers());
 			
 			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
 			return;
+		}
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
+					
 			if (lastPhase) {
 				count.set(model.getPlayers().length);
 				excommunicationsManagement();
@@ -289,14 +291,14 @@ public class Controller implements Observer<String> {
 					} catch (InterruptedException e) {
 					}		
 				}
-				
+			
 				model.incrementPeriod();
 				initializer.changeTurn();
-				}
+			}
 			currentPlayer = 0;
-		}else {
+		}else 
 			currentPlayer++;
-		}
+			
 		player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
 		lastPhase = !lastPhase;
 		
