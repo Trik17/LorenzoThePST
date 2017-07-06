@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_04.server.controller;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.area.VaticanReport;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
@@ -42,7 +43,6 @@ public class FinalScore {
 		
 	}*/
 	public static int calculateFinalScore(Player player) {
-		List<Resource> playerRes = player.getResources();
 		int finalScore = 0;
 		
 		if (!player.isDeleteCardsEffectActive(new VentureCard()))
@@ -57,14 +57,18 @@ public class FinalScore {
 		calculateFaithPointsScore(player);
 		calculateResourceScore(player);
 		
-		for (Resource res:playerRes) 
-			if (res instanceof VictoryPoints)
-				finalScore = res.getQuantity();
+		finalScore = player.getResource(new FaithPoints()).getQuantity();
 		
 		return finalScore;
 		
 	}
 	
+	private static void calculateFaithPointsScore(Player player) {
+		VaticanReport.addFaithPointsScore(player);
+		
+	}
+
+
 	private static void calculateResourceScore(Player player) {
 		List<Resource> playerRes = player.getResources();
 		int resourceScore = 0;
@@ -110,28 +114,7 @@ public class FinalScore {
 		
 	}
 	
-	private static void calculateFaithPointsScore(Player player) {
-		List<Resource> playerRes = player.getResources();
-		int faithPointsScore = 0;
-		int faithPoints = 0;
-		
-		for (Resource res:playerRes) 
-			if (res instanceof FaithPoints)
-				faithPoints = res.getQuantity();
-		
-		for (int cont=1; cont<=faithPoints; cont++) {
-			if (cont < 6)
-				faithPointsScore++;
-			else if (cont >= 6 && cont < 13)
-				faithPointsScore += 2;
-			else if (cont >= 13 && cont < 15)
-				faithPointsScore += 3;
-			else
-				faithPointsScore += 5;
-		}
-		
-		addVictoryPoints(player, faithPointsScore);			
-	}
+	
 	
 	public static void calculateBuildingCardsMalus(Player player) {
 		List<DevelopmentCard> buildingCards = player.getCards(new BuildingCard());

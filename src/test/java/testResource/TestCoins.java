@@ -55,6 +55,13 @@ public class TestCoins {
 		Resource c1=Resource.clone(c);
 		assertEquals(5, c1.getQuantity());
 	}
+	
+	@Test
+	public void testReset(){
+		c=new Coins(3);
+		c.reset();
+		assertEquals(0, c.getQuantity());
+	}
 
 	
 

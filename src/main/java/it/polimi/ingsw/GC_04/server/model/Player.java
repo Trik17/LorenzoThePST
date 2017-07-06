@@ -24,7 +24,6 @@ public class Player implements Serializable {
 	 */
 	private static final long serialVersionUID = -7992514360884500251L;
 	private String name;
-	private Model game;
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
 	private Discount discount;	
@@ -131,8 +130,22 @@ public class Player implements Serializable {
 			return new ArrayList<>();
 	}
 	
-	public Resource getServants() {
-		return resources.get(2);
+	
+	public Resource getResource(Resource resource) {
+		if (resource instanceof Woods)
+			return resources.get(0);
+		if (resource instanceof Stones)
+			return resources.get(1);
+		if (resource instanceof Servants)
+			return resources.get(2);
+		if (resource instanceof MilitaryPoints)
+			return resources.get(3);
+		if (resource instanceof VictoryPoints)
+			return resources.get(4);
+		if (resource instanceof FaithPoints)
+			return resources.get(5);
+		else
+			return resources.get(6);
 	}
 	
 	public List<Resource> getResources(){
@@ -181,5 +194,6 @@ public class Player implements Serializable {
 		else 
 			deleteVPointsCardsEffect.set(3, true);
 	}
+	
 	
 }

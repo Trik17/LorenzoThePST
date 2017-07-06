@@ -76,7 +76,7 @@ public abstract class Action implements Serializable{
 	}
 
 	public boolean isValueEnough() {
-		if (player.getServants().getQuantity() < servants)
+		if (player.getResource(new Servants()).getQuantity() < servants)
 			return false;
 		if (value < aSpace.getActivationCost())
 			return false;

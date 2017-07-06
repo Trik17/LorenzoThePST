@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import it.polimi.ingsw.GC_04.server.model.resource.Coins;
 import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
 
 public class TestMilitaryPoints {
@@ -58,5 +59,10 @@ public class TestMilitaryPoints {
 		m.addQuantity(0);
 		assertEquals(1, m.getQuantity());
 	}
-	
+	@Test
+	public void testReset(){
+		m=new MilitaryPoints(3);
+		m.reset();
+		assertEquals(0, m.getQuantity());
+	}
 }

@@ -1,3 +1,4 @@
+
 package it.polimi.ingsw.GC_04.client.view;
 
 import java.rmi.RemoteException;
@@ -102,7 +103,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 					setRun=null;
 					break;
 				case EXCOMMUNICATIONMANAGEMENT:
-					excommunicationManagement((String) inputParameter1);
+					excommunicationManagement((String) inputParameter1,(String) inputParameter2);
 					setRun=null;
 					break;
 				default:
@@ -466,21 +467,21 @@ public class ViewCLI extends ViewClient implements Runnable{
 		
 		return input;
 	}
-	public void excommunicationManagement(String description) throws RemoteException {
-		String input = "EXCOMMUNICATION ";
+	public void excommunicationManagement(String description, String username) throws RemoteException {
+		String input = "EXCOMMUNICATION "+username;
 		
 		print("\n\nPERIOD EXCOMMUNICATION:\n\n");
 		print(description);
 		print("\n1)Suffer the Excommunication");
-		print("\n1)Support the Church");
+		print("\n2)Support the Church");
 		
 		input += getInput();
 		
 		if(SupportFunctions.timeout(input, this))
-			serverStub.notifyObserversRRemote(input);
+			serverStub.notifyObserversRRemote("1 ");
 	
 		if (!SupportFunctions.isInputValid(input, 1, 2)) {
-			excommunicationManagement(description);
+			excommunicationManagement(description,username);
 			return;
 		}
 		serverStub.notifyObserversRRemote(input);

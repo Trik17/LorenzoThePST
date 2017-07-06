@@ -22,10 +22,11 @@ import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.Servants;
 
 public class InputChoicesInterpreter {
-	private String type;
+	private String identifier;
 	List<Effect> effects;
 	List<Resource> resources;
 	int[] requestedEffects;
+	Boolean excommunicated;
 
 	public InputChoicesInterpreter(String input) {
 		this.resources = new ArrayList<>();
@@ -33,16 +34,20 @@ public class InputChoicesInterpreter {
 	
 		StringTokenizer strTok = new StringTokenizer(input);
 		
-		this.type = strTok.nextToken();
+		this.identifier = strTok.nextToken();
 		
-		if (type.equals("COUNCIL")) {
+		if (identifier.equals("COUNCIL")) {
 			while (strTok.hasMoreTokens()) 
 				input(strTok.nextToken());
 		}
-		else if (type.equals("AUTHORIZATION")) {
+		else if (identifier.equals("AUTHORIZATION")) {
 			requestedEffects = SupportFunctions.parseIntArray(input);
 		
 		}	
+		else if (identifier.equals("EXCOMMUNICATION")) {
+			excommunicationManagementInterpreter(input);
+			
+		}
 	}
 
 	public InputChoicesInterpreter(Model model, Player player, String input, List<Effect> rAE, int[] fCN) {
@@ -52,6 +57,20 @@ public class InputChoicesInterpreter {
 		checkNeededInterpreter(model, player, input, rAE, fCN);
 	}
 	
+
+
+	private void excommunicationManagementInterpreter(String input) {
+		StringTokenizer strTok = new StringTokenizer(input);
+		
+		identifier = strTok.nextToken();
+		
+		int answer = Integer.parseInt(strTok.nextToken());
+		
+		if (answer == 1)
+			excommunicated = true;
+			
+	}
+
 	public void checkNeededInterpreter(Model model, Player player, String input,List<Effect> rAE, int[] fCN) {
 		/*rAE = RequestedAuthorizationEffects
 		 *fCN = FurtherCheckNeededEffect -> it contains the indices of the effects of rAE that player has chosen
@@ -151,8 +170,8 @@ public class InputChoicesInterpreter {
 		effects.add(cP);
 	}
 
-	public String getType() {
-		return type;
+	public String getIdentifier() {
+		return identifier;
 	}
 	
 	public List<Resource> getResources() {
@@ -165,6 +184,10 @@ public class InputChoicesInterpreter {
 	}
 	public int[] getRequestedEffects() {
 		return requestedEffects;
+		
+	}
+	public boolean isExcommunicated() {
+		return excommunicated;
 		
 	}
 }
