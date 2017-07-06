@@ -20,6 +20,7 @@ import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class Model implements Serializable{
@@ -134,4 +135,17 @@ public class Model implements Serializable{
 			return dices.get(DiceColor.NEUTRAL);
 	}
 
+    public Player getPlayer(String username) {
+    	for (int i = 0; i < players.length; i++) {
+			if (players[i].getName().equals(username))
+				return players[i];
+		}
+		return null;
+	}
+
+	public void supportTheChurch(Player player) {
+		player.getResource(new FaithPoints()).reset();
+		VaticanReport.addFaithPointsScore(player);
+		
+	}
 }

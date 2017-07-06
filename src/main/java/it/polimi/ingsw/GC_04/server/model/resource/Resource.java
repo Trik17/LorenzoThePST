@@ -99,4 +99,8 @@ public abstract class Resource implements Cloneable, Serializable{
 		
 	}
 	
+	public void reset() {
+		this.quantity = 0;
+	}
+	
 }

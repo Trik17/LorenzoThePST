@@ -9,8 +9,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.MainServer;
 import it.polimi.ingsw.GC_04.server.model.Model;
@@ -18,6 +16,8 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.action.Action;
 import it.polimi.ingsw.GC_04.server.model.action.PassTurn;
 import it.polimi.ingsw.GC_04.server.model.action.TakeACard;
+import it.polimi.ingsw.GC_04.server.model.area.VaticanReport;
+import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
@@ -51,10 +51,8 @@ public class Controller implements Observer<String> {
 	}
 	
 	private void disconnect(String username){//da chiamare ad ogni remoteexception
-		for(Player p: model.getPlayers()){
-			if(p.getName().equals(username))
-				p.disconnect();
-		}
+		model.getPlayer(username).disconnect();
+		
 		server.disconnectPlayer(username);
 		views.forEach((name,stub) -> {
 			try {
@@ -303,25 +301,26 @@ public class Controller implements Observer<String> {
 
 	private void excommunicationsManagement() {
 		views.forEach((player,view) -> {
-			try {
-				view.excommunicationManagement(model.getVaticanReport().getExcommunication(model.getPeriod()).getDescription());
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (!VaticanReport.isUnderThreshold(model.getPlayer(player), model.getPeriod())) {
+				try {
+					view.excommunicationManagement(model.getVaticanReport().getExcommunication(model.getPeriod()).getDescription());
+				} catch (RemoteException e) {
+					//if it catches a remote exception, this player suffers the excommunication
+					model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
+					//TODO controlla la roba dei blocchi
+				}
 			}
-		});
+			else 
+				model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
+			});
 		
 	}
 
 
 
 	public void reconnect(String username) {
-		for (int i = 0; i < model.getPlayers().length; i++) {
-			if(model.getPlayers()[i].getName().equals(username)){
-				model.getPlayers()[i].reConnect();
-				return;
-			}			
-		}
+		model.getPlayer(username).reConnect();
+
 		views.forEach((name,stub) -> {
 			try {
 				if(isPlayerConnected(name))
@@ -346,7 +345,7 @@ public class Controller implements Observer<String> {
 	//		this.resource=resource;
 	//		executor.submit(this);
 			InputChoicesInterpreter interpreter = new InputChoicesInterpreter(resource);
-			String type = interpreter.getType();
+			String type = interpreter.getIdentifier();
 			if (type.equals("COUNCIL")){
 				clonedAction.setCouncilPrivileges(interpreter.getEffects());
 				isWaiting.set(false);
@@ -377,17 +376,16 @@ public class Controller implements Observer<String> {
 			}
 			else if (type.equals("EXCOMMUNICATION")) {
 				interpreter = new InputChoicesInterpreter(resource);
-				String thisPlayer = interpreter.getIdentifier();
+				String thisPlayer = interpreter.getIdentifier(); //it returns the name of the player 
 				boolean excommunicated = interpreter.isExcommunicated();
 				if (excommunicated) {
-					for (int i = 0; i < model.getPlayers().length; i++) {
-						if (model.getPlayers()[i].getName().equals(thisPlayer))
-							model.get//TODO APPLICA LA SCOMUNICA AL PLAYER
-					}
+					int period = model.getPeriod();
+					ExcommunicationTile excommunication = model.getVaticanReport().getExcommunication(period);
+					excommunication.apply(model.getPlayer(thisPlayer));
 					
+				}else {
+					model.supportTheChurch(model.getPlayer(thisPlayer));
 				}
-						
-				
 			}
 		}
 	}

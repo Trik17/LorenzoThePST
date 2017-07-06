@@ -13,4 +13,5 @@ public class FaithPoints extends Resource {
 		public FaithPoints() {
 			// TODO Auto-generated constructor stub
 		}
+	
 }

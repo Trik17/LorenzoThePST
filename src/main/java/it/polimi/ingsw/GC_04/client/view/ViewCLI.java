@@ -478,7 +478,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		input += getInput();
 		
 		if(SupportFunctions.timeout(input, this))
-			serverStub.notifyObserversRRemote("2 ");
+			serverStub.notifyObserversRRemote("1 ");
 	
 		if (!SupportFunctions.isInputValid(input, 1, 2)) {
 			excommunicationManagement(description,username);
