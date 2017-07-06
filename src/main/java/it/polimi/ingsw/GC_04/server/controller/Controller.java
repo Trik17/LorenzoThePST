@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.MainServer;
@@ -40,6 +41,7 @@ public class Controller implements Observer<String> {
 	private AtomicBoolean isWaiting;	
 	private ClonedAction clonedAction;
 	private Object lock;
+	private AtomicInteger count;
 	
 	public Controller(Model model,MainServer server) {
 		this.model = model;
@@ -48,6 +50,7 @@ public class Controller implements Observer<String> {
 		JsonMapper.TimerFromJson();
 		this.isWaiting=new AtomicBoolean(false);
 		this.lock=new Object();
+		count=new AtomicInteger(0);
 	}
 	
 	private void disconnect(String username){//da chiamare ad ogni remoteexception
@@ -118,9 +121,7 @@ public class Controller implements Observer<String> {
 	}
 	
 	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
-		
 		councilPrivileges.get(cont).setCouncilPrivilege(resource);
-		
 	}
 		
 	private boolean isPlayerConnected(Player player){
@@ -268,7 +269,7 @@ public class Controller implements Observer<String> {
 
 
 	
-	public void updateTurn() {
+	public synchronized void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers]))
@@ -278,7 +279,17 @@ public class Controller implements Observer<String> {
 			return;
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
 			if (lastPhase) {
+				count.set(model.getPlayers().length);
 				excommunicationsManagement();
+				//TODO manca il getAndDecrement(); (uno per ogni risposta) 
+				//TODO se uno si disconnette prima di rispondere il gioco si blocca!!! (timeout?)
+				while(count.get()!=0){
+					try {
+						wait(1000);
+					} catch (InterruptedException e) {
+					}		
+				}
+				
 				model.incrementPeriod();
 				initializer.changeTurn();
 				}
