@@ -23,8 +23,8 @@ public class CouncilPrivilege extends ResourceEffect {
 	
 	public void setCouncilPrivilege(Resource resources) {
 		if (resources instanceof RawMaterial) {
-			effect.add(new Stones(1));
-			effect.add(new Woods(1));
+			effect.add(new Stones(resources.getQuantity()));
+			effect.add(new Woods(resources.getQuantity()));
 		}else
 			effect.add(resources);
 		

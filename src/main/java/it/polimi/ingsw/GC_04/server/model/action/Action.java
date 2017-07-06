@@ -31,6 +31,7 @@ public abstract class Action implements Serializable{
 	protected List<Effect> requestedAuthorizationEffects;
 	protected List<CouncilPrivilege> councilPrivileges;
 	protected List<Resource> discount;
+	protected int servants;
 	
 	public Action() {}
 	
@@ -38,6 +39,7 @@ public abstract class Action implements Serializable{
 		this.model = model;
 		this.player = player;
 		this.fMember = fMember;
+		this.servants = servants;
 		this.value = fMember.getDice().getValue() + servants;
 		this.actionCost = new ArrayList<>();
 		this.actionCost.add(new Servants(servants));
@@ -74,7 +76,8 @@ public abstract class Action implements Serializable{
 	}
 
 	public boolean isValueEnough() {
-		
+		if (player.getServants().getQuantity() < servants)
+			return false;
 		if (value < aSpace.getActivationCost())
 			return false;
 		return true;
