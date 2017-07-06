@@ -75,6 +75,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return getStrInput()+" ";
 	}	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void run(){
 		if(getWhileSecurity()){
@@ -98,6 +99,10 @@ public class ViewCLI extends ViewClient implements Runnable{
 					break;
 				case SETDISCOUNT:
 					setDiscount((List<Resource>) inputParameter1);
+					setRun=null;
+					break;
+				case EXCOMMUNICATIONMANAGEMENT:
+					excommunicationManagement((String) inputParameter1);
 					setRun=null;
 					break;
 				default:
@@ -460,6 +465,25 @@ public class ViewCLI extends ViewClient implements Runnable{
 		input += cost;
 		
 		return input;
+	}
+	public void excommunicationManagement(String description) throws RemoteException {
+		String input = "EXCOMMUNICATION ";
+		
+		print("\n\nPERIOD EXCOMMUNICATION:\n\n");
+		print(description);
+		print("\n1)Suffer the Excommunication");
+		print("\n1)Support the Church");
+		
+		input += getInput();
+		
+		if(SupportFunctions.timeout(input, this))
+			serverStub.notifyObserversRRemote(input);
+	
+		if (!SupportFunctions.isInputValid(input, 1, 2)) {
+			excommunicationManagement(description);
+			return;
+		}
+		serverStub.notifyObserversRRemote(input);
 	}
 		
 	

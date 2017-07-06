@@ -21,7 +21,7 @@ import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
 //TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
 //nella gestione della disconnessione e nel catch delle remote exception
-public class Controller implements Observer<String,Resource> , Runnable {
+public class Controller implements Observer<String> , Runnable {
 	
 	private final static int FINALPERIOD = 3;
 	private final static int FINALTURN = 4;
@@ -368,6 +368,9 @@ public class Controller implements Observer<String,Resource> , Runnable {
 			clonedAction.setRawMaterialsDiscount(resource);
 			isWaiting.set(false);
 			notify();
+		}
+		else if (type.equals("EXCOMMUNICATION")) {
+			
 		}
 	}
 

@@ -22,7 +22,7 @@ import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
-public class Model extends Observable<Action, Resource> implements Serializable{
+public class Model implements Serializable{
 	
 	/**
 	 * 

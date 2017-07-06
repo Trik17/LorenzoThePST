@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_04.server.controller.Controller;
 import it.polimi.ingsw.GC_04.server.controller.Observable;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
-public class ServerSocketView extends Observable<String,Resource> implements Runnable{
+public class ServerSocketView extends Observable<String> implements Runnable{
 	private Socket socket;
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
