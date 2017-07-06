@@ -40,16 +40,16 @@ public class ServerRMIView extends Observable<String> implements ServerRMIViewRe
 
 	@Override
 	public void notifyObserversRRemote(String resource) throws RemoteException{
-//		this.resource=resource;
+		this.resource=resource;
 //		//TODO devo mettere get e setter syncronized su resource?
-//		executor.submit(this);
-		notifyObserversR(resource);
+		executor.submit(this);
+		
 	}
 
 
 	@Override
 	public void run() {
-		
+		notifyObserversR(resource);
 		
 	}
 

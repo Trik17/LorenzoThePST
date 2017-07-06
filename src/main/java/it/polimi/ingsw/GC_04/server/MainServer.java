@@ -92,7 +92,7 @@ public class MainServer implements Runnable{
 				disconnectedPlayers.remove(username);
 				return;
 			}else{
-				clientStub.changeUsername(this.clients.keySet());
+				clientStub.usernameAlreadyUsed();
 				return;
 			}
 		}
