@@ -1,12 +1,11 @@
 package it.polimi.ingsw.GC_04.server.controller;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -35,13 +34,16 @@ public class Controller implements Observer<String> {
 	private int currentPlayer = 0;
 	private int turn = 0;
 	private boolean lastPhase;
-	private Timer timer;
-	private TimerTask task;
+	private Timer timerAction;
+	private Timer timerExcomunication;
+	private TimerTask taskAction;
+	private TimerTask taskExcomunication;
 	private MainServer server;
 	private AtomicBoolean isWaiting;	
 	private ClonedAction clonedAction;
 	private Object lock;
 	private AtomicInteger count;
+	private List<String> playerExcomuticationSetted;
 	
 	public Controller(Model model,MainServer server) {
 		this.model = model;
@@ -51,6 +53,7 @@ public class Controller implements Observer<String> {
 		this.isWaiting=new AtomicBoolean(false);
 		this.lock=new Object();
 		count=new AtomicInteger(0);
+		playerExcomuticationSetted=new ArrayList<>();
 	}
 	
 	private void disconnect(String username){//da chiamare ad ogni remoteexception
@@ -74,8 +77,8 @@ public class Controller implements Observer<String> {
 			chooseAction();
 			return;
 		}		
-//		this.timer=new Timer();
-//		this.task=new TimerTask(){
+//		this.timerAction=new Timer();
+//		this.taskAction=new TimerTask(){
 //			public void run(){
 //				disconnect(player);
 //			}
@@ -282,10 +285,24 @@ public class Controller implements Observer<String> {
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
 			if (lastPhase) {
 				count.set(model.getPlayers().length);
+				
+				//timer to avoid the block of the game caused by a disconnection of the client during the request of the ecomunications
+				this.timerExcomunication=new Timer();
+				this.taskExcomunication=new TimerTask(){
+					public void run(){
+						count.set(0);
+						
+						//TODO
+						//foreach player not in playerExcomuticationSetted fai:
+						//model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
+						// e disconnettilo
+					}
+				};	
+				timerExcomunication.schedule( taskExcomunication, 1000000/*TimerJson.getActionTimer() */ ); 
+				
 				excommunicationsManagement();
-				//TODO manca il getAndDecrement(); (uno per ogni risposta) 
-				//TODO se uno si disconnette prima di rispondere il gioco si blocca!!! (timeout?)
-				while(count.get()!=0){
+				
+				while(count.get()>0){
 					try {
 						wait(1000);
 					} catch (InterruptedException e) {
@@ -320,7 +337,7 @@ public class Controller implements Observer<String> {
 				} catch (RemoteException e) {
 					//if it catches a remote exception, this player suffers the excommunication
 					model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
-					//TODO controlla la roba dei blocchi
+					count.getAndDecrement();
 				}
 			}
 			else 
@@ -353,11 +370,11 @@ public class Controller implements Observer<String> {
 	 */
 	
 	@Override
-	public void updateR(String resource) {
+	public void updateR(String input) {
 		synchronized(lock){
 	//		this.resource=resource;
 	//		executor.submit(this);
-			InputChoicesInterpreter interpreter = new InputChoicesInterpreter(resource);
+			InputChoicesInterpreter interpreter = new InputChoicesInterpreter(input);
 			String type = interpreter.getIdentifier();
 			if (type.equals("COUNCIL")){
 				clonedAction.setCouncilPrivileges(interpreter.getEffects());
@@ -373,7 +390,7 @@ public class Controller implements Observer<String> {
 			}
 			else if (type.equals("CHECKNEEDED")) {
 				Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
-				InputChoicesInterpreter interpreter2 = new InputChoicesInterpreter(model,currPlayer,resource,clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());
+				InputChoicesInterpreter interpreter2 = new InputChoicesInterpreter(model,currPlayer,input,clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());
 				clonedAction.setRequestedAuthorizationEffects(interpreter2.getEffects());
 				isWaiting.set(false);
 	
@@ -381,15 +398,17 @@ public class Controller implements Observer<String> {
 				notify();
 			}
 			else if (type.equals("DISCOUNT")) {
-				clonedAction.setRawMaterialsDiscount(resource);
+				clonedAction.setRawMaterialsDiscount(input);
 				isWaiting.set(false);
 	
 				System.out.println("esco dal lock");
 				notify();
 			}
 			else if (type.equals("EXCOMMUNICATION")) {
-				interpreter = new InputChoicesInterpreter(resource);
+				count.getAndDecrement();
+				interpreter = new InputChoicesInterpreter(input);
 				String thisPlayer = interpreter.getIdentifier(); //it returns the name of the player 
+				playerExcomuticationSetted.add(thisPlayer);
 				boolean excommunicated = interpreter.isExcommunicated();
 				if (excommunicated) {
 					int period = model.getPeriod();
@@ -409,8 +428,7 @@ public class Controller implements Observer<String> {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 
 }
