@@ -322,8 +322,14 @@ public class Controller implements Observer<String,Resource> , Runnable {
 				model.getPlayers()[i].reConnect();
 				return;
 			}			
-		}			
-		
+		}
+		views.forEach((name,stub) -> {
+			try {
+				if(isPlayerConnected(name))
+					stub.print(username+" reconnected");
+			} catch (RemoteException e) {
+			}
+		});
 		
 	}
 	/*UpdateR :
