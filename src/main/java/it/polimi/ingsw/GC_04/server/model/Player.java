@@ -131,6 +131,9 @@ public class Player implements Serializable {
 			return new ArrayList<>();
 	}
 	
+	public Resource getServants() {
+		return resources.get(2);
+	}
 	
 	public List<Resource> getResources(){
 		return resources;
