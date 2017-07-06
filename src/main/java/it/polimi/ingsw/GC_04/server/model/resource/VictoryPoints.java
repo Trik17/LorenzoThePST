@@ -35,7 +35,7 @@ public class VictoryPoints extends Resource{
 		
 		for(Resource r:playerRes) {
 			if(r.getClass().equals(VictoryPoints.class)) {
-				((VictoryPoints) r).endVictoryPoints += this.endVictoryPoints;
+				((VictoryPoints) r).endVictoryPoints += this.getQuantity();
 				break;
 			}
 		}
