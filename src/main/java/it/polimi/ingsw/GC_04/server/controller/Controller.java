@@ -277,12 +277,15 @@ public class Controller implements Observer<String> {
 	public synchronized void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
-		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers]))
-			//TODO: final score
+		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers])) {
+			Player[] ranking = FinalScore.getRanking(model.getPlayers());
+			printRanking(ranking);
 			
 			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
 			return;
+		}
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
+					
 			if (lastPhase) {
 				count.set(model.getPlayers().length);
 				
@@ -308,14 +311,14 @@ public class Controller implements Observer<String> {
 					} catch (InterruptedException e) {
 					}		
 				}
-				
+			
 				model.incrementPeriod();
 				initializer.changeTurn();
-				}
+			}
 			currentPlayer = 0;
-		}else {
+		}else 
 			currentPlayer++;
-		}
+			
 		player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
 		lastPhase = !lastPhase;
 		
@@ -328,6 +331,20 @@ public class Controller implements Observer<String> {
 		
 	}
 
+
+	
+
+	private void printRanking(Player[] players) {
+		String ranking = StateOfTheGameCLI.printRanking(players);
+		for (int i = 0; i < players.length; i++) {
+			try {
+				views.get(player).print(ranking);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 	private void excommunicationsManagement() {
 		views.forEach((player,view) -> {

@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.GC_04.client.view.ViewClient;
+import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 
 public class SupportFunctions {
 
@@ -19,7 +21,25 @@ public class SupportFunctions {
 		}
 		return false;		
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 	
+	public static Player maxVictoryPoints(Player[] players) {
+		Player first = players[0];
+		int max = players[0].getResource(new VictoryPoints()).getQuantity();
+		
+		for (int i = 0; i < players.length; i++) {
+			if (players[i] != null && players[i].getResource(new VictoryPoints()).getQuantity() > max) {
+				first = players[i];
+				max = players[i].getResource(new VictoryPoints()).getQuantity();
+				players[i] = null;
+			}
+		}
+		return first;
+	}
 	
 	public static List<Effect> cloneEffects(List<Effect> effects){
 		List<Effect> clone = new ArrayList<Effect>();
