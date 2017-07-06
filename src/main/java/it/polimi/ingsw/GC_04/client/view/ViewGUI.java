@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_04.client.view;
 
 /*
-package it.polimi.ingsw.GC_04.client.rmi;
 
 import it.polimi.ingsw.GC_04.model.action.Action;
 import it.polimi.ingsw.GC_04.model.card.DevelopmentCard;

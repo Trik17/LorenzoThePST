@@ -17,7 +17,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	 * 
 	 */
 	private static final long serialVersionUID = -9164262648865618843L;
-	private final String username; 
+	private String username; 
 	private ViewCLI view;
 	private ServerRMIViewRemote serverStub;
 	private ExecutorService executor;
@@ -89,24 +89,19 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	
 	@Override
 	public void setState(String stateCLI) throws RemoteException {
-		view.setState(stateCLI);
-		
+		view.setState(stateCLI);		
 	}
 	@Override
 	public void print(String string) throws RemoteException {
-		// TODO Auto-generated method stub
-		//TODO usala per stampare che un utente si è disconnesso o riconnesso
-		
+		System.out.println(string);
 	}
-	@Override
-	public void notifyReconnection(String username) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
 	@Override
 	public void changeUsername(Set<String> set) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		while(!(set.contains(username))){
+		username=view.scanner.getInput();
+		}
 	}
 	
 	

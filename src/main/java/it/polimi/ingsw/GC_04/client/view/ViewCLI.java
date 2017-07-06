@@ -22,7 +22,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	Object inputParameter1;
 	Object inputParameter2;
 	SetRun setRun;
-	private ScannerInputThread scanner;
+	protected ScannerInputThread scanner;
 	private boolean whileSecurity=false;
 	
 	public ViewCLI() {
@@ -73,8 +73,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		
 		
 		return getStrInput()+" ";
-	}
-	
+	}	
 	
 	@Override
 	public void run(){
