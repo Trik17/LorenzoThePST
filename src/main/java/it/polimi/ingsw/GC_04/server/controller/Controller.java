@@ -120,9 +120,7 @@ public class Controller implements Observer<String> {
 	}
 	
 	public void setCouncilPrivilege(List<CouncilPrivilege> councilPrivileges, Resource resource,int cont) {
-		
 		councilPrivileges.get(cont).setCouncilPrivilege(resource);
-		
 	}
 		
 	private boolean isPlayerConnected(Player player){
