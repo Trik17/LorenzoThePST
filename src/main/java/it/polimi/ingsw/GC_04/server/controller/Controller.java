@@ -270,7 +270,7 @@ public class Controller implements Observer<String> {
 
 
 	
-	public /*synchronized*/ void updateTurn() {
+	public void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers]))
@@ -343,41 +343,52 @@ public class Controller implements Observer<String> {
 	@Override
 	public void updateR(String resource) {
 		synchronized(lock){
-//		this.resource=resource;
-//		executor.submit(this);
-		InputChoicesInterpreter interpreter = new InputChoicesInterpreter(resource);
-		String type = interpreter.getType();
-		if (type.equals("COUNCIL")){
-			clonedAction.setCouncilPrivileges(interpreter.getEffects());
-			isWaiting.set(false);
-
-			System.out.println("esco dal lock");
-			notify();
-		}
-		else if (type == "AUTHORIZATION") {
-			clonedAction.setRequestedEffects(interpreter.getRequestedEffects());
-			askPlayerChoices(clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());	
-			
-		}
-		else if (type.equals("CHECKNEEDED")) {
-			Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
-			InputChoicesInterpreter interpreter2 = new InputChoicesInterpreter(model,currPlayer,resource,clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());
-			clonedAction.setRequestedAuthorizationEffects(interpreter2.getEffects());
-			isWaiting.set(false);
-
-			System.out.println("esco dal lock");
-			notify();
-		}
-		else if (type.equals("DISCOUNT")) {
-			clonedAction.setRawMaterialsDiscount(resource);
-			isWaiting.set(false);
-
-			System.out.println("esco dal lock");
-			notify();
-		}
-		else if (type.equals("EXCOMMUNICATION")) {
-			
-		}
+	//		this.resource=resource;
+	//		executor.submit(this);
+			InputChoicesInterpreter interpreter = new InputChoicesInterpreter(resource);
+			String type = interpreter.getType();
+			if (type.equals("COUNCIL")){
+				clonedAction.setCouncilPrivileges(interpreter.getEffects());
+				isWaiting.set(false);
+	
+				System.out.println("esco dal lock");
+				notify();
+			}
+			else if (type == "AUTHORIZATION") {
+				clonedAction.setRequestedEffects(interpreter.getRequestedEffects());
+				askPlayerChoices(clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());	
+				
+			}
+			else if (type.equals("CHECKNEEDED")) {
+				Player currPlayer = model.getCouncilPalace().getTurnOrder()[currentPlayer];
+				InputChoicesInterpreter interpreter2 = new InputChoicesInterpreter(model,currPlayer,resource,clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());
+				clonedAction.setRequestedAuthorizationEffects(interpreter2.getEffects());
+				isWaiting.set(false);
+	
+				System.out.println("esco dal lock");
+				notify();
+			}
+			else if (type.equals("DISCOUNT")) {
+				clonedAction.setRawMaterialsDiscount(resource);
+				isWaiting.set(false);
+	
+				System.out.println("esco dal lock");
+				notify();
+			}
+			else if (type.equals("EXCOMMUNICATION")) {
+				interpreter = new InputChoicesInterpreter(resource);
+				String thisPlayer = interpreter.getIdentifier();
+				boolean excommunicated = interpreter.isExcommunicated();
+				if (excommunicated) {
+					for (int i = 0; i < model.getPlayers().length; i++) {
+						if (model.getPlayers()[i].getName().equals(thisPlayer))
+							model.get//TODO APPLICA LA SCOMUNICA AL PLAYER
+					}
+					
+				}
+						
+				
+			}
 		}
 	}
 

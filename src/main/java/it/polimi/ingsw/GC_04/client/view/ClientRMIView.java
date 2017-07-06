@@ -79,6 +79,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public void excommunicationManagement(String description) throws RemoteException {
 		view.inputParameter1 = description;
+		view.inputParameter2 = username;
 		view.setRun = SetRun.EXCOMMUNICATIONMANAGEMENT;
 		executor.submit(view);
 		
