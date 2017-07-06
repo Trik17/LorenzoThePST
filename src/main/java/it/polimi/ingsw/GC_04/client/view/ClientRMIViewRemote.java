@@ -36,8 +36,6 @@ public interface ClientRMIViewRemote extends Remote {
 	public void setState(String stateCLI)throws RemoteException;
 
 	public void print(String string)  throws RemoteException;
-
-	public void notifyReconnection(String username) throws RemoteException;
 	
 	public void changeUsername(Set<String> set) throws RemoteException;
 }

@@ -139,9 +139,8 @@ public class InputActionInterpreter {
 			}
 		}
 		realASpace = realTower.getASpaces().get(card);
-
 		this.action = realCard.takeCard(model, player, realASpace, fMember, servants, realCost);
-
+	
 	}
 
 	// public void input(String passTurn) {}

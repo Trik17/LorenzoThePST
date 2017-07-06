@@ -7,10 +7,11 @@ public abstract class ColorReastrictedArea extends Area {
 	private static final long serialVersionUID = -8615088704456333745L;
 
 	public boolean isColorAvailable(FamilyColor color){
-		if (color == FamilyColor.NEUTRAL) return true;
+		if (color.equals(FamilyColor.NEUTRAL)) 
+			return true;
 		
 		for(ActionSpace aSpace:aSpaces) {
-			if(color == aSpace.getPresentColor())
+			if(color.equals(aSpace.getPresentColor()))
 				return false;
 		}
 		
