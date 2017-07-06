@@ -9,6 +9,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.MainServer;
 import it.polimi.ingsw.GC_04.server.model.Model;
@@ -21,7 +23,7 @@ import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
 //TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
 //nella gestione della disconnessione e nel catch delle remote exception
-public class Controller implements Observer<String,Resource> , Runnable {
+public class Controller implements Observer<String,Resource> {
 	
 	private final static int FINALPERIOD = 3;
 	private final static int FINALTURN = 4;
@@ -35,23 +37,18 @@ public class Controller implements Observer<String,Resource> , Runnable {
 	private Timer timer;
 	private TimerTask task;
 	private MainServer server;
-
-	private ExecutorService executor;
-//	private String resource;
-	private AtomicBoolean isWaiting;
-	
+	private AtomicBoolean isWaiting;	
 	private ClonedAction clonedAction;
-
+	private Object lock;
+	
 	public Controller(Model model,MainServer server) {
 		this.model = model;
 		clonedAction = new ClonedAction();
 		this.server=server;
 		JsonMapper.TimerFromJson();
 		this.isWaiting=new AtomicBoolean(false);
-		this.executor = Executors.newCachedThreadPool();
+		this.lock=new Object();
 	}
-	
-	
 	
 	private void disconnect(String username){//da chiamare ad ogni remoteexception
 		for(Player p: model.getPlayers()){
@@ -127,9 +124,7 @@ public class Controller implements Observer<String,Resource> , Runnable {
 		councilPrivileges.get(cont).setCouncilPrivilege(resource);
 		
 	}
-	
-	
-	
+		
 	private boolean isPlayerConnected(Player player){
 		String name=player.getName();
 		for(Player p: model.getPlayers()){
@@ -177,12 +172,12 @@ public class Controller implements Observer<String,Resource> , Runnable {
 				synchronized(this){
 					askPlayersDiscounts();
 					isWaiting.set(true);
+					System.out.println("entro in lock");
 					while(isWaiting.get()){
 						wait(800);		
 					}
 				}
-			}
-				
+			}			
 			
 			action.setDiscount(clonedAction.getDiscount());	
 		}
@@ -204,6 +199,8 @@ public class Controller implements Observer<String,Resource> , Runnable {
 			synchronized (this) {
 				setCouncilPrivilege(nrOfPrivileges);
 				isWaiting.set(true);
+
+				System.out.println("entro in lock");
 				while(isWaiting.get()){
 					wait(800);		
 				}
@@ -215,6 +212,8 @@ public class Controller implements Observer<String,Resource> , Runnable {
 			synchronized (this) {
 				askPlayerAuthorizations(clonedAction.getRequestedAuthorizationEffects());
 				isWaiting.set(true);
+
+				System.out.println("entro in lock");
 				while(isWaiting.get()){
 					wait(800);		
 				}
@@ -343,6 +342,7 @@ public class Controller implements Observer<String,Resource> , Runnable {
 	
 	@Override
 	public void updateR(String resource) {
+		synchronized(lock){
 //		this.resource=resource;
 //		executor.submit(this);
 		InputChoicesInterpreter interpreter = new InputChoicesInterpreter(resource);
@@ -350,6 +350,8 @@ public class Controller implements Observer<String,Resource> , Runnable {
 		if (type.equals("COUNCIL")){
 			clonedAction.setCouncilPrivileges(interpreter.getEffects());
 			isWaiting.set(false);
+
+			System.out.println("esco dal lock");
 			notify();
 		}
 		else if (type == "AUTHORIZATION") {
@@ -362,12 +364,17 @@ public class Controller implements Observer<String,Resource> , Runnable {
 			InputChoicesInterpreter interpreter2 = new InputChoicesInterpreter(model,currPlayer,resource,clonedAction.getRequestedAuthorizationEffects(),clonedAction.getFurtherCheckNeeded());
 			clonedAction.setRequestedAuthorizationEffects(interpreter2.getEffects());
 			isWaiting.set(false);
+
+			System.out.println("esco dal lock");
 			notify();
 		}
 		else if (type.equals("DISCOUNT")) {
 			clonedAction.setRawMaterialsDiscount(resource);
 			isWaiting.set(false);
+
+			System.out.println("esco dal lock");
 			notify();
+		}
 		}
 	}
 
@@ -381,11 +388,4 @@ public class Controller implements Observer<String,Resource> , Runnable {
 		
 	}
 
-
-
-	@Override
-	public void run() {
-		
-	}
-	
 }

@@ -37,5 +37,5 @@ public interface ClientRMIViewRemote extends Remote {
 
 	public void print(String string)  throws RemoteException;
 	
-	public void changeUsername(Set<String> set) throws RemoteException;
+	public void usernameAlreadyUsed() throws RemoteException;
 }

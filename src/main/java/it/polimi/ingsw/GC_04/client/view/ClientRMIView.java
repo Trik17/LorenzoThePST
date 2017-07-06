@@ -17,7 +17,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	 * 
 	 */
 	private static final long serialVersionUID = -9164262648865618843L;
-	private String username; 
+	private final String username; 
 	private ViewCLI view;
 	private ServerRMIViewRemote serverStub;
 	private ExecutorService executor;
@@ -96,17 +96,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		System.out.println(string);
 		return;
 	}
-	
-
 	@Override
-	public void changeUsername(Set<String> set) throws RemoteException {
-		while(!(set.contains(username))){
-		username=view.scanner.getInput();
-		}
+	public void usernameAlreadyUsed() throws RemoteException{
+		System.out.println("Username already used, restart client with another username");
+		System.exit(0);
 	}
-	
-	
-	
-	
 
 }
