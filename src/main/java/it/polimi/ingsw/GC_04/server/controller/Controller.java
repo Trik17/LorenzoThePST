@@ -276,6 +276,7 @@ public class Controller implements Observer<String> {
 		
 		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers])) {
 			Player[] ranking = FinalScore.getRanking(model.getPlayers());
+			printRanking(ranking);
 			
 			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
 			return;
@@ -313,6 +314,20 @@ public class Controller implements Observer<String> {
 		
 	}
 
+
+	
+
+	private void printRanking(Player[] players) {
+		String ranking = StateOfTheGameCLI.printRanking(players);
+		for (int i = 0; i < players.length; i++) {
+			try {
+				views.get(player).print(ranking);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 	private void excommunicationsManagement() {
 		views.forEach((player,view) -> {

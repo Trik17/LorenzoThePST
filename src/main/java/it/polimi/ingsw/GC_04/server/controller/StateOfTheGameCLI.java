@@ -14,14 +14,22 @@ import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 
 public class StateOfTheGameCLI {
 
 	public StateOfTheGameCLI() {
 	}
 	
-	public static void print(String string) {
-		System.out.println(string);
+	public static String printRanking(Player[] players) {
+		int position = 1;
+		String ranking = "\n\nRANKING:\n";
+		
+		for (int i = 0; i < players.length; i++) {
+			ranking += position+")"+players[i].getName()+" with "+players[i].getResource(new VictoryPoints()).getQuantity()+" Victory Points\n";
+			position++;
+		}
+		return ranking;
 	}
 	
 	public static String printStateOfTheGame(Model model,DevelopmentCard[] tCards,DevelopmentCard[] cCards,DevelopmentCard[] bCards,DevelopmentCard[] vCards,Map<DiceColor, Dice> dices) {
