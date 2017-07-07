@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
-import it.polimi.ingsw.GC_04.server.model.area.MarketArea;
 
 public class GoToTheMarket extends Action {
 	

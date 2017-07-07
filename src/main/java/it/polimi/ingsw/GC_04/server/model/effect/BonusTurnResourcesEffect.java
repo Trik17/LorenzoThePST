@@ -16,4 +16,10 @@ public class BonusTurnResourcesEffect extends Effect{
 		
 	}
 
+	/*it activates the effect when the leader card is activated for the first time
+	 * the other times it is activate at the beginning of every period of the age
+	*/
+	public void applyFirstTime(Player player) {
+		effect.apply(player);
+	}
 }

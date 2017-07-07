@@ -115,13 +115,20 @@ public abstract class Action implements Serializable{
 		requestedAuthorizationEffects.forEach(rae -> rae.apply(player));
 	}
 	public void checkLeaderCards() {
-		//it checks if the player has enough resource to activate his leader card
-		//if he has them, that leader card is activated and never checked anymore
-		//moreover, leader card effect is activated
+		/*it checks if the player has enough resource to activate his leader card
+		if he has them, that leader card is activated and never checked anymore
+		moreover, leader card effect is activated*/
 		List<LeaderCard> leaderCards = player.getLeaderCards();
 		for (int i = 0; i < leaderCards.size(); i++) {
-			if (!leaderCards.get(i).isActivated())
+			if (!leaderCards.get(i).isActivated()) {
 				leaderCards.get(i).checkActivationLeaderCard(player);
+				
+				/*in case of BonusTurnResourcesEffect
+				 * it activates the effect when the leader card is activated for the first time
+				 * the other times it is activate at the beginning of every period of the age
+				*/
+				leaderCards.get(i).applyEffectFirstTime(player);
+			}
 		}
 		
 	}
