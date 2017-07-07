@@ -84,6 +84,12 @@ public class Player implements Serializable {
 		productionList = new ArrayList<>();
 		discount = new Discount();
 		
+		deleteVPointsCardsEffect = new ArrayList<>();
+		deleteVPointsCardsEffect.add(false);
+		deleteVPointsCardsEffect.add(false);
+		deleteVPointsCardsEffect.add(false);
+		deleteVPointsCardsEffect.add(false);
+		
 		tCards = new ArrayList<>();
 		vCards = new ArrayList<>();
 		bCards = new ArrayList<>();

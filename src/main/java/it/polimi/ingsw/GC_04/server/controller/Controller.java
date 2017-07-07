@@ -45,7 +45,7 @@ public class Controller implements Observer<String> {
 	private ClonedAction clonedAction;
 	private Object lock;
 	private AtomicInteger count;
-	private List<String> playerExcomuticationSetted;
+	private List<String> playerExcommunicationSetted;
 	
 	public Controller(Model model,MainServer server) {
 		this.model = model;
@@ -55,7 +55,7 @@ public class Controller implements Observer<String> {
 		this.isWaiting=new AtomicBoolean(false);
 		this.lock=new Object();
 		count=new AtomicInteger(0);
-		playerExcomuticationSetted=new ArrayList<>();
+		playerExcommunicationSetted=new ArrayList<>();
 	}
 	
 	private void disconnect(String username){//da chiamare ad ogni remoteexception
@@ -286,17 +286,18 @@ public class Controller implements Observer<String> {
 			return;
 		}
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
-					
+			/* this is the end of the second turn of a period 
+			 * and the controller ask to the players that have enough faithPoints
+			 * to decide if they want to suffer the excommunication or not
+			 */
 			if (lastPhase) {
-				count.set(model.getPlayers().length);
-				
 				//timer to avoid the block of the game caused by a disconnection of the client during the request of the ecomunications
 				this.timerExcomunication=new Timer();
 				this.taskExcomunication=new TimerTask(){
 					public void run(){
 						for (int i = 0; i < model.getPlayers().length; i++) {
-							for (int j = 0; j < playerExcomuticationSetted.size(); j++){
-								if (model.getPlayers()[i].equals(playerExcomuticationSetted.get(j))){
+							for (int j = 0; j < playerExcommunicationSetted.size(); j++){
+								if (model.getPlayers()[i].equals(playerExcommunicationSetted.get(j))){
 									model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
 								}
 							}
@@ -305,9 +306,14 @@ public class Controller implements Observer<String> {
 					}
 				};	
 				timerExcomunication.schedule( taskExcomunication, 1000000/*TimerJson.getActionTimer() */ ); 
-				
+				/*variable used to wait the players' responses
+				 * about the excommunications  
+				 * it is decremented each time that a player sends his response
+				 * (except the players that are excommunicated by default : for a connection error
+				 * or because they haven't enough faithpoints)
+				 */
+				count.set(0);
 				excommunicationsManagement();
-				//TODO non funziona la scomunicaaaaaa
 				
 				while(count.get()>0){
 					try {
@@ -354,6 +360,7 @@ public class Controller implements Observer<String> {
 		views.forEach((player,view) -> {
 			if (!VaticanReport.isUnderThreshold(model.getPlayer(player), model.getPeriod())) {
 				try {
+					count.incrementAndGet();
 					view.excommunicationManagement(model.getVaticanReport().getExcommunication(model.getPeriod()).getDescription());
 				} catch (RemoteException e) {
 					//if it catches a remote exception, this player suffers the excommunication
@@ -430,7 +437,7 @@ public class Controller implements Observer<String> {
 				count.getAndDecrement();
 				interpreter = new InputChoicesInterpreter(input);
 				String thisPlayer = interpreter.getIdentifier(); //it returns the name of the player 
-				playerExcomuticationSetted.add(thisPlayer);
+				playerExcommunicationSetted.add(thisPlayer);
 				boolean excommunicated = interpreter.isExcommunicated();
 				if (excommunicated) {
 					int period = model.getPeriod();
