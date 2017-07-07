@@ -14,9 +14,7 @@ import it.polimi.ingsw.GC_04.server.controller.Observable;
 //notify() with the corresponding action. The controller that is observing the view will be notified and translate this in
 //actual actions upon the model.
 public class ServerRMIView extends Observable<String> implements ServerRMIViewRemote, Serializable, Runnable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -225339130175226319L;
 	private MainServer clientManager;
 	private ExecutorService executor;
@@ -41,7 +39,6 @@ public class ServerRMIView extends Observable<String> implements ServerRMIViewRe
 	@Override
 	public void notifyObserversRRemote(String resource) throws RemoteException{
 		this.resource=resource;
-//		//TODO devo mettere get e setter syncronized su resource?
 		executor.submit(this);
 		
 	}
