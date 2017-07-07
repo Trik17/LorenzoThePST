@@ -173,27 +173,32 @@ public class MainServer implements Runnable{
 	//Start Socket:
 	@Override
 	public void run() {
-//		try {
-//			//creats the socket
-//					
-//			serverSocket = new ServerSocket(SOCKET_PORT);	
-//			System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
-//	
-//			while (true) {
-//				//Waits for a new client to connect
-//				Socket socket = serverSocket.accept();
-//	
-//				// creates the view (server side) associated with the new client
-//				ServerSocketView view = new ServerSocketView(socket, this.currentController);
-//	
-//				// the controller observes the view
-//				view.registerObserver(this.currentController);
-//	
-//				// a new thread handle the connection with the view
-//				executor.submit(view);
-//			}
-//		} catch (IOException e) {
-//			executor.submit(this);
-//		}		
+		try {
+			//creats the socket
+					
+			serverSocket = new ServerSocket(SOCKET_PORT);	
+			System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
+	
+			while (true) {
+				//Waits for a new client to connect
+				Socket socket = serverSocket.accept();
+	
+				// creates the view (server side) associated with the new client
+				ServerSocketView view = new ServerSocketView(socket, this.currentController);
+	
+				// the controller observes the view
+				view.registerObserver(this.currentController);
+				
+				
+				// a new thread handle the connection with the view
+				executor.submit(view);
+			}
+		} catch (IOException e) {
+			try {
+				serverSocket.close();
+			} catch (IOException e1) {
+				System.out.println("ServerSocket closed");
+			}
+		}		
 	}	
 }

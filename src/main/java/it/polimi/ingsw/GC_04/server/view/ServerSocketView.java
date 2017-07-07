@@ -25,7 +25,8 @@ public class ServerSocketView extends Observable<String> implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		System.out.println("Connesso al server");
+		// TODO while true per aspettare messaggi da server
 		
 	}
 }
