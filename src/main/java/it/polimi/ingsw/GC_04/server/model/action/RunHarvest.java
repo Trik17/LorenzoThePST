@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_04.server.model.action;
 
 import java.util.List;
 
+import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Harvest;
@@ -32,19 +33,16 @@ public class RunHarvest extends Action{
 	
 	@Override
 	public void checkExtraordinaryEffect(){
+		super.checkExtraordinaryEffect();
 		
 		List<Harvest> harvest=player.getHarvest();
 		
 		for (Harvest harv:harvest) {
 			if (harv.getDiceValue() <= harvValue) {
 				List<Effect> effects = harv.getEffects();
-				for (Effect eff:effects) {
-					if (eff.getClass().equals(CouncilPrivilege.class))
-						councilPrivileges.add((CouncilPrivilege) eff);
-					if (eff.isAuthorizationRequested())
-						requestedAuthorizationEffects.add(eff);
-				}
 				
+				//it put in councilPrivileges all the council privilege in effects and in requestedAuthorizationEffects all the effects that have AuthorizationRequested=true 
+				SupportFunctions.addExtraordinaryEffects(councilPrivileges, requestedAuthorizationEffects, effects);
 			}
 		}
 	}

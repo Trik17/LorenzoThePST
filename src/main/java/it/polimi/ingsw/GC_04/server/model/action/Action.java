@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Model;
@@ -51,14 +52,17 @@ public abstract class Action implements Serializable{
 	public abstract void apply();
 	
 	public void checkExtraordinaryEffect() {
-		List<Effect> effects = aSpace.getEffect();
+		List<Effect> effects;
+		if (model.getCurrentRow() == 1) {
+			effects = player.getBonusAction();
+			
+			//it put in councilPrivileges all the council privilege in effects and in requestedAuthorizationEffects all the effects that have AuthorizationRequested=true 
+			SupportFunctions.addExtraordinaryEffects(councilPrivileges, requestedAuthorizationEffects, effects);
+		}
+		
+		effects = aSpace.getEffect();
 		if (effects != null) {
-			for(Effect eff: effects) {
-				if (eff.getClass().equals(CouncilPrivilege.class))
-					councilPrivileges.add((CouncilPrivilege) eff);	
-				if (eff.isAuthorizationRequested())
-					requestedAuthorizationEffects.add(eff);
-			}
+			SupportFunctions.addExtraordinaryEffects(councilPrivileges, requestedAuthorizationEffects, effects);
 		}
 	}
 	
@@ -102,7 +106,10 @@ public abstract class Action implements Serializable{
 		
 		
 	}
+	
 	public void applyEffects() {
+		if (model.getCurrentRow() == 1)
+			player.applyBonus();
 		aSpace.applyEffects(player);
 		councilPrivileges.forEach(cp -> cp.apply(player));
 		requestedAuthorizationEffects.forEach(rae -> rae.apply(player));
@@ -135,6 +142,7 @@ public abstract class Action implements Serializable{
 		this.discount = discount;
 		
 	}
+	
 	
 	
 	

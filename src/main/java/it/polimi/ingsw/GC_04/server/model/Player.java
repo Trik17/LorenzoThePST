@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Coins;
 import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
@@ -227,6 +228,11 @@ public class Player implements Serializable {
 
 	public void setBonusAction(Effect bonusAction) {
 		this.bonusAction.add(bonusAction);
+	}
+
+	public void applyBonus() {
+		bonusAction.forEach(eff -> {if (!eff.isAuthorizationRequested() && !(eff instanceof CouncilPrivilege)) 
+			eff.apply(this);});
 	}
 	
 	

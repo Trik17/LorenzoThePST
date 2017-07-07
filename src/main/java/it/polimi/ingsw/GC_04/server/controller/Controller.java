@@ -26,15 +26,15 @@ import it.polimi.ingsw.GC_04.server.timer.TimerJson;
 //nella gestione della disconnessione e nel catch delle remote exception
 public class Controller implements Observer<String> {
 	
-	private final static int FINALAGE = 3;
-	private final static int FINALTURN = 4;
+	private final static int FINALAGE = 3; //age is the period, bounded between 1 and 3
+	private final static int FINALROW = 4; //when in a phase a player makes a move for the fourth time 
+		
 	private Model model;
 	private Map<String, ClientRMIViewRemote> views;
 	private Initializer initializer;
 	private String player;
 	private int currentPlayer = 0;
-	private int turn = 0;
-	private boolean lastPeriod;
+	private boolean lastPeriod;//second phase of an age
 	private Timer timerAction;
 	private Timer timerExcomunication;
 	private TimerTask taskAction;
@@ -278,7 +278,7 @@ public class Controller implements Observer<String> {
 	public synchronized void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
-		if (model.getAge() == FINALAGE && lastPeriod && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
+		if (model.getAge() == FINALAGE && lastPeriod && model.getCurrentRow() == FINALROW && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
 			excommunicationManagement();
 			Player[] ranking = FinalScore.getRanking(model.getPlayers());
 			printRanking(ranking);
@@ -286,9 +286,9 @@ public class Controller implements Observer<String> {
 			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
 			return;
 		}
-		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
+		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName()) && model.getCurrentRow() == FINALROW) {
 			/* this is the end of the second turn of an age 
-			 * and the controller ask to the players that have enough faithPoints
+			 * and the controller asks players that have enough faithPoints
 			 * to decide if they want to suffer the excommunication or not
 			 */
 			if (lastPeriod) {
@@ -299,10 +299,16 @@ public class Controller implements Observer<String> {
 			}
 			currentPlayer = 0;
 			lastPeriod = !lastPeriod;
+			model.resetCurrentRow();
 			
-		}else 
+		}
+		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName()) ) {
+			model.incrementCurrentRow();
+			currentPlayer = 0;
+			
+		}else {
 			currentPlayer++;
-		
+		}
 		try {
 			views.get(player).print("Wait for the other players to make their move");
 			player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();

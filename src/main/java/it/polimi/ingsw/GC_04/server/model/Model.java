@@ -31,6 +31,8 @@ public class Model implements Serializable{
 	private Player[] players;
 //	private boolean
 	private int currentAge;
+	private int currentRow;
+	
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
 	private TerritoryTower territoryTower;
@@ -48,6 +50,7 @@ public class Model implements Serializable{
     public Model() {
     	this.dices = Dice.rollTheDices();
     	this.currentAge = 1;
+    	this.currentRow = 1;
     	
 	}
     
@@ -144,5 +147,16 @@ public class Model implements Serializable{
 	public void supportTheChurch(Player player) {
 		VaticanReport.addFaithPointsScore(player);
 		player.getResource(new FaithPoints()).reset();
+	}
+
+	public int getCurrentRow() {
+		return currentRow;
+	}
+
+	public void incrementCurrentRow() {
+		this.currentRow++;
+	}
+	public void resetCurrentRow() {
+		this.currentRow = 1;
 	}
 }

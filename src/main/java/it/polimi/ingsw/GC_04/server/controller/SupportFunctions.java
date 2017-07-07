@@ -121,4 +121,15 @@ public class SupportFunctions {
 		}
 		return card;
 	}
+	
+
+	public static void addExtraordinaryEffects(List<CouncilPrivilege> councilPrivileges, List<Effect> requestedAuthorizationEffects, List<Effect> myEffects) {
+		
+		for(Effect eff: myEffects) {
+			if (eff.getClass().equals(CouncilPrivilege.class))
+				councilPrivileges.add((CouncilPrivilege) eff);	
+			if (eff.isAuthorizationRequested())
+				requestedAuthorizationEffects.add(eff);
+		}
+	}
 }
