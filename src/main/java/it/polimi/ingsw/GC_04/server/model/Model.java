@@ -20,9 +20,10 @@ import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
-public class Model extends Observable<Action, Resource> implements Serializable{
+public class Model implements Serializable{
 	
 	/**
 	 * 
@@ -30,8 +31,8 @@ public class Model extends Observable<Action, Resource> implements Serializable{
 	private static final long serialVersionUID = 4908982852125469835L;
 	private boolean areasSetted;
 	
-	public Player[] players;///////////////
-	public int currentPeriod;///////////////////////////
+	private Player[] players;
+	private int currentPeriod;
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
 	private TerritoryTower territoryTower;
@@ -41,7 +42,6 @@ public class Model extends Observable<Action, Resource> implements Serializable{
 	private CouncilPalaceArea councilPalaceArea;
 	private MarketArea marketArea;
 	private VaticanReport vaticanReport;
-	public static int counteeeee;///////////////
 	
 	private Map<DiceColor, Dice> dices;
 	
@@ -135,4 +135,17 @@ public class Model extends Observable<Action, Resource> implements Serializable{
 			return dices.get(DiceColor.NEUTRAL);
 	}
 
+    public Player getPlayer(String username) {
+    	for (int i = 0; i < players.length; i++) {
+			if (players[i].getName().equals(username))
+				return players[i];
+		}
+		return null;
+	}
+
+	public void supportTheChurch(Player player) {
+		player.getResource(new FaithPoints()).reset();
+		VaticanReport.addFaithPointsScore(player);
+		
+	}
 }

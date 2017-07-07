@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_04.server.model.card;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 
 public class ExcommunicationTile extends Card{
@@ -35,5 +36,9 @@ public class ExcommunicationTile extends Card{
 	
 	public String getDescription() {
 		return description;
+	}
+	public void apply(Player player) {
+		effect.apply(player);
+		
 	}
 }

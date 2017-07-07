@@ -33,6 +33,7 @@ public class GoToTheCouncilPalace extends Action{
 		applyPlayerChanges();
 		applyEffects();
 		createNewASpace();
+		checkLeaderCards();
 	}
 
 }

@@ -5,32 +5,32 @@ import java.util.List;
 
 
 
-public abstract class Observable<A,R> {
+public abstract class Observable<A> {
 
-	private List<Observer<A,R>> observers;
+	private List<Observer<A>> observers;
 
 	public Observable() {
 
-		observers = new ArrayList<Observer<A,R>>();
+		observers = new ArrayList<Observer<A>>();
 	}
 
-	public void registerObserver(Observer<A,R> o) {
+	public void registerObserver(Observer<A> o) {
 		observers.add(o);
 	}
 
-	public void unregisterObserver(Observer<A,R> o) {
+	public void unregisterObserver(Observer<A> o) {
 		this.observers.remove(o);
 	}
 
 
 	public void notifyObserversA(A action) {
-		for (Observer<A,R> o : this.observers) {
+		for (Observer<A> o : this.observers) {
 			o.update(action);
 			return;//TODO
 		}
 	}
 	public void notifyObserversR(A resource) {
-		for (Observer<A,R> o : this.observers) {
+		for (Observer<A> o : this.observers) {
 			o.updateR(resource);
 			return;//TODO
 		}

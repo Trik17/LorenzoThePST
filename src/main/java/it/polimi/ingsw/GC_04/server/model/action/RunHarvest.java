@@ -86,6 +86,7 @@ public class RunHarvest extends Action{
 		applyEffects();
 		applyPlayerChanges();
 		createNewASpace();
+		checkLeaderCards();
 	}
 	
 

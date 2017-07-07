@@ -124,6 +124,7 @@ public class TakeACard extends Action{
 		applyCardChanges();
 		applyPlayerChanges();
 		applyEffects();
+		checkLeaderCards();
 	
 	}
 

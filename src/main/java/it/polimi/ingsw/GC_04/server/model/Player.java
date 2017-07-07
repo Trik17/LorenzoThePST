@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.server.model.resource.Coins;
@@ -18,13 +19,17 @@ import it.polimi.ingsw.GC_04.server.model.resource.Stones;
 import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 
+//TODO: alla fine di ogni azione controllo le leader card dei giocatori e vedo se si attivano. 
+//aggiungi un boolean che dice se la carta è già attivata e non la controlli più.
+//le carte quelle tutte uguali aggiungono il loro effetto in bonus e io lo aggiungo a tutti gli effetti 
+//dell'azione quando faccio applyEffects. L'arrayList è già inizializzato.
+
 public class Player implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7992514360884500251L;
 	private String name;
-	private Model game;
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
 	private Discount discount;	
@@ -34,12 +39,14 @@ public class Player implements Serializable {
 	private List<DevelopmentCard> cCards;
 	private List<Resource> resources;
 	private List<Resource> malus;
+	private List<Resource> bonusAction;
 	private List<Boolean> deleteVPointsCardsEffect;
 	private boolean actionSpacePenality;
 	private boolean disconnected=false;	
 	private List<Harvest> harvestList;
 	private List<Production> productionList;
 	private Model model;
+	private List<LeaderCard> leaderCards;
 	
 	
 	public boolean isDisconnected(){
@@ -77,12 +84,21 @@ public class Player implements Serializable {
 		productionList = new ArrayList<>();
 		discount = new Discount();
 		
+		deleteVPointsCardsEffect = new ArrayList<>();
+		deleteVPointsCardsEffect.add(false);
+		deleteVPointsCardsEffect.add(false);
+		deleteVPointsCardsEffect.add(false);
+		deleteVPointsCardsEffect.add(false);
+		
 		tCards = new ArrayList<>();
 		vCards = new ArrayList<>();
 		bCards = new ArrayList<>();
 		cCards = new ArrayList<>();
 		
 		malus = new ArrayList<>();
+		bonusAction = new ArrayList<>();
+		
+		
 		
 		actionSpacePenality = false; 
 	}
@@ -131,8 +147,22 @@ public class Player implements Serializable {
 			return new ArrayList<>();
 	}
 	
-	public Resource getServants() {
-		return resources.get(2);
+	
+	public Resource getResource(Resource resource) {
+		if (resource instanceof Woods)
+			return resources.get(0);
+		if (resource instanceof Stones)
+			return resources.get(1);
+		if (resource instanceof Servants)
+			return resources.get(2);
+		if (resource instanceof MilitaryPoints)
+			return resources.get(3);
+		if (resource instanceof VictoryPoints)
+			return resources.get(4);
+		if (resource instanceof FaithPoints)
+			return resources.get(5);
+		else
+			return resources.get(6);
 	}
 	
 	public List<Resource> getResources(){
@@ -181,5 +211,14 @@ public class Player implements Serializable {
 		else 
 			deleteVPointsCardsEffect.set(3, true);
 	}
+
+	public List<LeaderCard> getLeaderCards() {
+		return leaderCards;
+	}
+
+	public void setLeaderCards(List<LeaderCard> leaderCards) {
+		this.leaderCards = leaderCards;
+	}
+	
 	
 }

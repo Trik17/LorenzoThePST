@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import it.polimi.ingsw.GC_04.server.model.resource.Coins;
 import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
@@ -46,5 +47,11 @@ public class TestFaithPoints {
 		p=new FaithPoints(1);
 		p.addQuantity(0);
 		assertEquals(1, p.getQuantity());
+	}
+	@Test
+	public void testReset(){
+		p=new FaithPoints(3);
+		p.reset();
+		assertEquals(0, p.getQuantity());
 	}
 }

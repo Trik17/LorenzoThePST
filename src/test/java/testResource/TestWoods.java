@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import it.polimi.ingsw.GC_04.server.model.resource.Coins;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 
@@ -47,6 +48,11 @@ public class TestWoods {
 		assertEquals(1, w.getQuantity());
 	}
 
-	
+	@Test
+	public void testReset(){
+		w=new Woods(3);
+		w.reset();
+		assertEquals(0, w.getQuantity());
+	}
 
 }

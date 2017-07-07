@@ -79,6 +79,9 @@ public abstract class Resource implements Cloneable, Serializable{
 	}
 	
 	public static boolean isAffordable(List<Resource> myRes,List<Resource> cost) {
+		if (cost == null)
+			return true;
+		
 		for(Resource c:cost){  //for all resource type in cost
 			for(Resource mR:myRes){
 				//it scrolls through all types of player's resources and if the type coincides
@@ -97,6 +100,10 @@ public abstract class Resource implements Cloneable, Serializable{
 			return null;
 		}
 		
+	}
+	
+	public void reset() {
+		this.quantity = 0;
 	}
 	
 }

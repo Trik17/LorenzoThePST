@@ -70,10 +70,8 @@ public class TestJson {
 			assertEquals(2, m.getMalus());
 			
 			//TIMER: 
-			assertEquals(0, TimerJson.getStartTimer());
-			assertEquals(0, TimerJson.getInputTimer());
 			JsonMapper.TimerFromJson();
-			
+			//TODO
 //			assertEquals(METTI VALORE FINALE, TimerJson.getStartTimer());
 //			assertEquals(METTI VALORE FINALE, TimerJson.getInputTimer());
 //			assertEquals(METTI VALORE FINALE, TimerJson.getActionTimer());

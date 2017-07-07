@@ -16,7 +16,7 @@ public abstract class ViewClient implements Serializable {
 	 */
 	private static final long serialVersionUID = 6860755801717581167L;
 	protected ServerRMIViewRemote serverStub;
-	private int turn;
+
 	protected String state;
 	protected ExecutorService executor;
 	
@@ -24,7 +24,6 @@ public abstract class ViewClient implements Serializable {
 	
 	
 	public ViewClient() {
-		turn = 0;
 		this.executor = Executors.newCachedThreadPool();
 		JsonMapper.TimerFromJson();
 	}

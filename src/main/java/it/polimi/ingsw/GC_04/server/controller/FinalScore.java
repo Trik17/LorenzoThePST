@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_04.server.controller;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.area.VaticanReport;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
@@ -10,6 +11,7 @@ import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.server.model.resource.Coins;
 import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
+import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.Servants;
 import it.polimi.ingsw.GC_04.server.model.resource.Stones;
@@ -19,30 +21,59 @@ import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 public class FinalScore {
 	
 	private static void addVictoryPoints(Player player, int bonus) {
-		List<Resource> playerRes = player.getResources();
+		player.getResource(new VictoryPoints()).addQuantity(bonus);
 		
-		for (Resource res:playerRes) 
-			if (res instanceof VictoryPoints)
-				res.addQuantity(bonus);
 	}
 	
 
-	/*public static Player[] calculateFinalScore(Player[] players) {
-		int[] scores = new int[players.length];
+	public static Player[] getRanking(Player[] players) {
+		for (int i = 0; i < players.length; i++) 
+			calculateFinalScore(players[i]);
 		
-		for (int i = 0; i < scores.length; i++) {
-			scores[i] = calculateFinalScore(players[i]);
+		calculateMilitaryPointsScore(players);
+		
+		Player[] ranking = new Player[players.length];
+		int position = 0;
+		boolean empty = false;
+	
+		while(!empty) {
+			empty = true;
+			ranking[position] = SupportFunctions.maxVictoryPoints(players);
+			position++;
+			for (int i = 0; i < players.length; i++) {
+				if (players[i] != null)
+					empty = false;
+			}
 		}
 		
-		int[] ranking = new int[players.length];
-		for (int i = 1; i < scores.length; i++) {
-			if (winner)
+		return ranking;	
+	}
+	
+	private static void calculateMilitaryPointsScore(Player[] players) {
+		
+		Player firstPlayer = null;
+		Player secondPlayer = null;
+		int max1 = 0;
+		int max2 = 0;
+		
+		for (Player player:players) {
+			if (player.getResource(new MilitaryPoints()).getQuantity() > max1) {
+				firstPlayer = player;
+				max1 = firstPlayer.getResource(new MilitaryPoints()).getQuantity();
+			}
+			else if (player.getResource(new MilitaryPoints()).getQuantity() > max2) {
+				secondPlayer = player;
+				max2 = secondPlayer.getResource(new MilitaryPoints()).getQuantity();
+			}
 		}
 		
-		
-	}*/
+		if (firstPlayer != null)
+			addVictoryPoints(firstPlayer, 5);
+		if (secondPlayer != null)
+			addVictoryPoints(secondPlayer, 2);
+	}
+	
 	public static int calculateFinalScore(Player player) {
-		List<Resource> playerRes = player.getResources();
 		int finalScore = 0;
 		
 		if (!player.isDeleteCardsEffectActive(new VentureCard()))
@@ -57,14 +88,18 @@ public class FinalScore {
 		calculateFaithPointsScore(player);
 		calculateResourceScore(player);
 		
-		for (Resource res:playerRes) 
-			if (res instanceof VictoryPoints)
-				finalScore = res.getQuantity();
+		finalScore = player.getResource(new FaithPoints()).getQuantity();
 		
 		return finalScore;
 		
 	}
 	
+	private static void calculateFaithPointsScore(Player player) {
+		VaticanReport.addFaithPointsScore(player);
+		
+	}
+
+
 	private static void calculateResourceScore(Player player) {
 		List<Resource> playerRes = player.getResources();
 		int resourceScore = 0;
@@ -110,28 +145,7 @@ public class FinalScore {
 		
 	}
 	
-	private static void calculateFaithPointsScore(Player player) {
-		List<Resource> playerRes = player.getResources();
-		int faithPointsScore = 0;
-		int faithPoints = 0;
-		
-		for (Resource res:playerRes) 
-			if (res instanceof FaithPoints)
-				faithPoints = res.getQuantity();
-		
-		for (int cont=1; cont<=faithPoints; cont++) {
-			if (cont < 6)
-				faithPointsScore++;
-			else if (cont >= 6 && cont < 13)
-				faithPointsScore += 2;
-			else if (cont >= 13 && cont < 15)
-				faithPointsScore += 3;
-			else
-				faithPointsScore += 5;
-		}
-		
-		addVictoryPoints(player, faithPointsScore);			
-	}
+	
 	
 	public static void calculateBuildingCardsMalus(Player player) {
 		List<DevelopmentCard> buildingCards = player.getCards(new BuildingCard());

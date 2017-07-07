@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_04.server.controller.Controller;
 import it.polimi.ingsw.GC_04.server.controller.Observable;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
-public class ServerSocketView extends Observable<String,Resource> implements Runnable{
+public class ServerSocketView extends Observable<String> implements Runnable{
 	private Socket socket;
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
@@ -25,7 +25,8 @@ public class ServerSocketView extends Observable<String,Resource> implements Run
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		System.out.println("Connesso al server");
+		// TODO while true per aspettare messaggi da server
 		
 	}
 }

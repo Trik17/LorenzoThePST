@@ -1,9 +1,13 @@
+
 package it.polimi.ingsw.GC_04.client.view;
 
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
@@ -23,30 +27,33 @@ public class ViewCLI extends ViewClient implements Runnable{
 	Object inputParameter2;
 	SetRun setRun;
 	protected ScannerInputThread scanner;
-	private boolean whileSecurity=false;
+	private AtomicBoolean whileSecurity;
+	private Object lockStrInput;
 	
 	public ViewCLI() {
 		super();
+		whileSecurity=new AtomicBoolean(false);
 		this.scanner=ScannerInputThread.instance(this);
 		executor.submit(this);
+		lockStrInput= new Object();
 	} 
-	public  synchronized boolean getWhileSecurity(){
-		return whileSecurity;
-	}
-	public  synchronized void setWhileSecurity(boolean set){
-		whileSecurity=set;
-	}
+	
 	
 	private void print(String string) {
 		System.out.println(string);
 	}
 	
-	public synchronized String getStrInput(){
-		String str=strInput;
-		return str;
+	public String getStrInput(){
+		synchronized (lockStrInput) {
+			String str=strInput;
+			return str;
+		}
+		
 	}
-	public synchronized void setStrInput(String string){
-		strInput=string;
+	public void setStrInput(String string){
+		synchronized (lockStrInput) {
+			strInput=string;
+		}
 	}
 	//TODO va bene la sync o si blocca???
 	private /*synchronized*/ String getInput(){
@@ -75,9 +82,10 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return getStrInput()+" ";
 	}	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void run(){
-		if(getWhileSecurity()){
+		if(whileSecurity.get()){
 			try {
 				switch (setRun) {
 				case CHOOSEACTION:
@@ -100,6 +108,10 @@ public class ViewCLI extends ViewClient implements Runnable{
 					setDiscount((List<Resource>) inputParameter1);
 					setRun=null;
 					break;
+				case EXCOMMUNICATIONMANAGEMENT:
+					excommunicationManagement((String) inputParameter1,(String) inputParameter2);
+					setRun=null;
+					break;
 				default:
 					break;
 				}
@@ -109,13 +121,13 @@ public class ViewCLI extends ViewClient implements Runnable{
 				e.printStackTrace();
 			}
 		}else{
-			setWhileSecurity(true);
+			whileSecurity.set(true);
 			while(true){				
 			}
 		}
 	}
 	
-	public void chooseAction() throws RemoteException{
+	public synchronized void chooseAction() throws RemoteException{
 		printStateOfTheGame(state);
 		String input = new String();
 		
@@ -135,7 +147,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		}
 		if ("0 ".equals(area))
 			passTurn();
-		if ("1 ".equals(area)) {
+		else if ("1 ".equals(area)) {
 			input += "TOWER ";
 			input += chooseATower();
 			input += chooseACard();
@@ -166,7 +178,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		}
 	}//TODO AGGIUSTARE INTERPRETE
 
-	private String chooseAShop() {
+	private synchronized String chooseAShop() {
 		print("Choose a shop between 1, 2, 3, 4"); 
 		String actSpace = getInput();
 		if(SupportFunctions.timeout(actSpace, this))
@@ -178,7 +190,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 
 
-	private String chooseDice() {
+	private synchronized String chooseDice() {
 		String input;
 		print("Choose the dice that you want to use between:");
 		print("1)BLACK");
@@ -196,7 +208,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 
 
-	public void setCouncilPrivilege(int nrOfPrivileges) throws RemoteException {
+	public synchronized void setCouncilPrivilege(int nrOfPrivileges) throws RemoteException {
 		String privileges = "COUNCIL ";
 		while (nrOfPrivileges > 0) {
 			print("Choose your privilege between:");
@@ -221,7 +233,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		serverStub.notifyObserversRRemote(privileges);
 	}
 	
-	public void setRequestedAuthorizationEffects(List<Effect> effects) throws RemoteException {
+	public synchronized void setRequestedAuthorizationEffects(List<Effect> effects) throws RemoteException {
 		String output = "AUTHORIZATION";
 		if (effects.isEmpty())
 			serverStub.notifyObserversRRemote(output);
@@ -290,7 +302,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	
 	}
 	
-	private String chooseExchangeResourcesEffect(Effect effect) throws RemoteException {
+	private synchronized String chooseExchangeResourcesEffect(Effect effect) throws RemoteException {
 		String input;
 		String cost1;
 		String effect1;
@@ -312,7 +324,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 
 
-	public void setFurtherCheckNeededEffect(List<Effect> rAE, int[] fCN) throws RemoteException {
+	public synchronized void setFurtherCheckNeededEffect(List<Effect> rAE, int[] fCN) throws RemoteException {
 		
 		/*rAE = RequestedAuthorizationEffects
 		 *fCN = FurtherCheckNeededEffect -> it contains the indices of the effects of rAE that need a player choice
@@ -346,7 +358,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		serverStub.notifyObserversRRemote(input);
 	}
 	
-	private String chooseNrOfServants() {
+	private synchronized String chooseNrOfServants() {
 		String input;
 	
 		print("How many servants do you want to use?");
@@ -361,7 +373,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 
 
-	public String calculateCost(List<Resource> costs) {
+	public synchronized String calculateCost(List<Resource> costs) {
 		String cost = new String();
 		int costQuantity;
 		String costType;
@@ -374,7 +386,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return cost;
 	}
 			
-	private String calculateEffect(List<ResourceEffect> list) {
+	private synchronized String calculateEffect(List<ResourceEffect> list) {
 		String effect = new String();
 		int effectQuantity;
 		String effectType;
@@ -395,7 +407,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return effect;
 		
 	}	
-	public void setDiscount(List<Resource> rawMaterials) throws RemoteException {
+	public synchronized void setDiscount(List<Resource> rawMaterials) throws RemoteException {
 		String input = "DISCOUNT ";
 		
 		for (int i = 0; i < rawMaterials.size(); i++) {
@@ -419,7 +431,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 
 
-	public String chooseATower() {
+	public synchronized String chooseATower() {
 		String input;
 		
 		print("1)Take a card from Territory Tower");
@@ -435,7 +447,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return input;
 	}
 		
-	public String chooseACard() {
+	public synchronized String chooseACard() {
 		String input;
 		print("Choose a card between 1,2,3,4, then  press Enter");
 		
@@ -460,6 +472,25 @@ public class ViewCLI extends ViewClient implements Runnable{
 		input += cost;
 		
 		return input;
+	}
+	public synchronized void excommunicationManagement(String description, String username) throws RemoteException {
+		String input = "EXCOMMUNICATION "+username;
+		
+		print("\n\nPERIOD EXCOMMUNICATION:\n\n");
+		print(description);
+		print("\n1)Suffer the Excommunication");
+		print("\n2)Support the Church");
+		
+		input += getInput();
+		
+		if(SupportFunctions.timeout(input, this))
+			serverStub.notifyObserversRRemote("1 ");
+	
+		if (!SupportFunctions.isInputValid(input, 1, 2)) {
+			excommunicationManagement(description,username);
+			return;
+		}
+		serverStub.notifyObserversRRemote(input);
 	}
 		
 	
