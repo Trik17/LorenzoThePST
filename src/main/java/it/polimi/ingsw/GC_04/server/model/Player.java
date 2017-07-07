@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.server.model.resource.Coins;
@@ -17,6 +18,11 @@ import it.polimi.ingsw.GC_04.server.model.resource.Servants;
 import it.polimi.ingsw.GC_04.server.model.resource.Stones;
 import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Woods;
+
+//TODO: alla fine di ogni azione controllo le leader card dei giocatori e vedo se si attivano. 
+//aggiungi un boolean che dice se la carta è già attivata e non la controlli più.
+//le carte quelle tutte uguali aggiungono il loro effetto in bonus e io lo aggiungo a tutti gli effetti 
+//dell'azione quando faccio applyEffects. L'arrayList è già inizializzato.
 
 public class Player implements Serializable {
 	/**
@@ -33,12 +39,14 @@ public class Player implements Serializable {
 	private List<DevelopmentCard> cCards;
 	private List<Resource> resources;
 	private List<Resource> malus;
+	private List<Resource> bonusAction;
 	private List<Boolean> deleteVPointsCardsEffect;
 	private boolean actionSpacePenality;
 	private boolean disconnected=false;	
 	private List<Harvest> harvestList;
 	private List<Production> productionList;
 	private Model model;
+	private List<LeaderCard> leaderCards;
 	
 	
 	public boolean isDisconnected(){
@@ -82,6 +90,9 @@ public class Player implements Serializable {
 		cCards = new ArrayList<>();
 		
 		malus = new ArrayList<>();
+		bonusAction = new ArrayList<>();
+		
+		
 		
 		actionSpacePenality = false; 
 	}
@@ -193,6 +204,14 @@ public class Player implements Serializable {
 			deleteVPointsCardsEffect.set(2, true);
 		else 
 			deleteVPointsCardsEffect.set(3, true);
+	}
+
+	public List<LeaderCard> getLeaderCards() {
+		return leaderCards;
+	}
+
+	public void setLeaderCards(List<LeaderCard> leaderCards) {
+		this.leaderCards = leaderCards;
 	}
 	
 	
