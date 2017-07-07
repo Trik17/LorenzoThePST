@@ -3,9 +3,7 @@ package it.polimi.ingsw.GC_04.server.model;
 import java.io.Serializable;
 import java.util.Map;
 
-import it.polimi.ingsw.GC_04.server.controller.Observable;
 import it.polimi.ingsw.GC_04.server.controller.StateOfTheGameCLI;
-import it.polimi.ingsw.GC_04.server.model.action.Action;
 import it.polimi.ingsw.GC_04.server.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.server.model.area.CharacterTower;
 import it.polimi.ingsw.GC_04.server.model.area.CouncilPalaceArea;
@@ -21,7 +19,6 @@ import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
-import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class Model implements Serializable{
 	
@@ -32,7 +29,10 @@ public class Model implements Serializable{
 	private boolean areasSetted;
 	
 	private Player[] players;
-	private int currentPeriod;
+//	private boolean
+	private int currentAge;
+	private int currentRow;
+	
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
 	private TerritoryTower territoryTower;
@@ -49,7 +49,8 @@ public class Model implements Serializable{
 	
     public Model() {
     	this.dices = Dice.rollTheDices();
-    	this.currentPeriod = 1;
+    	this.currentAge = 1;
+    	this.currentRow = 1;
     	
 	}
     
@@ -93,12 +94,12 @@ public class Model implements Serializable{
     	return players;
     }
     
-    public int getPeriod() {
-    	return currentPeriod;
+    public int getAge() {
+    	return currentAge;
     }
     
-    public void incrementPeriod() {
-    	currentPeriod++;
+    public void incrementAge() {
+    	currentAge++;
     }
     
     public String getStateCLI() {
@@ -146,5 +147,16 @@ public class Model implements Serializable{
 	public void supportTheChurch(Player player) {
 		VaticanReport.addFaithPointsScore(player);
 		player.getResource(new FaithPoints()).reset();
+	}
+
+	public int getCurrentRow() {
+		return currentRow;
+	}
+
+	public void incrementCurrentRow() {
+		this.currentRow++;
+	}
+	public void resetCurrentRow() {
+		this.currentRow = 1;
 	}
 }

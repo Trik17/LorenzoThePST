@@ -10,6 +10,8 @@ import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Coins;
 import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
@@ -39,7 +41,7 @@ public class Player implements Serializable {
 	private List<DevelopmentCard> cCards;
 	private List<Resource> resources;
 	private List<Resource> malus;
-	private List<Resource> bonusAction;
+	private List<Effect> bonusAction;
 	private List<Boolean> deleteVPointsCardsEffect;
 	private boolean actionSpacePenality;
 	private boolean disconnected=false;	
@@ -218,6 +220,19 @@ public class Player implements Serializable {
 
 	public void setLeaderCards(List<LeaderCard> leaderCards) {
 		this.leaderCards = leaderCards;
+	}
+
+	public List<Effect> getBonusAction() {
+		return bonusAction;
+	}
+
+	public void setBonusAction(Effect bonusAction) {
+		this.bonusAction.add(bonusAction);
+	}
+
+	public void applyBonus() {
+		bonusAction.forEach(eff -> {if (!eff.isAuthorizationRequested() && !(eff instanceof CouncilPrivilege)) 
+			eff.apply(this);});
 	}
 	
 	

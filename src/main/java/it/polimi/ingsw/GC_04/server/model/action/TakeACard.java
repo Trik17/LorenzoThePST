@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_04.server.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Model;
@@ -99,12 +100,8 @@ public class TakeACard extends Action{
 		
 		List<Effect> effects=card.getEffects();
 		if (effects != null)
-			for(Effect eff: effects) {
-				if (eff.getClass().equals(CouncilPrivilege.class))
-					councilPrivileges.add((CouncilPrivilege) eff);
-				if (eff.isAuthorizationRequested())
-					requestedAuthorizationEffects.add(eff);
-				}
+			//it put in councilPrivileges all the council privilege in effects and in requestedAuthorizationEffects all the effects that have AuthorizationRequested=true 
+			SupportFunctions.addExtraordinaryEffects(councilPrivileges, requestedAuthorizationEffects, effects);
 		
 	
 	}
