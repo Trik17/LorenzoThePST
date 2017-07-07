@@ -98,7 +98,7 @@ public class Player implements Serializable {
 		malus = new ArrayList<>();
 		bonusAction = new ArrayList<>();
 		
-		
+		leaderCards = new ArrayList<>(); // in realtà vanno prese da json
 		
 		actionSpacePenality = false; 
 	}

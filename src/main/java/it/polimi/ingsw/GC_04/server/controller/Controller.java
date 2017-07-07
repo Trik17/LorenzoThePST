@@ -283,7 +283,8 @@ public class Controller implements Observer<String> {
 	public synchronized void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
-		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers])) {
+		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
+			excommunicationManagement();
 			Player[] ranking = FinalScore.getRanking(model.getPlayers());
 			printRanking(ranking);
 			
@@ -296,34 +297,24 @@ public class Controller implements Observer<String> {
 			 * to decide if they want to suffer the excommunication or not
 			 */
 			if (lastPhase) {
-				//timer to avoid the block of the game caused by a disconnection of the client during the request of the ecomunications
-				startTimerExcommunication();
-				
-				/*variable used to wait the players' responses
-				 * about the excommunications  
-				 * it is decremented each time that a player sends his response
-				 * (except the players that are excommunicated by default : for a connection error
-				 * or because they haven't enough faithpoints)
-				 */
-				count.set(0);
-				excommunicationsManagement();
-				
-				while(count.get()>0){
-					try {
-						wait(1000);
-					} catch (InterruptedException e) {
-					}		
-				}
+				excommunicationManagement();
 			
 				model.incrementPeriod();
 				initializer.changeTurn();
 			}
 			currentPlayer = 0;
+			lastPhase = !lastPhase;
+			
 		}else 
 			currentPlayer++;
+		
+		try {
+			views.get(player).print("Wait for the other players to make their move");
+			player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
 			
-		player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
-		lastPhase = !lastPhase;
+		} catch (RemoteException e) {
+			disconnect(player);
+		}
 		
 		try {
 			model.setStateCLI();
@@ -337,13 +328,34 @@ public class Controller implements Observer<String> {
 
 	
 
+	private void excommunicationManagement() {
+		//timer to avoid the block of the game caused by a disconnection of the client during the request of the ecomunications
+		startTimerExcommunication();
+		
+		/*variable used to wait the players' responses
+		 * about the excommunications  
+		 * it is decremented each time that a player sends his response
+		 * (except the players that are excommunicated by default : for a connection error
+		 * or because they haven't enough faithpoints)
+		 */
+		count.set(0);
+		setExcommunications();
+		
+		while(count.get()>0){
+			try {
+				wait(1000);
+			} catch (InterruptedException e) {
+			}		
+		}
+	}
+
 	private void startTimerExcommunication() {
 		this.timerExcomunication=new Timer();
 		this.taskExcomunication=new TimerTask(){
 			public void run(){
 				for (int i = 0; i < model.getPlayers().length; i++) {
 					for (int j = 0; j < playerExcommunicationSetted.size(); j++){
-						if (model.getPlayers()[i].equals(playerExcommunicationSetted.get(j))){
+						if (model.getPlayers()[i].getName().equals(playerExcommunicationSetted.get(j))){
 							model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
 						}
 					}
@@ -367,7 +379,7 @@ public class Controller implements Observer<String> {
 		}
 	}
 
-	private void excommunicationsManagement() {
+	private void setExcommunications() {
 		views.forEach((player,view) -> {
 			if (!VaticanReport.isUnderThreshold(model.getPlayer(player), model.getPeriod())) {
 				try {

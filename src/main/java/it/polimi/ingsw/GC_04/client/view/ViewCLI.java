@@ -481,15 +481,18 @@ public class ViewCLI extends ViewClient implements Runnable{
 		print("\n1)Suffer the Excommunication");
 		print("\n2)Support the Church");
 		
-		input += getInput();
+		String answer = getInput();
 		
 		if(SupportFunctions.timeout(input, this))
 			serverStub.notifyObserversRRemote("1 ");
 	
-		if (!SupportFunctions.isInputValid(input, 1, 2)) {
+		if (!SupportFunctions.isInputValid(answer, 1, 2)) {
 			excommunicationManagement(description,username);
 			return;
 		}
+		
+		input += answer;
+		
 		serverStub.notifyObserversRRemote(input);
 	}
 		
