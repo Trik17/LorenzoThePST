@@ -79,14 +79,7 @@ public class Controller implements Observer<String> {
 			chooseAction();
 			return;
 		}		
-		this.timerAction=new Timer();
-		this.taskAction=new TimerTask(){
-			public void run(){
-				disconnect(player);
-			}
-		};	//CONTROLLA CHE QUESTO TIMER FUNZIONI BENE !
-		timerAction.schedule( taskAction,TimerJson.getActionTimer()); //timer
-		
+		startTimerAction();
 		try {
 			views.get(player).setState(model.getStateCLI());
 			views.get(player).chooseAction();
@@ -96,6 +89,18 @@ public class Controller implements Observer<String> {
 		}
 	}
 	
+	private void startTimerAction() {
+		this.timerAction=new Timer();
+		this.taskAction=new TimerTask(){
+			public void run(){
+				disconnect(player);
+			}
+		};	//TODO CONTROLLA CHE QUESTO TIMER FUNZIONI BENE !
+		timerAction.schedule( taskAction,TimerJson.getActionTimer()); //timer
+		
+		
+	}
+
 	private boolean isPlayerConnected(String player) {
 		for(Player p: model.getPlayers()){
 			if(p.getName().equals(player)){
@@ -292,20 +297,8 @@ public class Controller implements Observer<String> {
 			 */
 			if (lastPhase) {
 				//timer to avoid the block of the game caused by a disconnection of the client during the request of the ecomunications
-				this.timerExcomunication=new Timer();
-				this.taskExcomunication=new TimerTask(){
-					public void run(){
-						for (int i = 0; i < model.getPlayers().length; i++) {
-							for (int j = 0; j < playerExcommunicationSetted.size(); j++){
-								if (model.getPlayers()[i].equals(playerExcommunicationSetted.get(j))){
-									model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
-								}
-							}
-						}
-						count.set(0);
-					}
-				};	
-				timerExcomunication.schedule( taskExcomunication, 1000000/*TimerJson.getActionTimer() */ ); 
+				startTimerExcommunication();
+				
 				/*variable used to wait the players' responses
 				 * about the excommunications  
 				 * it is decremented each time that a player sends his response
@@ -343,6 +336,24 @@ public class Controller implements Observer<String> {
 
 
 	
+
+	private void startTimerExcommunication() {
+		this.timerExcomunication=new Timer();
+		this.taskExcomunication=new TimerTask(){
+			public void run(){
+				for (int i = 0; i < model.getPlayers().length; i++) {
+					for (int j = 0; j < playerExcommunicationSetted.size(); j++){
+						if (model.getPlayers()[i].equals(playerExcommunicationSetted.get(j))){
+							model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
+						}
+					}
+				}
+				count.set(0);
+			}
+		};	
+		timerExcomunication.schedule( taskExcomunication, 1000000/*TimerJson.getActionTimer() */ ); 
+		
+	}
 
 	private void printRanking(Player[] players) {
 		String ranking = StateOfTheGameCLI.printRanking(players);
