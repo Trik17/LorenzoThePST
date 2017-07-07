@@ -101,6 +101,40 @@ public abstract class DevelopmentCard extends Card{
 		return array;
 	}
 	
+	//it checks if the player has enough development cards to activate a leader card
+	public static boolean isAffordable(Player player, List<DevelopmentCard> activationRequirementCard) {
+		
+		if (activationRequirementCard == null)
+			return true;
+		
+		int tCards = 0;
+		int cCards = 0;
+		int bCards = 0;
+		int vCards = 0;
+		
+		for (DevelopmentCard card : activationRequirementCard) {
+			if (card instanceof TerritoryCard)
+				tCards++;
+			if (card instanceof CharacterCard)
+				cCards++;
+			if (card instanceof BuildingCard)
+				bCards++;
+			if (card instanceof VentureCard)
+				vCards++;
+		}
+		
+		if (player.getCards(new TerritoryCard()).size() < tCards)
+			return false;
+		if (player.getCards(new CharacterCard()).size() < cCards)
+			return false;
+		if (player.getCards(new BuildingCard()).size() < bCards)
+			return false;
+		if (player.getCards(new VentureCard()).size() < vCards)
+			return false;
+		
+		return true;
+	}	
+	
 }
 
 

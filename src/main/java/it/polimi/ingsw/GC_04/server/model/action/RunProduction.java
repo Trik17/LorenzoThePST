@@ -82,6 +82,7 @@ public class RunProduction extends Action {
 		applyEffects();
 		applyPlayerChanges();
 		createNewASpace();
+		checkLeaderCards();
 	}
 	//TODO: fai chiedere al controller cosa attivare
 	

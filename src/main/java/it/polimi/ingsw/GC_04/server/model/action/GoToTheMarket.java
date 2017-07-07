@@ -29,6 +29,7 @@ public class GoToTheMarket extends Action {
 	public void apply() {
 		applyPlayerChanges();
 		applyEffects();
+		checkLeaderCards();
 	}
 	
 

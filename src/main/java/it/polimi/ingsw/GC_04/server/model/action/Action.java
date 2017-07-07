@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.area.Area;
 import it.polimi.ingsw.GC_04.server.model.area.ColorReastrictedArea;
+import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
@@ -17,9 +18,6 @@ import it.polimi.ingsw.GC_04.server.model.resource.Servants;
 
 public abstract class Action implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4204746344145065227L;
 	protected Model model;
 	protected Player player;
@@ -109,6 +107,17 @@ public abstract class Action implements Serializable{
 		councilPrivileges.forEach(cp -> cp.apply(player));
 		requestedAuthorizationEffects.forEach(rae -> rae.apply(player));
 	}
+	public void checkLeaderCards() {
+		//it checks if the player has enough resource to activate his leader card
+		//if he has them, that leader card is activated and never checked anymore
+		//moreover, leader card effect is activated
+		List<LeaderCard> leaderCards = player.getLeaderCards();
+		for (int i = 0; i < leaderCards.size(); i++) {
+			if (!leaderCards.get(i).isActivated())
+				leaderCards.get(i).checkActivationLeaderCard(player);
+		}
+		
+	}
 	
 	public List<Effect> getRequestedAuthorizationEffects() {
 		return requestedAuthorizationEffects;
@@ -126,4 +135,7 @@ public abstract class Action implements Serializable{
 		this.discount = discount;
 		
 	}
+	
+	
+	
 }
