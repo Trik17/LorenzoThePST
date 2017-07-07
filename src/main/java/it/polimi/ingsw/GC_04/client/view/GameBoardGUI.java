@@ -207,14 +207,13 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		JButton leaderCard2P1 = new JButton(leaderCardBack);
 		JButton leaderCard3P1 = new JButton(leaderCardBack);
 		JButton leaderCard4P1 = new JButton(leaderCardBack);
-		JButton leaderCard5P1 = new JButton(leaderCardBack);
 		
 		
 		
 		excommunicationCard1 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_1_1 rid.png"));
 		excommunicationCard2 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_2_1 rid.png"));
 		excommunicationCard3 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_3_1 rid.png"));
-		excommTile1 = new JButton(excommunicationCard1);
+		excommTile1 = new JButton(excommunicationCard1); //this is the button of the first excommunicationCard
 		excommTile2 = new JButton(excommunicationCard2);
 		excommTile3 = new JButton(excommunicationCard3);
 		excommTile1.setBounds(110, 420, 30, 60);
@@ -223,7 +222,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		excommTile1.setBorder(null);
 		excommTile2.setBorder(null);
 		excommTile3.setBorder(null);
-		label1.add(excommTile1);
+		label1.add(excommTile1); 
 		label1.add(excommTile2);
 		label1.add(excommTile3);
 		
@@ -247,7 +246,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		Image newimg1 = img.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
 		punchboard = new ImageIcon(newimg1);
 		
-		bT0 = new JButton();		
+		bT0 = new JButton();				//from BT0 to BT15 are the buttons to take cards from the GameBoard
 		bT0.setIcon(territoryCards[3]);
 		bT1 = new JButton();		
 		bT1.setIcon(territoryCards[3]);
@@ -275,7 +274,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		bT20 = new JButton("Take");
 		bT21 = new JButton("Take");
 		bT22 = new JButton("Take");
-		CB1 = new JButton();
+		CB1 = new JButton();  //CharacterCardSlot for player1
 		//CB1.setIcon(territoryCards[casuale]);
 		CB2 = new JButton();
 		//CB2.setIcon(territoryCards[casuale]);
@@ -285,7 +284,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		//CB4.setIcon(territoryCards[casuale]);
 		CB5 = new JButton(Card1);
 		CB6 = new JButton();
-		VB1 = new JButton();
+		VB1 = new JButton(); //VentureCardSlor for player1
 		VB2 = new JButton();
 		VB3 = new JButton();
 		VB4 = new JButton();
@@ -365,11 +364,10 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		VB4.setBounds(790, 515, 75, 110);
 		VB5.setBounds(870, 515, 75, 110);
 		VB6.setBounds(950, 515, 75, 110);
-		leaderCard1P1.setBounds(1070,40,130,200);
-		leaderCard2P1.setBounds(1200,40,130,200);
-		leaderCard3P1.setBounds(1070,240,130,200);
-		leaderCard4P1.setBounds(1200,240,130,200);
-		leaderCard5P1.setBounds(1070,440,130,200);
+		leaderCard1P1.setBounds(1065,40,130,200);
+		leaderCard2P1.setBounds(1195,40,130,200);
+		leaderCard3P1.setBounds(1065,240,130,200);
+		leaderCard4P1.setBounds(1195,240,130,200);
 		
 		
 		label1.add(bT0);
@@ -458,7 +456,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		panel.add(leaderCard2P1);
 		panel.add(leaderCard3P1);
 		panel.add(leaderCard4P1);
-		panel.add(leaderCard5P1);
+		
 		
 		
 		bT0.addActionListener(this);
@@ -542,7 +540,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		}
 		clip.start();
 		
-		colorC = new Color(0, 140, 255);
+		colorC = new Color(0, 140, 255); 
 		colorV = new Color(170,0 ,220 );
 		
 		
@@ -734,14 +732,25 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				dialog1.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage
 						(dialog1.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
 				JLabel boardP2 = new JLabel();
-				JLabel ventureLabelP2 = new JLabel();
-				JLabel characterLabelP2 = new JLabel();
+				JLabel ventureLabelP2 = new JLabel(); //VentureCardsSlot
+				JLabel characterLabelP2 = new JLabel(); //CharacterCardsSlot
 				JLabel labelTile = new JLabel(personalTile);
 				JButton leaderCard1P2 = new JButton();
 				JButton leaderCard2P2 = new JButton();
 				JButton leaderCard3P2 = new JButton();
 				JButton leaderCard4P2 = new JButton();
-				JButton leaderCard5P2 = new JButton();
+				JButton CB21 = new JButton(); //CharacterCardSlot for player2
+				JButton CB22 = new JButton();
+				JButton CB23 = new JButton();
+				JButton CB24 = new JButton();
+				JButton CB25 = new JButton();
+				JButton CB26 = new JButton();
+				JButton VB21 = new JButton(); //VentureCardSlot for player2
+				JButton VB22 = new JButton();
+				JButton VB23 = new JButton();
+				JButton VB24 = new JButton();
+				JButton VB25 = new JButton();
+				JButton VB26 = new JButton();
 				
 				dialog1.setTitle("Player2");
 				dialog1.setSize(1250,650);
@@ -751,39 +760,70 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				dialog1.getContentPane().setBackground(Color.red);
 				
 				punchboard = new ImageIcon(getClass().getResource("/immagini/punchboard_f_c_03.jpg"));
-				slotVentureCards = new ImageIcon(getClass().getResource("/immagini/venturePBoard.jpg"));
-				slotCharacterCards = new ImageIcon(getClass().getResource("/immagini/characterPBoard.jpg"));
+				slotVentureCards = new ImageIcon(getClass().getResource("/immagini/venturePBoard1.jpg"));
+				slotCharacterCards = new ImageIcon(getClass().getResource("/immagini/characterPBoard1.jpg"));
 								
 				leaderCardBack = new ImageIcon(getClass().getResource("/LeaderCards/leaders_b_c_00.jpg"));
 				personalTile = new ImageIcon(getClass().getResource("/ExcommunicationTiles/personalbonustile_2.png"));
 				
 				labelTile.setBounds(1, 5, 65, 355);
 				boardP2.setBounds(50, 5, 900, 350);
-				ventureLabelP2.setBounds(580, 5, 500,125 );
-				characterLabelP2.setBounds(580, 148, 500,125 );
+				ventureLabelP2.setBounds(580, 5, 540,125 );
+				characterLabelP2.setBounds(580, 148, 540,125 );
 				leaderCard1P2.setBounds(560, 375, 130, 200);
 				leaderCard2P2.setBounds(690, 375, 130, 200);
 				leaderCard3P2.setBounds(820, 375, 130, 200);
 				leaderCard4P2.setBounds(950, 375, 130, 200);
-				leaderCard5P2.setBounds(1080, 375, 130, 200);
+				CB21.setBounds(600, 148, 80, 125);
+				CB22.setBounds(680, 148, 80, 125);
+				CB23.setBounds(770, 148, 80, 125);
+				CB24.setBounds(860, 148, 80, 125);
+				CB25.setBounds(950, 148, 80, 125);
+				CB26.setBounds(1040, 148, 80, 125);
+				VB21.setBounds(600, 5, 80, 125);
+				VB22.setBounds(690, 5, 80, 125);
+				VB23.setBounds(770, 5, 80, 125);
+				VB24.setBounds(860, 5, 80, 125);
+				VB25.setBounds(950, 5, 80, 125);
+				VB26.setBounds(1040, 5, 80, 125);
 				
 				leaderCard1P2.setContentAreaFilled(false);
 				leaderCard2P2.setContentAreaFilled(false);
 				leaderCard3P2.setContentAreaFilled(false);
 				leaderCard4P2.setContentAreaFilled(false);
-				leaderCard5P2.setContentAreaFilled(false);
-				
+				CB21.setContentAreaFilled(false);
+				CB22.setContentAreaFilled(false);
+				CB23.setContentAreaFilled(false);
+				CB24.setContentAreaFilled(false);
+				CB25.setContentAreaFilled(false);
+				CB26.setContentAreaFilled(false);
+				VB21.setContentAreaFilled(false);
+				VB22.setContentAreaFilled(false);
+				VB23.setContentAreaFilled(false);
+				VB24.setContentAreaFilled(false);
+				VB25.setContentAreaFilled(false);
+				VB26.setContentAreaFilled(false);
 				leaderCard1P2.setIcon(leaderCardBack);
 				leaderCard2P2.setIcon(leaderCardBack);
 				leaderCard3P2.setIcon(leaderCardBack);
 				leaderCard4P2.setIcon(leaderCardBack);
-				leaderCard5P2.setIcon(leaderCardBack);
 				
 				dialog1.add(leaderCard1P2);
 				dialog1.add(leaderCard2P2);
 				dialog1.add(leaderCard3P2);
 				dialog1.add(leaderCard4P2);
-				dialog1.add(leaderCard5P2);
+				dialog1.add(CB21);
+				dialog1.add(CB22);
+				dialog1.add(CB23);
+				dialog1.add(CB24);
+				dialog1.add(CB25);
+				dialog1.add(CB26);
+				dialog1.add(VB21);
+				dialog1.add(VB22);
+				dialog1.add(VB23);
+				dialog1.add(VB24);
+				dialog1.add(VB25);
+				dialog1.add(VB26);
 				dialog1.add(boardP2);
 				dialog1.add(ventureLabelP2);
 				dialog1.add(characterLabelP2);
@@ -832,15 +872,25 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				dialog2.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage
 						(dialog2.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
 				JLabel boardP3 = new JLabel();
-				JLabel ventureLabelP3 = new JLabel();
-				JLabel characterLabelP3 = new JLabel();
+				JLabel ventureLabelP3 = new JLabel(); //VentureCardsSlot
+				JLabel characterLabelP3 = new JLabel(); //CharacterCardsSlot
 				JLabel labelTile = new JLabel(personalTile);
 				JButton leaderCard1P3 = new JButton();
 				JButton leaderCard2P3 = new JButton();
 				JButton leaderCard3P3 = new JButton();
 				JButton leaderCard4P3 = new JButton();
-				JButton leaderCard5P3 = new JButton();
-				
+				JButton CB31 = new JButton(); //CharacterCardSlot for player3
+				JButton CB32 = new JButton();
+				JButton CB33 = new JButton();
+				JButton CB34 = new JButton();
+				JButton CB35 = new JButton();
+				JButton CB36 = new JButton();
+				JButton VB31 = new JButton(); //VentureCardSlot for player3
+				JButton VB32 = new JButton();
+				JButton VB33 = new JButton();
+				JButton VB34 = new JButton();
+				JButton VB35 = new JButton();
+				JButton VB36 = new JButton();
 				dialog2.setTitle("Player3");
 				dialog2.setSize(1250,650);
 				dialog2.setResizable(true);
@@ -849,43 +899,72 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				dialog2.getContentPane().setBackground(Color.blue);
 				
 				punchboard = new ImageIcon(getClass().getResource("/immagini/punchboard_f_c_03.jpg"));
-				slotVentureCards = new ImageIcon(getClass().getResource("/immagini/venturePBoard.jpg"));
-				slotCharacterCards = new ImageIcon(getClass().getResource("/immagini/characterPBoard.jpg"));
+				slotVentureCards = new ImageIcon(getClass().getResource("/immagini/venturePBoard1.jpg"));
+				slotCharacterCards = new ImageIcon(getClass().getResource("/immagini/characterPBoard1.jpg"));
 				leaderCardBack = new ImageIcon(getClass().getResource("/LeaderCards/leaders_b_c_00.jpg"));
 				personalTile = new ImageIcon(getClass().getResource("/ExcommunicationTiles/personalbonustile_2.png"));
 				
 				labelTile.setBounds(1, 5, 65, 355);
 				boardP3.setBounds(50, 5, 900, 350);
-				ventureLabelP3.setBounds(580, 5, 500,125 );
-				characterLabelP3.setBounds(580, 148, 500,125 );
+				ventureLabelP3.setBounds(580, 5, 540,125 );
+				characterLabelP3.setBounds(580, 148, 540,125 );
 				leaderCard1P3.setBounds(560, 375, 130, 200);
 				leaderCard2P3.setBounds(690, 375, 130, 200);
 				leaderCard3P3.setBounds(820, 375, 130, 200);
 				leaderCard4P3.setBounds(950, 375, 130, 200);
-				leaderCard5P3.setBounds(1080, 375, 130, 200);
-				
+				CB31.setBounds(600, 148, 80, 125);
+				CB32.setBounds(680, 148, 80, 125);
+				CB33.setBounds(770, 148, 80, 125);
+				CB34.setBounds(860, 148, 80, 125);
+				CB35.setBounds(950, 148, 80, 125);
+				CB36.setBounds(1040, 148, 80, 125);
+				VB31.setBounds(600, 5, 80, 125);
+				VB32.setBounds(690, 5, 80, 125);
+				VB33.setBounds(770, 5, 80, 125);
+				VB34.setBounds(860, 5, 80, 125);
+				VB35.setBounds(950, 5, 80, 125);
+				VB36.setBounds(1040, 5, 80, 125);
 				leaderCard1P3.setContentAreaFilled(false);
 				leaderCard2P3.setContentAreaFilled(false);
 				leaderCard3P3.setContentAreaFilled(false);
 				leaderCard4P3.setContentAreaFilled(false);
-				leaderCard5P3.setContentAreaFilled(false);
-				
+				CB31.setContentAreaFilled(false);
+				CB32.setContentAreaFilled(false);
+				CB33.setContentAreaFilled(false);
+				CB34.setContentAreaFilled(false);
+				CB35.setContentAreaFilled(false);
+				CB36.setContentAreaFilled(false);
+				VB31.setContentAreaFilled(false);
+				VB32.setContentAreaFilled(false);
+				VB33.setContentAreaFilled(false);
+				VB34.setContentAreaFilled(false);
+				VB35.setContentAreaFilled(false);
+				VB36.setContentAreaFilled(false);
 				leaderCard1P3.setIcon(leaderCardBack);
 				leaderCard2P3.setIcon(leaderCardBack);
 				leaderCard3P3.setIcon(leaderCardBack);
 				leaderCard4P3.setIcon(leaderCardBack);
-				leaderCard5P3.setIcon(leaderCardBack);
 				
 				dialog2.add(leaderCard1P3);
 				dialog2.add(leaderCard2P3);
 				dialog2.add(leaderCard3P3);
 				dialog2.add(leaderCard4P3);
-				dialog2.add(leaderCard5P3);
+				dialog2.add(VB31);
+				dialog2.add(VB32);
+				dialog2.add(VB33);
+				dialog2.add(VB34);
+				dialog2.add(VB35);
+				dialog2.add(VB36);
+				dialog2.add(CB31);
+				dialog2.add(CB32);
+				dialog2.add(CB33);
+				dialog2.add(CB34);
+				dialog2.add(CB35);
+				dialog2.add(CB36);
 				dialog2.add(boardP3);
 				dialog2.add(ventureLabelP3);
 				dialog2.add(characterLabelP3);
 				dialog2.add(labelTile);
-				
 				boardP3.setIcon(punchboard);
 				labelTile.setIcon(personalTile);
 				ventureLabelP3.setIcon(slotVentureCards);
@@ -928,15 +1007,25 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				dialog3.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage
 						(dialog3.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
 				JLabel boardP4 = new JLabel();
-				JLabel ventureLabelP4 = new JLabel();
-				JLabel characterLabelP4 = new JLabel();
+				JLabel ventureLabelP4 = new JLabel(); //VentureCardsSlot
+				JLabel characterLabelP4 = new JLabel(); //CharacterCardsSlot
 				JLabel labelTile = new JLabel(personalTile);
 				JButton leaderCard1P4 = new JButton();
 				JButton leaderCard2P4 = new JButton();
 				JButton leaderCard3P4 = new JButton();
 				JButton leaderCard4P4 = new JButton();
-				JButton leaderCard5P4 = new JButton();
-				
+				JButton CB41 = new JButton(); //CharacterCardSlot for player4
+				JButton CB42 = new JButton();
+				JButton CB43 = new JButton();
+				JButton CB44 = new JButton();
+				JButton CB45 = new JButton();
+				JButton CB46 = new JButton();
+				JButton VB41 = new JButton(); //VentureCardSlot for player4
+				JButton VB42 = new JButton();
+				JButton VB43 = new JButton();
+				JButton VB44 = new JButton();
+				JButton VB45 = new JButton();
+				JButton VB46 = new JButton();
 				dialog3.setTitle("Player4");
 				dialog3.setSize(1250,650);
 				dialog3.setResizable(true);
@@ -945,43 +1034,72 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 				dialog3.getContentPane().setBackground(Color.green);
 				
 				punchboard = new ImageIcon(getClass().getResource("/immagini/punchboard_f_c_03.jpg"));
-				slotVentureCards = new ImageIcon(getClass().getResource("/immagini/venturePBoard.jpg"));
-				slotCharacterCards = new ImageIcon(getClass().getResource("/immagini/characterPBoard.jpg"));
+				slotVentureCards = new ImageIcon(getClass().getResource("/immagini/venturePBoard1.jpg"));
+				slotCharacterCards = new ImageIcon(getClass().getResource("/immagini/characterPBoard1.jpg"));
 				leaderCardBack = new ImageIcon(getClass().getResource("/LeaderCards/leaders_b_c_00.jpg"));
 				personalTile = new ImageIcon(getClass().getResource("/ExcommunicationTiles/personalbonustile_2.png"));
 				
 				labelTile.setBounds(1, 5, 65, 355);
 				boardP4.setBounds(50, 5, 900, 350);
-				ventureLabelP4.setBounds(580, 5, 500,125 );
-				characterLabelP4.setBounds(580, 148, 500,125 );
+				ventureLabelP4.setBounds(580, 5, 540,125 );
+				characterLabelP4.setBounds(580, 148, 540,125 );
 				leaderCard1P4.setBounds(560, 375, 130, 200);
 				leaderCard2P4.setBounds(690, 375, 130, 200);
 				leaderCard3P4.setBounds(820, 375, 130, 200);
 				leaderCard4P4.setBounds(950, 375, 130, 200);
-				leaderCard5P4.setBounds(1080, 375, 130, 200);
-				
+				CB41.setBounds(600, 148, 80, 125);
+				CB42.setBounds(680, 148, 80, 125);
+				CB43.setBounds(770, 148, 80, 125);
+				CB44.setBounds(860, 148, 80, 125);
+				CB45.setBounds(950, 148, 80, 125);
+				CB46.setBounds(1040, 148, 80, 125);
+				VB41.setBounds(600, 5, 80, 125);
+				VB42.setBounds(690, 5, 80, 125);
+				VB43.setBounds(770, 5, 80, 125);
+				VB44.setBounds(860, 5, 80, 125);
+				VB45.setBounds(950, 5, 80, 125);
+				VB46.setBounds(1040, 5, 80, 125);
 				leaderCard1P4.setContentAreaFilled(false);
 				leaderCard2P4.setContentAreaFilled(false);
 				leaderCard3P4.setContentAreaFilled(false);
 				leaderCard4P4.setContentAreaFilled(false);
-				leaderCard5P4.setContentAreaFilled(false);
-				
+				CB41.setContentAreaFilled(false);
+				CB42.setContentAreaFilled(false);
+				CB43.setContentAreaFilled(false);
+				CB44.setContentAreaFilled(false);
+				CB45.setContentAreaFilled(false);
+				CB46.setContentAreaFilled(false);
+				VB41.setContentAreaFilled(false);
+				VB42.setContentAreaFilled(false);
+				VB43.setContentAreaFilled(false);
+				VB44.setContentAreaFilled(false);
+				VB45.setContentAreaFilled(false);
+				VB46.setContentAreaFilled(false);
 				leaderCard1P4.setIcon(leaderCardBack);
 				leaderCard2P4.setIcon(leaderCardBack);
 				leaderCard3P4.setIcon(leaderCardBack);
 				leaderCard4P4.setIcon(leaderCardBack);
-				leaderCard5P4.setIcon(leaderCardBack);
 				
 				dialog3.add(leaderCard1P4);
 				dialog3.add(leaderCard2P4);
 				dialog3.add(leaderCard3P4);
 				dialog3.add(leaderCard4P4);
-				dialog3.add(leaderCard5P4);
+				dialog3.add(VB41);
+				dialog3.add(VB42);
+				dialog3.add(VB43);
+				dialog3.add(VB44);
+				dialog3.add(VB45);
+				dialog3.add(VB46);
+				dialog3.add(CB41);
+				dialog3.add(CB42);
+				dialog3.add(CB43);
+				dialog3.add(CB44);
+				dialog3.add(CB45);
+				dialog3.add(CB46);
 				dialog3.add(boardP4);
 				dialog3.add(labelTile);
 				dialog3.add(ventureLabelP4);
 				dialog3.add(characterLabelP4);
-				
 				boardP4.setIcon(punchboard);
 				labelTile.setIcon(personalTile);
 				ventureLabelP4.setIcon(slotVentureCards);
