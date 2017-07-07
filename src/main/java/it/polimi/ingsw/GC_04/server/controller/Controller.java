@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_04.server.controller;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -21,6 +22,7 @@ import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
+import it.polimi.ingsw.GC_04.server.timer.TimerJson;
 //TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
 //nella gestione della disconnessione e nel catch delle remote exception
 public class Controller implements Observer<String> {
@@ -77,15 +79,14 @@ public class Controller implements Observer<String> {
 			chooseAction();
 			return;
 		}		
-//		this.timerAction=new Timer();
-//		this.taskAction=new TimerTask(){
-//			public void run(){
-//				disconnect(player);
-//			}
-//		};	
-//		timer.schedule( task,TimerJson.getActionTimer()); //timer
-//		
-		//TODO risistemalo e metti timer.cancel in update()
+		this.timerAction=new Timer();
+		this.taskAction=new TimerTask(){
+			public void run(){
+				disconnect(player);
+			}
+		};	//CONTROLLA CHE QUESTO TIMER FUNZIONI BENE !
+		timerAction.schedule( taskAction,TimerJson.getActionTimer()); //timer
+		
 		try {
 			views.get(player).setState(model.getStateCLI());
 			views.get(player).chooseAction();
@@ -293,17 +294,20 @@ public class Controller implements Observer<String> {
 				this.timerExcomunication=new Timer();
 				this.taskExcomunication=new TimerTask(){
 					public void run(){
+						for (int i = 0; i < model.getPlayers().length; i++) {
+							for (int j = 0; j < playerExcomuticationSetted.size(); j++){
+								if (model.getPlayers()[i].equals(playerExcomuticationSetted.get(j))){
+									model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
+								}
+							}
+						}
 						count.set(0);
-						
-						//TODO
-						//foreach player not in playerExcomuticationSetted fai:
-						//model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
-						// e disconnettilo
 					}
 				};	
 				timerExcomunication.schedule( taskExcomunication, 1000000/*TimerJson.getActionTimer() */ ); 
 				
 				excommunicationsManagement();
+				//TODO non funziona la scomunicaaaaaa
 				
 				while(count.get()>0){
 					try {
@@ -388,6 +392,7 @@ public class Controller implements Observer<String> {
 	
 	@Override
 	public void updateR(String input) {
+		timerAction.cancel();
 		synchronized(lock){
 	//		this.resource=resource;
 	//		executor.submit(this);
