@@ -23,10 +23,10 @@ import it.polimi.ingsw.GC_04.server.model.resource.Servants;
 
 public class InputChoicesInterpreter {
 	private String identifier;
-	List<Effect> effects;
-	List<Resource> resources;
+	private List<Effect> effects;
+	private List<Resource> resources;
 	int[] requestedEffects;
-	Boolean excommunicated;
+	private boolean excommunicated;
 
 	public InputChoicesInterpreter(String input) {
 		this.resources = new ArrayList<>();
@@ -44,10 +44,10 @@ public class InputChoicesInterpreter {
 			requestedEffects = SupportFunctions.parseIntArray(input);
 		
 		}	
-		else if (identifier.equals("EXCOMMUNICATION")) {
-			excommunicationManagementInterpreter(input);
-			
-		}
+//		else if (identifier.equals("EXCOMMUNICATION")) {
+//			excommunicationManagementInterpreter(input);
+//			
+//		}
 	}
 
 	public InputChoicesInterpreter(Model model, Player player, String input, List<Effect> rAE, int[] fCN) {
@@ -59,8 +59,10 @@ public class InputChoicesInterpreter {
 	
 
 
-	private void excommunicationManagementInterpreter(String input) {
+	public void excommunicationManagementInterpreter(String input) {
 		StringTokenizer strTok = new StringTokenizer(input);
+		
+		strTok.nextToken();//the first token is "EXCOMMUNICATION" and I don't need it anymore
 		
 		identifier = strTok.nextToken();
 		

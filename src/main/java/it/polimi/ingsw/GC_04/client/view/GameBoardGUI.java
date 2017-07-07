@@ -125,6 +125,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	
 	
 	public GameBoardGUI() throws IOException, InterruptedException {
+		//java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		setExtendedState(MAXIMIZED_BOTH);
 		this.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage				//to change the icon in the frame
 				(this.getClass().getResource("/immagini/leaders_b_c_00.jpg")));

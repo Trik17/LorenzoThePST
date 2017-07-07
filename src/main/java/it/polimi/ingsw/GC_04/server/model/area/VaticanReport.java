@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 
 public class VaticanReport {
 	
@@ -56,7 +57,7 @@ public class VaticanReport {
 				faithPointsScore += 5;
 		}
 		
-		player.getResource(new FaithPoints()).addQuantity(faithPointsScore);
+		player.getResource(new VictoryPoints()).addQuantity(faithPointsScore);
 			
 	}
 }

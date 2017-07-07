@@ -144,8 +144,7 @@ public class Model implements Serializable{
 	}
 
 	public void supportTheChurch(Player player) {
-		player.getResource(new FaithPoints()).reset();
 		VaticanReport.addFaithPointsScore(player);
-		
+		player.getResource(new FaithPoints()).reset();
 	}
 }

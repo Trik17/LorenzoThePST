@@ -474,7 +474,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return input;
 	}
 	public synchronized void excommunicationManagement(String description, String username) throws RemoteException {
-		String input = "EXCOMMUNICATION "+username;
+		String input = "EXCOMMUNICATION "+username+" ";
 		
 		print("\n\nPERIOD EXCOMMUNICATION:\n\n");
 		print(description);

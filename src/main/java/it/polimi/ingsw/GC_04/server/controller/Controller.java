@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_04.server.controller;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -182,7 +181,6 @@ public class Controller implements Observer<String> {
 				synchronized(this){
 					askPlayersDiscounts();
 					isWaiting.set(true);
-					System.out.println("entro in lock");
 					while(isWaiting.get()){
 						wait(800);		
 					}
@@ -209,8 +207,6 @@ public class Controller implements Observer<String> {
 			synchronized (this) {
 				setCouncilPrivilege(nrOfPrivileges);
 				isWaiting.set(true);
-
-				System.out.println("entro in lock");
 				while(isWaiting.get()){
 					wait(800);		
 				}
@@ -223,7 +219,6 @@ public class Controller implements Observer<String> {
 				askPlayerAuthorizations(clonedAction.getRequestedAuthorizationEffects());
 				isWaiting.set(true);
 
-				System.out.println("entro in lock");
 				while(isWaiting.get()){
 					wait(800);		
 				}
@@ -380,19 +375,19 @@ public class Controller implements Observer<String> {
 	}
 
 	private void setExcommunications() {
-		views.forEach((player,view) -> {
-			if (!VaticanReport.isUnderThreshold(model.getPlayer(player), model.getPeriod())) {
+		views.forEach((namePlayer,view) -> {
+			if (!VaticanReport.isUnderThreshold(model.getPlayer(namePlayer), model.getPeriod())) {
 				try {
 					count.incrementAndGet();
 					view.excommunicationManagement(model.getVaticanReport().getExcommunication(model.getPeriod()).getDescription());
 				} catch (RemoteException e) {
 					//if it catches a remote exception, this player suffers the excommunication
-					model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
+					model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(namePlayer));
 					count.getAndDecrement();
 				}
 			}
 			else 
-				model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
+				model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(namePlayer));
 			});
 		
 	}
@@ -432,7 +427,6 @@ public class Controller implements Observer<String> {
 				clonedAction.setCouncilPrivileges(interpreter.getEffects());
 				isWaiting.set(false);
 	
-				System.out.println("esco dal lock");
 				notify();
 			}
 			else if (type == "AUTHORIZATION") {
@@ -446,19 +440,16 @@ public class Controller implements Observer<String> {
 				clonedAction.setRequestedAuthorizationEffects(interpreter2.getEffects());
 				isWaiting.set(false);
 	
-				System.out.println("esco dal lock");
 				notify();
 			}
 			else if (type.equals("DISCOUNT")) {
 				clonedAction.setRawMaterialsDiscount(input);
 				isWaiting.set(false);
 	
-				System.out.println("esco dal lock");
 				notify();
 			}
 			else if (type.equals("EXCOMMUNICATION")) {
-				count.getAndDecrement();
-				interpreter = new InputChoicesInterpreter(input);
+				interpreter.excommunicationManagementInterpreter(input);
 				String thisPlayer = interpreter.getIdentifier(); //it returns the name of the player 
 				playerExcommunicationSetted.add(thisPlayer);
 				boolean excommunicated = interpreter.isExcommunicated();
@@ -470,6 +461,7 @@ public class Controller implements Observer<String> {
 				}else {
 					model.supportTheChurch(model.getPlayer(thisPlayer));
 				}
+				count.getAndDecrement();
 			}
 		}
 	}
