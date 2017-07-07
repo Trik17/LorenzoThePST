@@ -122,7 +122,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	private JButton excommTile1;
 	private JButton excommTile2;
 	private JButton excommTile3;
-	
+
 	
 	public GameBoardGUI() throws IOException, InterruptedException {
 		setExtendedState(MAXIMIZED_BOTH);

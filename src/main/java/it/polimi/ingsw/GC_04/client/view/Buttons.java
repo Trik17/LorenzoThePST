@@ -36,6 +36,12 @@ public class Buttons extends JFrame implements ActionListener{
 	private JRadioButton OrangeFMember;
 	private TextField textField;
 	private TextField textFMember;
+	private ImageIcon BlackFamilyMember;
+	private ImageIcon WhiteFamilyMember;
+	private ImageIcon NeutralFamilyMember;
+	private ImageIcon OrangeFamilyMember;
+	
+	
 	public  Buttons(){	
 		
 		super("Selected Card");
@@ -107,10 +113,14 @@ public class Buttons extends JFrame implements ActionListener{
 			TextField textField = new TextField("Which Family Member do you want to use?");
 			textField.setEditable(false);
 			ButtonGroup group = new ButtonGroup();
-			JRadioButton BlackFMember = new JRadioButton("Black");
-			JRadioButton WhiteFMember = new JRadioButton("White");
-			JRadioButton OrangeFMember = new JRadioButton("Orange");
-			JRadioButton NeutralFMember = new JRadioButton("Neutral");
+			BlackFamilyMember = new ImageIcon(getClass().getResource("/immagini/BlackFamilyMember.png"));
+			WhiteFamilyMember = new ImageIcon(getClass().getResource("/immagini/WhiteFamilyMember.png"));
+			OrangeFamilyMember = new ImageIcon(getClass().getResource("/immagini/OrangeFamilyMember.png"));
+			NeutralFamilyMember = new ImageIcon(getClass().getResource("/immagini/NeutralFamilyMember.png"));
+			JRadioButton BlackFMember = new JRadioButton(BlackFamilyMember);
+			JRadioButton WhiteFMember = new JRadioButton(WhiteFamilyMember);
+			JRadioButton OrangeFMember = new JRadioButton(OrangeFamilyMember);
+			JRadioButton NeutralFMember = new JRadioButton(NeutralFamilyMember);
 			JButton buttonConfirm = new JButton("OK");
 			BlackFMember.setBackground(Color.BLACK);
 			BlackFMember.setForeground(Color.white);
@@ -132,10 +142,10 @@ public class Buttons extends JFrame implements ActionListener{
 			dialog.add(OrangeFMember);
 			dialog.add(buttonConfirm);
 			
-			NeutralFMember.setBounds(50, 100, 80, 20);
-			BlackFMember.setBounds(150, 100, 80, 20);
-			OrangeFMember.setBounds(250, 100, 80, 20);
-			WhiteFMember.setBounds(350, 100, 80, 20);
+			NeutralFMember.setBounds(50, 100, 45, 60);
+			BlackFMember.setBounds(150, 100, 45, 60);
+			OrangeFMember.setBounds(250, 100, 45, 60);
+			WhiteFMember.setBounds(350, 100, 45, 60);
 			buttonConfirm.setBounds(210, 180, 60, 35);
 			
 			NeutralFMember.setVisible(true);
@@ -157,7 +167,10 @@ public class Buttons extends JFrame implements ActionListener{
 				@Override
 				public void itemStateChanged(ItemEvent e) {
 					if(NeutralFMember.isSelected()){
-						NeutralFMember.setVisible(false);
+						NeutralFMember.setEnabled(false);
+						WhiteFMember.setVisible(false);
+						BlackFMember.setVisible(false);
+						OrangeFMember.setVisible(false);
 					}
 					
 				}
@@ -170,7 +183,10 @@ public class Buttons extends JFrame implements ActionListener{
 				@Override
 				public void itemStateChanged(ItemEvent e) {
 					if(BlackFMember.isSelected()){
-						BlackFMember.setVisible(false);
+						BlackFMember.setEnabled(false);
+						WhiteFMember.setVisible(false);
+						OrangeFMember.setVisible(false);
+						NeutralFMember.setVisible(false);
 					}
 					
 				}
@@ -180,7 +196,10 @@ public class Buttons extends JFrame implements ActionListener{
 				@Override
 				public void itemStateChanged(ItemEvent e) {
 					if(WhiteFMember.isSelected()){
-						WhiteFMember.setVisible(false);
+						WhiteFMember.setEnabled(false);
+						OrangeFMember.setVisible(false);
+						BlackFMember.setVisible(false);
+						NeutralFMember.setVisible(false);
 					}
 					
 				}
@@ -190,8 +209,10 @@ public class Buttons extends JFrame implements ActionListener{
 				@Override
 				public void itemStateChanged(ItemEvent e) {
 					if(OrangeFMember.isSelected()){
-						//OrangeFMember.setEnabled(false);
-						OrangeFMember.setVisible(false);
+						OrangeFMember.setEnabled(false);
+						WhiteFMember.setVisible(false);
+						BlackFMember.setVisible(false);
+						NeutralFMember.setVisible(false);
 					}
 					
 				}
