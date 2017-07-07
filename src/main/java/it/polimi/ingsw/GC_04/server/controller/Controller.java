@@ -26,7 +26,7 @@ import it.polimi.ingsw.GC_04.server.timer.TimerJson;
 //nella gestione della disconnessione e nel catch delle remote exception
 public class Controller implements Observer<String> {
 	
-	private final static int FINALPERIOD = 3;
+	private final static int FINALAGE = 3;
 	private final static int FINALTURN = 4;
 	private Model model;
 	private Map<String, ClientRMIViewRemote> views;
@@ -34,7 +34,7 @@ public class Controller implements Observer<String> {
 	private String player;
 	private int currentPlayer = 0;
 	private int turn = 0;
-	private boolean lastPhase;
+	private boolean lastPeriod;
 	private Timer timerAction;
 	private Timer timerExcomunication;
 	private TimerTask taskAction;
@@ -278,7 +278,7 @@ public class Controller implements Observer<String> {
 	public synchronized void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
-		if (model.getPeriod() == FINALPERIOD && lastPhase && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
+		if (model.getAge() == FINALAGE && lastPeriod && turn == FINALTURN && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
 			excommunicationManagement();
 			Player[] ranking = FinalScore.getRanking(model.getPlayers());
 			printRanking(ranking);
@@ -287,18 +287,18 @@ public class Controller implements Observer<String> {
 			return;
 		}
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
-			/* this is the end of the second turn of a period 
+			/* this is the end of the second turn of an age 
 			 * and the controller ask to the players that have enough faithPoints
 			 * to decide if they want to suffer the excommunication or not
 			 */
-			if (lastPhase) {
+			if (lastPeriod) {
 				excommunicationManagement();
 			
-				model.incrementPeriod();
+				model.incrementAge();
 				initializer.changeTurn();
 			}
 			currentPlayer = 0;
-			lastPhase = !lastPhase;
+			lastPeriod = !lastPeriod;
 			
 		}else 
 			currentPlayer++;
@@ -351,7 +351,7 @@ public class Controller implements Observer<String> {
 				for (int i = 0; i < model.getPlayers().length; i++) {
 					for (int j = 0; j < playerExcommunicationSetted.size(); j++){
 						if (model.getPlayers()[i].getName().equals(playerExcommunicationSetted.get(j))){
-							model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(player));
+							model.getVaticanReport().getExcommunication(model.getAge()).apply(model.getPlayer(player));
 						}
 					}
 				}
@@ -376,18 +376,18 @@ public class Controller implements Observer<String> {
 
 	private void setExcommunications() {
 		views.forEach((namePlayer,view) -> {
-			if (!VaticanReport.isUnderThreshold(model.getPlayer(namePlayer), model.getPeriod())) {
+			if (!VaticanReport.isUnderThreshold(model.getPlayer(namePlayer), model.getAge())) {
 				try {
 					count.incrementAndGet();
-					view.excommunicationManagement(model.getVaticanReport().getExcommunication(model.getPeriod()).getDescription());
+					view.excommunicationManagement(model.getVaticanReport().getExcommunication(model.getAge()).getDescription());
 				} catch (RemoteException e) {
 					//if it catches a remote exception, this player suffers the excommunication
-					model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(namePlayer));
+					model.getVaticanReport().getExcommunication(model.getAge()).apply(model.getPlayer(namePlayer));
 					count.getAndDecrement();
 				}
 			}
 			else 
-				model.getVaticanReport().getExcommunication(model.getPeriod()).apply(model.getPlayer(namePlayer));
+				model.getVaticanReport().getExcommunication(model.getAge()).apply(model.getPlayer(namePlayer));
 			});
 		
 	}
@@ -454,8 +454,8 @@ public class Controller implements Observer<String> {
 				playerExcommunicationSetted.add(thisPlayer);
 				boolean excommunicated = interpreter.isExcommunicated();
 				if (excommunicated) {
-					int period = model.getPeriod();
-					ExcommunicationTile excommunication = model.getVaticanReport().getExcommunication(period);
+					int age = model.getAge();
+					ExcommunicationTile excommunication = model.getVaticanReport().getExcommunication(age);
 					excommunication.apply(model.getPlayer(thisPlayer));
 					
 				}else {

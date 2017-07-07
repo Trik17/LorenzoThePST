@@ -11,9 +11,6 @@ import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 
 public class CouncilPrivilege extends ResourceEffect {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4648246690795498386L;
 
 	@JsonCreator
@@ -29,14 +26,6 @@ public class CouncilPrivilege extends ResourceEffect {
 			effect.add(resources);
 		
 	}
-	/*public static CouncilPrivilege clone(CouncilPrivilege cp) {
-		try {
-			return (CouncilPrivilege) cp.clone();
-		} catch (CloneNotSupportedException e) {
-			System.out.println(222222);
-			return null;
-		}
-		
-	}*/
+
 
 } 
