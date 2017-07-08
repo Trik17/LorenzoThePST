@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_04.server.model.effect;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import it.polimi.ingsw.GC_04.server.model.Player;
 
 public class BonusTurnResourcesEffect extends Effect{
@@ -13,8 +16,9 @@ public class BonusTurnResourcesEffect extends Effect{
 	 */
 	
 	private Effect effect;
-
-	public BonusTurnResourcesEffect(Effect effect) {
+	
+	@JsonCreator
+	public BonusTurnResourcesEffect(@JsonProperty("effect") Effect effect) {
 		this.effect = effect;
 	}
 

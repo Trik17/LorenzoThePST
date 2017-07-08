@@ -2,6 +2,9 @@ package it.polimi.ingsw.GC_04.server.model.card;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.effect.BonusTurnResourcesEffect;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
@@ -16,7 +19,8 @@ public class LeaderCard extends Card {
 	private boolean activated;
 	private String description;
 	
-	public LeaderCard(String name, List<Resource> activationRequirementRes,List<DevelopmentCard> activationRequirementCard,Effect effect,String image,String description) {
+	@JsonCreator
+	public LeaderCard(@JsonProperty("name") String name,@JsonProperty("activationRequirementRes") List<Resource> activationRequirementRes,@JsonProperty("activationRequirementCard") List<DevelopmentCard> activationRequirementCard,@JsonProperty("effect") Effect effect,@JsonProperty("image") String image,@JsonProperty("description") String description) {
 		this.name = name;
 		this.activationRequirementRes = activationRequirementRes;
 		this.activationRequirementCard = activationRequirementCard;

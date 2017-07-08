@@ -23,6 +23,7 @@ import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
+import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 
@@ -36,6 +37,7 @@ public class Initializer {
 	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
 	private final List<ExcommunicationTile> eTiles;
+	private final List<LeaderCard> leaderCards;
 
 	private Model model;
 	private Player[] players;
@@ -53,6 +55,7 @@ public class Initializer {
 		this.bCards = jsonMapper.getBuildingCardArray();
 		this.vCards = jsonMapper.getVentureCardsArray();
 		this.eTiles = jsonMapper.getExcommunicationTile();
+		this.leaderCards=jsonMapper.getLeaderCards();
 		ExcommunicationTile[] excommunications = new ExcommunicationTile[3];
 		
 		Random rnd = new Random();
@@ -90,6 +93,8 @@ public class Initializer {
 			players[0].setFamily(FamilyMember.createFamily(FamilyColor.YELLOW,model));
 
 		}
+		//TODO MISCHIARE LEADER CARDS  e darle ai giocatori in base a quanti sono
+		//public void setLeaderCards(List<LeaderCard> leaderCards)
 		
 		HarvestArea harvest = new HarvestArea();
 		ProductionArea production = new ProductionArea();
