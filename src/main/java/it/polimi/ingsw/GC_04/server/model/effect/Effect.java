@@ -20,6 +20,9 @@ property = "type")
 @Type(value = ExchangeResourcesEffect.class),
 @Type(value = MalusResourceEffect.class),
 @Type(value = DeleteVPointsCardsEffect.class),
+@Type(value = BonusTurnResourcesEffect.class),
+@Type(value = NotRequestedMilitaryPoints.class),
+@Type(value = DicesValueEffect.class),
 })
 
 public abstract class Effect implements Cloneable{
