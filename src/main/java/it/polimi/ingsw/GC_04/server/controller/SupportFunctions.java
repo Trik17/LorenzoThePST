@@ -1,12 +1,16 @@
 package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.GC_04.client.view.ViewClient;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
@@ -130,6 +134,17 @@ public class SupportFunctions {
 				councilPrivileges.add((CouncilPrivilege) eff);	
 			if (eff.isAuthorizationRequested())
 				requestedAuthorizationEffects.add(eff);
+		}
+	}
+	public static <E> void shuffleArray(E card[]) {
+		List<E> list = new ArrayList<>();
+		for (int i = 0; i < card.length; i++) {
+			list.add(card[i]);
+		}
+		Collections.shuffle(list);
+		
+		for (int i = 0; i < list.size(); i++) {
+			card[i] = list.get(i);
 		}
 	}
 }

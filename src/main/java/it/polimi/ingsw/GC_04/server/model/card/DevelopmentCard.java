@@ -29,11 +29,6 @@ property = "type")
 
 public abstract class DevelopmentCard extends Card{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7123702582290532625L;
-	
 	private int period;
 	private String name;
 	private String image;
@@ -134,6 +129,7 @@ public abstract class DevelopmentCard extends Card{
 		
 		return true;
 	}	
+	
 	
 }
 

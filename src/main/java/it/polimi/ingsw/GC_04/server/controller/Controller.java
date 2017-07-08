@@ -34,7 +34,7 @@ public class Controller implements Observer<String> {
 	private Initializer initializer;
 	private String player;
 	private int currentPlayer = 0;
-	private boolean lastPeriod;//second phase of an age
+	
 	private Timer timerAction;
 	private Timer timerExcomunication;
 	private TimerTask taskAction;
@@ -278,7 +278,7 @@ public class Controller implements Observer<String> {
 	public synchronized void updateTurn() {
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
-		if (model.getAge() == FINALAGE && lastPeriod && model.getCurrentRow() == FINALROW && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
+		if (model.getAge() == FINALAGE && model.isLastPeriod() && model.getCurrentRow() == FINALROW && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
 			excommunicationManagement();
 			Player[] ranking = FinalScore.getRanking(model.getPlayers());
 			printRanking(ranking);
@@ -291,14 +291,14 @@ public class Controller implements Observer<String> {
 			 * and the controller asks players that have enough faithPoints
 			 * to decide if they want to suffer the excommunication or not
 			 */
-			if (lastPeriod) {
+			if (model.isLastPeriod()) {
 				excommunicationManagement();
 			
 				model.incrementAge();
 				initializer.changeTurn();
 			}
 			currentPlayer = 0;
-			lastPeriod = !lastPeriod;
+			model.switchLastPeriod();
 			model.resetCurrentRow();
 			
 		}

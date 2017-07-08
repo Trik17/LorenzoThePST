@@ -29,9 +29,9 @@ public class Model implements Serializable{
 	private boolean areasSetted;
 	
 	private Player[] players;
-//	private boolean
 	private int currentAge;
 	private int currentRow;
+	private boolean lastPeriod;//second phase of an age
 	
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
@@ -158,5 +158,13 @@ public class Model implements Serializable{
 	}
 	public void resetCurrentRow() {
 		this.currentRow = 1;
+	}
+
+	public boolean isLastPeriod() {
+		return lastPeriod;
+	}
+
+	public void switchLastPeriod() {
+		this.lastPeriod = !lastPeriod;
 	}
 }
