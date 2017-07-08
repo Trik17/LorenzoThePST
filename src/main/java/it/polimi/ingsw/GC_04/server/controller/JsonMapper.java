@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
+import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
@@ -22,11 +23,13 @@ public class JsonMapper {
 	private FileReader fileV;
 	private FileReader fileAS;
 	private FileReader fileET;
+	private FileReader fileLC;
 	private List<ActionSpace> actionSpaces;
 	private List<TerritoryCard> territoryCards;
 	private List<CharacterCard> characterCards;
 	private List<BuildingCard> buildingCards;
 	private List<VentureCard> ventureCards;
+	private List<LeaderCard> leaderCards;
 	private List<ExcommunicationTile> excommunicationTiles;
 	
 	
@@ -41,6 +44,11 @@ public class JsonMapper {
 			fileV= new FileReader("src/main/resources/cards/venture.json"); 	
 			fileAS= new FileReader("src/main/resources/actionSpace.json"); 
 			fileET= new FileReader("src/main/resources/excommunicationTiles.json"); 
+			fileLC= new FileReader("src/main/resources/cards/leaderCards.json"); 
+			
+			//LeaderCards
+			TypeReference<List<LeaderCard>> mapTypeL = new TypeReference<List<LeaderCard>>() {};
+			leaderCards=mapper.readValue(fileLC,mapTypeL);
 			
 			//Cards
 			TypeReference<List<TerritoryCard>> mapTypeT = new TypeReference<List<TerritoryCard>>() {};
@@ -80,6 +88,10 @@ public class JsonMapper {
 	
 	public BuildingCard[] getBuildingCardArray(){
 		return buildingCards.toArray(new BuildingCard[0]);
+	}
+	
+	public LeaderCard[] getLeaderCards() {
+		return leaderCards.toArray(new LeaderCard[0]);
 	}
 	
 	public VentureCard[] getVentureCardsArray(){
