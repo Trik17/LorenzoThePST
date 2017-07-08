@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.client.socket;
 
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;

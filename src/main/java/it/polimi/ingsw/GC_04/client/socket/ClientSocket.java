@@ -9,6 +9,10 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import it.polimi.ingsw.GC_04.client.view.ViewCLI;
+import it.polimi.ingsw.GC_04.client.view.ViewClient;
+import it.polimi.ingsw.GC_04.client.view.ViewGUI;
+
 public class ClientSocket {
 	private final static int SOCKET_PORT = 17000;
 	private final static String IP = "127.0.0.1";
@@ -16,13 +20,17 @@ public class ClientSocket {
 	private ClientSocketOut socketOut;
 	private ClientSocketIn socketIn;
 	private boolean GUI;
-	private boolean GUI;
+	private ViewClient view;
 	
-	public ClientSocket(String username, boolean GUI) {
+	public ClientSocket(String username, boolean GUI) throws IOException {
 		this.username=username;
 		this.GUI=GUI;
+		if (GUI) {
+			view=new ViewGUI();
+		} else {
+			view=new ViewCLI();
+		}
 		clientConnection();		
-		this.GUI=GUI;
 	}
 	public String getUsername() {
 		return username;

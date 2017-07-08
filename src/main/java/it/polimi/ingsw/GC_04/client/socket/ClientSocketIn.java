@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_04.client.socket;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
