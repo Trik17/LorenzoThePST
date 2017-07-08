@@ -7,8 +7,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
