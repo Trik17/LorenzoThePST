@@ -15,9 +15,11 @@ public class ClientRMI {
 	private ServerRMIViewRemote serverStub;
 	private ClientRMIView rmiView;
 	private String username;
+	private boolean GUI;
 	
-	public ClientRMI(String username) throws RemoteException, NotBoundException {
+	public ClientRMI(String username, boolean GUI) throws RemoteException, NotBoundException {
 		this.username=username;
+		this.GUI=GUI;
 		clientConnection();
 	}
 	
@@ -29,7 +31,7 @@ public class ClientRMI {
 		//get the stub (local object) of the remote view
 		serverStub = (ServerRMIViewRemote) registry.lookup(NAME);
 
-		this.rmiView=new ClientRMIView(username);
+		this.rmiView=new ClientRMIView(username,GUI);
 
 		// register the client view in the server side to receive messages from the server (in ClientManager)
 		serverStub.registerClient(rmiView,username);

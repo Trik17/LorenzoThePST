@@ -15,9 +15,12 @@ public class ClientSocket {
 	private String username;
 	private ClientSocketOut socketOut;
 	private ClientSocketIn socketIn;
+	private boolean GUI;
 	
+	public ClientSocket(String username, boolean GUI) {
 	public ClientSocket(String username) throws IOException {
 		this.username=username;
+		this.GUI=GUI;
 		clientConnection();		
 	}
 	public String getUsername() {
