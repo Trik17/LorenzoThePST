@@ -146,7 +146,69 @@
 	},
 	"image" : "leaders_f_c_20.jpg",
 	"description" : "Requirement: 2 Venture Cards and 4 Territory Cards \nOnce Per Round ability: Gain 4 Victory Points."
-}				
+},{
+	"name" : "Cesare Borgia",
+	"activationRequirementRes" : [{
+		"type" : "Coins",
+		"quantity" : 12
+		},{
+		"type" : "FaithPoints",
+		"quantity" : 2
+		}],
+	"activationRequirementCard" : [{
+		"type" : "BuildingCard"
+		},{
+		"type" : "BuildingCard"
+		},{
+		"type" : "BuildingCard"
+		}],
+	"effect" : {
+		"type" : "NotRequestedMilitaryPoints"
+	},
+	"image" : "leaders_f_c_17.jpg",
+	"description" : "Requirement: 3 Building Cards, 12 coins, and 2 Faith Points \nPermanent ability: You don’t need to satisfy the Military Points requirement when \nyou take Territory Cards."
+},{
+	"name" : "Sigismondo Malatesta",
+	"activationRequirementRes" : [{
+		"type" : "MilitaryPoints",
+		"quantity" : 7,
+		"malus" : 0
+		},{
+		"type" : "FaithPoints",
+		"quantity" : 3
+		}]	
+
+
+
+
+
+
+
+
+
+
+
+
+
+},{
+	"name" : "Ludovico il Moro",
+	"activationRequirimentCard" : [{
+		"type" : "TerritoryCard"
+		},{
+		"type" : "TerritoryCard"
+		},{
+		"type" : "VentureCard"
+		},{
+		"type" : "VentureCard"
+		},{
+		"type" : "BuildingCard"
+		},{
+		"type" : "BuildingCard"
+		},{
+		"type" : "CharacterCard"
+		},{
+		"type" : "CharacterCard"
+		}]
 		
 		
 		
@@ -166,7 +228,6 @@
 		
 		
 		
-		
-		
+} 		
 ]		
 		
