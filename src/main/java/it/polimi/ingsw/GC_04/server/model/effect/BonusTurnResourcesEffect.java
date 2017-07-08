@@ -3,6 +3,14 @@ package it.polimi.ingsw.GC_04.server.model.effect;
 import it.polimi.ingsw.GC_04.server.model.Player;
 
 public class BonusTurnResourcesEffect extends Effect{
+	/*BonusTurnResourcesEffect
+	 * effect of the leader cards:
+	 * Sandro Botticelli
+	 * Girolamo Savonarola
+	 * Ludovico III di Gonzaga
+	 * ecc
+	 *
+	 */
 	
 	private Effect effect;
 
