@@ -32,16 +32,29 @@ public class SupportFunctions {
 	}
 	
 	public static Player maxVictoryPoints(Player[] players) {
-		Player first = players[0];
-		int max = players[0].getResource(new VictoryPoints()).getQuantity();
+	//it returns the player with more victory points and deletes him from the array 
+		Player first=null;
+		int max=0;
+		int index = 0;
+		for (int i = 0; i < players.length; i++) {
+			if (players[i] != null){
+				first = players[i];
+				max = players[i].getResource(new VictoryPoints()).getQuantity();
+				index = i;
+				break;
+			}
+		}
 		
 		for (int i = 0; i < players.length; i++) {
 			if (players[i] != null && players[i].getResource(new VictoryPoints()).getQuantity() > max) {
 				first = players[i];
 				max = players[i].getResource(new VictoryPoints()).getQuantity();
-				players[i] = null;
+				index = i;
+				
 			}
 		}
+		
+		players[index] = null;
 		return first;
 	}
 	

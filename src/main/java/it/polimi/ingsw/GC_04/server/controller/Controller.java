@@ -45,6 +45,7 @@ public class Controller implements Observer<String> {
 	private Object lock;
 	private AtomicInteger count;
 	private List<String> playerExcommunicationSetted;
+	private boolean endGame=false;
 	
 	public Controller(Model model,MainServer server) {
 		this.model = model;
@@ -73,18 +74,20 @@ public class Controller implements Observer<String> {
 	}
 	
 	private void chooseAction(){
-		if (!isPlayerConnected(player)){
-			updateTurn();
-			chooseAction();
-			return;
-		}		
-		startTimerAction();
-		try {
-			views.get(player).setState(model.getStateCLI());
-			views.get(player).chooseAction();
-		} catch (RemoteException e) {
-			e.printStackTrace();//TODO CANCELLA
-			disconnect(player);
+		if(!endGame){
+			if (!isPlayerConnected(player)){
+				updateTurn();
+				chooseAction();
+				return;
+			}		
+			startTimerAction();
+			try {
+				views.get(player).setState(model.getStateCLI());
+				views.get(player).chooseAction();
+			} catch (RemoteException e) {
+				e.printStackTrace();//TODO CANCELLA
+				disconnect(player);
+			}
 		}
 	}
 	
@@ -282,8 +285,8 @@ public class Controller implements Observer<String> {
 			excommunicationManagement();
 			Player[] ranking = FinalScore.getRanking(model.getPlayers());
 			printRanking(ranking);
-			
-			//TODO GESTIONE CHIUSURA CONNESSIONE, CLIENT E MAGARI CHIUSURA THREAD SERVER?
+			this.endGame=true;
+
 			return;
 		}
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName()) && model.getCurrentRow() == FINALROW) {
@@ -326,6 +329,8 @@ public class Controller implements Observer<String> {
 		
 	}
 
+
+	
 
 	
 
@@ -372,7 +377,9 @@ public class Controller implements Observer<String> {
 		String ranking = StateOfTheGameCLI.printRanking(players);
 		for (int i = 0; i < players.length; i++) {
 			try {
-				views.get(player).print(ranking);
+				views.get(players[i].getName()).print(ranking);
+//				views.get(player).exit();
+				//TODO sysexit non va 
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
