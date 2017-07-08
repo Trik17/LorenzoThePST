@@ -196,7 +196,7 @@
 
 },{
 	"name" : "Ludovico il Moro",
-	"activationRequirimentCard" : [{
+	"activationRequirementCard" : [{
 		"type" : "TerritoryCard"
 		},{
 		"type" : "TerritoryCard"
