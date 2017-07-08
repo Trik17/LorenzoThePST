@@ -20,14 +20,6 @@ public class ClientRMI {
 		this.username=username;
 		clientConnection();
 	}
-/*
-	private String ask(String print){
-		Scanner in = new Scanner(System.in);
-		System.out.println(print);
-		String input=in.nextLine();
-		in.close();
-		return input;
-	}*/
 	
 	public void clientConnection() throws RemoteException, NotBoundException{
 		
