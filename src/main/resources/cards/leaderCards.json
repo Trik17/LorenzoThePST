@@ -112,13 +112,15 @@
 		}],
 	"effect" : {
 		"type" : "BonusTurnResourcesEffect",
-		"effect" : [{
+		"effect" : {
+			"type" : "SimpleResourceEffect",
+			"effect" : [{
 	  			"type" : "Servants",
 	  			"quantity" : 3
 	  			},{
 	  			"type" :"VictoryPoints",
 	  			"quantity" : 1
-	  			}]
+	  			}]}
 	},
 	"image" : "leaders_f_c_19.jpg",
 	"description" : "Requirement: 2 Character Cards and 4 Building Cards \nOnce Per Round ability: Receive 3 servants and gain 1 Victory Point."
@@ -139,10 +141,12 @@
 		}],
 	"effect" : {
 		"type" : "BonusTurnResourcesEffect",
-		"effect" : [{
+		"effect" : {
+			"type" : "SimpleResourceEffect",
+			"effect" : [{
 	  			"type" :"VictoryPoints",
 	  			"quantity" : 4
-	  			}]
+	  			}]}
 	},
 	"image" : "leaders_f_c_20.jpg",
 	"description" : "Requirement: 2 Venture Cards and 4 Territory Cards \nOnce Per Round ability: Gain 4 Victory Points."
