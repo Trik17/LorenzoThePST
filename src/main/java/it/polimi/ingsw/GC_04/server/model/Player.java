@@ -26,11 +26,8 @@ import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 //le carte quelle tutte uguali aggiungono il loro effetto in bonus e io lo aggiungo a tutti gli effetti 
 //dell'azione quando faccio applyEffects. L'arrayList è già inizializzato.
 
-public class Player implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7992514360884500251L;
+public class Player {
+
 	private String name;
 	private FamilyMember[] family;
 	private ExtraDice extraDice;
@@ -44,6 +41,7 @@ public class Player implements Serializable {
 	private List<Effect> bonusAction;
 	private List<Boolean> deleteVPointsCardsEffect;
 	private boolean actionSpacePenality;
+	private boolean notRequestedMilitaryPoints;
 	private boolean disconnected=false;	
 	private List<Harvest> harvestList;
 	private List<Production> productionList;
@@ -233,6 +231,14 @@ public class Player implements Serializable {
 	public void applyBonus() {
 		bonusAction.forEach(eff -> {if (!eff.isAuthorizationRequested() && !(eff instanceof CouncilPrivilege)) 
 			eff.apply(this);});
+	}
+
+	public boolean isNotRequestedMilitaryPoints() {
+		return notRequestedMilitaryPoints;
+	}
+
+	public void setNotRequestedMilitaryPoints() {
+		this.notRequestedMilitaryPoints = true;
 	}
 	
 	

@@ -57,9 +57,19 @@ public class FamilyMember implements Serializable {
 		
 	}
 
-	public static void changeValue(FamilyMember[] family, int value) {
-		for (int i = 1; i < family.length; i++) {
-			family[i].dice = new Dice(value);
+	public static void changeValue(FamilyMember[] family, int value, boolean valueAdded, boolean onlyNeutralMember) {
+		if (valueAdded) {
+			if (onlyNeutralMember)
+				family[0].dice = new Dice(0);
+			for (int i = 1; i < family.length; i++) {
+				family[i].dice = new Dice(value);
+			}
+			
+		}else {
+			for (int i = 1; i < family.length; i++) {
+				int newValue = family[i].getDice().getValue() + value;
+				family[i].dice = new Dice(newValue);
+			}
 		}
 		
 	}
