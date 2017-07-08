@@ -48,8 +48,8 @@ public class TestCardEffect extends InizializeTest {
 		cost.add(new Coins(1));
 		cost.add(new Woods(1));
 		costHigh.add(new Coins(50));
-		c1=new VentureCard(1, "prova", null, costHigh, null, null);
-		c2=new CharacterCard(1, "prova", null, cost, null, null);
+		c1=new VentureCard(1, "prova", null,null, costHigh, null, null);
+		c2=new CharacterCard(1, "prova", null,null, cost, null, null);
 		a1=new TakeACard(model, p1, c1, as, fm, 0, c1.getCost1());
 		a2=new TakeACard(model, p1, c2, as, fm, 0, c1.getCost1());
 		a1.setDiscount(discount);

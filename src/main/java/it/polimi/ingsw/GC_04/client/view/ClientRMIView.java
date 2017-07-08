@@ -104,5 +104,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		System.out.println("Username already used, restart client with another username");
 		System.exit(0);
 	}
+	@Override
+	public void exit() throws RemoteException {
+		System.exit(0);
+		
+	}
 
 }

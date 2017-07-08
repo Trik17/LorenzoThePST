@@ -15,13 +15,13 @@ import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class BuildingCard extends DevelopmentCard {
-	private static final long serialVersionUID = -6271388985340303131L;
+
 	private Production production;
 	
 	
 	@JsonCreator
-	public BuildingCard(@JsonProperty("period")int period,@JsonProperty("name") String name, @JsonProperty("image") String image,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects,@JsonProperty("production") Production production ) {
-		super(period, name,image, cost1, cost2, effects);
+	public BuildingCard(@JsonProperty("period")int period,@JsonProperty("name") String name, @JsonProperty("image") String image,@JsonProperty("imageResized") String imageResized,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects,@JsonProperty("production") Production production ) {
+		super(period, name,image,imageResized, cost1, cost2, effects);
 		this.production = production;
 	}
 	//constructor needed for Json
@@ -40,4 +40,5 @@ public class BuildingCard extends DevelopmentCard {
 		return this.production;
 		
 	}
+
 }

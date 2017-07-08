@@ -31,7 +31,6 @@ public class FinalScore {
 			calculateFinalScore(players[i]);
 		
 		calculateMilitaryPointsScore(players);
-		
 		Player[] ranking = new Player[players.length];
 		int position = 0;
 		boolean empty = false;
