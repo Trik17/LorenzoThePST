@@ -21,6 +21,19 @@ public class StateOfTheGameCLI {
 	public StateOfTheGameCLI() {
 	}
 	
+	public static String printLeaderCards(Player player) {
+		String cards = "\n"+player.getName()+"'S LEADER CARDS:\n\n";
+		int cont = 1;
+		
+		for (int i = 0; i< player.getLeaderCards().size(); i++) {
+			cards += cont+")"+player.getLeaderCards().get(i).getDescription()+"\n\n";
+			cont++;
+		}
+		
+		cards += "\n\n";
+		return cards;
+	}
+	
 	public static String printRanking(Player[] players) {
 		int position = 1;
 		String ranking = "\n\nRANKING:\n";
@@ -37,6 +50,8 @@ public class StateOfTheGameCLI {
 		state += printCards(tCards, cCards, bCards, vCards);
 		state += printDices(dices);
 		
+		for(Player p:model.getPlayers())
+			state += printLeaderCards(p);
 		
 		for (Player p:model.getPlayers())
 			state += printPersonalBoard(p);

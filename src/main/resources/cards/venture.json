@@ -41,7 +41,7 @@
 	  	"type" : "SimpleResourceEffect",
 	  	"effect" : [{
 	  		"type" : "FaithPoints",
-	  		"quantity" : 10
+	  		"quantity" : 1
 	  }]},{
 	   	"type": "EndVictoryPointsEffect",
     		"vPoints": {
