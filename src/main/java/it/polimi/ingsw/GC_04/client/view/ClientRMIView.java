@@ -18,15 +18,21 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	 */
 	private static final long serialVersionUID = 9014192198954467429L;
 	private final String username; 
-	private ViewCLI view;
+	private ViewClient view;
 	private ServerRMIViewRemote serverStub;
 	private ExecutorService executor;
+	private boolean GUI;
 	
 	
-	protected ClientRMIView(String username) throws RemoteException {
+	protected ClientRMIView(String username, boolean GUI) throws RemoteException {
 		super();
 		this.username=username;
-		this.view=new ViewCLI();
+		this.GUI=GUI;
+		if (GUI) {
+			this.view=new ViewGUI();
+		}else {
+			this.view=new ViewCLI();
+		}
 		this.executor = Executors.newCachedThreadPool();
 	}
 	public void addServerstub(ServerRMIViewRemote serverStub)throws RemoteException{
