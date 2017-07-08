@@ -12,6 +12,10 @@ import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 //implements ClientViewRemote interface
 public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewRemote {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9014192198954467429L;
 	private final String username; 
 	private ViewCLI view;
 	private ServerRMIViewRemote serverStub;
