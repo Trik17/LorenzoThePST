@@ -37,14 +37,16 @@ public abstract class DevelopmentCard extends Card{
 	private int period;
 	private String name;
 	private String image;
+	private String imageResized;
 	private List<Resource> cost1; 
 	private List<Resource> cost2;
 	private List<Effect> effects;
 	@JsonCreator
-	public DevelopmentCard(@JsonProperty("period")int period,@JsonProperty("name") String name, @JsonProperty("image") String image, @JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects){
+	public DevelopmentCard(@JsonProperty("period")int period,@JsonProperty("name") String name, @JsonProperty("image") String image,@JsonProperty("imageResized") String imageResized, @JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects){
 		this.period=period;
 		this.name=name;
 		this.image=image;
+		this.imageResized=imageResized;
 		this.cost1=cost1;
 		this.cost2=cost2;
 		this.effects=effects;
@@ -91,6 +93,9 @@ public abstract class DevelopmentCard extends Card{
 	
 	public String getImage() {
 		return image;
+	}
+	public String getImageResized() {
+		return imageResized;
 	}
 	
 	public static DevelopmentCard[] toArray(List<DevelopmentCard> list) {
