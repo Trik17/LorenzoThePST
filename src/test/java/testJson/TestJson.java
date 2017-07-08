@@ -34,10 +34,16 @@ public class TestJson {
 	private  LeaderCard[] leaderCards;
 	
 	@Before
-	public void Initialize() throws JsonMappingException, IOException{
-		jsonMapper=new JsonMapper();
-		mapper = new ObjectMapper();
-		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+	public void Initialize() {
+		try{
+			jsonMapper=new JsonMapper();
+			mapper = new ObjectMapper();
+			mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 			
 	}
 
