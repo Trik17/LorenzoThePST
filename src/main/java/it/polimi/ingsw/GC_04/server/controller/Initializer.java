@@ -48,7 +48,7 @@ public class Initializer {
 	private VentureCard[] ventureCards;
 	
 	private final List<ExcommunicationTile> eTiles;
-	private final LeaderCard[] leaderCards;
+	private List<LeaderCard> leaderCards;
 
 	private Model model;
 	private Player[] players;
@@ -66,8 +66,17 @@ public class Initializer {
 		this.bCards = jsonMapper.getBuildingCardArray();
 		this.vCards = jsonMapper.getVentureCardsArray();
 		this.eTiles = jsonMapper.getExcommunicationTile();
-		this.leaderCards=jsonMapper.getLeaderCards();
+		
 		ExcommunicationTile[] excommunications = new ExcommunicationTile[3];
+		
+		LeaderCard[] leaderCardsArray=jsonMapper.getLeaderCards();
+		
+		SupportFunctions.shuffleArray(leaderCardsArray);
+		
+		for (int i = 0; i < leaderCardsArray.length; i++) {
+			this.leaderCards.add(leaderCardsArray[i]);
+		}
+		
 		
 		Random rnd = new Random();
 		for (int i = 0; i < 3; i++) {
@@ -119,6 +128,20 @@ public class Initializer {
 			players[0].setFamily(FamilyMember.createFamily(FamilyColor.YELLOW,model));
 
 		}
+		
+		int numLeader=leaderCards.size();
+		int leaderPerPlayer = numLeader/nrOfPlayers;
+		int index = 0;
+		
+		for (int j = 0; j < players.length; j++) {
+			int cont = leaderPerPlayer;
+			while(cont > 0) {
+				players[j].setLeaderCards(leaderCards.get(index));
+				index++;
+				cont--;
+			}
+		}
+		
 		//TODO MISCHIARE LEADER CARDS  e darle ai giocatori in base a quanti sono
 		//public void setLeaderCards(List<LeaderCard> leaderCards)
 		
