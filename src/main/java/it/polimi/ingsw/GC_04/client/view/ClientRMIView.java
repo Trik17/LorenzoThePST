@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,10 +12,11 @@ import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 //implements ClientViewRemote interface
 public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewRemote, Serializable {
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -9164262648865618843L;
+	private static final long serialVersionUID = 9014192198954467429L;
 	private final String username; 
 	private ViewCLI view;
 	private ServerRMIViewRemote serverStub;
