@@ -28,7 +28,9 @@ import it.polimi.ingsw.GC_04.server.view.ServerSocketView;
 
 public class MainServer implements Runnable{
 	private Map<String,ClientRMIViewRemote> clientsRMI;
-	private Map<String,ClientRMIViewRemote> lastClientsRMIù; //clients that are waiting for a match
+	private Map<String, ServerSocketView> clientsSocket;
+	private Map<String,ClientRMIViewRemote> lastClientsRMI; //clients that are waiting for a match
+	private Map<String, ServerSocketView> lastClientsSocket;
 	private List<String> disconnectedPlayers;
 	private Map<String,StartGame> games; //associations beetween games and players
 	private boolean timerStarted=false;
@@ -69,7 +71,7 @@ public class MainServer implements Runnable{
 		this.disconnectedPlayers=new ArrayList<>();
 		this.clientsRMI=new HashMap<>();
 		this.games=new HashMap<>();
-		this.lastClientsRMIù=new HashMap<>();
+		this.lastClientsRMI=new HashMap<>();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
 		this.executor = Executors.newCachedThreadPool();
@@ -97,14 +99,14 @@ public class MainServer implements Runnable{
 			}
 		}
 		this.clientsRMI.put(username,clientStub);
-		this.lastClientsRMIù.put(username,clientStub);
+		this.lastClientsRMI.put(username,clientStub);
 		//controller observes this view
 		rmiView.registerObserver(this.currentController);
 		try {
 			clientStub.addServerstub(rmiView);
 		} catch (RemoteException e) {
 			this.clientsRMI.remove(username,clientStub);
-			this.lastClientsRMIù.remove(username,clientStub);
+			this.lastClientsRMI.remove(username,clientStub);
 			return;
 		}
 		System.out.println("new client connected");
@@ -116,10 +118,10 @@ public class MainServer implements Runnable{
 	} 
 	
 	private synchronized void checkPlayers() {
-		System.out.println("Number of new Clients:"+ lastClientsRMIù.size());
-		if(lastClientsRMIù.size()<2)
+		System.out.println("Number of new Clients:"+ lastClientsRMI.size());
+		if(lastClientsRMI.size()<2)
 			return;
-		if(lastClientsRMIù.size()==4){
+		if(lastClientsRMI.size()==4){
 			timer.cancel();
 			startGame();			
 		}			
@@ -135,10 +137,10 @@ public class MainServer implements Runnable{
 	
 	private synchronized void startGame(){
 		System.out.println("Starting a new game:");	
-		StartGame game=new StartGame(this.lastClientsRMIù,this.currentModel,this.currentController);//va dato in pasto ad un thread
+		StartGame game=new StartGame(this.lastClientsRMI,this.currentModel,this.currentController);//va dato in pasto ad un thread
 		executor.submit(game);
-		lastClientsRMIù.forEach((username,stub) -> games.put(username, game));
-		this.lastClientsRMIù.clear();
+		lastClientsRMI.forEach((username,stub) -> games.put(username, game));
+		this.lastClientsRMI.clear();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
 	}
@@ -187,8 +189,7 @@ public class MainServer implements Runnable{
 				
 				// the controller observes the view
 				viewSocket.registerObserver(this.currentController);
-				
-							
+											
 				// a new thread handle the connection with the view
 				executor.submit(viewSocket);
 			}

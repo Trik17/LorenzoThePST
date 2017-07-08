@@ -3,7 +3,9 @@ package it.polimi.ingsw.GC_04.client.socket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,11 +31,11 @@ public class ClientSocket {
 
 		//Creates one thread to send messages to the server
 		executor.submit(new ClientSocketOut(this,
-				new ObjectOutputStream(socket.getOutputStream())));
+				new PrintWriter(socket.getOutputStream())));
 
 		//Creates one thread to receive messages from the server
 		executor.submit(new ClientSocketIn(this,
-				new ObjectInputStream(socket.getInputStream())));
+				new Scanner(socket.getInputStream())));
 	}
 
 	
