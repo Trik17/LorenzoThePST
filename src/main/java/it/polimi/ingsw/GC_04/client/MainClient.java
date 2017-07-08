@@ -11,25 +11,26 @@ import it.polimi.ingsw.GC_04.client.view.ClientRMI;
 
 
 public class MainClient {
-	//TODO alla fine del gioco chiudere socket rispettive
 	public static void main(String[] args) throws AccessException, RemoteException, NotBoundException {
-		//TODO rimetti gli scanner nelle righe commentate
+				
 		Scanner in = new Scanner(System.in);
-		//cancelaaaaaaaaaaaaaa
-		int x=0;
-		Random rnd =new Random();
-		x=rnd.nextInt(58578);
-//		String username="andre&miriam&gigi"+x;
 		System.out.println("Choose an unsername: ");
 		String username=in.nextLine();
-        System.out.println("Choose RMI or SOCKET: ");
+		System.out.println("Choose RMI or SOCKET: ");
         String connection=in.nextLine();
-         
+		System.out.println("Choose CLI or GUI ");
+        String view=in.nextLine();        
         
         if (connection.equalsIgnoreCase("SOCKET")){
-        	ClientSocket client=new ClientSocket(username);
+        	if (view.equalsIgnoreCase("GUI")) {
+        		ClientSocket client=new ClientSocket(username,true);
+			} else {
+				ClientSocket client=new ClientSocket(username,false);
+			}        	
+        }else if(view.equalsIgnoreCase("GUI")){
+        	ClientRMI client=new ClientRMI(username,true);
         }else{
-        	ClientRMI client=new ClientRMI(username);
+        	ClientRMI client=new ClientRMI(username,false);
         }
         	
 		

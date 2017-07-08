@@ -13,15 +13,21 @@ import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewRemote {
 	
 	private final String username; 
-	private ViewCLI view;
+	private ViewClient view;
 	private ServerRMIViewRemote serverStub;
 	private ExecutorService executor;
+	private boolean GUI;
 	
 	
-	protected ClientRMIView(String username) throws RemoteException {
+	protected ClientRMIView(String username, boolean GUI) throws RemoteException {
 		super();
 		this.username=username;
-		this.view=new ViewCLI();
+		this.GUI=GUI;
+		if (GUI) {
+			this.view=new ViewGUI();
+		}else {
+			this.view=new ViewCLI();
+		}
 		this.executor = Executors.newCachedThreadPool();
 	}
 	public void addServerstub(ServerRMIViewRemote serverStub)throws RemoteException{
