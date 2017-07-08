@@ -90,8 +90,8 @@ public class JsonMapper {
 		return buildingCards.toArray(new BuildingCard[0]);
 	}
 	
-	public List<LeaderCard> getLeaderCards() {
-		return leaderCards;
+	public LeaderCard[] getLeaderCards() {
+		return leaderCards.toArray(new LeaderCard[0]);
 	}
 	
 	public VentureCard[] getVentureCardsArray(){

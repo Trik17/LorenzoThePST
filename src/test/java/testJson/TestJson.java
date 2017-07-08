@@ -16,6 +16,7 @@ import it.polimi.ingsw.GC_04.server.controller.JsonMapper;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
@@ -30,6 +31,7 @@ public class TestJson {
 	private  CharacterCard[] cCards;
 	private  BuildingCard[] bCards;
 	private  VentureCard[] vCards;
+	private  LeaderCard[] leaderCards;
 	
 	@Before
 	public void Initialize() throws JsonMappingException, IOException{
@@ -48,10 +50,13 @@ public class TestJson {
 		this.cCards = jsonMapper.getCharacterCardArray();
 		this.bCards = jsonMapper.getBuildingCardArray();
 		this.vCards = jsonMapper.getVentureCardsArray();		
+		this.leaderCards = jsonMapper.getLeaderCards();		
 		assertEquals(TerritoryCard[].class, tCards.getClass());
 		assertEquals(CharacterCard[].class, cCards.getClass());
 		assertEquals(BuildingCard[].class, bCards.getClass());
 		assertEquals(VentureCard[].class, vCards.getClass());
+		assertEquals(LeaderCard[].class, leaderCards.getClass());
+		
 		
 		try{		
 	    	

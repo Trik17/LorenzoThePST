@@ -37,7 +37,7 @@ public class Initializer {
 	private final BuildingCard[] bCards;
 	private final VentureCard[] vCards;
 	private final List<ExcommunicationTile> eTiles;
-	private final List<LeaderCard> leaderCards;
+	private final LeaderCard[] leaderCards;
 
 	private Model model;
 	private Player[] players;
