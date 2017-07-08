@@ -1,12 +1,16 @@
 package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.GC_04.client.view.ViewClient;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
@@ -28,16 +32,29 @@ public class SupportFunctions {
 	}
 	
 	public static Player maxVictoryPoints(Player[] players) {
-		Player first = players[0];
-		int max = players[0].getResource(new VictoryPoints()).getQuantity();
+	//it returns the player with more victory points and deletes him from the array 
+		Player first=null;
+		int max=0;
+		int index = 0;
+		for (int i = 0; i < players.length; i++) {
+			if (players[i] != null){
+				first = players[i];
+				max = players[i].getResource(new VictoryPoints()).getQuantity();
+				index = i;
+				break;
+			}
+		}
 		
 		for (int i = 0; i < players.length; i++) {
 			if (players[i] != null && players[i].getResource(new VictoryPoints()).getQuantity() > max) {
 				first = players[i];
 				max = players[i].getResource(new VictoryPoints()).getQuantity();
-				players[i] = null;
+				index = i;
+				
 			}
 		}
+		
+		players[index] = null;
 		return first;
 	}
 	
@@ -130,6 +147,17 @@ public class SupportFunctions {
 				councilPrivileges.add((CouncilPrivilege) eff);	
 			if (eff.isAuthorizationRequested())
 				requestedAuthorizationEffects.add(eff);
+		}
+	}
+	public static <E> void shuffleArray(E card[]) {
+		List<E> list = new ArrayList<>();
+		for (int i = 0; i < card.length; i++) {
+			list.add(card[i]);
+		}
+		Collections.shuffle(list);
+		
+		for (int i = 0; i < list.size(); i++) {
+			card[i] = list.get(i);
 		}
 	}
 }

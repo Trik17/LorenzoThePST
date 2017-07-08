@@ -15,7 +15,7 @@ import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class BuildingCard extends DevelopmentCard {
-	private static final long serialVersionUID = -6271388985340303131L;
+
 	private Production production;
 	
 	
@@ -40,4 +40,5 @@ public class BuildingCard extends DevelopmentCard {
 		return this.production;
 		
 	}
+
 }

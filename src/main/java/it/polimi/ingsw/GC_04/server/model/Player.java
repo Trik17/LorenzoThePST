@@ -216,8 +216,8 @@ public class Player {
 		return leaderCards;
 	}
 
-	public void setLeaderCards(List<LeaderCard> leaderCards) {
-		this.leaderCards = leaderCards;
+	public void setLeaderCards(LeaderCard leaderCard) {
+		this.leaderCards.add(leaderCard);
 	}
 
 	public List<Effect> getBonusAction() {
