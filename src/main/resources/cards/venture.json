@@ -3,6 +3,7 @@
 	  "period" : 1,
 	  "name" : "Hiring Recruits",
 	  "image": "/VentureCard/devcards_f_en_c_73.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_73.png",
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 4
@@ -25,6 +26,7 @@
 	  "period" : 1,
 	  "name" : "Repairing the Church",
 	  "image": "/VentureCard/devcards_f_en_c_74.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_74.png",
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 1
@@ -52,6 +54,7 @@
 	  "period" : 1,
 	  "name" : "Building the Walls",
 	  "image": "/VentureCard/devcards_f_en_c_75.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_75.png",
 	  "cost1" : [ {
       	"type" : "Stones",
       	"quantity" : 3
@@ -76,6 +79,7 @@
 	  "period" : 1,
 	  "name" : "Raising a Statue",
 	  "image": "/VentureCard/devcards_f_en_c_76.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_76.png",
 	  "cost1" : [ {
       	"type" : "Woods",
       	"quantity" : 2
@@ -99,6 +103,7 @@
 	  "period" : 1,
 	  "name" : "Military Campaign",
 	  "image": "/VentureCard/devcards_f_en_c_77.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_77.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 3,
@@ -121,6 +126,7 @@
 	  "period" : 1,
 	  "name" : "Hosting Panhandlers",
 	  "image": "/VentureCard/devcards_f_en_c_78.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_78.png",
 	  "cost1" : [ {
       	"type" : "Woods",
       	"quantity" : 3
@@ -142,6 +148,7 @@
 	  "period" : 1,
 	  "name" : "Fighting Heresies",
 	  "image": "/VentureCard/devcards_f_en_c_79.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_79.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 5,
@@ -164,6 +171,7 @@
 	  "period" : 1,
 	  "name" : "Support to the Bishop",
 	  "image": "/VentureCard/devcards_f_en_c_80.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_80.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 4,
@@ -196,6 +204,7 @@
 	  "period" : 2,
 	  "name" : "Hiring Soldiers",
 	  "image": "/VentureCard/devcards_f_en_c_81.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_81.png",
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 6
@@ -218,6 +227,7 @@
 	  "period" : 2,
 	  "name" : "Repairing the Abbey",
 	  "image": "/VentureCard/devcards_f_en_c_82.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_82.png",
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 2
@@ -245,6 +255,7 @@
 	  "period" : 2,
 	  "name" : "Building the Bastions",
 	  "image": "/VentureCard/devcards_f_en_c_83.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_83.png",
 	  "cost1" : [ {
       	"type" : "Stones",
       	"quantity" : 4
@@ -269,6 +280,7 @@
 	  "period" : 2,
 	  "name" : "Support to the King",
 	  "image": "/VentureCard/devcards_f_en_c_84.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_84.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 6,
@@ -293,6 +305,7 @@
 	  "period" : 2,
 	  "name" : "Improving the Canals",
 	  "image": "/VentureCard/devcards_f_en_c_85.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_85.png",
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 3
@@ -316,6 +329,7 @@
 	  "period" : 2,
 	  "name" : "Hosting Foreigners",
 	  "image": "/VentureCard/devcards_f_en_c_86.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_86.png",
 	  "cost1" : [ {
       	"type" : "Woods",
       	"quantity" : 4
@@ -337,6 +351,7 @@
 	  "period" : 2,
 	  "name" : "Crusade",
 	  "image": "/VentureCard/devcards_f_en_c_87.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_87.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 8,
@@ -362,6 +377,7 @@
 	  "period" : 2,
 	  "name" : "Support to the Cardinal",
 	  "image": "/VentureCard/devcards_f_en_c_88.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_88.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 7,
@@ -394,6 +410,7 @@
 	  "period" : 3,
 	  "name" : "Hiring Mercenaries",
 	  "image": "/VentureCard/devcards_f_en_c_89.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_89.png",
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 8
@@ -416,6 +433,7 @@
 	  "period" : 3,
 	  "name" : "Repairing the Cathedral",
 	  "image": "/VentureCard/devcards_f_en_c_90.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_90.png",
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 3
@@ -448,6 +466,7 @@
 	  "period" : 3,
 	  "name" : "Building the Towers",
 	  "image": "/VentureCard/devcards_f_en_c_91.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_91.png",
 	  "cost1" : [ {
       	"type" : "Stones",
       	"quantity" : 6
@@ -472,6 +491,7 @@
 	  "period" : 3,
 	  "name" : "Promoting Sacred Art",
 	  "image": "/VentureCard/devcards_f_en_c_92.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_92.png",
 	  "cost1" : [ {
       	"type" : "Woods",
       	"quantity" : 6
@@ -493,6 +513,7 @@
 	  "period" : 3,
 	  "name" : "Military Conquest",
 	  "image": "/VentureCard/devcards_f_en_c_93.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_93.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 12,
@@ -521,6 +542,7 @@
 	  "period" : 3,
 	  "name" : "Improving the Roads",
 	  "image": "/VentureCard/devcards_f_en_c_94.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_94.png",
 	  "cost1" : [ {
       	"type" : "Coins",
       	"quantity" : 4
@@ -544,6 +566,7 @@
 	  "period" : 3,
 	  "name" : "Sacred War",
 	  "image": "/VentureCard/devcards_f_en_c_95.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_95.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 15,
@@ -566,6 +589,7 @@
 	  "period" : 3,
 	  "name" : "Support to the Pope",
 	  "image": "/VentureCard/devcards_f_en_c_96.png",
+	  "imageResized" : "/VentureCardRid/devcards_f_en_c_96.png",
 	  "cost1" : [ {
       	"type" : "MilitaryPoints",
       	"quantity" : 10,

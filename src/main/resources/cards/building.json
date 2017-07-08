@@ -3,6 +3,7 @@
 	  "period" : 1,
 	  "name" : "Mint                ",
 	  "image": "/BuildingCard/devcards_f_en_c_25.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_25.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 1
@@ -34,6 +35,7 @@
 	  "period" : 1,
 	  "name" : "Tax Office          ",
 	  "image": "/BuildingCard/devcards_f_en_c_26.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_26.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 3
@@ -64,7 +66,8 @@
 	 "type" : "BuildingCard",
 	  "period" : 1,
 	  "name" : "Triunphal Arch      ",
-	  "image": "/BuildingCard/devcards_f_en_c_27.png",  
+	  "image": "/BuildingCard/devcards_f_en_c_27.png", 
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_27.png", 
 	  "cost1" : [ {
 	  	"type" : "Coins",
 	  	"quantity": 2
@@ -96,6 +99,7 @@
 	  "period" : 1,
 	  "name" : "Theater             ",
 	  "image": "/BuildingCard/devcards_f_en_c_28.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_28.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 2
@@ -127,6 +131,7 @@
 	  "period" : 1,
 	  "name" : "Carpenter's Shop    ",
 	  "image": "/BuildingCard/devcards_f_en_c_29.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_29.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 2
@@ -172,6 +177,7 @@
 	  "period" : 1,
 	  "name" : "Stonemason's Shop   ",
 	  "image": "/BuildingCard/devcards_f_en_c_30.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_30.png",
 	  "cost1" : [ {
 	  	"type" : "Coins",
 	  	"quantity": 1
@@ -216,6 +222,7 @@
 	  "period" : 1,
 	  "name" : "Chapel              ",
 	  "image": "/BuildingCard/devcards_f_en_c_31.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_31.png",
 	  "cost1" : [{
 	  	"type" : "Woods",
 	  	"quantity": 2
@@ -245,6 +252,7 @@
 	  "period" : 1,
 	  "name" : "Residence           ",
 	  "image": "/BuildingCard/devcards_f_en_c_32.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_32.png",
 	  "cost1" : [ {
 	  	"type" : "Stones",
 	  	"quantity" : 2
@@ -272,6 +280,7 @@
 	  "period" : 2,
 	  "name" : "Marketplace         ",
 	  "image": "/BuildingCard/devcards_f_en_c_33.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_33.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 2
@@ -309,6 +318,7 @@
 	  "period" : 2,
 	  "name" : "Treasury            ",
 	  "image": "/BuildingCard/devcards_f_en_c_34.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_34.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 3	
@@ -350,6 +360,7 @@
 	  "period" : 2,
 	  "name" : "Painter's Guild     ",
 	  "image": "/BuildingCard/devcards_f_en_c_35.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_35.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 4
@@ -391,6 +402,7 @@
 	  "period" : 2,
 	  "name" : "Sculptors's Guild   ",
 	  "image": "/BuildingCard/devcards_f_en_c_36.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_36.png",
 	  "cost1" : [ {
 	  	"type" : "Stones",
 	  	"quantity" : 4
@@ -432,6 +444,7 @@
 	  "period" : 2,
 	  "name" : "Stonemason's Guild  ",
 	  "image": "/BuildingCard/devcards_f_en_c_37.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_37.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 1
@@ -472,6 +485,7 @@
 	  "period" : 2,
 	  "name" : "Baptistery          ",
 	  "image": "/BuildingCard/devcards_f_en_c_38.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_38.png",
 	  "cost1" : [ {
 	  	"type" : "Stones",
 	  	"quantity" : 3
@@ -509,6 +523,7 @@
 	  "period" : 2,
 	  "name" : "Barracks            ",
 	  "image": "/BuildingCard/devcards_f_en_c_39.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_39.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 1
@@ -544,6 +559,7 @@
 	  "period" : 2,
 	  "name" : "Stronghold          ",
 	  "image": "/BuildingCard/devcards_f_en_c_40.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_40.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 2
@@ -579,6 +595,7 @@
 	  "period" : 3,
 	  "name" : "Bank                ",
 	  "image": "/BuildingCard/devcards_f_en_c_41.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_41.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 1
@@ -611,6 +628,7 @@
 	  "period" : 3,
 	  "name" : "Fair                ",
 	  "image": "/BuildingCard/devcards_f_en_c_42.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_42.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 3
@@ -648,6 +666,7 @@
 	  "period" : 3,
 	  "name" : "Garden              ",
 	  "image": "/BuildingCard/devcards_f_en_c_43.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_43.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 4
@@ -680,6 +699,7 @@
 	  "period" : 3,
 	  "name" : "Fortress            ",
 	  "image": "/BuildingCard/devcards_f_en_c_44.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_44.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 2
@@ -713,6 +733,7 @@
 	  "period" : 3,
 	  "name" : "Palace              ",
 	  "image": "/BuildingCard/devcards_f_en_c_45.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_45.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 3
@@ -753,6 +774,7 @@
 	  "period" : 3,
 	  "name" : "Church              ",
 	  "image": "/BuildingCard/devcards_f_en_c_46.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_46.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 1
@@ -802,6 +824,7 @@
 	  "period" : 3,
 	  "name" : "Military Academy    ",
 	  "image": "/BuildingCard/devcards_f_en_c_47.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_47.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 2
@@ -843,6 +866,7 @@
 	  "period" : 3,
 	  "name" : "Cathedral           ",
 	  "image": "/BuildingCard/devcards_f_en_c_48.png",
+	  "imageResized": "/BuildingCardRid/devcards_f_en_c_48.png",
 	  "cost1" : [ {
 	  	"type" : "Woods",
 	  	"quantity": 4

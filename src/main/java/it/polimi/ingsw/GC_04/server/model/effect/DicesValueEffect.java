@@ -19,8 +19,10 @@ public class DicesValueEffect extends Effect {
 	private boolean onlyNeutralMember; //if it's false the value of the family member is replaced by this value, otherwise this value is added to the existing one
 	
 	@JsonCreator
-	public DicesValueEffect(@JsonProperty("value") int value) {
+	public DicesValueEffect(@JsonProperty("value") int value,@JsonProperty("valueAdded") boolean valueAdded,@JsonProperty("onlyNeutralMember") boolean onlyNeutralMember ) {
 		this.value = value;
+		this.valueAdded=valueAdded;
+		this.onlyNeutralMember=onlyNeutralMember;
 	}
 
 	@Override
