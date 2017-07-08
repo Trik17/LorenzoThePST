@@ -43,7 +43,7 @@ public class ServerSocketView extends Observable<String> implements Runnable{
 		socketOut.println("username");
 		socketOut.flush();
 		this.username=socketIn.nextLine();
-		
+		server.addSocketClient(username, this);
 		
 		while(true){
 			String line=socketIn.nextLine();

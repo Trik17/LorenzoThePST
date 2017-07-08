@@ -9,35 +9,32 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class ClientSocketOut implements Runnable{
 	private PrintWriter out;
 	private ClientSocket client;
-	private ObjectMapper mapper;             
+	private ObjectMapper mapper;   
+	private Message message;
 	
 	
 	public ClientSocketOut(ClientSocket clientSocket, PrintWriter OutputStream) {
 		out=OutputStream;
 		this.client=clientSocket;
+		message=new Message();
 		mapper = new ObjectMapper(); 
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 	}
-
-	/*
-	 String s = null;
-        try {
-            s = mapper.writeValueAsString(c);
-        }
-        catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-	 
-	 */
-	@Override
-	public void run() {
-		registerSocketClientToServer();
-		
+	public void sendUsername() {
+		send(client.getUsername());
+	}
+	private synchronized void  send(String string){
+		out.println(string);
+		out.flush();
 	}
 
-	private void registerSocketClientToServer() {
-		//TODO
+	@Override
+	public void run() {
+		
+		while(true){
+			
+			
+		}
 	}
 
 }

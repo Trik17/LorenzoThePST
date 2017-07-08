@@ -11,10 +11,12 @@ public class ClientSocketIn implements Runnable{
 	private Scanner in;
 	private ClientSocket client;
 	private ObjectMapper mapper;
+	private String line;
 
 	public ClientSocketIn(ClientSocket clientSocket, Scanner InputStream) {
 		this.in=InputStream;
 		this.client=clientSocket;
+		line="";
 		mapper = new ObjectMapper(); 
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 	}
@@ -22,8 +24,14 @@ public class ClientSocketIn implements Runnable{
 	@Override
 	public void run() {
 		
-			while(true){
-				Object object=in.nextLine();
+		while(!line.equals("username")){
+			line=in.nextLine();			
+		}		
+		client.getSocketOut().sendUsername();
+			
+			
+		while(true){
+				line=in.nextLine();
 				//TODO a seconda di ciò che ricevi fai su view
 				
 				

@@ -13,6 +13,8 @@ public class ClientSocket {
 	private final static int SOCKET_PORT = 17000;
 	private final static String IP = "127.0.0.1";
 	private String username;
+	private ClientSocketOut socketOut;
+	private ClientSocketIn socketIn;
 	
 	public ClientSocket(String username) throws IOException {
 		this.username=username;
@@ -20,6 +22,12 @@ public class ClientSocket {
 	}
 	public String getUsername() {
 		return username;
+	}
+	public ClientSocketIn getSocketIn() {
+		return socketIn;
+	}
+	public ClientSocketOut getSocketOut() {
+		return socketOut;
 	}
 
 	private void clientConnection() throws IOException {
@@ -30,11 +38,11 @@ public class ClientSocket {
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		//Creates one thread to send messages to the server
-		executor.submit(new ClientSocketOut(this,
+		executor.submit(socketOut=new ClientSocketOut(this,
 				new PrintWriter(socket.getOutputStream())));
 
 		//Creates one thread to receive messages from the server
-		executor.submit(new ClientSocketIn(this,
+		executor.submit(socketIn=new ClientSocketIn(this,
 				new Scanner(socket.getInputStream())));
 	}
 

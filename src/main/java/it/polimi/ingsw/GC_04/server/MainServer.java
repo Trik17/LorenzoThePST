@@ -109,7 +109,7 @@ public class MainServer implements Runnable{
 			this.lastClientsRMI.remove(username,clientStub);
 			return;
 		}
-		System.out.println("new client connected");
+		System.out.println("new client connected with RMI");
 		checkPlayers();
 	}
 	
@@ -118,10 +118,11 @@ public class MainServer implements Runnable{
 	} 
 	
 	private synchronized void checkPlayers() {
-		System.out.println("Number of new Clients:"+ lastClientsRMI.size());
-		if(lastClientsRMI.size()<2)
+		int numOfClients=lastClientsRMI.size() + lastClientsSocket.size();
+		System.out.println("Number of new Clients:"+ numOfClients);
+		if(numOfClients<2)
 			return;
-		if(lastClientsRMI.size()==4){
+		if(numOfClients==4){
 			timer.cancel();
 			startGame();			
 		}			
@@ -135,7 +136,7 @@ public class MainServer implements Runnable{
 	}	
 	
 	
-	private synchronized void startGame(){
+	private synchronized void startGame(){//TODO AAAAAAAAAAAAAAAAAAAAAAA
 		System.out.println("Starting a new game:");	
 		StartGame game=new StartGame(this.lastClientsRMI,this.currentModel,this.currentController);//va dato in pasto ad un thread
 		executor.submit(game);
@@ -200,5 +201,25 @@ public class MainServer implements Runnable{
 				System.out.println("ServerSocket closed");
 			}
 		}		
+	}
+	public void addSocketClient(String username, ServerSocketView serverSocketView) {
+		clientsSocket.put(username, serverSocketView);
+		lastClientsSocket.put(username, serverSocketView);
+
+		System.out.println("new client connected with Socket");
+
+		checkPlayers();
+		/*TODO
+		 if(clientsRMI.containsKey(username)){
+			if(disconnectedPlayers.contains(username)){
+				games.get(username).reconnectPlayer(username);
+				disconnectedPlayers.remove(username);
+				return;
+			}else{
+				clientStub.usernameAlreadyUsed();
+				return;
+			}
+		}
+		 */
 	}	
 }
