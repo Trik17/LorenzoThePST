@@ -44,7 +44,7 @@ public class JsonMapper {
 			fileV= new FileReader("src/main/resources/cards/venture.json"); 	
 			fileAS= new FileReader("src/main/resources/actionSpace.json"); 
 			fileET= new FileReader("src/main/resources/excommunicationTiles.json"); 
-			fileLC= new FileReader(""/*leader card file TODO*/); 
+			fileLC= new FileReader("src/main/resources/leaderCards.json"); 
 			
 			//LeaderCards
 			TypeReference<List<LeaderCard>> mapTypeL = new TypeReference<List<LeaderCard>>() {};
