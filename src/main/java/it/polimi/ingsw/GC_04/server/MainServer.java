@@ -27,8 +27,8 @@ import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.view.ServerSocketView;
 
 public class MainServer implements Runnable{
-	private Map<String,ClientRMIViewRemote> clients;
-	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
+	private Map<String,ClientRMIViewRemote> clientsRMI;
+	private Map<String,ClientRMIViewRemote> lastClientsRMIù; //clients that are waiting for a match
 	private List<String> disconnectedPlayers;
 	private Map<String,StartGame> games; //associations beetween games and players
 	private boolean timerStarted=false;
@@ -67,9 +67,9 @@ public class MainServer implements Runnable{
 	
 	private MainServer() {
 		this.disconnectedPlayers=new ArrayList<>();
-		this.clients=new HashMap<>();
+		this.clientsRMI=new HashMap<>();
 		this.games=new HashMap<>();
-		this.lastClients=new HashMap<>();
+		this.lastClientsRMIù=new HashMap<>();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
 		this.executor = Executors.newCachedThreadPool();
@@ -86,7 +86,7 @@ public class MainServer implements Runnable{
 
 	
 	public synchronized void addRMIClient(ClientRMIViewRemote clientStub, String username, ServerRMIView rmiView) throws RemoteException{
-		if(clients.containsKey(username)){
+		if(clientsRMI.containsKey(username)){
 			if(disconnectedPlayers.contains(username)){
 				games.get(username).reconnectPlayer(username);
 				disconnectedPlayers.remove(username);
@@ -96,15 +96,15 @@ public class MainServer implements Runnable{
 				return;
 			}
 		}
-		this.clients.put(username,clientStub);
-		this.lastClients.put(username,clientStub);
+		this.clientsRMI.put(username,clientStub);
+		this.lastClientsRMIù.put(username,clientStub);
 		//controller observes this view
 		rmiView.registerObserver(this.currentController);
 		try {
 			clientStub.addServerstub(rmiView);
 		} catch (RemoteException e) {
-			this.clients.remove(username,clientStub);
-			this.lastClients.remove(username,clientStub);
+			this.clientsRMI.remove(username,clientStub);
+			this.lastClientsRMIù.remove(username,clientStub);
 			return;
 		}
 		System.out.println("new client connected");
@@ -112,14 +112,14 @@ public class MainServer implements Runnable{
 	}
 	
 	public synchronized Map<String,ClientRMIViewRemote> getClients(){
-		return this.clients; 
+		return this.clientsRMI; 
 	} 
 	
 	private synchronized void checkPlayers() {
-		System.out.println("Number of new Clients:"+ lastClients.size());
-		if(lastClients.size()<2)
+		System.out.println("Number of new Clients:"+ lastClientsRMIù.size());
+		if(lastClientsRMIù.size()<2)
 			return;
-		if(lastClients.size()==4){
+		if(lastClientsRMIù.size()==4){
 			timer.cancel();
 			startGame();			
 		}			
@@ -135,10 +135,10 @@ public class MainServer implements Runnable{
 	
 	private synchronized void startGame(){
 		System.out.println("Starting a new game:");	
-		StartGame game=new StartGame(this.lastClients,this.currentModel,this.currentController);//va dato in pasto ad un thread
+		StartGame game=new StartGame(this.lastClientsRMIù,this.currentModel,this.currentController);//va dato in pasto ad un thread
 		executor.submit(game);
-		lastClients.forEach((username,stub) -> games.put(username, game));
-		this.lastClients.clear();
+		lastClientsRMIù.forEach((username,stub) -> games.put(username, game));
+		this.lastClientsRMIù.clear();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
 	}
@@ -174,8 +174,7 @@ public class MainServer implements Runnable{
 	@Override
 	public void run() {
 		try {
-			//creats the socket
-					
+			//creats the socket					
 			serverSocket = new ServerSocket(SOCKET_PORT);	
 			System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
 	
@@ -184,14 +183,14 @@ public class MainServer implements Runnable{
 				Socket socket = serverSocket.accept();
 	
 				// creates the view (server side) associated with the new client
-				ServerSocketView view = new ServerSocketView(socket, this.currentController);
-	
+				ServerSocketView viewSocket = new ServerSocketView(socket, this.currentController,this);
+				
 				// the controller observes the view
-				view.registerObserver(this.currentController);
+				viewSocket.registerObserver(this.currentController);
 				
-				
+							
 				// a new thread handle the connection with the view
-				executor.submit(view);
+				executor.submit(viewSocket);
 			}
 		} catch (IOException e) {
 			try {

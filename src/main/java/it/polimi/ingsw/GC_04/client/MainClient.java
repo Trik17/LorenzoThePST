@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_04.client;
 
+import java.io.IOException;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -12,7 +13,7 @@ import it.polimi.ingsw.GC_04.client.view.ClientRMI;
 
 public class MainClient {
 	//TODO alla fine del gioco chiudere socket rispettive
-	public static void main(String[] args) throws AccessException, RemoteException, NotBoundException {
+	public static void main(String[] args) throws NotBoundException, IOException {
 		//TODO rimetti gli scanner nelle righe commentate
 		Scanner in = new Scanner(System.in);
 		//cancelaaaaaaaaaaaaaa
