@@ -1,0 +1,172 @@
+[{
+	"name" : "Sandro Botticelli",
+	"activationRequirementRes" : [{
+		"type" : "Woods",
+		"quantity" : 10
+		}],
+	"effect" : {
+		"type" : "BonusTurnResourcesEffect",
+		"effect" : {
+			"type" : "SimpleResourceEffect",
+			"effect" : [{
+	  			"type" : "MilitaryPoints",
+	  			"quantity" : 2,
+	  			"malus" : 0
+	  			},{
+	  			"type" :"Victorypoints",
+	  			"quantity" : 1
+			}]
+		}
+	},
+	"image" : "leaders_f_c_07.jpg",
+	"description" : "Requirement: 10 wood \nOnce Per Round ability: Gain 2 Military Points and 1 Victory Point."
+},{
+	"name" : "Giovanni dalle Bande Nere",
+	"activationRequirementRes" : [{
+		"type" : "MilitaryPoints",
+		"quantity" : 12,
+		"malus" : 0
+		}],
+	"effect" : {
+		"type" : "BonusTurnResourcesEffect",
+		"effect" : {
+			"type" : "SimpleResourceEffect",
+			"effect" : [{
+	  			"type" : "Woods",
+	  			"quantity" : 1
+	  			},{
+	  			"type" :"Coins",
+	  			"quantity" : 1
+	  			},{
+	  			"type" : "Stones",
+	  			"quantity" : 1
+			}]
+		}
+	},
+	"image" : "leaders_f_c_06.jpg",
+	"description" : "Requirement: 12 Military Points \nOnce Per Round ability: Receive 1 wood, 1 stone, and 1 coin."		
+},{
+	"name" : "Girolamo Savonarola",
+	"activationRequirementRes" : [{
+		"type" : "Coins",
+		"quantity" : 18
+		}],
+	"effect" : {
+		"type" : "BonusTurnResourcesEffect",
+		"effect" : {
+			"type" : "SimpleResourceEffect",
+			"effect" : [{
+	  			"type" : "FaithPoints",
+	  			"quantity" : 1
+			}]
+		}
+	},
+	"image" : "leaders_f_c_05.jpg",
+	"description" : "Requirement: 18 coins \nOnce Per Round ability: Gain 1 Faith Point."		
+},{
+	"name" : "Michelangelo Buonarroti",
+	"activationRequirementRes" : [{
+		"type" : "Stones",
+		"quantity" : 10
+		}],
+	"effect" : {
+		"type" : "BonusTurnResourcesEffect",
+		"effect" : {
+			"type" : "SimpleResourceEffect",
+			"effect" : [{
+	  			"type" : "Coins",
+	  			"quantity" : 3
+			}]
+		}
+	},
+	"image" : "leaders_f_c_08.jpg",
+	"description" : "Requirement: 10 stones \nOnce Per Round ability: Receive 3 coins."		
+},{
+	"name" : "Ludovico III Gonzaga",
+	"activationRequirementRes" : [{
+		"type" : "Servants",
+		"quantity" : 15
+		}],
+	"effect" : {
+		"type" : "BonusTurnResourcesEffect",
+		"effect" : {
+			"type" : "CouncilPrivilege"
+		}
+	},
+	"image" : "leaders_f_c_09.jpg",
+	"description" : "Requirement: 15 servants \nOnce Per Round ability: Receive 1 Council Privilege."		
+},{
+	"name" : "Cosimo de' Medici",
+	"activationRequirementCard" : [{
+		"type" : "CharacterCard"
+		},{
+		"type" : "CharacterCard"
+		},{
+		"type" :"BuildingCard"
+		},{
+		"type" :"BuildingCard"
+		},{
+		"type" :"BuildingCard"
+		},{
+		"type" :"BuildingCard"
+		}],
+	"effect" : {
+		"type" : "BonusTurnResourceEffect",
+		"effect" : [{
+	  			"type" : "Servants",
+	  			"quantity" : 3
+	  			},{
+	  			"type" :"VictoryPoints",
+	  			"quantity" : 1
+	  			}]
+	},
+	"image" : "leaders_f_c_19.jpg",
+	"description" : "Requirement: 2 Character Cards and 4 Building Cards \nOnce Per Round ability: Receive 3 servants and gain 1 Victory Point."
+},{
+	"name" : "Bartolomeo Colleoni",
+	"activationRequirementCard" : [{
+		"type" : "VentureCard"
+		},{
+		"type" : "VentureCard"
+		},{
+		"type" :"TerritoryCard"
+		},{
+		"type" :"TerritoryCard"
+		},{
+		"type" :"TerritoryCard"
+		},{
+		"type" :"TerritoryCard"
+		}],
+	"effect" : {
+		"type" : "BonusTurnResourceEffect",
+		"effect" : [{
+	  			"type" :"VictoryPoints",
+	  			"quantity" : 4
+	  			}]
+	},
+	"image" : "leaders_f_c_20.jpg",
+	"description" : "Requirement: 2 Venture Cards and 4 Territory Cards \nOnce Per Round ability: Gain 4 Victory Points."
+}				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+]		
+		
