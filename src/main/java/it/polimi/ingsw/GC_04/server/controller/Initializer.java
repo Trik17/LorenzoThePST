@@ -55,7 +55,7 @@ public class Initializer {
 										
 	public Initializer(Player[] players,Model model) {
 		JsonMapper jsonMapper=new JsonMapper();		
-		
+		leaderCards=new ArrayList<>();
 		this.model = model;
 		int nrOfPlayers = players.length;
 		
@@ -101,10 +101,10 @@ public class Initializer {
 		SupportFunctions.shuffleArray(buildingCards);
 		SupportFunctions.shuffleArray(ventureCards);
 		
-		TerritoryCard[] currentTerritoryCards = Arrays.copyOfRange(territoryCards, INITIALPOSITION, FINALPOSITION);
-		CharacterCard[] currentCharacterCards = Arrays.copyOfRange(characterCards, INITIALPOSITION, FINALPOSITION);
-		BuildingCard[] currentBuildingCards = Arrays.copyOfRange(buildingCards, INITIALPOSITION, FINALPOSITION);
-		VentureCard[] currentVentureCards = Arrays.copyOfRange(ventureCards, INITIALPOSITION, FINALPOSITION);
+		TerritoryCard[] currentTerritoryCards = Arrays.copyOfRange(territoryCards, INITIALPOSITION, HALFPOSITION);
+		CharacterCard[] currentCharacterCards = Arrays.copyOfRange(characterCards, INITIALPOSITION, HALFPOSITION);
+		BuildingCard[] currentBuildingCards = Arrays.copyOfRange(buildingCards, INITIALPOSITION, HALFPOSITION);
+		VentureCard[] currentVentureCards = Arrays.copyOfRange(ventureCards, INITIALPOSITION, HALFPOSITION);
 		
 		CouncilPalaceArea councilPalaceArea = new CouncilPalaceArea(players,aSpaces.get(20));
 		TerritoryTower territoryTower = new TerritoryTower(currentTerritoryCards, aSpaces.subList(0,4));
