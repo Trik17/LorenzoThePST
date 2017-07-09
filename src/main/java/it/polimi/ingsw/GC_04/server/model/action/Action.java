@@ -44,6 +44,7 @@ public abstract class Action implements Serializable{
 		this.actionCost.add(new Servants(servants));
 		this.requestedAuthorizationEffects = new ArrayList<>();
 		this.councilPrivileges = new ArrayList<>();
+		this.discount = new ArrayList<>();
 
 	}
 
@@ -127,7 +128,8 @@ public abstract class Action implements Serializable{
 				 * it activates the effect when the leader card is activated for the first time
 				 * the other times it is activate at the beginning of every period of the age
 				*/
-				leaderCards.get(i).applyEffectFirstTime(player);
+				if (leaderCards.get(i).isActivated())
+					leaderCards.get(i).applyEffectFirstTime(player);
 			}
 		}
 		

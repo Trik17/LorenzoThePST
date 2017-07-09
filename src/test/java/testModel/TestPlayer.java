@@ -9,6 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
+import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
+import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
+import it.polimi.ingsw.GC_04.server.model.effect.Effect;
+import it.polimi.ingsw.GC_04.server.model.effect.SimpleResourceEffect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
 
 
@@ -76,6 +82,38 @@ public class TestPlayer {
 		assertFalse(Resource.isAffordable(p1.getResources(), cost));
 	}
 	
+	@Test
+	public void testSetEffects() {
+		assertFalse(p1.isDeleteCardsEffectActive(new TerritoryCard()));
+		assertFalse(p1.isDeleteCardsEffectActive(new CharacterCard()));
+		assertFalse(p1.isDeleteCardsEffectActive(new BuildingCard()));
+		assertFalse(p1.isDeleteCardsEffectActive(new VentureCard()));
+		
+		p1.setDeleteCardsEffectActive(new TerritoryCard());
+		p1.setDeleteCardsEffectActive(new CharacterCard());
+		p1.setDeleteCardsEffectActive(new BuildingCard());
+		p1.setDeleteCardsEffectActive(new VentureCard());
+		
+		assertTrue(p1.isDeleteCardsEffectActive(new TerritoryCard()));
+		assertTrue(p1.isDeleteCardsEffectActive(new CharacterCard()));
+		assertTrue(p1.isDeleteCardsEffectActive(new BuildingCard()));
+		assertTrue(p1.isDeleteCardsEffectActive(new VentureCard()));
+		
+		assertFalse(p1.isNotRequestedMilitaryPoints());
+		p1.setNotRequestedMilitaryPoints();
+		assertTrue(p1.isNotRequestedMilitaryPoints());
+		
+		List<Resource> resources = new ArrayList<>();
+		resources.add(new Coins());
+		Effect effect = new SimpleResourceEffect(resources);
+		p1.setBonusAction(effect);
+		assertEquals(effect, p1.getBonusAction().get(0));
+		
+		assertFalse(p1.getActionSpacePenality());
+		p1.setActionSpacePenality();
+		assertTrue(p1.getActionSpacePenality());
+		
+	}
 	
 
 }
