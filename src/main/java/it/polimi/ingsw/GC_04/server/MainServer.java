@@ -154,7 +154,7 @@ public class MainServer implements Runnable{
 		StartGame game=new StartGame(this.lastClients,this.currentModel,this.currentController);//va dato in pasto ad un thread
 		executor.submit(game);
 		lastClients.forEach((username,stub) -> games.put(username, game));
-		this.lastClients.clear();
+		this.lastClients=new HashMap<String,ClientRMIViewRemote>();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
 	}

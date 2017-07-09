@@ -54,6 +54,7 @@ public class Controller implements Observer<String> {
 		this.lock=new Object();
 		count=new AtomicInteger(0);
 		playerExcommunicationSetted=new ArrayList<>();
+		this.timerExcomunication=new Timer();
 	}
 	/*
 	 * this function disconnect the player in the model and in the server
@@ -125,11 +126,9 @@ public class Controller implements Observer<String> {
 	public void setViews(Map<String, ClientRMIViewRemote> clients){
 		this.views = clients;
 	}
-	public void setInizializer(Player[] players){
-		this.initializer = new Initializer(players,this.model);	
-	}
+	
 	public void initialize(Player[] players){
-		setInizializer(players);
+		this.initializer = new Initializer(players,this.model);
 		this.player = model.getCouncilPalace().getTurnOrder()[0].getName();
 		model.setStateCLI();
 		startGame();
@@ -283,6 +282,7 @@ public class Controller implements Observer<String> {
 	
 	public synchronized void updateTurn() {
 		timerAction.cancel();
+		timerExcomunication.cancel();
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
 		if (model.getAge() == FINALAGE && model.isLastPeriod() && model.getCurrentRow() == FINALROW && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
@@ -290,6 +290,9 @@ public class Controller implements Observer<String> {
 			Player[] ranking = FinalScore.getRanking(model.getPlayers());
 			printRanking(ranking);
 			this.endGame=true;
+			this.model=null;
+			this.initializer=null;
+			//TODO
 
 			return;
 		}
@@ -380,11 +383,13 @@ public class Controller implements Observer<String> {
 	}
 
 	private void printRanking(Player[] players) {
+		timerAction.cancel();
+		timerExcomunication.cancel();
 		String ranking = StateOfTheGameCLI.printRanking(players);
 		for (int i = 0; i < players.length; i++) {
-			try {
+			try {				
 				views.get(players[i].getName()).print(ranking);
-//				views.get(player).exit();
+				views.get(players[i].getName()).exit();
 				//TODO sysexit non va 
 				//TODO e ci sono thread che rimangono aperti ad ogni azione
 				//TODO E CHIUDERE SOCKET 
