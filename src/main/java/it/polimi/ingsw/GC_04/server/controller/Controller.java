@@ -126,9 +126,11 @@ public class Controller implements Observer<String> {
 	public void setViews(Map<String, ClientRMIViewRemote> clients){
 		this.views = clients;
 	}
-	
+	public void setInizializer(Player[] players){
+		this.initializer = new Initializer(players,this.model);	
+	}
 	public void initialize(Player[] players){
-		this.initializer = new Initializer(players,this.model);
+		setInizializer(players);
 		this.player = model.getCouncilPalace().getTurnOrder()[0].getName();
 		model.setStateCLI();
 		startGame();
@@ -292,7 +294,8 @@ public class Controller implements Observer<String> {
 			this.endGame=true;
 			this.model=null;
 			this.initializer=null;
-			//TODO
+			//TODOù
+			server.endGame(views);
 
 			return;
 		}

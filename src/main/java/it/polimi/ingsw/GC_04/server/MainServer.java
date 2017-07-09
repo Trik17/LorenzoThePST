@@ -216,5 +216,13 @@ public class MainServer implements Runnable{
 				System.out.println("ServerSocket closed");
 			}
 		}		
+	}
+	public void endGame(Map<String, ClientRMIViewRemote> views) {
+		String[] p=new String[views.size()];
+		views.keySet().toArray(p);
+		for (int i = 0; i < p.length; i++) {
+			games.remove(p[i]);
+		}
+		System.out.println("A match is ended");
 	}	
 }
