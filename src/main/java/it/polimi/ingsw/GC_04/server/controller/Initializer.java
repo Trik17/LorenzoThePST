@@ -142,9 +142,6 @@ public class Initializer {
 			}
 		}
 		
-		//TODO MISCHIARE LEADER CARDS  e darle ai giocatori in base a quanti sono
-		//public void setLeaderCards(List<LeaderCard> leaderCards)
-		
 		HarvestArea harvest = new HarvestArea();
 		ProductionArea production = new ProductionArea();
 		

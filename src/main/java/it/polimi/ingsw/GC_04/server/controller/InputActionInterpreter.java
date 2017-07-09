@@ -10,7 +10,6 @@ import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.action.Action;
-import it.polimi.ingsw.GC_04.server.model.action.ErrorInput;
 import it.polimi.ingsw.GC_04.server.model.action.GoToTheCouncilPalace;
 import it.polimi.ingsw.GC_04.server.model.action.GoToTheMarket;
 import it.polimi.ingsw.GC_04.server.model.action.PassTurn;
@@ -127,7 +126,7 @@ public class InputActionInterpreter {
 			realCost = realCard.getCost1();
 		else {
 			if (!SupportFunctions.isInputValid(cost, 1, 2)) {
-				this.action = new ErrorInput();
+//				this.action = new ErrorInput();
 				return;
 			} else {
 				int chosenCost = Integer.parseInt(cost);

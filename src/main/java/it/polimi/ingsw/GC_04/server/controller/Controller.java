@@ -64,8 +64,12 @@ public class Controller implements Observer<String> {
 		count=new AtomicInteger(0);
 		playerExcommunicationSetted=new ArrayList<>();
 	}
-	
-	private void disconnect(String username){//TODO da chiamare ad ogni remoteexception
+	/*
+	 * this function disconnect the player in the model and in the server
+	 * it is called when a remote exception occur or when the timer of the action is over
+	 * without a response from the player
+	 */
+	private void disconnect(String username){
 		model.getPlayer(username).disconnect();
 		
 		server.disconnectPlayer(username);
@@ -92,19 +96,22 @@ public class Controller implements Observer<String> {
 				viewsRMI.get(player).setState(model.getStateCLI());
 				viewsRMI.get(player).chooseAction();
 			} catch (RemoteException e) {
-				e.printStackTrace();//TODO CANCELLA
 				disconnect(player);
+				timerAction.cancel();
 			}
 		}
 	}
-	
+	/*
+	 * this is the timer for a complete action of a client
+	 * when the time is over it disconnect the player
+	 */
 	private void startTimerAction() {
 		this.timerAction=new Timer();
 		this.taskAction=new TimerTask(){
 			public void run(){
 				disconnect(player);
 			}
-		};	//TODO CONTROLLA CHE QUESTO TIMER FUNZIONI BENE !
+		};	
 		timerAction.schedule( taskAction,TimerJson.getActionTimer()); //timer
 		
 		
@@ -166,8 +173,7 @@ public class Controller implements Observer<String> {
 		try {
 			viewsRMI.get(player).setCouncilPrivilege(nrOfPrivileges);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			disconnect(player);
 		}
 
 		
@@ -253,7 +259,7 @@ public class Controller implements Observer<String> {
 		chooseAction();
 		return;
 		}catch(RemoteException e){
-			disconnect(player);//TODO giusto?
+			disconnect(player);
 			return;
 			
 		}catch (Exception e) {
@@ -265,8 +271,7 @@ public class Controller implements Observer<String> {
 		try {
 			viewsRMI.get(player).setDiscount(clonedAction.getRawMaterials());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			disconnect(player);
 		}
 		
 	}
@@ -275,8 +280,7 @@ public class Controller implements Observer<String> {
 		try {
 			viewsRMI.get(player).setRequestedAuthorizationEffects(requestedAuthorizationEffects);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			disconnect(player);
 		}
 		
 	}
@@ -288,6 +292,7 @@ public class Controller implements Observer<String> {
 
 	
 	public synchronized void updateTurn() {
+		timerAction.cancel();
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
 		if (model.getAge() == FINALAGE && model.isLastPeriod() && model.getCurrentRow() == FINALROW && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
@@ -320,13 +325,15 @@ public class Controller implements Observer<String> {
 			
 		}else {
 			currentPlayer++;
+			
 		}
 		try {
 			viewsRMI.get(player).print("Wait for the other players to make their move");
 			player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
 			
 		} catch (RemoteException e) {
-			disconnect(player);
+			player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
+//			disconnect(player);
 		}
 		
 		try {
@@ -389,9 +396,8 @@ public class Controller implements Observer<String> {
 				viewsRMI.get(players[i].getName()).print(ranking);
 //				views.get(player).exit();
 				//TODO sysexit non va 
+				//TODO e ci sono thread che rimangono aperti ad ogni azione
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 	}
@@ -492,8 +498,7 @@ public class Controller implements Observer<String> {
 		 try {
 			viewsRMI.get(player).setFurtherCheckNeededEffect(requestedAuthorizationEffects,furtherCheckNeeded);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			disconnect(player);
 		}		
 	}
 

@@ -15,13 +15,16 @@ import it.polimi.ingsw.GC_04.server.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.server.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
-
+/*
+ * the view's class using CommandLineInterface
+ * 
+ * it implements Runnable to avoid the server waiting for the input from the user
+ */
 public class ViewCLI extends ViewClient implements Runnable{
 	
 	private static final long serialVersionUID = -2328795643634959640L;
 	private String strInput = ""; 
-	private boolean timeout=false;
-	
+	private boolean timeout=false;	
 	protected ScannerInputThread scanner;
 	private AtomicBoolean whileSecurity;
 	private Object lockStrInput;
@@ -51,6 +54,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 			strInput=string;
 		}
 	}
+	
+	/*
+	 * this function ask an input using ScannerInputThread class and starts a timer;
+	 * when time is over the client pass the turn
+	 */
 	private String getInput(){
 		setStrInput("");	
 		Timer timer=new Timer();
@@ -77,6 +85,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return getStrInput()+" ";
 	}	
 	
+	/*
+	 * the run() method is started from ClientRMIView every time the server ask something to the client
+	 * the choose of the method esecuted dependes on the value of setRun (setted from ClientRMIView 
+	 * with also the inputParameter 1 and 2)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run(){
@@ -112,8 +125,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 				}
 				
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Connection error, restart");
 			}
 		}else{
 			whileSecurity.set(true);
@@ -171,8 +183,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 			
 			serverStub.notifyObserversARemote(input);	
 		}
-	}//TODO AGGIUSTARE INTERPRETE
-
+	}
 	private synchronized String chooseAShop() {
 		print("Choose a shop between 1, 2, 3, 4"); 
 		String actSpace = getInput();
@@ -228,6 +239,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 		serverStub.notifyObserversRRemote(privileges);
 	}
 	
+	/* when the controller has to apply an action that contains effects that need an 
+	 * authorization from the player (these are effects that the player can use or not)
+	 * calls this function passing as parameters these effects and 
+	 * setRequestedAuthorizationEffects ask to the player
+	 */	
 	public synchronized void setRequestedAuthorizationEffects(List<Effect> effects) throws RemoteException {
 		String output = "AUTHORIZATION";
 		if (effects.isEmpty())
@@ -297,6 +313,10 @@ public class ViewCLI extends ViewClient implements Runnable{
 	
 	}
 	
+	/*
+	 * ask the player to chose wich effect activate between two choices,
+	 * it is called by setFurtherCheckNeededEffect()
+	 */
 	private synchronized String chooseExchangeResourcesEffect(Effect effect) throws RemoteException {
 		String input;
 		String cost1;
@@ -317,8 +337,10 @@ public class ViewCLI extends ViewClient implements Runnable{
 		}
 		return input;
 	}
-
-
+	
+	/* this function is called by the controller to ask the player'choices
+	 * for the effects that request an interaction with the player
+	 */
 	public synchronized void setFurtherCheckNeededEffect(List<Effect> rAE, int[] fCN) throws RemoteException {
 		
 		/*rAE = RequestedAuthorizationEffects
@@ -468,6 +490,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 		
 		return input;
 	}
+	
+	/*
+	 * excommunicationManagement ask the player if he wants to suffer the excommunication
+	 * or to support the church
+	 */
 	public synchronized void excommunicationManagement(String description, String username) throws RemoteException {
 		String input = "EXCOMMUNICATION "+username+" ";
 		

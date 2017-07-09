@@ -6,9 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.polimi.ingsw.GC_04.server.controller.Initializer;
-import it.polimi.ingsw.GC_04.server.model.Dice;
 import it.polimi.ingsw.GC_04.server.model.DiceColor;
-import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.action.GoToTheCouncilPalace;
@@ -28,8 +26,8 @@ public class TestGoToTheCouncilPalace {
 	@Before
 	public void inizializer(){
 		model = new Model();
-		Player player1 = new Player("Luigi", 1, model);
-		Player player2 = new Player("Martin", 1, model);
+		Player player1 = new Player("Luigi", 1);
+		Player player2 = new Player("Martin", 2);
 		Player[] players = new Player[2];
 		players[0] = player1;
 		players[1] = player1;
@@ -53,7 +51,30 @@ public class TestGoToTheCouncilPalace {
 		assertFalse(goToTheCouncilPalace2.isApplicable());
 		assertTrue(goToTheCouncilPalace3.isApplicable());
 		assertFalse(goToTheCouncilPalace4.isApplicable());
+		assertEquals(last+1, model.getCouncilPalace().getASpaces().size());
 		assertEquals(model.getCouncilPalace().getActionSpaceDefault(), model.getCouncilPalace().getASpaces().get(last));
+	
 	}
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

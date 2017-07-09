@@ -47,8 +47,10 @@ public class MainServer implements Runnable{
 	
 	
 	
-	
-	//this is the timer that starts the countdown (to start a match) when two players connect to the server 
+	/*
+	 * this is the timer that starts the countdown (to start a match) 
+	 * when two players connect to the server 
+	 */
 	private void newTimer(){
 		this.timer=new Timer();
 		this.task= new TimerTask(){
@@ -60,12 +62,21 @@ public class MainServer implements Runnable{
 	        }    
 	    };
 	}
+	/*
+	 * the MainServer is implemented using the Singleton design pattern
+	 */
 	public static MainServer instance() {
 		if (instance == null) {
 			instance = new MainServer();
 		}
 		return instance;
 	}
+	
+
+	
+	public synchronized Map<String,ClientRMIViewRemote> getClients(){
+		return this.clients; 
+	} 
 	
 	private MainServer() {
 		this.disconnectedPlayers=new ArrayList<>();
@@ -87,8 +98,9 @@ public class MainServer implements Runnable{
 			e.printStackTrace();
 		}
 	}
-
-	
+    /* at the connection this function controll the client's username,
+	 * if the client is new the function add it to the Maps of clients connected,
+	 */ 
 	public synchronized void addRMIClient(ClientRMIViewRemote clientStub, String username, ServerRMIView rmiView) throws RemoteException{
 		if(clientsRMI.containsKey(username)){
 			if(disconnectedPlayers.contains(username)){
@@ -119,6 +131,11 @@ public class MainServer implements Runnable{
 		return this.clientsRMI; 
 	} 
 	
+	/*
+	 * it checks the number of the players in lastClients (clients waiting to start a match) and 
+	 * if clients.size()==4 it starts a new game  
+	 * or a timer that will start the game if no others players connect before the given time
+	 */
 	private synchronized void checkPlayers() {
 		int numOfClients=lastClientsRMI.size() + lastClientsSocket.size();
 		System.out.println("Number of new Clients:"+ numOfClients);
@@ -137,8 +154,8 @@ public class MainServer implements Runnable{
 		}		
 	}	
 	
-	
-	private synchronized void startGame(){//TODO AAAAAAAAAAAAAAAAAAAAAAA
+	//it starts the new game and creates a new controller and model for future clients
+	private synchronized void startGame(){
 		System.out.println("Starting a new game:");	
 		StartGame game=new StartGame(this.lastClientsRMI,this.lastClientsSocket,this.currentModel,this.currentController);//va dato in pasto ad un thread
 		executor.submit(game);
