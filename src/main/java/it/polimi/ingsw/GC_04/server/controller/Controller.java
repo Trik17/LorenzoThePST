@@ -90,6 +90,7 @@ public class Controller implements Observer<String> {
 				views.get(player).chooseAction();
 			} catch (RemoteException e) {
 				disconnect(player);
+				timerAction.cancel();
 			}
 		}
 	}
@@ -282,6 +283,7 @@ public class Controller implements Observer<String> {
 
 	
 	public synchronized void updateTurn() {
+		timerAction.cancel();
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
 		if (model.getAge() == FINALAGE && model.isLastPeriod() && model.getCurrentRow() == FINALROW && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
@@ -385,6 +387,7 @@ public class Controller implements Observer<String> {
 				views.get(players[i].getName()).print(ranking);
 //				views.get(player).exit();
 				//TODO sysexit non va 
+				//TODO e ci sono thread che rimangono aperti ad ogni azione
 			} catch (RemoteException e) {
 			}
 		}
