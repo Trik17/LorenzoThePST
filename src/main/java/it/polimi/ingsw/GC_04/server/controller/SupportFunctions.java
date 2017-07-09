@@ -13,6 +13,9 @@ import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 
+/*
+ * set of generic support functions to lighten the code
+ */
 public class SupportFunctions {
 
 	public static boolean timeout(String s,ViewClient view){
@@ -138,8 +141,12 @@ public class SupportFunctions {
 		return card;
 	}
 	
-
-	public static void addExtraordinaryEffects(List<CouncilPrivilege> councilPrivileges, List<Effect> requestedAuthorizationEffects, List<Effect> myEffects) {
+	/* it is called by the Action class
+	 * it scan myEffects searching CouncilPrivileges or effects with requestedAuthorizationEffects (boolean attribute) setted true
+	 * and put them in councilPrivileges and requestedAuthorizationEffects
+	 */
+	public static void addExtraordinaryEffects(List<CouncilPrivilege> councilPrivileges, 
+					List<Effect> requestedAuthorizationEffects, List<Effect> myEffects) {
 		
 		for(Effect eff: myEffects) {
 			if (eff.getClass().equals(CouncilPrivilege.class))
