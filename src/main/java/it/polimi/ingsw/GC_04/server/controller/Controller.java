@@ -22,8 +22,6 @@ import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
-//TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
-//nella gestione della disconnessione e nel catch delle remote exception
 public class Controller implements Observer<String> {
 	
 	private final static int FINALAGE = 3; //age is the period, bounded between 1 and 3
@@ -103,6 +101,7 @@ public class Controller implements Observer<String> {
 		this.taskAction=new TimerTask(){
 			public void run(){
 				disconnect(player);
+				isWaiting.set(false);					
 			}
 		};	
 		timerAction.schedule( taskAction,TimerJson.getActionTimer()); //timer
@@ -413,8 +412,6 @@ public class Controller implements Observer<String> {
 		
 	}
 
-
-
 	public void reconnect(String username) {
 		model.getPlayer(username).reConnect();
 
@@ -424,8 +421,7 @@ public class Controller implements Observer<String> {
 					stub.print(username+" reconnected");
 			} catch (RemoteException e) {
 			}
-		});
-		
+		});		
 	}
 	/*UpdateR :
 	 * it is the method called from the clients (using the observer pattern) to 
