@@ -82,13 +82,13 @@ public class TestJson {
 			
 			//TIMER: 
 			JsonMapper.TimerFromJson();
-			//TODO
-//			assertEquals(METTI VALORE FINALE, TimerJson.getStartTimer());
-//			assertEquals(METTI VALORE FINALE, TimerJson.getInputTimer());
-//			assertEquals(METTI VALORE FINALE, TimerJson.getActionTimer());
+			
+			//change these tests if you want to change timer value over these limits
+			assertTrue(0<=TimerJson.getStartTimer() && TimerJson.getStartTimer()<9999999);
+			assertTrue(1<=TimerJson.getInputTimer() && TimerJson.getInputTimer()<TimerJson.getActionTimer());
 			
 	}catch(JsonParseException e){
-		fail("failed for an exception of Json");
+		fail("failed for an exception of Json files");
 		e.printStackTrace();
 	}
 		

@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 import it.polimi.ingsw.GC_04.server.model.FamilyColor;
 import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Model;
+import it.polimi.ingsw.GC_04.server.model.PersonalBonusTile;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.server.model.area.CharacterTower;
@@ -47,6 +48,8 @@ public class Initializer {
 	private BuildingCard[] buildingCards;
 	private VentureCard[] ventureCards;
 	
+	private PersonalBonusTile[] personalBonusTiles;
+	
 	private final List<ExcommunicationTile> eTiles;
 	private List<LeaderCard> leaderCards;
 
@@ -54,7 +57,8 @@ public class Initializer {
 	private Player[] players;
 										
 	public Initializer(Player[] players,Model model) {
-		JsonMapper jsonMapper=new JsonMapper();		
+		JsonMapper jsonMapper=new JsonMapper();	
+		personalBonusTiles=new PersonalBonusTile[4];
 		leaderCards=new ArrayList<>();
 		this.model = model;
 		int nrOfPlayers = players.length;
@@ -70,8 +74,10 @@ public class Initializer {
 		ExcommunicationTile[] excommunications = new ExcommunicationTile[3];
 		
 		LeaderCard[] leaderCardsArray=jsonMapper.getLeaderCards();
+		this.personalBonusTiles=jsonMapper.getPersonalBonusTiles();
 		
 		SupportFunctions.shuffleArray(leaderCardsArray);
+		SupportFunctions.shuffleArray(personalBonusTiles);
 		
 		for (int i = 0; i < leaderCardsArray.length; i++) {
 			this.leaderCards.add(leaderCardsArray[i]);
@@ -134,6 +140,9 @@ public class Initializer {
 		int index = 0;
 		
 		for (int j = 0; j < players.length; j++) {
+			players[j].getProduction().add(personalBonusTiles[j].getProduction());
+			players[j].getHarvest().add(personalBonusTiles[j].getHarvest());
+			
 			int cont = leaderPerPlayer;
 			while(cont > 0) {
 				players[j].setLeaderCards(leaderCards.get(index));
@@ -141,6 +150,7 @@ public class Initializer {
 				cont--;
 			}
 		}
+		
 		
 		HarvestArea harvest = new HarvestArea();
 		ProductionArea production = new ProductionArea();

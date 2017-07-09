@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import it.polimi.ingsw.GC_04.server.model.ActionSpace;
+import it.polimi.ingsw.GC_04.server.model.PersonalBonusTile;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
@@ -24,6 +25,7 @@ public class JsonMapper {
 	private FileReader fileAS;
 	private FileReader fileET;
 	private FileReader fileLC;
+	private FileReader filePBT;
 	private List<ActionSpace> actionSpaces;
 	private List<TerritoryCard> territoryCards;
 	private List<CharacterCard> characterCards;
@@ -31,6 +33,7 @@ public class JsonMapper {
 	private List<VentureCard> ventureCards;
 	private List<LeaderCard> leaderCards;
 	private List<ExcommunicationTile> excommunicationTiles;
+	private List<PersonalBonusTile> personalBonusTiles;
 	
 	
 	public JsonMapper() {	
@@ -45,6 +48,11 @@ public class JsonMapper {
 			fileAS= new FileReader("src/main/resources/actionSpace.json"); 
 			fileET= new FileReader("src/main/resources/excommunicationTiles.json"); 
 			fileLC= new FileReader("src/main/resources/cards/leaderCards.json"); 
+			filePBT= new FileReader("src/main/resources/personalBonusTile.json"); 
+			
+			//PersonalBonusTiles
+			TypeReference<List<PersonalBonusTile>> mapTypePBT = new TypeReference<List<PersonalBonusTile>>() {};
+			personalBonusTiles=mapper.readValue(filePBT,mapTypePBT);
 			
 			//LeaderCards
 			TypeReference<List<LeaderCard>> mapTypeL = new TypeReference<List<LeaderCard>>() {};
@@ -72,7 +80,7 @@ public class JsonMapper {
 			excommunicationTiles=mapper.readValue(fileET,mapTypeET);
 	    	
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("error .json files");
 			e.printStackTrace();
 		} 
 		
@@ -96,6 +104,10 @@ public class JsonMapper {
 	
 	public VentureCard[] getVentureCardsArray(){
 		return ventureCards.toArray(new VentureCard[0]);
+	}
+	
+	public PersonalBonusTile[] getPersonalBonusTiles() {
+		return personalBonusTiles.toArray(new PersonalBonusTile[0]);
 	}
 	
 	public List<ActionSpace> getActionSpaces(){

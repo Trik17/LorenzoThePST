@@ -81,7 +81,7 @@
 	    		"type" : "Stones",
 	    		"quantity" : 1
 	  		},{
-	    		"type" : "MilitaryPints",
+	    		"type" : "MilitaryPoints",
 	    	"quantity" : 1,
 	    	"malus" : 0
 	  	}]}  	  

@@ -147,6 +147,7 @@ public class MainServer implements Runnable{
 			return;
 		else{
 			timerStarted=true;
+			System.out.println("Timer of "+TimerJson.getStartTimer()/1000+" seconds started");
 			newTimer();
 			timer.schedule(task, TimerJson.getStartTimer());
 		}		
