@@ -388,6 +388,8 @@ public class Controller implements Observer<String> {
 //				views.get(player).exit();
 				//TODO sysexit non va 
 				//TODO e ci sono thread che rimangono aperti ad ogni azione
+				//TODO E CHIUDERE SOCKET 
+				//ED RMI?
 			} catch (RemoteException e) {
 			}
 		}
