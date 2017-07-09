@@ -61,7 +61,11 @@ public class TestVaticanReport {
 		assertFalse(VaticanReport.isUnderThreshold(p1, 1));
 		assertFalse(VaticanReport.isUnderThreshold(p2, 2));
 		assertFalse(VaticanReport.isUnderThreshold(p3, 3));
-		
+	}
+	
+	@Test
+	public void testAddFaithPointsScore(){
+		p3.getResource(new FaithPoints()).addQuantity(5);
 		VaticanReport.addFaithPointsScore(p3);
 		assertEquals(VaticanReport.getThreshold(5), p3.getResource(new VictoryPoints()).getQuantity());
 		p3.getResource(new VictoryPoints()).addQuantity(-VaticanReport.getThreshold(5));
@@ -79,12 +83,38 @@ public class TestVaticanReport {
 		p3.getResource(new FaithPoints()).addQuantity(1);
 		VaticanReport.addFaithPointsScore(p3);
 		assertEquals(30, p3.getResource(new VictoryPoints()).getQuantity());
+		p3.getResource(new VictoryPoints()).addQuantity(-30);
+		
+		
+		p3.getResource(new FaithPoints()).addQuantity(-15);
+		p3.getResource(new FaithPoints()).addQuantity(13);
+		VaticanReport.addFaithPointsScore(p3);
+		assertEquals(22, p3.getResource(new VictoryPoints()).getQuantity());
+		p3.getResource(new VictoryPoints()).addQuantity(-22);
+		
+		p3.getResource(new FaithPoints()).addQuantity(-13);
+		p3.getResource(new FaithPoints()).addQuantity(6);
+		VaticanReport.addFaithPointsScore(p3);
+		assertEquals(7, p3.getResource(new VictoryPoints()).getQuantity());
+		p3.getResource(new VictoryPoints()).addQuantity(-7);
+		
+		p3.getResource(new FaithPoints()).addQuantity(-6);
+		p3.getResource(new FaithPoints()).addQuantity(11);
+		VaticanReport.addFaithPointsScore(p3);
+		assertEquals(17, p3.getResource(new VictoryPoints()).getQuantity());
+		p3.getResource(new VictoryPoints()).addQuantity(-7);
 		
 	}
 	
 	@Test
 	public void testEndVictoryPoints(){
 		
+		VictoryPoints vp=new VictoryPoints(5);
+		p1.getResource(new VictoryPoints()).addQuantity(3);
+		vp.addEndVictoryPoints(p1);
+		assertEquals(3,p1.getResource(new VictoryPoints()).getQuantity());
+		VictoryPoints.sumEndVictoryPoints(p1);
+		assertEquals(8,p1.getResource(new VictoryPoints()).getQuantity());
 	}
 
 }

@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_04.server.model.resource;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,28 +15,29 @@ public class VictoryPoints extends Resource{
 		super(quantity);
 	}
 	//constructor needed for Json
-		public VictoryPoints() {
-			// TODO Auto-generated constructor stub
-		}
-		
-	public static void sumEndVictoryPoints(Player player) {
-		List<Resource> playerRes = player.getResources();
-		
-		for(Resource r:playerRes) {
-			if(r.getClass().equals(VictoryPoints.class)) 
-				((VictoryPoints) r).addQuantity(((VictoryPoints) r).endVictoryPoints);
-			break;
-		}
+	public VictoryPoints() {
 	}
-	public void addEndVictoryPoints(Player player) {
-		List<Resource> playerRes = player.getResources();
 		
-		for(Resource r:playerRes) {
-			if(r.getClass().equals(VictoryPoints.class)) {
-				((VictoryPoints) r).endVictoryPoints += this.getQuantity();
-				break;
-			}
-		}
+	/*
+	 * methods to add player's endVictoryPoints to his victorypoints
+	 */
+	public static void sumEndVictoryPoints(Player player) {
+		
+		VictoryPoints victoryPoints = (VictoryPoints) player.getResource(new VictoryPoints());
+		
+		player.getResource(new VictoryPoints()).addQuantity(victoryPoints.endVictoryPoints);
+		
+	}
+	
+	/*
+	 * methods to add the quantity of the object VictoryPoints that calls it
+	 * to the player's endVictoryPoints
+	 */
+	public void addEndVictoryPoints(Player player) {
+		
+		VictoryPoints victoryPoints = (VictoryPoints) player.getResource(new VictoryPoints());
+		
+		victoryPoints.endVictoryPoints += this.getQuantity();
 		
 	}
 	   
