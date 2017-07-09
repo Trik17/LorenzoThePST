@@ -15,6 +15,10 @@ import it.polimi.ingsw.GC_04.server.model.resource.*;
 //occhio a non fare andare il costo sotto zero
 //in takeACard fai agire il controller prima di tutto
 public class Discount implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5187252200864714932L;
 	private List<Resource> territoryDiscount;
 	private List<Resource> buildingDiscount;
 	private List<Resource> ventureDiscount;
@@ -22,10 +26,10 @@ public class Discount implements Serializable{
 	private Resource chosenRawMaterial;
 	
 	public Discount() {
-		territoryDiscount = new ArrayList<Resource>();
-		buildingDiscount = new ArrayList<Resource>();
-		ventureDiscount = new ArrayList<Resource>();
-		characterDiscount = new ArrayList<Resource>();
+		territoryDiscount = new ArrayList<>();
+		buildingDiscount = new ArrayList<>();
+		ventureDiscount = new ArrayList<>();
+		characterDiscount = new ArrayList<>();
 	}
 	
 	public List<Resource> getDiscount(DevelopmentCard cardType){

@@ -9,7 +9,9 @@ import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.area.Tower;
+import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
+import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Coins;
@@ -84,7 +86,10 @@ public class TakeACard extends Action{
 			aSpace.applyEffects(player);
 		councilPrivileges.forEach(cp -> cp.apply(player));
 		requestedAuthorizationEffects.forEach(rae -> rae.apply(player));
-		
+		if (card instanceof BuildingCard)
+			player.getProduction().add(((BuildingCard) card).getProduction());
+		if (card instanceof TerritoryCard)
+			player.getHarvest().add(((TerritoryCard) card).getHarvest());
 		if (card.getEffects() != null) {
 			for(Effect eff : card.getEffects()){
 				if (!eff.isAuthorizationRequested() && !eff.getClass().equals(CouncilPrivilege.class))
