@@ -9,6 +9,10 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class ExchangeResourcesEffect extends Effect {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6182861287949497378L;
 	private List<ResourceEffect> effect1;
 	private List<Resource> cost1;
 	private List<ResourceEffect> effect2;

@@ -8,6 +8,10 @@ import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class ResourcePerDevelopmentCardEffect extends ResourceEffect {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3730826925843924023L;
 	private DevelopmentCard cardType;
 	private Resource bonusResource;
 	

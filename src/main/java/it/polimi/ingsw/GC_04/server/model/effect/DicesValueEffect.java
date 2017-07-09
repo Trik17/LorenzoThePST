@@ -14,6 +14,7 @@ public class DicesValueEffect extends Effect {
 	 * Sigismondo Malatesta
 	 */
 	
+	private static final long serialVersionUID = -556271241482971769L;
 	private int value;
 	private boolean valueAdded; //if it's false the value of the family member is replaced by this value, otherwise this value is added to the existing one
 	private boolean onlyNeutralMember; //if it's false the value of the family member is replaced by this value, otherwise this value is added to the existing one

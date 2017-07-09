@@ -17,6 +17,10 @@ property = "type")
 })
 public abstract class ExtraDiceEffect extends Effect {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4804934685343770134L;
 	protected int extra;
 	
 	public ExtraDiceEffect(){
