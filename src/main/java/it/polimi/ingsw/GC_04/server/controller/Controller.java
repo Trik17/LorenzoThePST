@@ -294,7 +294,7 @@ public class Controller implements Observer<String> {
 			this.endGame=true;
 			this.model=null;
 			this.initializer=null;
-			//TODOù
+			//TODO 
 			server.endGame(views);
 
 			return;
@@ -392,11 +392,7 @@ public class Controller implements Observer<String> {
 		for (int i = 0; i < players.length; i++) {
 			try {				
 				views.get(players[i].getName()).print(ranking);
-				views.get(players[i].getName()).exit();
-				//TODO sysexit non va 
-				//TODO e ci sono thread che rimangono aperti ad ogni azione
-				//TODO E CHIUDERE SOCKET 
-				//ED RMI?
+				views.get(players[i].getName()).exit(); 
 			} catch (RemoteException e) {
 			}
 		}

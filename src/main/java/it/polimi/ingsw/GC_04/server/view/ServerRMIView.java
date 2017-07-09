@@ -24,6 +24,8 @@ public class ServerRMIView extends Observable<String> implements ServerRMIViewRe
 	private AtomicBoolean updateType;//true is for notifyObserversARemote; false is for notifyObserversRRemote
 	
 	public ServerRMIView(MainServer clientManager) {
+		//TODO 
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabkbckjdkjc edcjkewjk /n \n hjehwvjcewjcejwc");
 		this.clientManager=clientManager;
 		this.executor = Executors.newCachedThreadPool();
 		updateType=new AtomicBoolean(true);

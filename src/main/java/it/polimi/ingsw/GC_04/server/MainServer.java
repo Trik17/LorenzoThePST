@@ -93,9 +93,11 @@ public class MainServer implements Runnable{
 			System.out.println("STARTING RMI");
 			startRMI();
 			System.out.println("STARTING SOCKET");
-			executor.submit(this);
+//			executor.submit(this);
+			//TODO
 		} catch (RemoteException | AlreadyBoundException e) {
-			e.printStackTrace();
+			System.out.println("server already up");
+			System.exit(0);
 		}
 	}
     /* at the connection this function controll the client's username,
@@ -159,7 +161,7 @@ public class MainServer implements Runnable{
 		this.currentController=new Controller(currentModel,this);
 	}
 	
-	private void startRMI() throws RemoteException, AlreadyBoundException{
+	private void startRMI() throws RemoteException, AlreadyBoundException {
 
 		//create the registry to publish remote objects
 		Registry registry = LocateRegistry.createRegistry(RMI_PORT);
@@ -222,6 +224,7 @@ public class MainServer implements Runnable{
 		views.keySet().toArray(p);
 		for (int i = 0; i < p.length; i++) {
 			games.remove(p[i]);
+			clients.remove(p[i]);
 		}
 		System.out.println("A match is ended");
 	}	
