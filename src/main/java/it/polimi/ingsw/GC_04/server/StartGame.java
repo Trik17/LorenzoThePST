@@ -40,12 +40,12 @@ public class StartGame implements Runnable {
 	private void start() {
 		try {
 			clientsRMI.forEach((username,stub)-> {
-				players[turn]=new Player(username,turn+1,model);
+				players[turn]=new Player(username,turn+1);
 				turn++;
 			});
 			
 			clientsSocket.forEach((username,stub)-> {
-				players[turn]=new Player(username,turn+1,model);
+				players[turn]=new Player(username,turn+1);
 				turn++;
 			});
 		}catch(Exception e){

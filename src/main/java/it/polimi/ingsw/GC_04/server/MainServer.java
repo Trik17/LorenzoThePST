@@ -73,11 +73,6 @@ public class MainServer implements Runnable{
 	}
 	
 
-	
-	public synchronized Map<String,ClientRMIViewRemote> getClients(){
-		return this.clients; 
-	} 
-	
 	private MainServer() {
 		this.disconnectedPlayers=new ArrayList<>();
 		this.clientsRMI=new HashMap<>();
