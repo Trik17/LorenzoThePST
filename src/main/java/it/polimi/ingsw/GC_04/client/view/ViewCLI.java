@@ -112,8 +112,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 				}
 				
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Connection error, restart");
 			}
 		}else{
 			whileSecurity.set(true);
@@ -171,8 +170,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 			
 			serverStub.notifyObserversARemote(input);	
 		}
-	}//TODO AGGIUSTARE INTERPRETE
-
+	}
 	private synchronized String chooseAShop() {
 		print("Choose a shop between 1, 2, 3, 4"); 
 		String actSpace = getInput();
