@@ -239,6 +239,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 		serverStub.notifyObserversRRemote(privileges);
 	}
 	
+	/* when the controller has to apply an action that contains effects that need an 
+	 * authorization from the player (these are effects that the player can use or not)
+	 * calls this function passing as parameters these effects and 
+	 * setRequestedAuthorizationEffects ask to the player
+	 */	
 	public synchronized void setRequestedAuthorizationEffects(List<Effect> effects) throws RemoteException {
 		String output = "AUTHORIZATION";
 		if (effects.isEmpty())
@@ -308,6 +313,10 @@ public class ViewCLI extends ViewClient implements Runnable{
 	
 	}
 	
+	/*
+	 * ask the player to chose wich effect activate between two choices,
+	 * it is called by setFurtherCheckNeededEffect()
+	 */
 	private synchronized String chooseExchangeResourcesEffect(Effect effect) throws RemoteException {
 		String input;
 		String cost1;
@@ -328,8 +337,10 @@ public class ViewCLI extends ViewClient implements Runnable{
 		}
 		return input;
 	}
-
-
+	
+	/* this function is called by the controller to ask the player'choices
+	 * for the effects that request an interaction with the player
+	 */
 	public synchronized void setFurtherCheckNeededEffect(List<Effect> rAE, int[] fCN) throws RemoteException {
 		
 		/*rAE = RequestedAuthorizationEffects
@@ -479,6 +490,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 		
 		return input;
 	}
+	
+	/*
+	 * excommunicationManagement ask the player if he wants to suffer the excommunication
+	 * or to support the church
+	 */
 	public synchronized void excommunicationManagement(String description, String username) throws RemoteException {
 		String input = "EXCOMMUNICATION "+username+" ";
 		
