@@ -7,6 +7,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
 
+
+/*
+ * support class used by ViewCLI to get the input in a separeted thread
+ * it is implemented using the Singleton design pattern 
+ * and it has a while(true) to avoid the closure of the thread that has an open scanner 
+ */
 public class ScannerInputThread implements Runnable {
 	private Scanner reader; 
 	private static ScannerInputThread instance;
@@ -14,12 +20,14 @@ public class ScannerInputThread implements Runnable {
 	private ViewCLI view;
 	private static AtomicBoolean whileSecurity;
 	
+	//singleton pattern
 	public static ScannerInputThread instance(ViewCLI view){
 		if(instance==null)
 			return instance=new ScannerInputThread(view);
 		else return instance;
 	}
 	
+	//at the creation it starts a while(true) to avoid closure
 	private ScannerInputThread(ViewCLI view) {
 		this.view=view;
 		this.reader= new Scanner(System.in);

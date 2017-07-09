@@ -8,7 +8,10 @@ import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 
 
-//is the remote interface of the client to receive and show data from the server through RMI.
+/* it's the remote interface of the client throw RMI connection
+ * it expose the client's methods to the server 
+ * the methods are implemented by ClientRMIView
+ */
 public interface ClientRMIViewRemote extends Remote {
 	
 	public String getUsername() throws RemoteException;

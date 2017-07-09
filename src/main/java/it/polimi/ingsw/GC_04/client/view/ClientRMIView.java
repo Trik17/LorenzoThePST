@@ -10,7 +10,9 @@ import java.util.concurrent.Executors;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
-//implements ClientViewRemote interface
+/*implements the metods of ClientRMIViewRemote interface 
+ * 
+ */
 public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewRemote, Serializable {
 	
 	private static final long serialVersionUID = 9014192198954467429L;
