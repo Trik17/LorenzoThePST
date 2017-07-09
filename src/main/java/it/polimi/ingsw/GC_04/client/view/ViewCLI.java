@@ -15,7 +15,11 @@ import it.polimi.ingsw.GC_04.server.model.effect.ResourceEffect;
 import it.polimi.ingsw.GC_04.server.model.effect.TakeACardEffect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
-
+/*
+ * the view's class using CommandLineInterface
+ * 
+ * it implements Runnable to avoid the server waiting for the input from the user
+ */
 public class ViewCLI extends ViewClient implements Runnable{
 	
 	private static final long serialVersionUID = -2328795643634959640L;
@@ -50,6 +54,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 			strInput=string;
 		}
 	}
+	
+	/*
+	 * this function ask an input using ScannerInputThread class and starts a timer;
+	 * when time is over the client pass the turn
+	 */
 	private String getInput(){
 		setStrInput("");	
 		Timer timer=new Timer();
@@ -76,6 +85,11 @@ public class ViewCLI extends ViewClient implements Runnable{
 		return getStrInput()+" ";
 	}	
 	
+	/*
+	 * the run() method is started from ClientRMIView every time the server ask something to the client
+	 * the choose of the method esecuted dependes on the value of setRun (setted from ClientRMIView 
+	 * with also the inputParameter 1 and 2)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run(){
