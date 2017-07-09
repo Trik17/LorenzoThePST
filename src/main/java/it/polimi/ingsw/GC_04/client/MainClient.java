@@ -12,7 +12,6 @@ import it.polimi.ingsw.GC_04.client.view.ClientRMI;
  * main class of the client
  */
 public class MainClient {
-	//TODO alla fine del gioco chiudere socket rispettive
 	public static void main(String[] args) throws AccessException, RemoteException, NotBoundException {
 	
 		@SuppressWarnings("resource")

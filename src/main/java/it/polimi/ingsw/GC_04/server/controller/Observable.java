@@ -3,8 +3,6 @@ package it.polimi.ingsw.GC_04.server.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public abstract class Observable<A> {
 
 	private List<Observer<A>> observers;
