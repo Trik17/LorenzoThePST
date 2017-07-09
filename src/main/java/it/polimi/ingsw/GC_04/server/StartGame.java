@@ -35,7 +35,7 @@ public class StartGame implements Runnable {
 	
 	private void start() {
 		try {clients.forEach((username,stub)-> {
-			players[turn]=new Player(username,turn+1,model);
+			players[turn]=new Player(username,turn+1);
 			turn++;
 		});
 		}catch(Exception e){

@@ -20,10 +20,10 @@ public class InizializeTest {
 	public void inizializerGame(){
 		model=new Model();
 		controller=new Controller(model,null);
-		p1=new Player("AndreaTest",1 ,null);
-		p2=new Player("miriamTest",2 ,null);
-		p3=new Player("gigiTest",3 ,null);
-		p4=new Player("CugolaTest",4 ,null);
+		p1=new Player("AndreaTest",1 );
+		p2=new Player("miriamTest",2 );
+		p3=new Player("gigiTest",3 );
+		p4=new Player("CugolaTest",4 );
 		players=new Player[4];
 		players[0]=p1;
 		players[1]=p2;

@@ -38,11 +38,11 @@ public class TestCouncilPrivilege {
 	
 	@Before
 	public void inizializer(){
-		player1=new Player("AndreaTest",1,null);
-		player2=new Player("MiriamTest",1,null);
-		player3=new Player("LuigiTest",1,null);
-		player4=new Player("Test4",1,null);
-		player5=new Player("Test5",1,null);
+		player1=new Player("AndreaTest",1);
+		player2=new Player("MiriamTest",1);
+		player3=new Player("LuigiTest",1);
+		player4=new Player("Test4",1);
+		player5=new Player("Test5",1);
 		players=new ArrayList<Player>();
 		players.add(player1);
 		players.add(player2);

@@ -45,7 +45,6 @@ public class Player {
 	private boolean disconnected=false;	
 	private List<Harvest> harvestList;
 	private List<Production> productionList;
-	private Model model;
 	private List<LeaderCard> leaderCards;
 	
 	
@@ -62,8 +61,7 @@ public class Player {
 	
 	
 	
-	public Player(String name, int turn, Model model){
-		this.model=model;
+	public Player(String name, int turn){
 		// 1<=turn<=4 only for initial coins
 		// 0<=id<=4
 		this.name = name;
