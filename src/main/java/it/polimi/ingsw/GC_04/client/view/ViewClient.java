@@ -16,12 +16,15 @@ public abstract class ViewClient implements Serializable {
 	 */
 	private static final long serialVersionUID = 6860755801717581167L;
 	protected ServerRMIViewRemote serverStub;
-
+	Object inputParameter1;
+	Object inputParameter2;
+	SetRun setRun;
 	protected String state;
 	protected ExecutorService executor;
 	
 	public abstract void chooseAction()throws RemoteException;
-	
+	public abstract void setCouncilPrivilege(int nrOfPrivileges) throws RemoteException;
+	public abstract void printStateOfTheGame(String state);
 	
 	public ViewClient() {
 		this.executor = Executors.newCachedThreadPool();
