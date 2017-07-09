@@ -118,8 +118,6 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 			try {
 				wait(800);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 		

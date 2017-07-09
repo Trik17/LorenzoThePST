@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_04.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -46,6 +47,7 @@ public class MainServer implements Runnable{
 	private TimerTask task; 
 	private static MainServer instance;
 	private ServerSocket serverSocket;	
+	private Registry registry;
 	
 	
 	
@@ -92,13 +94,13 @@ public class MainServer implements Runnable{
 		try {
 			System.out.println("STARTING RMI");
 			startRMI();
-			System.out.println("STARTING SOCKET");
-//			executor.submit(this);
-			//TODO
+			
 		} catch (RemoteException | AlreadyBoundException e) {
 			System.out.println("server already up");
 			System.exit(0);
 		}
+		System.out.println("STARTING SOCKET");
+		executor.submit(this);
 	}
     /* at the connection this function controll the client's username,
 	 * if the client is new the function add it to the Maps of clients connected,
@@ -159,12 +161,16 @@ public class MainServer implements Runnable{
 		this.lastClients=new HashMap<String,ClientRMIViewRemote>();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
+		try {
+			rebindRMIServerView();
+		} catch (RemoteException e) {
+		}
 	}
 	
 	private void startRMI() throws RemoteException, AlreadyBoundException {
 
 		//create the registry to publish remote objects
-		Registry registry = LocateRegistry.createRegistry(RMI_PORT);
+		registry = LocateRegistry.createRegistry(RMI_PORT);
 		System.out.println("Constructing the RMI registry");
 
 		// Create the RMI View, that will be shared with the client
@@ -174,7 +180,7 @@ public class MainServer implements Runnable{
 		@SuppressWarnings("unused")
 		ServerRMIViewRemote viewRemote=(ServerRMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		
-		System.out.println("Binding the server implementation to the registry");
+		System.out.println("Binding the serverRMIView to the registry");
 		registry.bind(NAME, rmiView);
 		System.out.println("RMI is ready to accept clients");
 		
@@ -195,7 +201,7 @@ public class MainServer implements Runnable{
 			//creats the socket
 					
 			serverSocket = new ServerSocket(SOCKET_PORT);	
-			System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
+			System.out.println("Server socket ready on port:  " + SOCKET_PORT);
 	
 			while (true) {
 				//Waits for a new client to connect
@@ -219,6 +225,7 @@ public class MainServer implements Runnable{
 			}
 		}		
 	}
+	
 	public void endGame(Map<String, ClientRMIViewRemote> views) {
 		String[] p=new String[views.size()];
 		views.keySet().toArray(p);
@@ -227,5 +234,15 @@ public class MainServer implements Runnable{
 			clients.remove(p[i]);
 		}
 		System.out.println("A match is ended");
-	}	
+	}
+	
+	private void rebindRMIServerView() throws AccessException, RemoteException{
+		ServerRMIView rmiView=new ServerRMIView(this);
+				
+		@SuppressWarnings("unused")
+		ServerRMIViewRemote viewRemote=(ServerRMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
+		
+		System.out.println("Rebinding the serverRmiView implementation to the registry");
+		registry.rebind(NAME, rmiView);
+	}
 }

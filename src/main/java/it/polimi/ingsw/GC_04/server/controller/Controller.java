@@ -294,9 +294,7 @@ public class Controller implements Observer<String> {
 			this.endGame=true;
 			this.model=null;
 			this.initializer=null;
-			//TODO 
 			server.endGame(views);
-
 			return;
 		}
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName()) && model.getCurrentRow() == FINALROW) {
