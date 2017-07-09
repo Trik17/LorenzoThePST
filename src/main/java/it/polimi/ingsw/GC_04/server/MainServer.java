@@ -140,10 +140,12 @@ public class MainServer implements Runnable{
 	
 	private synchronized void startGame(){//TODO AAAAAAAAAAAAAAAAAAAAAAA
 		System.out.println("Starting a new game:");	
-		StartGame game=new StartGame(this.lastClientsRMI,this.currentModel,this.currentController);//va dato in pasto ad un thread
+		StartGame game=new StartGame(this.lastClientsRMI,this.lastClientsSocket,this.currentModel,this.currentController);//va dato in pasto ad un thread
 		executor.submit(game);
 		lastClientsRMI.forEach((username,stub) -> games.put(username, game));
+		lastClientsSocket.forEach((username,stub) -> games.put(username, game));
 		this.lastClientsRMI.clear();
+		this.lastClientsSocket.clear();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
 	}

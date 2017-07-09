@@ -22,15 +22,16 @@ import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
-//TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
-//nella gestione della disconnessione e nel catch delle remote exception
+import it.polimi.ingsw.GC_04.server.view.ServerSocketView;
+
 public class Controller implements Observer<String> {
 	
 	private final static int FINALAGE = 3; //age is the period, bounded between 1 and 3
 	private final static int FINALROW = 4; //when in a phase a player makes a move for the fourth time 
 		
 	private Model model;
-	private Map<String, ClientRMIViewRemote> views;
+//	private Map<String, ClientRMIViewRemote> viewsRMI;
+//	private Map<String, ServerSocketView> viewsSocket;
 	private Initializer initializer;
 	private String player;
 	private int currentPlayer = 0;
@@ -46,7 +47,13 @@ public class Controller implements Observer<String> {
 	private AtomicInteger count;
 	private List<String> playerExcommunicationSetted;
 	private boolean endGame=false;
+	private AdapterViewConnection adapter;
 	
+	/*TODO:
+	 * ora il controller ha sia viewRMI che viewSocket -> fai classe intermedia come attributo che si occupa di fare le azioni
+	 * e scegli a chi e come in base al nome del player
+	 * 
+	 */
 	public Controller(Model model,MainServer server) {
 		this.model = model;
 		clonedAction = new ClonedAction();
@@ -58,11 +65,11 @@ public class Controller implements Observer<String> {
 		playerExcommunicationSetted=new ArrayList<>();
 	}
 	
-	private void disconnect(String username){//da chiamare ad ogni remoteexception
+	private void disconnect(String username){//TODO da chiamare ad ogni remoteexception
 		model.getPlayer(username).disconnect();
 		
 		server.disconnectPlayer(username);
-		views.forEach((name,stub) -> {
+		viewsRMI.forEach((name,stub) -> {
 			try {
 				if(isPlayerConnected(name))
 					stub.print(username+" disconnected");
@@ -82,8 +89,8 @@ public class Controller implements Observer<String> {
 			}		
 			startTimerAction();
 			try {
-				views.get(player).setState(model.getStateCLI());
-				views.get(player).chooseAction();
+				viewsRMI.get(player).setState(model.getStateCLI());
+				viewsRMI.get(player).chooseAction();
 			} catch (RemoteException e) {
 				e.printStackTrace();//TODO CANCELLA
 				disconnect(player);
@@ -116,8 +123,10 @@ public class Controller implements Observer<String> {
 		return false;
 	}
 
-	public void setViews(Map<String, ClientRMIViewRemote> clients){
-		this.views = clients;
+	public void setViews(Map<String, ClientRMIViewRemote> clientsRMI, Map<String, ServerSocketView> clientsSocket){
+		this.viewsRMI = clientsRMI;
+		this.viewsSocket=clientsSocket;
+		this.adapter=new AdapterViewConnection(clientsRMI,clientsSocket);
 	}
 	public void setInizializer(Player[] players){
 		this.initializer = new Initializer(players,this.model);	
@@ -155,7 +164,7 @@ public class Controller implements Observer<String> {
 	private void setCouncilPrivilege(int nrOfPrivileges) {
 		
 		try {
-			views.get(player).setCouncilPrivilege(nrOfPrivileges);
+			viewsRMI.get(player).setCouncilPrivilege(nrOfPrivileges);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,7 +182,7 @@ public class Controller implements Observer<String> {
 	try{
 		if (action instanceof TakeACard) {
 			if (((TakeACard) action).getCard() == null){
-				views.get(player).print("You can't do this move");
+				viewsRMI.get(player).print("You can't do this move");
 				chooseAction();
 				return;
 			}
@@ -235,7 +244,7 @@ public class Controller implements Observer<String> {
 			action.apply(); 
 			
 		}else {
-			views.get(player).print("You can't do this move");
+			viewsRMI.get(player).print("You can't do this move");
 			chooseAction();
 			return;
 		}
@@ -254,7 +263,7 @@ public class Controller implements Observer<String> {
 	
 	private void askPlayersDiscounts() {
 		try {
-			views.get(player).setDiscount(clonedAction.getRawMaterials());
+			viewsRMI.get(player).setDiscount(clonedAction.getRawMaterials());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -264,7 +273,7 @@ public class Controller implements Observer<String> {
 
 	private void askPlayerAuthorizations(List<Effect> requestedAuthorizationEffects) {
 		try {
-			views.get(player).setRequestedAuthorizationEffects(requestedAuthorizationEffects);
+			viewsRMI.get(player).setRequestedAuthorizationEffects(requestedAuthorizationEffects);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -273,7 +282,7 @@ public class Controller implements Observer<String> {
 	}
 
 	private void stateOfTheGame() throws RemoteException {
-		views.get(player).stateOfTheGame(model.getStateCLI());
+		viewsRMI.get(player).stateOfTheGame(model.getStateCLI());
 	}
 
 
@@ -313,7 +322,7 @@ public class Controller implements Observer<String> {
 			currentPlayer++;
 		}
 		try {
-			views.get(player).print("Wait for the other players to make their move");
+			viewsRMI.get(player).print("Wait for the other players to make their move");
 			player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
 			
 		} catch (RemoteException e) {
@@ -377,7 +386,7 @@ public class Controller implements Observer<String> {
 		String ranking = StateOfTheGameCLI.printRanking(players);
 		for (int i = 0; i < players.length; i++) {
 			try {
-				views.get(players[i].getName()).print(ranking);
+				viewsRMI.get(players[i].getName()).print(ranking);
 //				views.get(player).exit();
 				//TODO sysexit non va 
 			} catch (RemoteException e) {
@@ -388,7 +397,7 @@ public class Controller implements Observer<String> {
 	}
 
 	private void setExcommunications() {
-		views.forEach((namePlayer,view) -> {
+		viewsRMI.forEach((namePlayer,view) -> {
 			if (!VaticanReport.isUnderThreshold(model.getPlayer(namePlayer), model.getAge())) {
 				try {
 					count.incrementAndGet();
@@ -410,7 +419,7 @@ public class Controller implements Observer<String> {
 	public void reconnect(String username) {
 		model.getPlayer(username).reConnect();
 
-		views.forEach((name,stub) -> {
+		viewsRMI.forEach((name,stub) -> {
 			try {
 				if(isPlayerConnected(name))
 					stub.print(username+" reconnected");
@@ -481,7 +490,7 @@ public class Controller implements Observer<String> {
 
 	private void askPlayerChoices(List<Effect> requestedAuthorizationEffects, int[] furtherCheckNeeded) {
 		 try {
-			views.get(player).setFurtherCheckNeededEffect(requestedAuthorizationEffects,furtherCheckNeeded);
+			viewsRMI.get(player).setFurtherCheckNeededEffect(requestedAuthorizationEffects,furtherCheckNeeded);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
