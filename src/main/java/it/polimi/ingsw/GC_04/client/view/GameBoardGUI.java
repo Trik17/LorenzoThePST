@@ -210,15 +210,15 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		
 		
 		
-		excommunicationCard1 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_1_1 rid.png"));
-		excommunicationCard2 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_2_1 rid.png"));
-		excommunicationCard3 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_3_1 rid.png"));
+		excommunicationCard1 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_1_1.png"));
+		excommunicationCard2 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_2_1.png"));
+		excommunicationCard3 = new ImageIcon(getClass().getResource("/ExcommunicationTiles/excomm_3_1.png"));
 		excommTile1 = new JButton(excommunicationCard1); //this is the button of the first excommunicationCard
 		excommTile2 = new JButton(excommunicationCard2);
 		excommTile3 = new JButton(excommunicationCard3);
-		excommTile1.setBounds(110, 420, 30, 60);
-		excommTile2.setBounds(140, 420, 30, 60);
-		excommTile3.setBounds(170, 420, 30, 60);
+		excommTile1.setBounds(110, 430, 26, 45);
+		excommTile2.setBounds(145, 430, 26, 45);
+		excommTile3.setBounds(180, 430, 26, 45);
 		excommTile1.setBorder(null);
 		excommTile2.setBorder(null);
 		excommTile3.setBorder(null);
