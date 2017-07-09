@@ -22,8 +22,6 @@ import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
-//TODO le wait() e le notify() in updateA e updateR hanno rischio di deadlock se c'è una disconnessione, metti delle notify 
-//nella gestione della disconnessione e nel catch delle remote exception
 public class Controller implements Observer<String> {
 	
 	private final static int FINALAGE = 3; //age is the period, bounded between 1 and 3
@@ -56,6 +54,7 @@ public class Controller implements Observer<String> {
 		this.lock=new Object();
 		count=new AtomicInteger(0);
 		playerExcommunicationSetted=new ArrayList<>();
+		this.timerExcomunication=new Timer();
 	}
 	/*
 	 * this function disconnect the player in the model and in the server
@@ -103,6 +102,7 @@ public class Controller implements Observer<String> {
 		this.taskAction=new TimerTask(){
 			public void run(){
 				disconnect(player);
+				isWaiting.set(false);					
 			}
 		};	
 		timerAction.schedule( taskAction,TimerJson.getActionTimer()); //timer
@@ -284,6 +284,7 @@ public class Controller implements Observer<String> {
 	
 	public synchronized void updateTurn() {
 		timerAction.cancel();
+		timerExcomunication.cancel();
 		int nrOfPlayers = model.getCouncilPalace().getTurnOrder().length -1;
 		
 		if (model.getAge() == FINALAGE && model.isLastPeriod() && model.getCurrentRow() == FINALROW && player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName())) {
@@ -291,7 +292,9 @@ public class Controller implements Observer<String> {
 			Player[] ranking = FinalScore.getRanking(model.getPlayers());
 			printRanking(ranking);
 			this.endGame=true;
-
+			this.model=null;
+			this.initializer=null;
+			server.endGame(views);
 			return;
 		}
 		else if (player.equals(model.getCouncilPalace().getTurnOrder()[nrOfPlayers].getName()) && model.getCurrentRow() == FINALROW) {
@@ -381,15 +384,13 @@ public class Controller implements Observer<String> {
 	}
 
 	private void printRanking(Player[] players) {
+		timerAction.cancel();
+		timerExcomunication.cancel();
 		String ranking = StateOfTheGameCLI.printRanking(players);
 		for (int i = 0; i < players.length; i++) {
-			try {
+			try {				
 				views.get(players[i].getName()).print(ranking);
-//				views.get(player).exit();
-				//TODO sysexit non va 
-				//TODO e ci sono thread che rimangono aperti ad ogni azione
-				//TODO E CHIUDERE SOCKET 
-				//ED RMI?
+				views.get(players[i].getName()).exit(); 
 			} catch (RemoteException e) {
 			}
 		}
@@ -413,8 +414,6 @@ public class Controller implements Observer<String> {
 		
 	}
 
-
-
 	public void reconnect(String username) {
 		model.getPlayer(username).reConnect();
 
@@ -424,8 +423,7 @@ public class Controller implements Observer<String> {
 					stub.print(username+" reconnected");
 			} catch (RemoteException e) {
 			}
-		});
-		
+		});		
 	}
 	/*UpdateR :
 	 * it is the method called from the clients (using the observer pattern) to 

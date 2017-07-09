@@ -8,7 +8,7 @@ public class FamilyMember implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6793943971429482018L;
-	private FamilyColor familyColor;
+	private FamilyColor familyColor;//TODO
 	private Dice dice;
 	private boolean used;
 	

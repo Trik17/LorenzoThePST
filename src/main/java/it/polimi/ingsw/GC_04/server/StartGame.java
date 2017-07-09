@@ -32,6 +32,9 @@ public class StartGame implements Runnable {
 	public void reconnectPlayer(String username){
 		this.controller.reconnect(username);
 	}
+	public Controller getController() {
+		return controller;
+	}
 	
 	private void start() {
 		try {clients.forEach((username,stub)-> {

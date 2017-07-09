@@ -13,7 +13,7 @@ import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 /*implements the metods of ClientRMIViewRemote interface 
  * 
  */
-public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewRemote, Serializable {
+public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewRemote, Serializable, Runnable {
 	
 	private static final long serialVersionUID = 9014192198954467429L;
 	private final String username; 
@@ -101,12 +101,27 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public void usernameAlreadyUsed() throws RemoteException{
 		System.out.println("Username already used, restart client with another username");
-		System.exit(0);
+		executor.submit(this);
+		return;
 	}
 	@Override
 	public void exit() throws RemoteException {
-		System.exit(0);
+		System.out.println("Game ended");
+		executor.submit(this);
+		return;
+	}
+	
+	//to quit client at the end of the game
+	@Override
+	public void run() {
+		synchronized (this) {
+			try {
+				wait(800);
+			} catch (Exception e) {
+			}
+		}
 		
+		System.exit(0);
 	}
 
 }
