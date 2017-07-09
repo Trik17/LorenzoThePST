@@ -75,8 +75,7 @@ public class TestTakeACard extends TestAction {
 		
 		takeBCard.checkExtraordinaryEffect();
 		takeBCard.apply();
-		//TODO
-//		assertEquals(production, player1.getProduction().get(0));
+		assertEquals(production, player1.getProduction().get(1));
 		assertEquals(3, player1.getResource(new VictoryPoints()).getQuantity());
 		assertEquals(4, player1.getResource(new FaithPoints()).getQuantity());
 		assertEquals(0, player1.getResource(new Stones()).getQuantity());

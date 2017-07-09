@@ -1,12 +1,14 @@
 package it.polimi.ingsw.GC_04.server.model.card;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 
-public class ExcommunicationTile extends Card{
+public class ExcommunicationTile extends Card implements Serializable{
 	
 	/**
 	 * 

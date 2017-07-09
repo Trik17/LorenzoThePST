@@ -1,15 +1,17 @@
 package it.polimi.ingsw.GC_04.server.model.area;
 
-import java.util.List;
-
+import java.io.Serializable;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
-import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 
-public class VaticanReport {
+public class VaticanReport implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1801141987893666675L;
 	private final ExcommunicationTile[] excommunications;
 	//minimum number of faith points to avoid the excommunication
 	private static final int THRESHOLD1 = 3;
@@ -21,6 +23,11 @@ public class VaticanReport {
 		
 	}
 	
+	/*
+	 * this function take in input a player a period and return true if 
+	 * player's faith points are less than the threshold of the period 
+	 * that permit to choose between support the church or be excommunicated
+	 */
 	public static boolean isUnderThreshold(Player player,int period) {
 		if (player.getResource(new FaithPoints()).getQuantity() < getThreshold(period))
 			return true;
@@ -41,7 +48,10 @@ public class VaticanReport {
 			return THRESHOLD3;
 		}
 	}
-	
+	/*
+	 * it increments player's V according to the player position in the vatican report
+	 * that is actually the number of his faithpoints
+	 */
 	public static void addFaithPointsScore(Player player) {
 		int faithPointsScore = 0;
 		int faithPoints = player.getResource(new FaithPoints()).getQuantity();
