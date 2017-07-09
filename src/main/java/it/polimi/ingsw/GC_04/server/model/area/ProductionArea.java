@@ -11,7 +11,8 @@ public class ProductionArea extends ColorReastrictedArea{
 	
 	
 	public ProductionArea(){
-		this.aSpaces = new ArrayList<>();		
+		this.aSpaces = new ArrayList<>();
+		this.actionSpaceDefault = new ActionSpace(1, null);
 	}
 	
 	

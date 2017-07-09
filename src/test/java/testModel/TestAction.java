@@ -11,11 +11,12 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 public class TestAction {
 
 	protected Model model;
-	protected int servants1 = 2;
-	protected int servants2 = 6;
-	protected int servants3 = 0;
+	protected int servants1 = 0;
+	protected int servants2 = 2;
+	protected int servants3 = 6;
 	protected Player player1;
 	protected Player player2;
+	protected Player[] players;
 	protected FamilyMember fMemberBlackP1;
 	protected FamilyMember fMemberNeutralP1;
 	protected FamilyMember fMemberBlackP2;
@@ -27,7 +28,7 @@ public class TestAction {
 		model = new Model();
 		player1 = new Player("Luigi", 1);
 		player2 = new Player("Martin", 2);
-		Player[] players = new Player[2];
+		players = new Player[2];
 		players[0] = player1;
 		players[1] = player2;
 		model.setPlayers(players);

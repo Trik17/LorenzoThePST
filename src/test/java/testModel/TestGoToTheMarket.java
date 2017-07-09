@@ -12,31 +12,29 @@ import it.polimi.ingsw.GC_04.server.model.action.GoToTheMarket;
 
 public class TestGoToTheMarket extends TestAction {
 
-	GoToTheMarket goToTheMarket1;
-	GoToTheMarket goToTheMarket2;
+	GoToTheMarket goToTheMarket;
 	List<ActionSpace> marketArea;
 	
 	@Before
 	public void inizializer(){
 		super.inizializer();
 		marketArea = model.getMarket().getASpaces();
-		goToTheMarket1 = new GoToTheMarket(model, player1, fMemberBlackP1, servants1,marketArea.get(1));
-		goToTheMarket2 = new GoToTheMarket(model, player1, fMemberNeutralP1, servants1,marketArea.get(0));
+		goToTheMarket = new GoToTheMarket(model, player1, fMemberBlackP1, servants1,marketArea.get(1));
 	
 	}
 	
 	@Test
 	public void testMarket1() {
 		
-		assertTrue(goToTheMarket1.isApplicable());
+		assertTrue(goToTheMarket.isApplicable());
 		
-		goToTheMarket1.apply();
+		goToTheMarket.apply();
 		
 		assertEquals(fMemberBlackP1.getFamilyColor(), marketArea.get(1).getPresentColor());
 		assertTrue(fMemberBlackP1.isUsed());
 		
-		goToTheMarket1 = new GoToTheMarket(model, player2, fMemberBlackP2, servants1,marketArea.get(1));
-		assertFalse(goToTheMarket1.isApplicable());
+		goToTheMarket = new GoToTheMarket(model, player2, fMemberBlackP2, servants1,marketArea.get(1));
+		assertFalse(goToTheMarket.isApplicable());
 	
 	}
 	

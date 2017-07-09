@@ -23,11 +23,12 @@ public class RunProduction extends Action {
 	  public RunProduction(Model model,Player player, FamilyMember fMember, int servants) { 
 	    super(model, player, fMember, servants); 
 	    this.area = model.getProduction(); 
-	    System.out.println(area.getASpaces().size());
 	    aSpace = area.getASpaces().get(area.getASpaces().size()-1);
 	     
-	    if (model.getProduction().getASpace().isEmpty()) prodValue = value; 
-	    else prodValue = value - PRODPENALITY; 
+	    if (model.getProduction().getASpace().size() == 1) 
+	    	prodValue = value; 
+	    else 
+	    	prodValue = value - PRODPENALITY; 
 	  } 
 	
 	@Override
@@ -35,7 +36,7 @@ public class RunProduction extends Action {
 		super.checkExtraordinaryEffect();
 			
 		List<Production> productions=player.getProduction();
-			
+		
 		for (Production prod:productions) {
 			if (prod.getDiceValue() <= prodValue) {
 				List<Effect> effects = prod.getEffects();
@@ -61,6 +62,25 @@ public class RunProduction extends Action {
 			}
 		}
 	}
+	
+	/*createNewASpace
+	 * this method checks if there are more than 2 players:
+	 * if it is the case, it will be impossible to run production for the two of them
+	 * in the same row because the action space won't be created
+	 */
+	public void createNewASpace() {
+		
+		if(model.getPlayers().length > 2)
+			area.getASpaces().add(model.getProduction().getActionSpaceDefault());
+	}
+	
+	@Override
+	public boolean isAvailable() {
+		int last = model.getProduction().getASpaces().size() -1;
+		return model.getProduction().getASpaces().get(last).isAvailable() && !fMember.isUsed();
+			
+	}
+	
 	@Override
 	public boolean isApplicable() {
 		return isColorAvailable() &&
@@ -68,11 +88,6 @@ public class RunProduction extends Action {
 				isAvailable();
 	}
 	
-	public void createNewASpace() {
-		
-		if(model.getCouncilPalace().getTurnOrder().length < 3)
-			area.getASpaces().add(new ActionSpace(1, null));
-	}
 
 
 	@Override

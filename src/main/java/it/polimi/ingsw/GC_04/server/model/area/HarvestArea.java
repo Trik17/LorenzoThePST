@@ -11,6 +11,7 @@ public class HarvestArea extends ColorReastrictedArea {
 	
 	public HarvestArea() {
 		this.aSpaces = new ArrayList<>();
+		this.actionSpaceDefault = new ActionSpace(1, null);
 	}
 	
 	public List<ActionSpace> getASpace() {

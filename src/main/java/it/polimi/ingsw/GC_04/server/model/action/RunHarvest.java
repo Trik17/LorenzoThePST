@@ -25,7 +25,7 @@ public class RunHarvest extends Action{
 	    this.area = model.getHarvest(); 
 	    aSpace = area.getASpaces().get(area.getASpaces().size()-1);
 	     
-	    if (area.getASpaces().size() < 2) 
+	    if (area.getASpaces().size() == 1) 
 	    	harvValue = value; 
 	    else 
 	    	harvValue = value - HARVPENALITY; 
@@ -66,17 +66,33 @@ public class RunHarvest extends Action{
 		
 	}
 	
+	/*createNewASpace
+	 * this method checks if there are more than 2 players:
+	 * if it is the case, it will be impossible to run harvest for the two of them
+	 * in the same row because the action space won't be created
+	 */
+	public void createNewASpace() {
+		if(model.getPlayers().length > 2)
+			area.getASpaces().add(model.getHarvest().getActionSpaceDefault());
+	}
+	
+	
+	@Override
+	public boolean isAvailable() {
+		int last = model.getHarvest().getASpaces().size() -1;
+		return model.getHarvest().getASpaces().get(last).isAvailable() && !fMember.isUsed();
+			
+	}
+	
 	@Override
 	public boolean isApplicable() {
-		return isColorAvailable() &&
-				isValueEnough() &&
-				isAvailable();
+		return isAvailable() &&
+				isColorAvailable() &&
+				isValueEnough();
 	}
 
-	public void createNewASpace() {
-		if(model.getCouncilPalace().getTurnOrder().length < 3)
-			area.getASpaces().add(new ActionSpace(1, null));
-	}
+	
+	
 
 	
 	@Override
