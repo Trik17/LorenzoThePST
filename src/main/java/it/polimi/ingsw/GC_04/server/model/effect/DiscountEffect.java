@@ -10,6 +10,10 @@ import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
 
 public class DiscountEffect extends Effect {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5611204345644716446L;
 	private DevelopmentCard cardType;
 	private List<Resource> discount;
 	

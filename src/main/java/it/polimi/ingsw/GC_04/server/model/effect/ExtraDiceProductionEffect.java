@@ -7,6 +7,11 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 
 public class ExtraDiceProductionEffect extends ExtraDiceEffect{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 972135001023270032L;
+
 	@JsonCreator
 	public ExtraDiceProductionEffect(@JsonProperty("extra") int extra) {
 		super(extra);

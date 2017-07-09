@@ -21,9 +21,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	private static final long serialVersionUID = -2328795643634959640L;
 	private String strInput = ""; 
 	private boolean timeout=false;
-	Object inputParameter1;
-	Object inputParameter2;
-	SetRun setRun;
+	
 	protected ScannerInputThread scanner;
 	private AtomicBoolean whileSecurity;
 	private Object lockStrInput;

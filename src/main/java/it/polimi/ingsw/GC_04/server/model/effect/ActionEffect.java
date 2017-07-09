@@ -16,6 +16,8 @@ property = "type")
 @Type(value = TakeACardEffect.class),
 })
 public abstract class ActionEffect extends Effect {
+	
+	private static final long serialVersionUID = 4511208045756916722L;
 	protected Dice dice;
 	
 	public ActionEffect() {

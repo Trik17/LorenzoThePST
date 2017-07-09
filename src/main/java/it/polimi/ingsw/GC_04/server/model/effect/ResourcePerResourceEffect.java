@@ -10,6 +10,10 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class ResourcePerResourceEffect extends ResourceEffect {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -792365059635111119L;
 	private Resource playerResource;//player's resource type that must be counted
 	private Resource bonusResource;
 	

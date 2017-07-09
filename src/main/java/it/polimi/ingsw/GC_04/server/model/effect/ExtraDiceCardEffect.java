@@ -7,6 +7,10 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 
 public class ExtraDiceCardEffect extends ExtraDiceEffect {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -39563788921616291L;
 	private DevelopmentCard cardType;
 	
 	@JsonCreator

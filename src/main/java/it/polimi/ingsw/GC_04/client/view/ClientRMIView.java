@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -47,7 +48,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public void chooseAction() throws RemoteException{
 		view.setRun = SetRun.CHOOSEACTION;
-		executor.submit(view);
+		executor.submit((ViewCLI) view);
 			
 	}
 	@Override
@@ -55,27 +56,27 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		view.inputParameter1 = requestedAuthorizationEffects;
 		view.inputParameter1 = furtherCheckNeeded;
 		view.setRun = SetRun.SETFURTHERCHECKNEEDEDEFFECT;
-		executor.submit(view);
+		executor.submit((ViewCLI) view);
 		
 	}
 	@Override
 	public void setCouncilPrivilege(int nrOfPrivileges) throws RemoteException{
 		view.inputParameter1 = nrOfPrivileges;
 		view.setRun = SetRun.SETCOUNCILPRIVILEGE;
-		executor.submit(view);
+		executor.submit((ViewCLI) view);
 		
 	}
 	@Override
 	public void setRequestedAuthorizationEffects(List<Effect> requestedAuthorizationEffects) throws RemoteException{
 		view.inputParameter1 = requestedAuthorizationEffects;
 		view.setRun = SetRun.SETREQUESTEDAUTHORIZATIONEFFECTS;
-		executor.submit(view);
+		executor.submit((ViewCLI) view);
 	}
 	@Override
 	public void setDiscount(List<Resource> rawMaterials) throws RemoteException{
 		view.inputParameter1 = rawMaterials;
 		view.setRun = SetRun.SETDISCOUNT;
-		executor.submit(view);
+		executor.submit((ViewCLI) view);
 	}
 	@Override
 	public ServerRMIViewRemote getServerStub() throws RemoteException{
@@ -87,7 +88,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		view.inputParameter1 = description;
 		view.inputParameter2 = username;
 		view.setRun = SetRun.EXCOMMUNICATIONMANAGEMENT;
-		executor.submit(view);
+		executor.submit((ViewCLI) view);
 		
 	}
 	@Override

@@ -21,6 +21,10 @@ property = "type")
 @Type(value = CouncilPrivilege.class),
 })
 public abstract class ResourceEffect extends Effect {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3545710506230458079L;
 	protected List<Resource> effect;
 	
 	public ResourceEffect() {

@@ -7,6 +7,11 @@ import it.polimi.ingsw.GC_04.server.model.Player;
 
 public class ExtraDiceHarvestEffect extends ExtraDiceEffect {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1681214667232185091L;
+
 	@JsonCreator
 	public ExtraDiceHarvestEffect(@JsonProperty("extra") int extra) {
 		super(extra);

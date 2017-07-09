@@ -15,6 +15,7 @@ public class BonusTurnResourcesEffect extends Effect{
 	 *
 	 */
 	
+	private static final long serialVersionUID = 1675766693823662605L;
 	private Effect effect;
 	
 	@JsonCreator
