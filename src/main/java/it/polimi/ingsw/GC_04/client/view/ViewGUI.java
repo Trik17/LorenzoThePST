@@ -10,4 +10,16 @@ public class ViewGUI extends ViewClient{
 		
 	}
 
+	@Override
+	public void setCouncilPrivilege(int nrOfPrivileges) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void printStateOfTheGame(String state) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

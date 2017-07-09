@@ -12,7 +12,7 @@ import it.polimi.ingsw.GC_04.client.view.ClientRMI;
 
 
 public class MainClient {
-	public static void main(String[] args) throws AccessException, RemoteException, NotBoundException {
+	public static void main(String[] args) throws NotBoundException, IOException {
 				
 		Scanner in = new Scanner(System.in);
 		System.out.println("Choose an unsername: ");

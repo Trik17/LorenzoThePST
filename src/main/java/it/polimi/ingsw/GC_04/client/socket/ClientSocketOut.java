@@ -22,7 +22,7 @@ public class ClientSocketOut implements Runnable{
 	public void sendUsername() {
 		send(client.getUsername());
 	}
-	private synchronized void  send(String string){
+	private void  send(String string){
 		out.println(string);
 		out.flush();
 	}

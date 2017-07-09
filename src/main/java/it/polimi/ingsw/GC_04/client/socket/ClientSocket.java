@@ -45,8 +45,6 @@ public class ClientSocket {
 	private void clientConnection() throws IOException {
 		Socket socket = new Socket(IP, SOCKET_PORT);
 
-		System.out.println("Connection created");
-
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		//Creates one thread to send messages to the server

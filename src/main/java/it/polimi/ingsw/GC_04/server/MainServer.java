@@ -72,6 +72,8 @@ public class MainServer implements Runnable{
 		this.clientsRMI=new HashMap<>();
 		this.games=new HashMap<>();
 		this.lastClientsRMI=new HashMap<>();
+		this.clientsSocket=new HashMap<>();
+		this.lastClientsSocket=new HashMap<>();
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
 		this.executor = Executors.newCachedThreadPool();
