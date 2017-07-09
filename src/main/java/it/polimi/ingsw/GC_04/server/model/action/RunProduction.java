@@ -4,7 +4,6 @@ package it.polimi.ingsw.GC_04.server.model.action;
 import java.util.List;
 
 import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
-import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 import it.polimi.ingsw.GC_04.server.model.FamilyMember;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
@@ -97,7 +96,6 @@ public class RunProduction extends Action {
 		createNewASpace();
 		checkLeaderCards();
 	}
-	//TODO: fai chiedere al controller cosa attivare
 	
 	
 	

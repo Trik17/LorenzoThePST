@@ -12,6 +12,10 @@ import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class TakeTerritory extends TakeACard{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7542183544682588963L;
 	int accumulatedMP;
 	
 	public TakeTerritory(Model model, Player player, DevelopmentCard card, ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
@@ -60,12 +64,8 @@ public class TakeTerritory extends TakeACard{
 				aSpace.isAvailable();
 				
 	}
-		
 	
 	
 
 
 }
-
-
-

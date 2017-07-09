@@ -9,6 +9,10 @@ import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 
 public class ExtraDice implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2568309206488936607L;
 	private int extraTerritory;
 	private int extraBuilding;
 	private int extraVenture;

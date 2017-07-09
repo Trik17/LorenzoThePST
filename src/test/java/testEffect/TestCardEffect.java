@@ -12,8 +12,6 @@ import org.junit.Test;
 import it.polimi.ingsw.GC_04.server.model.ActionSpace;
 import it.polimi.ingsw.GC_04.server.model.Dice;
 import it.polimi.ingsw.GC_04.server.model.FamilyMember;
-import it.polimi.ingsw.GC_04.server.model.Model;
-import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.action.*;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
