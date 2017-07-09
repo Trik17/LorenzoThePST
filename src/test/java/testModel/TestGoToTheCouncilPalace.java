@@ -51,9 +51,30 @@ public class TestGoToTheCouncilPalace {
 		assertFalse(goToTheCouncilPalace2.isApplicable());
 		assertTrue(goToTheCouncilPalace3.isApplicable());
 		assertFalse(goToTheCouncilPalace4.isApplicable());
+		assertEquals(last+1, model.getCouncilPalace().getASpaces().size());
 		assertEquals(model.getCouncilPalace().getActionSpaceDefault(), model.getCouncilPalace().getASpaces().get(last));
+	
 	}
 	
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
