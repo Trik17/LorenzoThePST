@@ -27,8 +27,12 @@ import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.view.ServerSocketView;
 
 public class MainServer implements Runnable{
-	private Map<String,ClientRMIViewRemote> clients;
+	private Map<String,ClientRMIViewRemote> clients; //all clients connected to the server
 	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
+	/*clients disconnetted for a connection error
+	 * it serves to control the username of a client during the connection 
+	 * to decide between start a new match or reconnect the player to a previous match
+	 */
 	private List<String> disconnectedPlayers;
 	private Map<String,StartGame> games; //associations beetween games and players
 	private boolean timerStarted=false;
@@ -45,8 +49,10 @@ public class MainServer implements Runnable{
 	
 	
 	
-	
-	//this is the timer that starts the countdown (to start a match) when two players connect to the server 
+	/*
+	 * this is the timer that starts the countdown (to start a match) 
+	 * when two players connect to the server 
+	 */
 	private void newTimer(){
 		this.timer=new Timer();
 		this.task= new TimerTask(){
@@ -58,12 +64,21 @@ public class MainServer implements Runnable{
 	        }    
 	    };
 	}
+	/*
+	 * the MainServer is implemented using the Singleton design pattern
+	 */
 	public static MainServer instance() {
 		if (instance == null) {
 			instance = new MainServer();
 		}
 		return instance;
 	}
+	
+
+	
+	public synchronized Map<String,ClientRMIViewRemote> getClients(){
+		return this.clients; 
+	} 
 	
 	private MainServer() {
 		this.disconnectedPlayers=new ArrayList<>();
@@ -83,8 +98,9 @@ public class MainServer implements Runnable{
 			e.printStackTrace();
 		}
 	}
-
-	
+    /* at the connection this function controll the client's username,
+	 * if the client is new the function add it to the Maps of clients connected,
+	 */ 
 	public synchronized void addRMIClient(ClientRMIViewRemote clientStub, String username, ServerRMIView rmiView) throws RemoteException{
 		if(clients.containsKey(username)){
 			if(disconnectedPlayers.contains(username)){
@@ -110,11 +126,11 @@ public class MainServer implements Runnable{
 		System.out.println("new client connected");
 		checkPlayers();
 	}
-	
-	public synchronized Map<String,ClientRMIViewRemote> getClients(){
-		return this.clients; 
-	} 
-	
+	/*
+	 * it checks the number of the players in lastClients (clients waiting to start a match) and 
+	 * if clients.size()==4 it starts a new game  
+	 * or a timer that will start the game if no others players connect before the given time
+	 */
 	private synchronized void checkPlayers() {
 		System.out.println("Number of new Clients:"+ lastClients.size());
 		if(lastClients.size()<2)
@@ -132,7 +148,7 @@ public class MainServer implements Runnable{
 		}		
 	}	
 	
-	
+	//it starts the new game and creates a new controller and model for future clients
 	private synchronized void startGame(){
 		System.out.println("Starting a new game:");	
 		StartGame game=new StartGame(this.lastClients,this.currentModel,this.currentController);//va dato in pasto ad un thread

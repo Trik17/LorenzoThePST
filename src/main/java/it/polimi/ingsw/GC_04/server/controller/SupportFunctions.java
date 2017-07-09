@@ -1,8 +1,6 @@
 package it.polimi.ingsw.GC_04.server.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -10,12 +8,14 @@ import java.util.StringTokenizer;
 import it.polimi.ingsw.GC_04.client.view.ViewClient;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 
+/*
+ * set of generic support functions to lighten the code
+ */
 public class SupportFunctions {
 
 	public static boolean timeout(String s,ViewClient view){
@@ -27,7 +27,6 @@ public class SupportFunctions {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return super.toString();
 	}
 	
@@ -100,7 +99,10 @@ public class SupportFunctions {
 	
 	public static boolean isInputValid(String input, int min, int max) {
 		try{
-			if (input.equals("EMPTY ")) {// "EMPTY " is the input if the user press only ENTER (instead of "" for the condition in the whileLoop in getInput
+			/* "EMPTY " is the input if the user press only ENTER 
+			 * (instead of "" for the condition in the whileLoop in getInput
+			 */				
+			if (input.equals("EMPTY ")) {
 				System.out.println("Your input is not valid");
 				return false;
 			}
@@ -139,8 +141,12 @@ public class SupportFunctions {
 		return card;
 	}
 	
-
-	public static void addExtraordinaryEffects(List<CouncilPrivilege> councilPrivileges, List<Effect> requestedAuthorizationEffects, List<Effect> myEffects) {
+	/* it is called by the Action class
+	 * it scan myEffects searching CouncilPrivileges or effects with requestedAuthorizationEffects (boolean attribute) setted true
+	 * and put them in councilPrivileges and requestedAuthorizationEffects
+	 */
+	public static void addExtraordinaryEffects(List<CouncilPrivilege> councilPrivileges, 
+					List<Effect> requestedAuthorizationEffects, List<Effect> myEffects) {
 		
 		for(Effect eff: myEffects) {
 			if (eff.getClass().equals(CouncilPrivilege.class))

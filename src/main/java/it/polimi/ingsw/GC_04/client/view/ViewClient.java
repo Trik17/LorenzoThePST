@@ -9,11 +9,9 @@ import java.rmi.RemoteException;
 import it.polimi.ingsw.GC_04.server.controller.JsonMapper;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 
-
+// Abstract class of the view extended from ViewCLI and ViewGUI
 public abstract class ViewClient implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6860755801717581167L;
 	protected ServerRMIViewRemote serverStub;
 	Object inputParameter1;
@@ -40,8 +38,6 @@ public abstract class ViewClient implements Serializable {
 		try {
 			serverStub.notifyObserversARemote("0");
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
