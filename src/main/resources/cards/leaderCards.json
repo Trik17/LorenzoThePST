@@ -18,7 +18,7 @@
 			}]
 		}
 	},
-	"image" : "leaders_f_c_07.jpg",
+	"image" : "/LeaderCards/leaders_f_c_07.jpg",
 	"description" : "Requirement: 10 wood \nOnce Per Round ability: Gain 2 Military Points and 1 Victory Point."
 },{
 	"name" : "Giovanni dalle Bande Nere",
@@ -43,7 +43,7 @@
 			}]
 		}
 	},
-	"image" : "leaders_f_c_06.jpg",
+	"image" : "/LeaderCards/leaders_f_c_06.jpg",
 	"description" : "Requirement: 12 Military Points \nOnce Per Round ability: Receive 1 wood, 1 stone, and 1 coin."		
 },{
 	"name" : "Girolamo Savonarola",
@@ -61,7 +61,7 @@
 			}]
 		}
 	},
-	"image" : "leaders_f_c_05.jpg",
+	"image" : "/LeaderCards/leaders_f_c_05.jpg",
 	"description" : "Requirement: 18 coins \nOnce Per Round ability: Gain 1 Faith Point."		
 },{
 	"name" : "Michelangelo Buonarroti",
@@ -79,7 +79,7 @@
 			}]
 		}
 	},
-	"image" : "leaders_f_c_08.jpg",
+	"image" : "/LeaderCards/leaders_f_c_08.jpg",
 	"description" : "Requirement: 10 stones \nOnce Per Round ability: Receive 3 coins."		
 },{
 	"name" : "Ludovico III Gonzaga",
@@ -93,7 +93,7 @@
 			"type" : "CouncilPrivilege"
 		}
 	},
-	"image" : "leaders_f_c_09.jpg",
+	"image" : "/LeaderCards/leaders_f_c_09.jpg",
 	"description" : "Requirement: 15 servants \nOnce Per Round ability: Receive 1 Council Privilege."		
 },{
 	"name" : "Cosimo de' Medici",
@@ -122,7 +122,7 @@
 	  			"quantity" : 1
 	  			}]}
 	},
-	"image" : "leaders_f_c_19.jpg",
+	"image" : "/LeaderCards/leaders_f_c_19.jpg",
 	"description" : "Requirement: 2 Character Cards and 4 Building Cards \nOnce Per Round ability: Receive 3 servants and gain 1 Victory Point."
 },{
 	"name" : "Bartolomeo Colleoni",
@@ -148,7 +148,7 @@
 	  			"quantity" : 4
 	  			}]}
 	},
-	"image" : "leaders_f_c_20.jpg",
+	"image" : "/LeaderCards/leaders_f_c_20.jpg",
 	"description" : "Requirement: 2 Venture Cards and 4 Territory Cards \nOnce Per Round ability: Gain 4 Victory Points."
 },{
 	"name" : "Cesare Borgia",
@@ -169,7 +169,7 @@
 	"effect" : {
 		"type" : "NotRequestedMilitaryPoints"
 	},
-	"image" : "leaders_f_c_17.jpg",
+	"image" : "/LeaderCards/leaders_f_c_17.jpg",
 	"description" : "Requirement: 3 Building Cards, 12 coins, and 2 Faith Points \nPermanent ability: You don’t need to satisfy the Military Points requirement when \nyou take Territory Cards."
 },{
 	"name" : "Sigismondo Malatesta",
@@ -187,7 +187,7 @@
 		"valueAdded" : true,
 		"onlyNeutralMember" : true	
 	},
-	"image" : "leaders_f_c_14.jpg",
+	"image" : "/LeaderCards/leaders_f_c_14.jpg",
 	"description" : "Requirement: 7 Military Points and 3 Faith Points \nPermanent ability: Your uncolored Family Member has a bonus of +3 on its value. \n(You can increase its value by spending servants or if you have Character Cards with \nthis effect.)"	
 },{
 	"name" : "Ludovico il Moro",
@@ -214,13 +214,8 @@
 		"valueAdded" : false,
 		"onlyNeutralMember" : false	
 	},
-	"image" : "leaders_f_c_16.jpg",
+	"image" : "/LeaderCards/leaders_f_c_16.jpg",
 	"description" : "Requirement: 2 Territory Cards, 2 Character Cards, 2 Building Cards, and 2 Venture \nCards Permanent ability: Your colored Family Members has a value of 5, regardless of \ntheir related dice. (You can increase their value by spending servants or if you have \nCharacter Cards with this effect.)"
-
-
-
-
-
 },{
 	"name" : "Lucrezia Borgia",
 	"activationRequirementCard" : [{
@@ -242,7 +237,7 @@
 		"valueAdded" : true,
 		"onlyNeutralMember" : false	
 	},
-	"image" : "leaders_f_c_13.jpg",
+	"image" : "/LeaderCards/leaders_f_c_13.jpg",
 	"description" : "Requirement: 6 Development Cards of the same type \nPermanent ability: Your colored Family Members have a bonus of +2 on their \nvalue. (You can increase their value by spending servants or if you have Character \nCards with this effect.)"
 }	
 ]		
