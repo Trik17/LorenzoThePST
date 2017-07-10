@@ -1,14 +1,9 @@
-package it.polimi.ingsw.GC_04.client.view.gui;
+package it.polimi.ingsw.GC_04.server.model;
 
 import java.util.List;
 import java.util.Map;
 
 import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
-import it.polimi.ingsw.GC_04.server.model.Dice;
-import it.polimi.ingsw.GC_04.server.model.DiceColor;
-import it.polimi.ingsw.GC_04.server.model.FamilyMember;
-import it.polimi.ingsw.GC_04.server.model.Model;
-import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;

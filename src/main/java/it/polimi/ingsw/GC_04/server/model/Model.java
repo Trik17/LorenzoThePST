@@ -3,8 +3,6 @@ package it.polimi.ingsw.GC_04.server.model;
 import java.io.Serializable;
 import java.util.Map;
 
-import it.polimi.ingsw.GC_04.client.view.gui.StateOfTheGame;
-import it.polimi.ingsw.GC_04.client.view.gui.StateOfTheGameGUI;
 import it.polimi.ingsw.GC_04.server.controller.StateOfTheGameCLI;
 import it.polimi.ingsw.GC_04.server.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.server.model.area.CharacterTower;

@@ -9,7 +9,8 @@ import java.util.concurrent.Executors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import it.polimi.ingsw.GC_04.client.view.gui.StateOfTheGame;
+
+import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;

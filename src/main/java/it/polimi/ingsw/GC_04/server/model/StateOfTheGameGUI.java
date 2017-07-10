@@ -1,8 +1,7 @@
-package it.polimi.ingsw.GC_04.client.view.gui;
+package it.polimi.ingsw.GC_04.server.model;
 
 import java.io.Serializable;
-import it.polimi.ingsw.GC_04.server.model.DiceColor;
-import it.polimi.ingsw.GC_04.server.model.Model;
+
 import it.polimi.ingsw.GC_04.server.model.area.VaticanReport;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
