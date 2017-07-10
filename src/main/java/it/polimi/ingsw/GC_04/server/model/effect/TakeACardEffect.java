@@ -35,11 +35,16 @@ public class TakeACardEffect extends ActionEffect {
 	public void setParameters(Model model,Player player,DevelopmentCard card, ActionSpace aSpace,int servants,List<Resource> cost) {
 		FamilyMember fMember = new FamilyMember(dice);
 		Resource.subtractResource(cost, discount);
-		try{if(card.getClass().equals(cardType.getClass()))
-			takeACard = new TakeACard(model, player, card, aSpace, fMember, servants, cost);
-		//altrimenti richiama il controller
+		try{
+			if(card.getClass().equals(cardType.getClass()))
+				takeACard = new TakeACard(model, player, card, aSpace, fMember, servants, cost);
+		
 		}catch (NullPointerException e) {
+			/* 
+			 * 
+			 */
 			takeACard = new TakeACard(model, player, card, aSpace, fMember, servants, cost);
+			
 		}
 	}
 	
