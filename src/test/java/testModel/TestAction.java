@@ -21,6 +21,7 @@ public class TestAction {
 	protected FamilyMember fMemberNeutralP1;
 	protected FamilyMember fMemberBlackP2;
 	protected FamilyMember fMemberNeutralP2;
+	protected Initializer initializer;
 	
 	@Before
 	public void inizializer(){
@@ -32,7 +33,7 @@ public class TestAction {
 		players[0] = player1;
 		players[1] = player2;
 		model.setPlayers(players);
-		Initializer initializer = new Initializer(players, model);
+		initializer = new Initializer(players, model);
 		fMemberBlackP1 = model.getPlayer(player1.getName()).getFamilyMember(DiceColor.BLACK);
 		fMemberNeutralP1 = model.getPlayer(player1.getName()).getFamilyMember(DiceColor.NEUTRAL);
 		fMemberBlackP2 = model.getPlayer(player2.getName()).getFamilyMember(DiceColor.BLACK);

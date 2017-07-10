@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.GC_04.server.model.resource.Coins;
 import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 

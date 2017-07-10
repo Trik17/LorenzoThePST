@@ -11,6 +11,5 @@ public class Coins extends Resource{
 	}
 	//constructor needed for Json
 		public Coins() {
-			// TODO Auto-generated constructor stub
 		}
 }
