@@ -17,7 +17,9 @@ import it.polimi.ingsw.GC_04.server.model.resource.Servants;
 import it.polimi.ingsw.GC_04.server.model.resource.Stones;
 import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Woods;
-
+/*
+ * this class expose the public methods used at the end of the game to calculate the final score of each player
+ */
 public class FinalScore {
 	
 	private static void addVictoryPoints(Player player, int bonus) {
@@ -25,6 +27,8 @@ public class FinalScore {
 		
 	}
 	
+	private FinalScore(){		
+	}	
 
 	public static Player[] getRanking(Player[] players) {
 		for (int i = 0; i < players.length; i++) 
