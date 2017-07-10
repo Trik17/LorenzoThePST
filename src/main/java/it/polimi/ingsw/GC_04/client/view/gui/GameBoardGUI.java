@@ -651,6 +651,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		
 		servants = new TextField("");
 		TextField text = new TextField("How many servants do you want to use?");
+		text.setEditable(false);
 		mainDialog.add(servants);
 		mainDialog.add(text);
 		
