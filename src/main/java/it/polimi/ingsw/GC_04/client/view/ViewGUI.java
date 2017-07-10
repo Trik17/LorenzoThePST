@@ -12,17 +12,18 @@ public class ViewGUI extends ViewClient implements Runnable{
 	
 	public ViewGUI() {
 		super();
+		try {
+			game = new GameBoardGUI(this);
+//			game.setState(state);
+		} catch (IOException e) {		
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void chooseAction() throws RemoteException {
-		try {
-			game = new GameBoardGUI(this);
-			game.setState(state);
-		} catch (IOException e) {		
-			e.printStackTrace();
-		}
+		game.setState(state);
 	
 //		printStateOfTheGame(state);
 
