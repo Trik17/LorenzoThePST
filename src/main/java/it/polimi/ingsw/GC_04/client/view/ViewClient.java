@@ -14,8 +14,8 @@ public abstract class ViewClient implements Serializable {
 	
 	private static final long serialVersionUID = 6860755801717581167L;
 	protected ServerRMIViewRemote serverStub;
-	Object inputParameter1;
-	Object inputParameter2;
+	transient Object inputParameter1;
+	transient Object inputParameter2;
 	SetRun setRun;
 	protected String state;
 	protected ExecutorService executor;

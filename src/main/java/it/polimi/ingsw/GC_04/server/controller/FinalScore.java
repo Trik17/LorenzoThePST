@@ -29,7 +29,9 @@ public class FinalScore {
 	
 	private FinalScore(){		
 	}	
-
+	/*
+	 * it calculate the final ranking and return it as a string  
+	 */
 	public static Player[] getRanking(Player[] players) {
 		for (int i = 0; i < players.length; i++) 
 			calculateFinalScore(players[i]);
@@ -51,7 +53,10 @@ public class FinalScore {
 		
 		return ranking;	
 	}
-	
+	/*
+	 * it ads victory points to the players in base of the final Military Strength 
+	 * of the players in the game
+	 */
 	private static void calculateMilitaryPointsScore(Player[] players) {
 		
 		Player firstPlayer = null;
@@ -96,6 +101,13 @@ public class FinalScore {
 		return finalScore;
 		
 	}
+
+	/*
+	 * The following methods add victory points to the player according to its final state
+	 * (number of : faithPoints, cards and other resources)
+	 * 
+	 */
+	
 	
 	private static void calculateFaithPointsScore(Player player) {
 		VaticanReport.addFaithPointsScore(player);

@@ -22,6 +22,10 @@ import it.polimi.ingsw.GC_04.server.model.effect.CouncilPrivilege;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.*;
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
+
+/*the controller observes the view (the ServerRmiView in particular)
+ * using the observer pattern 
+ */
 public class Controller implements Observer<String> {
 	
 	private final static int FINALAGE = 3; //age is the period, bounded between 1 and 3
@@ -54,6 +58,7 @@ public class Controller implements Observer<String> {
 		this.lock=new Object();
 		count=new AtomicInteger(0);
 		playerExcommunicationSetted=new ArrayList<>();
+		this.timerAction=new Timer();
 		this.timerExcomunication=new Timer();
 	}
 	/*
@@ -62,6 +67,7 @@ public class Controller implements Observer<String> {
 	 * without a response from the player
 	 */
 	private void disconnect(String username){
+		timerAction.cancel();
 		model.getPlayer(username).disconnect();
 		
 		server.disconnectPlayer(username);
@@ -75,7 +81,13 @@ public class Controller implements Observer<String> {
 		updateTurn();
 		chooseAction();
 	}
-	
+	/*
+	 * chooseAction() firstly check if the player is connected or not, if it is connected
+	 * the controller start the action timer (an additional timer besides the timer
+	 * setted in the view), send to the player the state of the game and ask for an action
+	 * 
+	 * in case of Remote exception it calls disconnect(player)
+	 */
 	private void chooseAction(){
 		if(!endGame){
 			if (!isPlayerConnected(player)){
@@ -89,7 +101,6 @@ public class Controller implements Observer<String> {
 				views.get(player).chooseAction();
 			} catch (RemoteException e) {
 				disconnect(player);
-				timerAction.cancel();
 			}
 		}
 	}
@@ -199,10 +210,6 @@ public class Controller implements Observer<String> {
 			action.setDiscount(clonedAction.getDiscount());	
 		}
 		
-//		if (action.getClass().equals(ErrorInput.class)) {
-//			chooseAction();
-//			return;
-//		}
 		if (action.getClass().equals(PassTurn.class) || !isPlayerConnected(action.getPlayer())) {
 			updateTurn();
 			chooseAction();
