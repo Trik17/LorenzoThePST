@@ -40,8 +40,7 @@ public class TakeACardEffect extends ActionEffect {
 				takeACard = new TakeACard(model, player, card, aSpace, fMember, servants, cost);
 		
 		}catch (NullPointerException e) {
-			/* 
-			 * 
+			/* a nullPointException means that cardType is null so the player can take any type of card  
 			 */
 			takeACard = new TakeACard(model, player, card, aSpace, fMember, servants, cost);
 			
