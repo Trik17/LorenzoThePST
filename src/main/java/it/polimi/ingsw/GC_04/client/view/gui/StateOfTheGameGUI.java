@@ -45,6 +45,22 @@ public class StateOfTheGameGUI {
 	private String[] mainResources;
 	private String[] dices;
 	
+	public StateOfTheGameGUI(){
+	}
+	@JsonCreator
+	public StateOfTheGameGUI(@JsonProperty("player") String player, @JsonProperty("excommunicationTiles") String[] excommunicationTiles,
+			@JsonProperty("mainLeaderCards") String[] mainLeaderCards, @JsonProperty("mainResources") String[] mainResources,
+			@JsonProperty("dices") String[] dices){
+		this.player=player;
+		this.excommunicationTiles=excommunicationTiles;
+		this.mainLeaderCards=mainLeaderCards;
+		this.mainResources=mainResources;
+		this.dices=dices;
+		
+		
+	}
+	
+	
 	public StateOfTheGameGUI(Model model, String player) {
 		this.player = player;
 		
