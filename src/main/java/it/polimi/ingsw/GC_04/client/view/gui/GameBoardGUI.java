@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_04.client.view.gui;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,9 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -26,8 +22,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.sun.glass.ui.View;
-
 import it.polimi.ingsw.GC_04.client.view.ViewGUI;
 import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
 import it.polimi.ingsw.GC_04.server.model.StateOfTheGameGUI;
@@ -36,11 +30,8 @@ import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 
-
 public class GameBoardGUI extends JFrame implements ActionListener{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -3719421921069872238L;
 	private StateOfTheGameGUI state;
 	String input = new String();
@@ -49,8 +40,8 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	private Color colorC;
 	private Color colorV;
 
+	@SuppressWarnings("unused")
 	private Scanner scanner = new Scanner(System.in);
-	
 	
 	private JPanel panel;
 	private JLabel gameBoard;
@@ -69,15 +60,12 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	private JButton[] pBoardVenture; 
 	private JButton[] pBoardBuilding; 
 	
-	private JButton[] market;
-	
-	private  JButton counciPalace; 
-	 
-	private JButton production;
-	
-	private JButton[] excommunicationTiles;
-	
+	private JButton[] market;	
+	private  JButton counciPalace; 	 
+	private JButton production;	
+	private JButton[] excommunicationTiles;	
 	private JButton[] leaderCards;
+	private JButton harvest;
 	
 	TextField numberOfCoins;
 	TextField numberOfWoods;
@@ -86,10 +74,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	TextField blackDiceValue;
 	TextField whiteDiceValue;
 	TextField orangeDiceValue;
-	
-	
-	
-	private JButton harvest;
 	
 	private JButton bT23;
 	private JButton bT24;
@@ -109,8 +93,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	TextField servants;
 	
 	ViewGUI view;
-
-
+	
 	private Clip clip;
 	private Dimension dimension;
 
@@ -179,7 +162,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		characterButtons[2] = bT6;
 		characterButtons[3] = bT7;
 		
-		
 		JButton bT8 = new JButton();
 		JButton bT9 = new JButton();
 		JButton bT10 = new JButton();
@@ -190,7 +172,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		buildingButtons[2] = bT10;
 		buildingButtons[3] = bT11;
 		
-
 		JButton bT12 = new JButton();
 		JButton bT13 = new JButton();
 		JButton bT14 = new JButton();
@@ -199,9 +180,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		ventureButtons[0] = bT12;
 		ventureButtons[1] = bT13;
 		ventureButtons[2] = bT14;
-		ventureButtons[3] = bT15;
-		
-		
+		ventureButtons[3] = bT15;		
 		
 		JButton tB1 = new JButton();  //TerritoryCardSlot for player1
 		JButton tB2 = new JButton();
@@ -244,8 +223,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		pBoardBuilding[2] = bB3;
 		pBoardBuilding[3] = bB4;
 		pBoardBuilding[4] = bB5;
-		pBoardBuilding[5] = bB6;
-		
+		pBoardBuilding[5] = bB6;		
 		
 		JButton vB1 = new JButton(); //VentureCardSlor for player1
 		JButton vB2 = new JButton();
@@ -260,8 +238,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		pBoardVenture[3] = vB4;
 		pBoardVenture[4] = vB5;
 		pBoardVenture[5] = vB6;
-		
-		
 		
 		JButton leaderCard1P1 = new JButton();
 		JButton leaderCard2P1 = new JButton();
@@ -286,9 +262,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		market[3] = shop4;
 		for (int i = 0; i < market.length; i++) {
 			market[i].addActionListener(this);
-		}
-		
-		
+		}		
 		
 		excommunicationTiles = new JButton[3];
 		JButton excommTile1 = new JButton(); //this is the button of the first excommunicationCard
@@ -296,8 +270,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		JButton excommTile3 = new JButton();
 		excommunicationTiles[0] = excommTile1;
 		excommunicationTiles[1] = excommTile2;
-		excommunicationTiles[2] = excommTile3;
-		
+		excommunicationTiles[2] = excommTile3;	
 		
 		excommTile1.setBorder(null);
 		excommTile2.setBorder(null);
@@ -335,16 +308,10 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		Image newimg1 = img.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
 		punchBoardImage = new ImageIcon(newimg1);
 		
-		
-		
-		
 		counciPalace = new JButton("Council Palace");
-		production = new JButton("Run");
-		
+		production = new JButton("Run");		
 		harvest = new JButton("Run");
-		
-
-		
+				
 		
 		for (int i = 0; i < territoryButtons.length; i++) {
 			territoryButtons[i].setContentAreaFilled(false);
@@ -495,8 +462,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		panel.add(leaderCard3P1);
 		panel.add(leaderCard4P1);
 		panel.add(leaderCard5P1);
-		
-		
+			
 		
 		bT0.addActionListener(this);
 		bT1.addActionListener(this);
@@ -557,17 +523,11 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		clip.start();
 		
 		colorC = new Color(0, 140, 255); 
-		colorV = new Color(170,0 ,220 );
-		
-		
-		
+		colorV = new Color(170,0 ,220 );		
 		
 		pack();
 		setVisible(true);
-		}
-
-		
-	
+		}	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -699,10 +659,9 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		
 		mainDialog.pack();
 		
-		mainDialog.setVisible(true);
-		
-		
+		mainDialog.setVisible(true);		
 	}
+	
 	private void chooseNrOfServants() {
 		mainDialog = new JDialog();
 		mainDialog.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
@@ -723,9 +682,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		
 		servants.setBounds(100, 10, 300, 25);
 		servants.setVisible(true);
-		mainDialog.setVisible(true);
-		
-		
+		mainDialog.setVisible(true);		
 	}
 
 	
@@ -859,15 +816,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		gameBoard.add(orangeDiceValue);
 		orangeDiceValue.setBounds(345, 650, 25, 25);
 		orangeDiceValue.setBackground(Color.white);
-		orangeDiceValue.setVisible(true);
-		
-		
-	}
-
-
-
-			
-	}		
-	
-
-
+		orangeDiceValue.setVisible(true);		
+	}			
+}
