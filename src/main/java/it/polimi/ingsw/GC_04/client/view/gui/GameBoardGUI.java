@@ -608,7 +608,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		for (int i = 0; i < market.length; i++) {
 			if (e.getSource() == market[i]) {
 				input += " MARKET "+(i+1)+" ";
-				System.out.println("AAAAAAAAA");
 				chooseDice();
 			}
 		}
@@ -666,8 +665,8 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	}
 	
 	public void zoomCard(ImageIcon card, Color color) {
-
 		mainDialog = new JDialog();
+		mainDialog.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
 		mainDialog.getContentPane().setBackground(color);
 		mainDialog.setLocation(500,100);
 		setResizable(true);
@@ -679,8 +678,8 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		mainDialog.add(labelCard);
 		labelCard.setIcon(card);
 						
-		confirm = new JButton("YES");
-		decline = new JButton("NO");
+		confirm = new JButton("TAKE");
+		decline = new JButton("LEAVE");
 		
 		confirm.setContentAreaFilled(true);
 		decline.setContentAreaFilled(true);
@@ -704,6 +703,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	}
 	private void chooseNrOfServants() {
 		mainDialog = new JDialog();
+		mainDialog.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
 		mainDialog.setLayout(null);
 		mainDialog.setSize(500, 300);
 		mainDialog.setLocation(500, 250);
@@ -719,7 +719,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		servants = new TextField("How many servants do you want to use?");
 		mainDialog.add(servants);
 		
-		servants.setBounds(100, 10, 300, 15);
+		servants.setBounds(100, 10, 300, 25);
 		servants.setVisible(true);
 		mainDialog.setVisible(true);
 		
@@ -729,11 +729,11 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	
 	public void chooseDice() {
 		mainDialog = new JDialog();
+		mainDialog.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
 		mainDialog.setLayout(null);
 		mainDialog.setSize(500, 300);
 		mainDialog.setLocation(500, 250);
 		setResizable(true);                                                           
-		
 		JLabel labelCard = new JLabel("Choose your Family Member");
 		labelCard.setLayout(null);
 		labelCard.setBounds(150, 10, 500, 10);
