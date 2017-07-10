@@ -40,6 +40,7 @@ public class TestStateOfTheGame {
 		model.setPlayers(players);
 		
 		state = new StateOfTheGame();
+		@SuppressWarnings("unused")
 		Initializer initializer = new Initializer(players, model);
 		
 	}

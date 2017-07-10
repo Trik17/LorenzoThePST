@@ -27,10 +27,10 @@ public class TestGoToTheCouncilPalace {
 	public void inizializer(){
 		model = new Model();
 		Player player1 = new Player("Luigi", 1);
-		Player player2 = new Player("Martin", 2);
 		Player[] players = new Player[2];
 		players[0] = player1;
 		players[1] = player1;
+		@SuppressWarnings("unused")
 		Initializer initializer = new Initializer(players, model);
 		last = model.getCouncilPalace().getASpaces().size();
 		
