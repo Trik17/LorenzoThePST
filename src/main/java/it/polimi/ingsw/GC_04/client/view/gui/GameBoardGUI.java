@@ -71,13 +71,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	TextField whiteDiceValue;
 	TextField orangeDiceValue;
 	
-	private JButton bT23;
-	private JButton bT24;
-	private JButton bT25;
-	private JButton pBoard2;
-	private JButton pBoard3;
-	private JButton pBoard4;
-	
 	private JDialog mainDialog;
 	JButton confirm;
 	JButton decline;
@@ -118,9 +111,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		gameBoardImage = new ImageIcon(newimg);
 		gameBoard = new JLabel(gameBoardImage);
 		gameBoard.setIcon(gameBoardImage);
-		pBoard2 = new JButton(" Player2");
-		pBoard3 = new JButton(" Player3");
-		pBoard4 = new JButton(" Player4");
 
 		ImageIcon punchBoardImage = new ImageIcon(getClass().getResource("/immagini/punchboard_f_c_03.jpg"));
 		punchBoard = new JLabel(punchBoardImage);
@@ -300,7 +290,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		panel.add(punchBoard);
 		panel.add(personalTile);
 		
-		Image img1 = punchBoardImage.getImage();
+		punchBoardImage.getImage();
 		Image newimg1 = img.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
 		punchBoardImage = new ImageIcon(newimg1);
 		
@@ -429,14 +419,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		shop2.setBorder(null);
 		shop1.setBorder(null);
 		shop4.setBorder(null);
-		
-		panel.add(pBoard2);
-		panel.add(pBoard3);
-		panel.add(pBoard4);
-		pBoard2.setBounds(520, 10, 80, 35);
-		pBoard3.setBounds(620, 10, 80, 35);
-		pBoard4.setBounds(720, 10, 80, 35);
-		
+				
 		panel.add(cB1);
 		panel.add(cB2);
 		panel.add(cB3);
@@ -479,14 +462,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		counciPalace.addActionListener(this);
 		production.addActionListener(this);
 		harvest.addActionListener(this);
-	
-		pBoard2.addActionListener(this);
-		pBoard3.addActionListener(this);
-		pBoard4.addActionListener(this);
-		
-		//bT20.setToolTipText("You have x Servants"); serve per mettere la scritta che appare avvicinando il cursore
-		
-		
 		
 		AudioInputStream audioIn = null;
 		
@@ -496,7 +471,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		}
-		Clip clip = null;
+		clip = null;
 		try {
 			clip = AudioSystem.getClip();
 			
