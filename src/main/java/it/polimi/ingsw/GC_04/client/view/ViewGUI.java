@@ -8,6 +8,10 @@ import it.polimi.ingsw.GC_04.client.view.gui.GameBoardGUI;
 
 public class ViewGUI extends ViewClient implements Runnable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2565845361115840447L;
 	private GameBoardGUI game;
 	
 	public ViewGUI() {
