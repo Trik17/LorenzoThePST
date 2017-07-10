@@ -39,6 +39,8 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	private Color colorC;
 	private Color colorV;
 	
+	
+	
 	private JPanel panel;
 	private JLabel gameBoard;
 	private JLabel punchBoard;
@@ -310,6 +312,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			territoryButtons[i].setContentAreaFilled(false);
 			gameBoard.add(territoryButtons[i]);
 			territoryButtons[i].setBorder(null);
+			
 		}
 		for (int i = 0; i < characterButtons.length; i++) {
 			characterButtons[i].setContentAreaFilled(false);
@@ -534,16 +537,17 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		String input = "";
 		for(int i = 0; i < territoryButtons.length; i++) {
 			if (e.getSource()==territoryButtons[i]) {
+				
 				input += "TOWER 1 "+(i+1);
 				towerButtons = new TowerButtons(this,"Do you want to take this card", new ImageIcon(getClass().getResource(state.getBigTower(new TerritoryCard())[i])));
-				
+				towerButtons.getContentPane().setBackground(Color.GREEN);
 			}
 		}
 		for(int i = 0; i < characterButtons.length; i++) {
 			if (e.getSource()==characterButtons[i]) {
 				input += "TOWER 2 "+(i+1);
 				towerButtons = new TowerButtons(this,"Do you want to take this card", new ImageIcon(getClass().getResource(state.getBigTower(new CharacterCard())[i])));
-				
+				towerButtons.getContentPane().setBackground(colorC);
 			}
 		}
 		
@@ -552,14 +556,14 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			if (e.getSource()==buildingButtons[i]) {
 				input +="TOWER 3 "+(i+1);
 				towerButtons = new TowerButtons(this,"Do you want to take this card", new ImageIcon(getClass().getResource(state.getBigTower(new BuildingCard())[i])));
-				
+				towerButtons.getContentPane().setBackground(Color.yellow);
 			}
 		}
 		for(int i = 0; i < ventureButtons.length; i++) {
 			if (e.getSource()==ventureButtons[i]) {
 				input +="TOWER 4 "+(i+1);
 					towerButtons = new TowerButtons(this,"Do you want to take this card", new ImageIcon(getClass().getResource(state.getBigTower(new VentureCard())[i])));
-				
+					towerButtons.getContentPane().setBackground(colorV);
 			}
 		}
 			

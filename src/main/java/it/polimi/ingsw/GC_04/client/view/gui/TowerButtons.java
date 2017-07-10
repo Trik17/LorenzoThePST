@@ -35,11 +35,10 @@ public class TowerButtons extends JFrame implements ActionListener{
 	private TextField text;
 	public JButton confirm;
 	private JButton decline;
-	private ImageIcon blackFamilyMember;
-	private ImageIcon whiteFamilyMember;
-	private ImageIcon neutralFamilyMember;
-	private ImageIcon orangeFamilyMember;
-	
+	private ImageIcon blackFMember;
+	private ImageIcon whiteFMember;
+	private ImageIcon orangeFMember;
+	private ImageIcon neutralFMember;
 	
 	public TowerButtons(GameBoardGUI gui, String text, ImageIcon card) {
 		super("Selected card");
@@ -93,14 +92,14 @@ public class TowerButtons extends JFrame implements ActionListener{
 			TextField textField = new TextField("Which Family Member do you want to use?");
 			textField.setEditable(false);
 			ButtonGroup group = new ButtonGroup();
-			blackFamilyMember = new ImageIcon(getClass().getResource("/immagini/BlackFamilyMember.png"));
-			whiteFamilyMember = new ImageIcon(getClass().getResource("/immagini/WhiteFamilyMember.png"));
-			orangeFamilyMember = new ImageIcon(getClass().getResource("/immagini/OrangeFamilyMember.png"));
-			neutralFamilyMember = new ImageIcon(getClass().getResource("/immagini/NeutralFamilyMember.png"));
-			JRadioButton black = new JRadioButton("nero");
-			JRadioButton white = new JRadioButton("bianco");
-			JRadioButton orange= new JRadioButton("arancione");
-			JRadioButton neutral = new JRadioButton("neutro");
+			blackFMember = new ImageIcon(getClass().getResource("/immagini/BlackFamilyMember.png"));
+			whiteFMember = new ImageIcon(getClass().getResource("/immagini/WhiteFamilyMember.png"));
+			orangeFMember = new ImageIcon(getClass().getResource("/immagini/OrangeFamilyMember.png"));
+			neutralFMember = new ImageIcon(getClass().getResource("/immagini/NeutralFamilyMember.png"));
+			JRadioButton black = new JRadioButton(blackFMember);
+			JRadioButton white = new JRadioButton(whiteFMember);
+			JRadioButton orange= new JRadioButton(orangeFMember);
+			JRadioButton neutral = new JRadioButton(neutralFMember);
 			JButton buttonConfirm = new JButton("OK");
 			black.setBackground(Color.BLACK);
 			black.setForeground(Color.white);
