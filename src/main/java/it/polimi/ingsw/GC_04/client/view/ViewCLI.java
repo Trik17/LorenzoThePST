@@ -135,7 +135,7 @@ public class ViewCLI extends ViewClient implements Runnable{
 	}
 	
 	public synchronized void chooseAction() throws RemoteException{
-		printStateOfTheGame(state);
+		printStateOfTheGame(state.getStateCLI());
 		String input = new String();
 		
 		print("Choose an area between:"); 

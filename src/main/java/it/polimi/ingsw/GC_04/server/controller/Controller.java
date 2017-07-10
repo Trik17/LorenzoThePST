@@ -98,7 +98,7 @@ public class Controller implements Observer<String> {
 			}		
 			startTimerAction();
 			try {
-				views.get(player).setState(model.getStateCLI());
+				views.get(player).setState(model.getState(player));
 				views.get(player).chooseAction();
 			} catch (RemoteException e) {
 				disconnect(player);
@@ -285,7 +285,7 @@ public class Controller implements Observer<String> {
 	}
 
 	private void stateOfTheGame() throws RemoteException {
-		views.get(player).stateOfTheGame(model.getStateCLI());
+		views.get(player).stateOfTheGame(model.getState(player));
 	}
 
 

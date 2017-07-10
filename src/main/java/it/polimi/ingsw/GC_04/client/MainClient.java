@@ -13,6 +13,7 @@ import it.polimi.ingsw.GC_04.client.view.ClientRMI;
 public class MainClient {
 	public static void main(String[] args) throws AccessException, RemoteException, NotBoundException {
 	
+		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		System.out.println("Choose an unsername: ");
 		String username=in.nextLine();
@@ -20,9 +21,11 @@ public class MainClient {
         String view=in.nextLine();        
     
         if (view.equalsIgnoreCase("GUI")) {
-        	ClientRMI client=new ClientRMI(username,true);
+        	@SuppressWarnings("unused")
+			ClientRMI client=new ClientRMI(username,true);
         }else{
-        	ClientRMI client=new ClientRMI(username,false);
+        	@SuppressWarnings("unused")
+			ClientRMI client=new ClientRMI(username,false);
 		}  
 		
 	}

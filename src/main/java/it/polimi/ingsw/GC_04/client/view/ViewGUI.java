@@ -1,17 +1,31 @@
 package it.polimi.ingsw.GC_04.client.view;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.GC_04.client.view.gui.GameBoardGUI;
 
-public class ViewGUI extends ViewClient {
+public class ViewGUI extends ViewClient implements Runnable{
 	
 	private GameBoardGUI game;
+	
+	public ViewGUI() {
+		super();
+		try {
+			game = new GameBoardGUI(this);
+//			game.setState(state);
+		} catch (IOException e) {		
+			e.printStackTrace();
+		}
+		
+	}
 
 	@Override
 	public void chooseAction() throws RemoteException {
-		printStateOfTheGame(state);
+		game.setState(state);
+	
+//		printStateOfTheGame(state);
 
 	}
 
@@ -23,8 +37,7 @@ public class ViewGUI extends ViewClient {
 
 	@Override
 	public void printStateOfTheGame(String state) {
-		// TODO Auto-generated method stub
-
+		System.out.println(state);
 	}
 
 	public void sendInput(String input) {
@@ -52,6 +65,17 @@ public class ViewGUI extends ViewClient {
 			return ordered;
 		}
 			
+	}
+
+	@Override
+	public void run() {
+		try {
+			chooseAction();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
