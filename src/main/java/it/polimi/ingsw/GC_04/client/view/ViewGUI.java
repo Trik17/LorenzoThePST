@@ -7,7 +7,6 @@ import java.util.StringTokenizer;
 import it.polimi.ingsw.GC_04.client.view.gui.GameBoardGUI;
 
 public class ViewGUI extends ViewClient implements Runnable{
-	//TODO
 	
 	private static final long serialVersionUID = 2565845361115840447L;
 	private GameBoardGUI game;
@@ -67,8 +66,6 @@ public class ViewGUI extends ViewClient implements Runnable{
 		try {
 			chooseAction();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 	}

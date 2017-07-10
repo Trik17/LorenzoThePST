@@ -60,6 +60,7 @@ public class TestRunHarvest extends TestAction{
 		players[2] = player1;
 		players[3] = player1;
 		model.setPlayers(players);
+		@SuppressWarnings("unused")
 		Initializer initializer = new Initializer(players, model);
 		
 		harvestArea = model.getHarvest().getASpaces();

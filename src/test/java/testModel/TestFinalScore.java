@@ -5,12 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sun.media.jfxmedia.events.NewFrameEvent;
-
 import it.polimi.ingsw.GC_04.server.model.FinalScore;
 import it.polimi.ingsw.GC_04.server.model.Player;
-import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
-import it.polimi.ingsw.GC_04.server.model.card.ExcommunicationTile;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.effect.DeleteVPointsCardsEffect;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
@@ -55,13 +51,9 @@ public class TestFinalScore {
 
 		p1.getResource(new VictoryPoints()).addQuantity(-FinalScore.calculateFinalScore(p1));
 		Effect eff=new DeleteVPointsCardsEffect(new TerritoryCard());
-		ExcommunicationTile ex=new ExcommunicationTile(1, null, "test", eff);
 		Effect eff2=new DeleteVPointsCardsEffect(new TerritoryCard());
-		ExcommunicationTile ex2=new ExcommunicationTile(1, null, "test", eff2);
 		Effect eff3=new DeleteVPointsCardsEffect(new TerritoryCard());
-		ExcommunicationTile ex3=new ExcommunicationTile(1, null, "test", eff3);
 		Effect eff4=new DeleteVPointsCardsEffect(new TerritoryCard());
-		ExcommunicationTile ex4=new ExcommunicationTile(1, null, "test", eff4);
 		
 		TerritoryCard[] cardsT=new TerritoryCard[6];
 		
