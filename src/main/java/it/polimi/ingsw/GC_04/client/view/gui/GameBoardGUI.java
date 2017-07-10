@@ -677,10 +677,13 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		
 		sendInput.addActionListener(this);
 		
-		servants = new TextField("How many servants do you want to use?");
+		servants = new TextField("");
+		TextField text = new TextField("How many servants do you want to use?");
 		mainDialog.add(servants);
+		mainDialog.add(text);
 		
-		servants.setBounds(100, 10, 300, 25);
+		text.setBounds(100, 10, 300, 25);
+		servants.setBounds(100, 100, 50, 25);
 		servants.setVisible(true);
 		mainDialog.setVisible(true);		
 	}
