@@ -1,14 +1,12 @@
-package it.polimi.ingsw.GC_04.client.view;
+package it.polimi.ingsw.GC_04.client.view.gui;
 
 import java.io.IOException;
 
 import it.polimi.ingsw.GC_04.server.controller.Initializer;
-import it.polimi.ingsw.GC_04.server.controller.StateOfTheGame;
-import it.polimi.ingsw.GC_04.server.controller.StateOfTheGameGUI;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
 
-public class Prova {
+public class MainGUI {
 
 	public static void main(String[] args) {
 		Model model = new Model();

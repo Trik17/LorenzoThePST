@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client.view.GUI;
+package it.polimi.ingsw.GC_04.client.view.gui;
 
 
 import java.awt.BorderLayout;
@@ -14,15 +14,12 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import it.polimi.ingsw.GC_04.server.controller.StateOfTheGame;
-import it.polimi.ingsw.GC_04.server.controller.StateOfTheGameGUI;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
@@ -34,7 +31,7 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = -3719421921069872238L;
-	private ViewGUI viewGUI;
+//	private ViewGUI viewGUI;
 	private StateOfTheGameGUI state;
 	private TowerButtons towerButtons;
 	String input = new String();
@@ -495,7 +492,6 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			audioIn = AudioSystem.getAudioInputStream(GameBoardGUI.class.getResource("/immagini/Crash Bandicoot Medieval Music.wav"));
 			
 		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Clip clip = null;
@@ -503,7 +499,6 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			clip = AudioSystem.getClip();
 			
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
@@ -512,13 +507,11 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		clip.start();
@@ -586,8 +579,9 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	
 
 
-	public void setState(StateOfTheGameGUI state) {
+	public void setState(StateOfTheGame stateOfTheGame) {
 		
+		state=stateOfTheGame.getStateGUI();
 	
 		for (int i = 0; i < territoryButtons.length; i++) {
 			ImageIcon imageIcon = new ImageIcon(getClass().getResource(state.getTower(new TerritoryCard())[i]));

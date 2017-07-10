@@ -75,6 +75,9 @@ public class LeaderCard extends Card {
 	public String getDescription() {
 		return description;
 	}
+	public String getImage() {
+		return image;
+	}
 
 
 }

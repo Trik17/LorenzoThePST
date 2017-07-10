@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client.view;
+package it.polimi.ingsw.GC_04.client.view.gui;
 
 import java.awt.Color;
 import java.awt.Dialog;
