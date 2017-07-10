@@ -33,7 +33,7 @@ public class TestStateOfTheGame {
 		Player player1 = new Player("p1", 1);
 		Player player2 = new Player("p2", 1);
 		Player player3 = new Player("p3", 1);
-		players = new Player[2];
+		players = new Player[3];
 		players[0] = player1;
 		players[1] = player2;
 		players[3] = player3;
