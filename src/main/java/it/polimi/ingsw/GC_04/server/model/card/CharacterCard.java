@@ -15,11 +15,9 @@ import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 public class CharacterCard extends DevelopmentCard {
 	public CharacterCard(@JsonProperty("period")int period,@JsonProperty("name") String name, @JsonProperty("image") String image,@JsonProperty("imageResized") String imageResized,@JsonProperty("cost1") List<Resource> cost1,@JsonProperty("cost2") List<Resource> cost2,@JsonProperty("effects") List<Effect> effects) {
 		super(period, name,image,imageResized, cost1, cost2, effects);
-		// TODO Auto-generated constructor stub
 	}
 	//constructor needed for Json
 		public CharacterCard() {
-			// TODO Auto-generated constructor stub
 		}
 
 	@Override

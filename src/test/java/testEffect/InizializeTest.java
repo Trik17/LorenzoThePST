@@ -2,7 +2,6 @@ package testEffect;
 
 import org.junit.Before;
 
-import it.polimi.ingsw.GC_04.server.StartGame;
 import it.polimi.ingsw.GC_04.server.controller.Controller;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;

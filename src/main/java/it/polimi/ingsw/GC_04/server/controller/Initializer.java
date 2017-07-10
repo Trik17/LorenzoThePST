@@ -28,6 +28,13 @@ import it.polimi.ingsw.GC_04.server.model.card.LeaderCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 
+
+/*
+ * at the start of a new game this class inizialize the match reading from json files developmentCards, 
+ * personalBonusTiles, excommunicationTiles, leaderCards.
+ * 
+ * This class has alse the method change turn called from the controller at the end of every turn
+ */
 public class Initializer {
 	private static final int INITIALPOSITION = 0;
 	private static final int HALFPOSITION = 4;
@@ -132,7 +139,6 @@ public class Initializer {
 		default:
 			players[1].setFamily(FamilyMember.createFamily(FamilyColor.GREEN,model));
 			players[0].setFamily(FamilyMember.createFamily(FamilyColor.YELLOW,model));
-
 		}
 		
 		int numLeader=leaderCards.size();
@@ -165,7 +171,10 @@ public class Initializer {
 	}
 	
 	
-	
+	/*
+	 * this method change the cards on the tower, reset the main board,
+	 * set all family member as notUsed and update the turn order calling the council palace
+	 */
 	public void changeTurn() {
 		
 		TerritoryCard[] nextTCards;

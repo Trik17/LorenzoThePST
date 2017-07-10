@@ -86,7 +86,7 @@ public class MainServer {
 		this.currentModel=new Model();
 		this.currentController=new Controller(currentModel,this);
 		this.executor = Executors.newCachedThreadPool();
-		JsonMapper.TimerFromJson();//inizialize the timer from json file	
+		JsonMapper.timerFromJson();//inizialize the timer from json file	
 		try {
 			System.out.println("STARTING RMI");
 			startRMI();

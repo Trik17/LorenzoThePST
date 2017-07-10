@@ -24,6 +24,10 @@ import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
+/*
+ * this class is used by the controller to interpret the String received from the player 
+ * with the update(String input)  method
+ */
 public class InputActionInterpreter {
 	private Action action;
 	private Model model;
@@ -126,7 +130,6 @@ public class InputActionInterpreter {
 			realCost = realCard.getCost1();
 		else {
 			if (!SupportFunctions.isInputValid(cost, 1, 2)) {
-//				this.action = new ErrorInput();
 				return;
 			} else {
 				int chosenCost = Integer.parseInt(cost);
@@ -141,8 +144,6 @@ public class InputActionInterpreter {
 		this.action = realCard.takeCard(model, player, realASpace, fMember, servants, realCost);
 	
 	}
-
-	// public void input(String passTurn) {}
 
 	public Action getAction() {
 		if (area.equals("TOWER"))

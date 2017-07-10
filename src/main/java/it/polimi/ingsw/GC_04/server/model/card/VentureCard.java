@@ -19,15 +19,11 @@ public class VentureCard extends DevelopmentCard {
 	}
 	//constructor needed for Json
 		public VentureCard() {
-			// TODO Auto-generated constructor stub
 		}
 
 	@Override
 	public TakeACard takeCard(Model model,Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
-		return new TakeACard(model,player, this, aSpace, fMember,servants, cost);
-//		if (check.isApplicable()){check.apply();}
-		
-		
+		return new TakeACard(model,player, this, aSpace, fMember,servants, cost);		
 	}
 
 }

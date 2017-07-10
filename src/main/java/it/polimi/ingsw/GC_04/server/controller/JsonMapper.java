@@ -80,8 +80,7 @@ public class JsonMapper {
 			excommunicationTiles=mapper.readValue(fileET,mapTypeET);
 	    	
 		} catch (IOException e) {
-			System.out.println("error .json files");
-			e.printStackTrace();
+			JsonMapper.errorJson(e);
 		} 
 		
 	}
@@ -118,15 +117,20 @@ public class JsonMapper {
 		return excommunicationTiles;
 	}
 	
-	public static void TimerFromJson()  {		
+	public static void timerFromJson()  {		
 		try{	
 			ObjectMapper mapper = new ObjectMapper();       //declare a new ObjectMapper variable         
 			mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 			FileReader fileTimer= new FileReader("src/main/resources/timer.json"); 
 			/*TimerJson t=*/mapper.readValue(fileTimer, TimerJson.class);		
 		}catch (IOException e) {
-			e.printStackTrace();
+			JsonMapper.errorJson(e);
 		}
+	}
+	
+	public static void errorJson(IOException e){
+		System.out.println("error .json files");
+		e.printStackTrace();
 	}
 	
 }

@@ -13,7 +13,11 @@ import it.polimi.ingsw.GC_04.server.model.resource.RawMaterial;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.Stones;
 import it.polimi.ingsw.GC_04.server.model.resource.Woods;
-
+/* 
+ * this class is used to save player's choices outside the model in case of timeout.
+ * if the action is successful (timeout doesn't expires, client doesn't disconnect...), 
+ * the controller applies the choices to the real action
+ */
 public class ClonedAction {
 	
 	private List<CouncilPrivilege> councilPrivileges;
@@ -60,11 +64,7 @@ public class ClonedAction {
 		this.discount = discount;
 	}
 	
-	public void setRequestedAuthorizationEffects(List<Effect> effects) {
-		requestedAuthorizationEffects = organizeExchangeResourcesEffects(effects);
-		furtherCheckNeeded = furtherCheckNeededIndices(requestedAuthorizationEffects);
-		
-	}
+	
 	public void setRequestedEffects(int[] requestedEffects) {
 		this.requestedEffects = requestedEffects; 
 		setPlayerChoices();
@@ -93,28 +93,36 @@ public class ClonedAction {
 	public List<Effect> organizeExchangeResourcesEffects(List<Effect> requestedAuthorizationEffects) {
 		//it finds ExchangeResourcesEffect that offer only one effect and sets it as chosen effect
 		for (Effect eff:requestedAuthorizationEffects) {
-			if (eff instanceof ExchangeResourcesEffect)
-				if (((ExchangeResourcesEffect) eff).getCost2() == null) {
-					((ExchangeResourcesEffect) eff).setEffect(((ExchangeResourcesEffect) eff).getEffect1(), ((ExchangeResourcesEffect) eff).getCost1());
-				}
+			if (eff instanceof ExchangeResourcesEffect && ((ExchangeResourcesEffect) eff).getCost2() == null)
+				((ExchangeResourcesEffect) eff).setEffect(((ExchangeResourcesEffect) eff).getEffect1(), ((ExchangeResourcesEffect) eff).getCost1());
 		}
 		return requestedAuthorizationEffects;
 		
 	}
 	
+	public void setRequestedAuthorizationEffects(List<Effect> effects) {
+		/*it receives in input a list of effects and 
+		 * 1) it sets ExchangeResourcesEffects that don't require a choice
+		 * 2) it stores in the attribute furtherCheckNeeded the indices of the Resources that offer a choice
+		 */
+		requestedAuthorizationEffects = organizeExchangeResourcesEffects(effects);
+		
+		furtherCheckNeededIndices(requestedAuthorizationEffects);
+		
+	}
 	
-	private int[] furtherCheckNeededIndices(List<Effect> requestedAuthorizationEffects) {
-		//it stores in an array the indices of the Resources that offer a choice
-		int[] furtherCheckNeeded = new int[0];
+	private void furtherCheckNeededIndices(List<Effect> requestedAuthorizationEffects) {
+		//it stores in the attribute furtherCheckNeeded the indices of the Resources that offer a choice
+		furtherCheckNeeded = new int[0];
 		if (!requestedAuthorizationEffects.isEmpty()) {
 			furtherCheckNeeded = new int[requestedAuthorizationEffects.size()-1];
 			int cont = 0;
 			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
-				if (requestedAuthorizationEffects.get(i) instanceof ExchangeResourcesEffect)
-					if (!(((ExchangeResourcesEffect) requestedAuthorizationEffects.get(i)).getCost2() == null)) {
-						furtherCheckNeeded[cont] = i;
-						cont ++;
-					}
+				if (requestedAuthorizationEffects.get(i) instanceof ExchangeResourcesEffect &&
+						!(((ExchangeResourcesEffect) requestedAuthorizationEffects.get(i)).getCost2() == null)){
+					furtherCheckNeeded[cont] = i;
+					cont ++;
+				}
 			}
 			for (int i = 0; i < requestedAuthorizationEffects.size(); i++) {
 				if (requestedAuthorizationEffects.get(i) instanceof TakeACardEffect) {
@@ -124,7 +132,6 @@ public class ClonedAction {
 			}
 			
 		}
-		return furtherCheckNeeded;
 	}
 	
 	public void setPlayerChoices() {

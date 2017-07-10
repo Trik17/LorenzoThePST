@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.effect.ResourcePerResourceEffect;
-import it.polimi.ingsw.GC_04.server.model.resource.Coins;
 import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.VictoryPoints;

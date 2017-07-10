@@ -62,7 +62,7 @@ public class TestRunProduction extends TestAction{
 		players[2] = player1;
 		players[3] = player1;
 		model.setPlayers(players);
-		Initializer initializer = new Initializer(players, model);
+		new Initializer(players, model);
 		
 		productionArea = model.getProduction().getASpaces();
 		int size = productionArea.size();
