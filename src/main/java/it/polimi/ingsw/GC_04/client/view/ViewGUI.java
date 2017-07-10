@@ -7,10 +7,8 @@ import java.util.StringTokenizer;
 import it.polimi.ingsw.GC_04.client.view.gui.GameBoardGUI;
 
 public class ViewGUI extends ViewClient implements Runnable{
+	//TODO
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2565845361115840447L;
 	private GameBoardGUI game;
 	
@@ -18,25 +16,18 @@ public class ViewGUI extends ViewClient implements Runnable{
 		super();
 		try {
 			game = new GameBoardGUI(this);
-//			game.setState(state);
 		} catch (IOException e) {		
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 
 	@Override
 	public void chooseAction() throws RemoteException {
-		game.setState(state);
-	
-//		printStateOfTheGame(state);
-
+		game.setState(state);	
 	}
 
 	@Override
 	public void setCouncilPrivilege(int nrOfPrivileges) throws RemoteException {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
