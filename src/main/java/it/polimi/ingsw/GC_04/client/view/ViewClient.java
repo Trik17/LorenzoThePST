@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
+import it.polimi.ingsw.GC_04.client.view.gui.StateOfTheGame;
 import it.polimi.ingsw.GC_04.server.controller.JsonMapper;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 
@@ -17,7 +18,7 @@ public abstract class ViewClient implements Serializable {
 	transient Object inputParameter1;
 	transient Object inputParameter2;
 	SetRun setRun;
-	protected String state;
+	protected StateOfTheGame state;
 	protected ExecutorService executor;
 	
 	public abstract void chooseAction()throws RemoteException;
@@ -29,7 +30,7 @@ public abstract class ViewClient implements Serializable {
 		JsonMapper.timerFromJson();
 	}
 
-	public void setState(String state) {
+	public void setState(StateOfTheGame state) {
 		this.state = state;
 	}
 	

@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_04.client.view.gui;
 
-import java.awt.TextField;
-
-import javax.swing.ImageIcon;
+import java.io.Serializable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,7 +19,12 @@ import it.polimi.ingsw.GC_04.server.model.resource.Servants;
 import it.polimi.ingsw.GC_04.server.model.resource.Stones;
 import it.polimi.ingsw.GC_04.server.model.resource.Woods;
 
-public class StateOfTheGameGUI {
+public class StateOfTheGameGUI implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1998515235150976420L;
+
 	private String player;
 
 	private String[] territoryCards;
@@ -55,10 +59,18 @@ public class StateOfTheGameGUI {
 		this.excommunicationTiles=excommunicationTiles;
 		this.mainLeaderCards=mainLeaderCards;
 		this.mainResources=mainResources;
-		this.dices=dices;
-		
-		
+		this.dices=dices;		
 	}
+//	@JsonCreator
+//	public StateOfTheGameGUI(@JsonProperty("player") String player, @JsonProperty("excommunicationTiles") String[] excommunicationTiles,
+//			@JsonProperty("mainLeaderCards") String[] mainLeaderCards, @JsonProperty("mainResources") String[] mainResources,
+//			@JsonProperty("dices") String[] dices){
+//		this.player=player;
+//		this.excommunicationTiles=excommunicationTiles;
+//		this.mainLeaderCards=mainLeaderCards;
+//		this.mainResources=mainResources;
+//		this.dices=dices;		
+//	}
 	
 	
 	public StateOfTheGameGUI(Model model, String player) {

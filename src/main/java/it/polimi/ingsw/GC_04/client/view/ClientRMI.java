@@ -13,11 +13,13 @@ public class ClientRMI {
 	public static final String HOST = "localhost";
 	public static final String NAME = "lorenzo";
 	private ServerRMIViewRemote serverStub;
-	private ClientRMIView rmiView;
+	private ClientRMIView clientRmiView;
 	private String username;
+	private boolean gui=false;
 	
-	public ClientRMI(String username) throws RemoteException, NotBoundException {
+	public ClientRMI(String username, boolean gui) throws RemoteException, NotBoundException {
 		this.username=username;
+		this.gui=gui;
 		clientConnection();
 	}
 	
@@ -29,10 +31,10 @@ public class ClientRMI {
 		//get the stub (local object) of the remote view
 		serverStub = (ServerRMIViewRemote) registry.lookup(NAME);
 
-		this.rmiView=new ClientRMIView(username);
+		this.clientRmiView=new ClientRMIView(username,this.gui);
 
 		// register the client view in the server side to receive messages from the server (in ClientManager)
-		serverStub.registerClient(rmiView,username);
+		serverStub.registerClient(clientRmiView,username);
 			
 	}
 	

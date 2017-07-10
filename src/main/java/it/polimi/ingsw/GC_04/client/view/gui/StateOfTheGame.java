@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_04.client.view.gui;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,9 +30,13 @@ import it.polimi.ingsw.GC_04.server.model.Model;
 			e.printStackTrace();
 		} 
  */
-public class StateOfTheGame {
+public class StateOfTheGame implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5822094209304225603L;
 	private String stateCLI;
 	private StateOfTheGameGUI stateGUI;
 
