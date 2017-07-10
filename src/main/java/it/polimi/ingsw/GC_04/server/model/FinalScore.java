@@ -10,7 +10,6 @@ import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 import it.polimi.ingsw.GC_04.server.model.resource.Coins;
-import it.polimi.ingsw.GC_04.server.model.resource.FaithPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.Servants;

@@ -26,7 +26,7 @@ import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 /*
  * this class is used by the controller to interpret the String received from the player 
- * with the update methods 
+ * with the update(String input)  method
  */
 public class InputActionInterpreter {
 	private Action action;

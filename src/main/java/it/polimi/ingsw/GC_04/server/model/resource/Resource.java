@@ -72,7 +72,7 @@ public abstract class Resource implements Cloneable, Serializable{
 						resources.get(j).quantity = 0;
 					else 
 						resources.get(j).addQuantity(-cost.get(i).getQuantity());
-						break;
+					break;
 				}
 			}
 		}

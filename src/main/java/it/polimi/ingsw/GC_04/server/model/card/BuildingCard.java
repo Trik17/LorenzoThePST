@@ -32,7 +32,6 @@ public class BuildingCard extends DevelopmentCard {
 	@Override
 	public TakeACard takeCard(Model model, Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost) {
 		return new TakeACard(model, player, this, aSpace, fMember,servants,cost);
-//		if (check.isApplicable()){check.apply();}
 		
 	}
 

@@ -26,7 +26,7 @@ public abstract class ViewClient implements Serializable {
 	
 	public ViewClient() {
 		this.executor = Executors.newCachedThreadPool();
-		JsonMapper.TimerFromJson();
+		JsonMapper.timerFromJson();
 	}
 
 	public void setState(String state) {

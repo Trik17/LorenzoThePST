@@ -20,7 +20,10 @@ import it.polimi.ingsw.GC_04.server.model.resource.MilitaryPoints;
 import it.polimi.ingsw.GC_04.server.model.resource.RawMaterial;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.model.resource.Servants;
-
+/*
+ * this class is used by the controller to interpret the String received from the player 
+ * with the updateR(String input)  method
+ */
 public class InputChoicesInterpreter {
 	private String identifier;
 	private List<Effect> effects;
@@ -44,10 +47,6 @@ public class InputChoicesInterpreter {
 			requestedEffects = SupportFunctions.parseIntArray(input);
 		
 		}	
-//		else if (identifier.equals("EXCOMMUNICATION")) {
-//			excommunicationManagementInterpreter(input);
-//			
-//		}
 	}
 
 	public InputChoicesInterpreter(Model model, Player player, String input, List<Effect> rAE, int[] fCN) {
@@ -103,7 +102,6 @@ public class InputChoicesInterpreter {
 					cont++;
 				
 				} catch (Exception e) {
-					// TODO: handle exception
 				}
 			else if (effectType.equals("CARD")) {
 				String towerString = strTok.nextToken();
@@ -143,7 +141,6 @@ public class InputChoicesInterpreter {
 						
 					}
 				}catch (Exception e) {
-						// TODO: handle exception PASS TURNNNNNNNNNNNNNNNNN
 				}
 					
 			}

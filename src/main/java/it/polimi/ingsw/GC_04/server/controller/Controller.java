@@ -54,7 +54,7 @@ public class Controller implements Observer<String> {
 		this.model = model;
 		clonedAction = new ClonedAction();
 		this.server=server;
-		JsonMapper.TimerFromJson();
+		JsonMapper.timerFromJson();
 		this.isWaiting=new AtomicBoolean(false);
 		this.lock=new Object();
 		count=new AtomicInteger(0);
@@ -446,8 +446,6 @@ public class Controller implements Observer<String> {
 	public void updateR(String input) {
 		timerAction.cancel();
 		synchronized(lock){
-	//		this.resource=resource;
-	//		executor.submit(this);
 			InputChoicesInterpreter interpreter = new InputChoicesInterpreter(input);
 			String type = interpreter.getIdentifier();
 			if (type.equals("COUNCIL")){

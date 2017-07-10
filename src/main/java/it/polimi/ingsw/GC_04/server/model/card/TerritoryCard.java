@@ -24,13 +24,11 @@ public class TerritoryCard extends DevelopmentCard {
 	}
 	//constructor needed for Json
 		public TerritoryCard() {
-			// TODO Auto-generated constructor stub
 		}
 
-//	@Override
+	@Override
 	public TakeTerritory takeCard(Model model, Player player,ActionSpace aSpace, FamilyMember fMember,int servants,List<Resource> cost){
 		return new TakeTerritory(model, player, this, aSpace, fMember,servants, cost);
-//		if (check.isApplicable()){check.apply();}
 		
 	}
 
