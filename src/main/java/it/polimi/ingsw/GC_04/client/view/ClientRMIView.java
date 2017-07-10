@@ -1,19 +1,16 @@
 package it.polimi.ingsw.GC_04.client.view;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.sun.corba.se.spi.orbutil.fsm.State;
 
-import it.polimi.ingsw.GC_04.client.view.gui.StateOfTheGame;
+import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
@@ -120,15 +117,6 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	
 	@Override
 	public void setState(StateOfTheGame state) throws RemoteException {
-//		System.out.println(state);
-//		StateOfTheGame stateOfTheGame;
-//		try {
-//			stateOfTheGame = mapper.readValue(state, StateOfTheGame.class);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			stateOfTheGame=new StateOfTheGame();
-//			stateOfTheGame.setStateCLI(state);
-//		}
 		view.setState(state);		
 	}
 	@Override

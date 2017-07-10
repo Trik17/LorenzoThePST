@@ -29,6 +29,8 @@ import javax.swing.JPanel;
 import com.sun.glass.ui.View;
 
 import it.polimi.ingsw.GC_04.client.view.ViewGUI;
+import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
+import it.polimi.ingsw.GC_04.server.model.StateOfTheGameGUI;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
