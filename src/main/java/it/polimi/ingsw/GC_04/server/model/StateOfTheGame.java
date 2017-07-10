@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_04.client.view.gui;
+package it.polimi.ingsw.GC_04.server.model;
 
 import java.io.Serializable;
 
