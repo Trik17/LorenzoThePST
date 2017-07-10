@@ -36,7 +36,7 @@ public class TestStateOfTheGame {
 		players = new Player[3];
 		players[0] = player1;
 		players[1] = player2;
-		players[3] = player3;
+		players[2] = player3;
 		model.setPlayers(players);
 		
 		state = new StateOfTheGame();
