@@ -28,6 +28,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		this.view=new ViewCLI();
 		this.executor = Executors.newCachedThreadPool();
 	}
+	@Override
 	public void addServerstub(ServerRMIViewRemote serverStub)throws RemoteException{
 		this.serverStub=serverStub;
 		this.view.addServerstub(serverStub);
