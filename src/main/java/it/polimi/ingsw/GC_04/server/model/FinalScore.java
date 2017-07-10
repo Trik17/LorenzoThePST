@@ -89,14 +89,19 @@ public class FinalScore {
 		if (!player.isDeleteCardsEffectActive(new TerritoryCard()))
 			calculateTerritoryCardScore(player);
 		if (!player.isDeleteCardsEffectActive(new CharacterCard()))
-			calculateCharacterCardScore(player);
+			calculateCharacterCardScore(player);		
+		/*the excommunication with DeleteCardsEffectActive
+		 * for the building cards is different from the others:
+		 * At the end of the game, you lose 1 Victory Point for 
+		 * every wood and stone on your BuildingCards’ costs.
+		 */
 		if (player.isDeleteCardsEffectActive(new BuildingCard()))
 			calculateBuildingCardsMalus(player);
 		
 		calculateFaithPointsScore(player);
 		calculateResourceScore(player);
 		
-		finalScore = player.getResource(new FaithPoints()).getQuantity();
+		finalScore = player.getResource(new VictoryPoints()).getQuantity();
 		
 		return finalScore;
 		

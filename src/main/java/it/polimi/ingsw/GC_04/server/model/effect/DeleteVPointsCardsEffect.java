@@ -6,6 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.card.DevelopmentCard;
 
+/*
+ * this is the effect of the excommunications that deprive the player 
+ * of the victory points that the player would earn for its developmentCards
+ */
 public class DeleteVPointsCardsEffect extends Effect{
 	private static final long serialVersionUID = 7462184367000902891L;
 	DevelopmentCard cardType;
