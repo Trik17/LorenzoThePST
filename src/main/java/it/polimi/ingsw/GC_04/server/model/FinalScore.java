@@ -1,8 +1,8 @@
-package it.polimi.ingsw.GC_04.server.controller;
+package it.polimi.ingsw.GC_04.server.model;
 
 import java.util.List;
 
-import it.polimi.ingsw.GC_04.server.model.Player;
+import it.polimi.ingsw.GC_04.server.controller.SupportFunctions;
 import it.polimi.ingsw.GC_04.server.model.area.VaticanReport;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;

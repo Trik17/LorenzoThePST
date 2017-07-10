@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.MainServer;
+import it.polimi.ingsw.GC_04.server.model.FinalScore;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
 import it.polimi.ingsw.GC_04.server.model.action.Action;
