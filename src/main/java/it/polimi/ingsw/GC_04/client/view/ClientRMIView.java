@@ -1,12 +1,19 @@
 package it.polimi.ingsw.GC_04.client.view;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.sun.corba.se.spi.orbutil.fsm.State;
+
+import it.polimi.ingsw.GC_04.client.view.gui.StateOfTheGame;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
@@ -20,13 +27,23 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	private ViewClient view;
 	private ServerRMIViewRemote serverStub;
 	private ExecutorService executor;
+	private boolean gui=false;
+	private ObjectMapper mapper ;
 	
 	
-	protected ClientRMIView(String username) throws RemoteException {
+	protected ClientRMIView(String username, boolean gui) throws RemoteException {
 		super();
 		this.username=username;
-		this.view=new ViewCLI();
+		this.gui=gui;
+		if (gui) {
+			this.view=new ViewGUI();
+		}else{
+			this.view=new ViewCLI();
+		}
 		this.executor = Executors.newCachedThreadPool();
+		this.mapper = new ObjectMapper();           
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+			
 	}
 	@Override
 	public void addServerstub(ServerRMIViewRemote serverStub)throws RemoteException{
@@ -41,7 +58,11 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 	@Override
 	public void chooseAction() throws RemoteException{
 		view.setRun = SetRun.CHOOSEACTION;
-		executor.submit((ViewCLI) view);
+		if(gui){
+			executor.submit((ViewGUI) view);
+		}else{
+			executor.submit((ViewCLI) view);
+		}
 			
 	}
 	@Override
@@ -85,14 +106,30 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientRMIViewR
 		
 	}
 	@Override
-	public void stateOfTheGame(String state) throws RemoteException {
-		view.printStateOfTheGame(state);
-		
+	public void stateOfTheGame(StateOfTheGame state) throws RemoteException {
+//		StateOfTheGame stateOfTheGame;
+//		String string;
+//		try {
+//			stateOfTheGame = mapper.readValue(state, StateOfTheGame.class);
+//			string=stateOfTheGame.getStateCLI();
+//		} catch (IOException e) {
+//			string=state;
+//		}
+		view.printStateOfTheGame(state.getStateCLI());		
 	}
 	
 	@Override
-	public void setState(String stateCLI) throws RemoteException {
-		view.setState(stateCLI);		
+	public void setState(StateOfTheGame state) throws RemoteException {
+//		System.out.println(state);
+//		StateOfTheGame stateOfTheGame;
+//		try {
+//			stateOfTheGame = mapper.readValue(state, StateOfTheGame.class);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			stateOfTheGame=new StateOfTheGame();
+//			stateOfTheGame.setStateCLI(state);
+//		}
+		view.setState(state);		
 	}
 	@Override
 	public void print(String string) throws RemoteException {

@@ -3,6 +3,12 @@ package it.polimi.ingsw.GC_04.server.model;
 import java.io.Serializable;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import it.polimi.ingsw.GC_04.client.view.gui.StateOfTheGame;
+import it.polimi.ingsw.GC_04.client.view.gui.StateOfTheGameGUI;
 import it.polimi.ingsw.GC_04.server.controller.StateOfTheGameCLI;
 import it.polimi.ingsw.GC_04.server.model.area.BuildingTower;
 import it.polimi.ingsw.GC_04.server.model.area.CharacterTower;
@@ -45,13 +51,16 @@ public class Model implements Serializable{
 	
 	private Map<DiceColor, Dice> dices;
 	
-	private String stateCLI;
+	private StateOfTheGame state;
+	private ObjectMapper mapper ;
 	
     public Model() {
     	this.dices = Dice.rollTheDices();
     	this.currentAge = 1;
     	this.currentRow = 1;
-    	
+    	state=new StateOfTheGame();
+    	this.mapper = new ObjectMapper();           
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 	}
     
     public Tower getTower(DevelopmentCard cardType) {
@@ -102,13 +111,14 @@ public class Model implements Serializable{
     	currentAge++;
     }
     
-    public String getStateCLI() {
-    	return stateCLI;
+    public StateOfTheGame getState(String player) {
+    	this.state.setStateGUI(new StateOfTheGameGUI(this, player));
+    	return this.state;
 		
 	}
     public void setStateCLI() {
-    	this.stateCLI = StateOfTheGameCLI.printStateOfTheGame(this,territoryTower.getCards(),characterTower.getCards(), buildingTower.getCards(), ventureTower.getCards(), dices);
-    	
+    	this.state.setStateCLI(StateOfTheGameCLI.printStateOfTheGame(this,territoryTower.getCards(),characterTower.getCards(), buildingTower.getCards(), ventureTower.getCards(), dices));
+    	this.state.setStateGUI(new StateOfTheGameGUI());
     }
     public void setAreas(TerritoryTower tTower,CharacterTower cTower, BuildingTower bTower, VentureTower vTower, MarketArea market, CouncilPalaceArea councilPalace, HarvestArea harvest, ProductionArea production, VaticanReport vaticanReport) {
     	if (!areasSetted) {

@@ -17,10 +17,16 @@ public class MainClient {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Choose an unsername: ");
 		String username=in.nextLine();
-        
-		new ClientRMI(username);
-        
-        	
+		System.out.println("Choose CLI or GUI ");
+        String view=in.nextLine();        
+    
+        if (view.equalsIgnoreCase("GUI")) {
+        	@SuppressWarnings("unused")
+			ClientRMI client=new ClientRMI(username,true);
+        }else{
+        	@SuppressWarnings("unused")
+			ClientRMI client=new ClientRMI(username,false);
+		}  
 		
 	}
 	
