@@ -4,11 +4,16 @@ package it.polimi.ingsw.GC_04.client.view.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -16,29 +21,33 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.sun.glass.ui.View;
+
+import it.polimi.ingsw.GC_04.client.view.ViewGUI;
 import it.polimi.ingsw.GC_04.server.model.card.BuildingCard;
 import it.polimi.ingsw.GC_04.server.model.card.CharacterCard;
 import it.polimi.ingsw.GC_04.server.model.card.TerritoryCard;
 import it.polimi.ingsw.GC_04.server.model.card.VentureCard;
 
 
-public class GameBoardGUI extends JFrame implements ActionListener {
+public class GameBoardGUI extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3719421921069872238L;
-//	private ViewGUI viewGUI;
 	private StateOfTheGameGUI state;
-	private TowerButtons towerButtons;
 	String input = new String();
+	private ImageIcon cardZoom;
 	
 	private Color colorC;
 	private Color colorV;
-	
+
+	private Scanner scanner = new Scanner(System.in);
 	
 	
 	private JPanel panel;
@@ -56,7 +65,13 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	private JButton[] pBoardTerritory;
 	private JButton[] pBoardCharacter; 
 	private JButton[] pBoardVenture; 
-	private JButton[] pBoardBuilding;  
+	private JButton[] pBoardBuilding; 
+	
+	private JButton[] market;
+	
+	private  JButton counciPalace; 
+	 
+	private JButton production;
 	
 	private JButton[] excommunicationTiles;
 	
@@ -70,28 +85,37 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 	TextField whiteDiceValue;
 	TextField orangeDiceValue;
 	
-	private  JButton bT16; 
-	 
-	private JButton bT17;
-	private JButton bT18;
-	private JButton bT19;
-	private JButton bT20;
-	private JButton bT21;
-	private JButton bT22;
+	
+	
+	private JButton harvest;
+	
 	private JButton bT23;
 	private JButton bT24;
 	private JButton bT25;
 	private JButton pBoard2;
 	private JButton pBoard3;
 	private JButton pBoard4;
+	
+	private JDialog mainDialog;
+	JButton confirm;
+	JButton decline;
+	JButton black;
+	JButton white;
+	JButton orange;
+	JButton neutral;
+	JButton sendInput;
+	TextField servants;
+	
+	ViewGUI view;
 
 
 	private Clip clip;
 	private Dimension dimension;
 
 	
-	public GameBoardGUI() throws IOException {
-		
+	public GameBoardGUI(ViewGUI view) throws IOException {
+		this.view = view;
+				
 		java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		
 		setExtendedState(MAXIMIZED_BOTH);
@@ -249,6 +273,19 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		leaderCards[3] = leaderCard4P1;
 		leaderCards[4] = leaderCard5P1;
 		
+		JButton shop1 = new JButton("1");
+		JButton shop2 = new JButton("2");
+		JButton shop3 = new JButton("3");
+		JButton shop4 = new JButton("4");
+		market = new JButton[4];
+		market[0] = shop1;
+		market[1] = shop2;
+		market[2] = shop3;
+		market[3] = shop4;
+		for (int i = 0; i < market.length; i++) {
+			market[i].addActionListener(this);
+		}
+		
 		
 		
 		excommunicationTiles = new JButton[3];
@@ -299,13 +336,12 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		
 		
 		
-		bT16 = new JButton("Council Palace");
-		bT17 = new JButton("Run");
-		bT18 = new JButton("Take");
-		bT19 = new JButton("Run");
-		bT20 = new JButton("Take");
-		bT21 = new JButton("Take");
-		bT22 = new JButton("Take");
+		counciPalace = new JButton("Council Palace");
+		production = new JButton("Run");
+		
+		harvest = new JButton("Run");
+		
+
 		
 		
 		for (int i = 0; i < territoryButtons.length; i++) {
@@ -330,13 +366,13 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 			ventureButtons[i].setBorder(null);
 		}
 		
-		bT16.setContentAreaFilled(false);
-		bT17.setContentAreaFilled(true);
-		bT18.setContentAreaFilled(true);
-		bT19.setContentAreaFilled(true);
-		bT20.setContentAreaFilled(true);
-		bT21.setContentAreaFilled(true);
-		bT22.setContentAreaFilled(true);
+		counciPalace.setContentAreaFilled(false);
+		production.setContentAreaFilled(true);
+		shop3.setContentAreaFilled(true);
+		harvest.setContentAreaFilled(true);
+		shop2.setContentAreaFilled(true);
+		shop1.setContentAreaFilled(true);
+		shop4.setContentAreaFilled(true);
 		
 		for (int i = 0; i < pBoardTerritory.length; i++) {
 			pBoardTerritory[i].setContentAreaFilled(false);
@@ -373,13 +409,13 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		bT13.setBounds(310, 210, 60, 90);
 		bT14.setBounds(310, 120, 60, 90);   //(100, 150, 300, 500) queste dimensioni mi servivano solo per ingrandire l'immagine(poi li dovrò cancellare)
 		bT15.setBounds(310, 30, 60, 90);
-		bT16.setBounds(240,400,120,30);
-		bT17.setBounds(80, 590, 65, 20);
-		bT18.setBounds(340, 595, 35, 20);
-		bT19.setBounds(70, 645, 65, 20);
-		bT20.setBounds(300, 585, 35,20);
-		bT21.setBounds(260, 585, 35, 20);
-		bT22.setBounds(375, 625, 35, 20);
+		counciPalace.setBounds(240,400,120,30);
+		production.setBounds(80, 590, 65, 20);
+		shop3.setBounds(340, 595, 35, 20);
+		harvest.setBounds(70, 645, 65, 20);
+		shop2.setBounds(300, 585, 35,20);
+		shop1.setBounds(260, 585, 35, 20);
+		shop4.setBounds(375, 625, 35, 20);
 		tB1.setBounds(5, 150, 80, 110);
 		tB2.setBounds(85, 150, 80, 110);
 		tB3.setBounds(165, 150, 80, 110);
@@ -414,20 +450,20 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		excommTile2.setBounds(145, 430, 26, 45);
 		excommTile3.setBounds(180, 430, 26, 45);
 		
-		gameBoard.add(bT16);
-		gameBoard.add(bT17);
-		gameBoard.add(bT18);
-		gameBoard.add(bT19);		
-		gameBoard.add(bT20);
-		gameBoard.add(bT21);
-		gameBoard.add(bT22);
+		gameBoard.add(counciPalace);
+		gameBoard.add(production);
+		gameBoard.add(shop3);
+		gameBoard.add(harvest);		
+		gameBoard.add(shop2);
+		gameBoard.add(shop1);
+		gameBoard.add(shop4);
 		punchBoard.add(tB1);
 		
-		bT16.setBorder(null);
-		bT18.setBorder(null);
-		bT20.setBorder(null);
-		bT21.setBorder(null);
-		bT22.setBorder(null);
+		counciPalace.setBorder(null);
+		shop3.setBorder(null);
+		shop2.setBorder(null);
+		shop1.setBorder(null);
+		shop4.setBorder(null);
 		
 		panel.add(pBoard2);
 		panel.add(pBoard3);
@@ -476,11 +512,10 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		bT13.addActionListener(this);
 		bT14.addActionListener(this);
 		bT15.addActionListener(this);
-		bT16.addActionListener(this);
-		bT17.addActionListener(this);
-		bT20.addActionListener(this);
-		bT21.addActionListener(this);
-		bT22.addActionListener(this);
+		counciPalace.addActionListener(this);
+		production.addActionListener(this);
+		harvest.addActionListener(this);
+	
 		pBoard2.addActionListener(this);
 		pBoard3.addActionListener(this);
 		pBoard4.addActionListener(this);
@@ -531,57 +566,212 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 
 		
 	
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String input = "";
+		
 		for(int i = 0; i < territoryButtons.length; i++) {
 			if (e.getSource()==territoryButtons[i]) {
-				
+				Color color = Color.green;
 				input += "TOWER 1 "+(i+1);
-				towerButtons = new TowerButtons(this,"Do you want to take this card", new ImageIcon(getClass().getResource(state.getBigTower(new TerritoryCard())[i])));
-				towerButtons.getContentPane().setBackground(Color.GREEN);
+				cardZoom= new ImageIcon(getClass().getResource(state.getBigTower(new TerritoryCard())[i]));
+				zoomCard(cardZoom,color);
+				
 			}
 		}
 		for(int i = 0; i < characterButtons.length; i++) {
 			if (e.getSource()==characterButtons[i]) {
+				Color color = colorC;
 				input += "TOWER 2 "+(i+1);
-				towerButtons = new TowerButtons(this,"Do you want to take this card", new ImageIcon(getClass().getResource(state.getBigTower(new CharacterCard())[i])));
-				towerButtons.getContentPane().setBackground(colorC);
+				ImageIcon card = new ImageIcon(getClass().getResource(state.getBigTower(new CharacterCard())[i]));
+				zoomCard(card,color);
 			}
 		}
 		
 		for(int i = 0; i < buildingButtons.length; i++) {
-			
 			if (e.getSource()==buildingButtons[i]) {
+				Color color = Color.yellow;
 				input +="TOWER 3 "+(i+1);
-				towerButtons = new TowerButtons(this,"Do you want to take this card", new ImageIcon(getClass().getResource(state.getBigTower(new BuildingCard())[i])));
-				towerButtons.getContentPane().setBackground(Color.yellow);
+				ImageIcon card = new ImageIcon(getClass().getResource(state.getBigTower(new BuildingCard())[i]));
+				zoomCard(card,color);
 			}
 		}
 		for(int i = 0; i < ventureButtons.length; i++) {
 			if (e.getSource()==ventureButtons[i]) {
+				Color color = colorV;
 				input +="TOWER 4 "+(i+1);
-					towerButtons = new TowerButtons(this,"Do you want to take this card", new ImageIcon(getClass().getResource(state.getBigTower(new VentureCard())[i])));
-					towerButtons.getContentPane().setBackground(colorV);
+				ImageIcon card = new ImageIcon(getClass().getResource(state.getBigTower(new VentureCard())[i]));
+				zoomCard(card,color);
 			}
 		}
-			
-
-		if (e.getSource()== towerButtons.getDecline())
-			input="";
 		
-
+		for (int i = 0; i < market.length; i++) {
+			if (e.getSource() == market[i]) {
+				input += " MARKET "+(i+1)+" ";
+				System.out.println("AAAAAAAAA");
+				chooseDice();
+			}
+		}
+		
+		if (e.getSource() == production) {
+			input += " PRODUCTION ";
+			chooseDice();
+		}
+		if (e.getSource() == harvest) {
+			input += " HARVEST ";
+			chooseDice();
+		}
+		if (e.getSource() == counciPalace) {
+			input += " COUNCILPALACE ";
+			chooseDice();
+		}
+		
+		if (e.getSource() == confirm) {
+			mainDialog.setVisible(false);
+			chooseDice();
+		}
+		
+		if (e.getSource() == decline) {
+			input = "";
+			mainDialog.dispose();
+		}
 			
-			
-			
-			
+		if (e.getSource() == black) {
+			input += " 1 ";
+			mainDialog.dispose();
+			chooseNrOfServants();
+		}
+		if (e.getSource() == orange) {
+			input += " 2 ";
+			mainDialog.dispose();
+			chooseNrOfServants();
+		}
+		if (e.getSource() == white) {
+			input += " 3 ";
+			mainDialog.dispose();
+			chooseNrOfServants();
+		}
+		if (e.getSource() == neutral) {
+			input += " 4 ";
+			mainDialog.dispose();
+			chooseNrOfServants();
+		}
+		
+		if (e.getSource() == sendInput) {
+			input += " "+servants.getText();
+			mainDialog.dispose();
+			view.sendInput(input);
+		}
 		
 	}
 	
-	
-	
+	public void zoomCard(ImageIcon card, Color color) {
 
+		mainDialog = new JDialog();
+		mainDialog.getContentPane().setBackground(color);
+		mainDialog.setLocation(500,100);
+		setResizable(true);
+		this.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/immagini/leaders_b_c_00.jpg")));
+		
+		setLayout(new FlowLayout());
+		JLabel labelCard = new JLabel(card);
+		labelCard.setLayout(null);
+		mainDialog.add(labelCard);
+		labelCard.setIcon(card);
+						
+		confirm = new JButton("YES");
+		decline = new JButton("NO");
+		
+		confirm.setContentAreaFilled(true);
+		decline.setContentAreaFilled(true);
+		
+		confirm.setBounds(45,400,100,30);
+		decline.setBounds(150,400,100,30);
+		
+		labelCard.add(confirm);
+		labelCard.add(decline);
+		
+		decline.addActionListener(this);
+		confirm.addActionListener(this);
+		
+		labelCard.setVisible(true);
+		
+		mainDialog.pack();
+		
+		mainDialog.setVisible(true);
+		
+		
+	}
+	private void chooseNrOfServants() {
+		mainDialog = new JDialog();
+		mainDialog.setLayout(null);
+		mainDialog.setSize(500, 300);
+		mainDialog.setLocation(500, 250);
+		setResizable(true);
+		
+		sendInput = new JButton("OK");
+		sendInput.setBounds(200,200,65,55);
+		mainDialog.add(sendInput);
+		sendInput.setVisible(true);
+		
+		sendInput.addActionListener(this);
+		
+		servants = new TextField("How many servants do you want to use?");
+		mainDialog.add(servants);
+		
+		servants.setBounds(100, 10, 300, 15);
+		servants.setVisible(true);
+		mainDialog.setVisible(true);
+		
+		
+	}
+
+	
+	public void chooseDice() {
+		mainDialog = new JDialog();
+		mainDialog.setLayout(null);
+		mainDialog.setSize(500, 300);
+		mainDialog.setLocation(500, 250);
+		setResizable(true);                                                           
+		
+		JLabel labelCard = new JLabel("Choose your Family Member");
+		labelCard.setLayout(null);
+		labelCard.setBounds(150, 10, 500, 10);
+		mainDialog.add(labelCard);
+		ImageIcon blackFMember = new ImageIcon(getClass().getResource("/immagini/BlackFamilyMember.png"));
+		ImageIcon orangeFMember = new ImageIcon(getClass().getResource("/immagini/OrangeFamilyMember.png"));
+		ImageIcon whiteFMember = new ImageIcon(getClass().getResource("/immagini/WhiteFamilyMember.png"));
+		ImageIcon neutralFMember = new ImageIcon(getClass().getResource("/immagini/NeutralFamilyMember.png"));
+		
+		black = new JButton(blackFMember);
+		orange = new JButton(orangeFMember);
+		white = new JButton(whiteFMember);
+		neutral = new JButton(neutralFMember);
+		
+		mainDialog.add(black);
+		mainDialog.add(orange);
+		mainDialog.add(white);
+		mainDialog.add(neutral);
+		
+		neutral.setBounds(50, 100, 45, 60);
+		black.setBounds(150, 100, 45, 60);
+		orange.setBounds(250, 100, 45, 60);
+		white.setBounds(350, 100, 45, 60);
+		
+		neutral.setVisible(true);
+		black.setVisible(true);
+		orange.setVisible(true);
+		white.setVisible(true);
+		
+		black.addActionListener(this);
+		orange.addActionListener(this);
+		white.addActionListener(this);
+		neutral.addActionListener(this);
+		
+		mainDialog.setVisible(true);
+		
+	}
+	
 
 	public void setState(StateOfTheGame stateOfTheGame) {
 		
@@ -671,6 +861,8 @@ public class GameBoardGUI extends JFrame implements ActionListener {
 		
 		
 	}
+
+
 
 			
 	}		

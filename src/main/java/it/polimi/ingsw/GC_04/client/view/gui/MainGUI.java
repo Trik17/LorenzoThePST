@@ -2,6 +2,9 @@ package it.polimi.ingsw.GC_04.client.view.gui;
 
 import java.io.IOException;
 
+import com.sun.glass.ui.View;
+
+import it.polimi.ingsw.GC_04.client.view.ViewGUI;
 import it.polimi.ingsw.GC_04.server.controller.Initializer;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
@@ -17,14 +20,14 @@ public class MainGUI {
 		players[1] = player2;
 		
 		model.setPlayers(players);
-		
+		ViewGUI viewGUI = new ViewGUI();
 		Initializer initializer = new Initializer(players, model);
 		StateOfTheGame state = new StateOfTheGame();
 		
 		StateOfTheGameGUI stateOfTheGameGUI = new StateOfTheGameGUI(model,player1.getName());
 		state.setStateGUI(stateOfTheGameGUI);
 		try {
-			GameBoardGUI gameBoardGUI = new GameBoardGUI();
+			GameBoardGUI gameBoardGUI = new GameBoardGUI(viewGUI);
 			gameBoardGUI.setState(state);
 		} catch (IOException e) {
 		

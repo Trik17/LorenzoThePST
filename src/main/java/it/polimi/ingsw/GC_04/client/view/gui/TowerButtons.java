@@ -24,25 +24,25 @@ public class TowerButtons extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 846399119848604553L;
 
 	GameBoardGUI gui;
+	String input;
 
 	private JLabel label;
 	private JLabel labelCard;
 	private ButtonGroup group;
-	private JRadioButton black;
-	private JRadioButton orange;
-	private JRadioButton white;
-	private JRadioButton neutral;
+	private JButton black;
+	private JButton orange;
+	private JButton white;
+	private JButton neutral;
 	private TextField text;
 	public JButton confirm;
 	private JButton decline;
-	private ImageIcon blackFMember;
-	private ImageIcon whiteFMember;
-	private ImageIcon orangeFMember;
-	private ImageIcon neutralFMember;
+	
 	
 	public TowerButtons(GameBoardGUI gui, String text, ImageIcon card) {
 		super("Selected card");
 		this.gui = gui;
+		this.input = text;
+		
 	
 		setLocation(500,100);
 		setResizable(true);
@@ -92,15 +92,15 @@ public class TowerButtons extends JFrame implements ActionListener{
 			TextField textField = new TextField("Which Family Member do you want to use?");
 			textField.setEditable(false);
 			ButtonGroup group = new ButtonGroup();
-			blackFMember = new ImageIcon(getClass().getResource("/immagini/BlackFamilyMember.png"));
-			whiteFMember = new ImageIcon(getClass().getResource("/immagini/WhiteFamilyMember.png"));
-			orangeFMember = new ImageIcon(getClass().getResource("/immagini/OrangeFamilyMember.png"));
-			neutralFMember = new ImageIcon(getClass().getResource("/immagini/NeutralFamilyMember.png"));
-			JRadioButton black = new JRadioButton(blackFMember);
-			JRadioButton white = new JRadioButton(whiteFMember);
-			JRadioButton orange= new JRadioButton(orangeFMember);
-			JRadioButton neutral = new JRadioButton(neutralFMember);
-			JButton buttonConfirm = new JButton("OK");
+			ImageIcon blackFMember = new ImageIcon(getClass().getResource("/immagini/BlackFamilyMember.png"));
+			ImageIcon whiteFMember = new ImageIcon(getClass().getResource("/immagini/WhiteFamilyMember.png"));
+			ImageIcon orangeFMember = new ImageIcon(getClass().getResource("/immagini/OrangeFamilyMember.png"));
+			ImageIcon neutralFMember = new ImageIcon(getClass().getResource("/immagini/NeutralFamilyMember.png"));
+			black = new JButton(blackFMember);
+			white = new JButton(whiteFMember);
+			orange= new JButton(orangeFMember);
+			neutral = new JButton(neutralFMember);
+//			buttonConfirm = new JButton("OK");
 			black.setBackground(Color.BLACK);
 			black.setForeground(Color.white);
 			neutral.setBackground(Color.LIGHT_GRAY);
@@ -119,24 +119,21 @@ public class TowerButtons extends JFrame implements ActionListener{
 			dialog.add(black);
 			dialog.add(white);
 			dialog.add(orange);
-			dialog.add(buttonConfirm);
+//			dialog.add(buttonConfirm);
 			
-			neutral.setBounds(50, 100, 45, 60);
-			black.setBounds(150, 100, 45, 60);
-			orange.setBounds(250, 100, 45, 60);
-			white.setBounds(350, 100, 45, 60);
-			buttonConfirm.setBounds(210, 180, 60, 35);
+			
+//			buttonConfirm.setBounds(210, 180, 60, 35);
 			
 			neutral.setVisible(true);
 			black.setVisible(true);
 			white.setVisible(true);
 			orange.setVisible(true);
-			buttonConfirm.setVisible(true);
-			buttonConfirm.addActionListener(new ActionListener() {
+//			buttonConfirm.setVisible(true);
+			addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if(e.getSource() == buttonConfirm)
+					if(e.getSource() == neutral)
 						dialog.dispose();
 					
 				}
