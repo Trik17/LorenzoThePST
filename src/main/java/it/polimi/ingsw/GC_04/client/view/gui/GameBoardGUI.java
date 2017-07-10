@@ -10,10 +10,6 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -25,8 +21,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import com.sun.glass.ui.View;
 
 import it.polimi.ingsw.GC_04.client.view.ViewGUI;
 import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
@@ -48,9 +42,6 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	
 	private Color colorC;
 	private Color colorV;
-
-	private Scanner scanner = new Scanner(System.in);
-	
 	
 	private JPanel panel;
 	private JLabel gameBoard;
@@ -662,6 +653,7 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 			input += " "+servants.getText();
 			mainDialog.dispose();
 			view.sendInput(input);
+			input = "";
 		}
 		
 	}

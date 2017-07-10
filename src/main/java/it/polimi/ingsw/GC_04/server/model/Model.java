@@ -168,4 +168,7 @@ public class Model implements Serializable{
 	public void switchLastPeriod() {
 		this.lastPeriod = !lastPeriod;
 	}
+	public Map<DiceColor, Dice> getDices() {
+		return dices;
+	}
 }
