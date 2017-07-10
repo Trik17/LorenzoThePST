@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class LeaderCard extends Card {
+	@SuppressWarnings("unused")
 	private String name;
 	private List<Resource> activationRequirementRes;
 	private List<DevelopmentCard> activationRequirementCard;
@@ -74,6 +75,9 @@ public class LeaderCard extends Card {
 
 	public String getDescription() {
 		return description;
+	}
+	public String getImage() {
+		return image;
 	}
 
 

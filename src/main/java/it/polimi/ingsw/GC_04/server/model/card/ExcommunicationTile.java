@@ -43,4 +43,8 @@ public class ExcommunicationTile extends Card implements Serializable{
 		effect.apply(player);
 		
 	}
+
+	public String getImage() {
+		return image;
+	}
 }

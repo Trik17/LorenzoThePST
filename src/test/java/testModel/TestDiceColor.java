@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_04.server.model.DiceColor;
 public class TestDiceColor {
 
 	@Test
-	public void TestDiceColor() {
+	public void testDiceColor() {
 		assertEquals(DiceColor.BLACK, DiceColor.fromString("1"));
 		assertEquals(DiceColor.ORANGE, DiceColor.fromString("2"));
 		assertEquals(DiceColor.WHITE, DiceColor.fromString("3"));

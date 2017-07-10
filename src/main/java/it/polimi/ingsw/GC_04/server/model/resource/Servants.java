@@ -11,7 +11,6 @@ public class Servants extends Resource{
 	}
 	//constructor needed for Json
 		public Servants() {
-			// TODO Auto-generated constructor stub
 		}
 
 }

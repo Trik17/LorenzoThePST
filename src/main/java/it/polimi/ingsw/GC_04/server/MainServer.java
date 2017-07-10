@@ -1,8 +1,5 @@
 package it.polimi.ingsw.GC_04.server;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -25,9 +22,8 @@ import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.timer.TimerJson;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
-import it.polimi.ingsw.GC_04.server.view.ServerSocketView;
 
-public class MainServer implements Runnable{
+public class MainServer {
 	private Map<String,ClientRMIViewRemote> clients; //all clients connected to the server
 	private Map<String,ClientRMIViewRemote> lastClients; //clients that are waiting for a match
 	/*clients disconnetted for a connection error
@@ -46,7 +42,7 @@ public class MainServer implements Runnable{
 	private Timer timer;
 	private TimerTask task; 
 	private static MainServer instance;
-	private ServerSocket serverSocket;	
+//	private ServerSocket serverSocket;	
 	private Registry registry;
 	
 	
@@ -99,8 +95,8 @@ public class MainServer implements Runnable{
 			System.out.println("server already up");
 			System.exit(0);
 		}
-		System.out.println("STARTING SOCKET");
-		executor.submit(this);
+//		System.out.println("STARTING SOCKET");
+//		executor.submit(this);
 	}
     /* at the connection this function controll the client's username,
 	 * if the client is new the function add it to the Maps of clients connected,
@@ -195,37 +191,37 @@ public class MainServer implements Runnable{
 		MainServer.instance();
 	}
 	
-	//Start Socket:
-	@Override
-	public void run() {
-		try {
-			//creats the socket
-					
-			serverSocket = new ServerSocket(SOCKET_PORT);	
-			System.out.println("Server socket ready on port:  " + SOCKET_PORT);
-	
-			while (true) {
-				//Waits for a new client to connect
-				Socket socket = serverSocket.accept();
-	
-				// creates the view (server side) associated with the new client
-				ServerSocketView view = new ServerSocketView(socket, this.currentController);
-	
-				// the controller observes the view
-				view.registerObserver(this.currentController);
-				
-				
-				// a new thread handle the connection with the view
-				executor.submit(view);
-			}
-		} catch (IOException e) {
-			try {
-				serverSocket.close();
-			} catch (IOException e1) {
-				System.out.println("ServerSocket closed");
-			}
-		}		
-	}
+//	//Start Socket:
+//	@Override
+//	public void run() {
+//		try {
+//			//creats the socket
+//					
+//			serverSocket = new ServerSocket(SOCKET_PORT);	
+//			System.out.println("Server socket ready on port:  " + SOCKET_PORT);
+//	
+//			while (true) {
+//				//Waits for a new client to connect
+//				Socket socket = serverSocket.accept();
+//	
+//				// creates the view (server side) associated with the new client
+//				ServerSocketView view = new ServerSocketView(socket, this.currentController);
+//	
+//				// the controller observes the view
+//				view.registerObserver(this.currentController);
+//				
+//				
+//				// a new thread handle the connection with the view
+//				executor.submit(view);
+//			}
+//		} catch (IOException e) {
+//			try {
+//				serverSocket.close();
+//			} catch (IOException e1) {
+//				System.out.println("ServerSocket closed");
+//			}
+//		}		
+//	}
 	
 	public void endGame(Map<String, ClientRMIViewRemote> views) {
 		String[] p=new String[views.size()];

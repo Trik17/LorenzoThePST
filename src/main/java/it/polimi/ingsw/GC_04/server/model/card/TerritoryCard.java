@@ -15,7 +15,6 @@ import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
 
 public class TerritoryCard extends DevelopmentCard {
-	private static final long serialVersionUID = -7738476979695774928L;
 	private Harvest harvest;
 	
 	@JsonCreator
