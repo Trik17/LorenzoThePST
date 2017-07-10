@@ -64,33 +64,12 @@ public class TestJson {
 		assertEquals(LeaderCard[].class, leaderCards.getClass());
 		
 		
-		try{		
-	    	
-			//carte
-			
-			FileReader file= new FileReader("src/main/resources/card.json"); 
-			DevelopmentCard r=mapper.readValue(file, DevelopmentCard.class);
-			//null and !null
-			assertNotEquals(null, r.getCost1());
-			assertEquals(null, r.getCost2());
-			
-			//MilitaryPoints:
-			FileReader file1= new FileReader("src/main/resources/mp.json"); 
-			MilitaryPoints m=mapper.readValue(file1, MilitaryPoints.class);
-			assertEquals(3, m.getQuantity());
-			assertEquals(2, m.getMalus());
-			
-			//TIMER: 
-			JsonMapper.TimerFromJson();
-			
-			//change these tests if you want to change timer value over these limits
-			assertTrue(0<=TimerJson.getStartTimer() && TimerJson.getStartTimer()<9999999);
-			assertTrue(1<=TimerJson.getInputTimer() && TimerJson.getInputTimer()<TimerJson.getActionTimer());
-			
-	}catch(JsonParseException e){
-		fail("failed for an exception of Json files");
-		e.printStackTrace();
-	}
+		//TIMER: 
+		JsonMapper.TimerFromJson();
+		
+		//change these tests if you want to change timer value over these limits
+		assertTrue(0<=TimerJson.getStartTimer() && TimerJson.getStartTimer()<9999999);
+		assertTrue(1<=TimerJson.getInputTimer() && TimerJson.getInputTimer()<TimerJson.getActionTimer());
 		
 		
 	}
