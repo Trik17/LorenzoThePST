@@ -117,9 +117,7 @@ public class Controller implements Observer<String> {
 				isWaiting.set(false);					
 			}
 		};	
-		timerAction.schedule( taskAction,TimerJson.getActionTimer()); //timer
-		
-		
+		timerAction.schedule( taskAction,TimerJson.getActionTimer()); //timer		
 	}
 
 	private boolean isPlayerConnected(String player) {
@@ -335,7 +333,6 @@ public class Controller implements Observer<String> {
 			
 		} catch (RemoteException e) {
 			player = model.getCouncilPalace().getTurnOrder()[currentPlayer].getName();
-//			disconnect(player);
 		}
 		
 		try {
@@ -347,10 +344,6 @@ public class Controller implements Observer<String> {
 		
 	}
 
-
-	
-
-	
 
 	private void excommunicationManagement() {
 		//timer to avoid the block of the game caused by a disconnection of the client during the request of the ecomunications
