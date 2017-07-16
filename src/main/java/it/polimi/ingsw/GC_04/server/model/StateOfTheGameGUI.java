@@ -58,38 +58,54 @@ public class StateOfTheGameGUI implements Serializable{
 	public StateOfTheGameGUI(Model model, String player) {
 		this.player = player;
 		
-		territoryCards = new String[4];
-		characterCards = new String[4];
-		buildingCards = new String[4];
-		ventureCards = new String[4];
-		
 		TerritoryCard[] tCards = (TerritoryCard[]) model.getTower(new TerritoryCard()).getCards();
 		CharacterCard[] cCards = (CharacterCard[]) model.getTower(new CharacterCard()).getCards();
 		BuildingCard[] bCards = (BuildingCard[]) model.getTower(new BuildingCard()).getCards();
 		VentureCard[] vCards = (VentureCard[]) model.getTower(new VentureCard()).getCards();
 		
-		for (int i = 0; i < territoryCards.length; i++)
-			territoryCards[i] = tCards[i].getImageResized();
-		for (int i = 0; i < characterCards.length; i++)
-			characterCards[i] = cCards[i].getImageResized();
-		for (int i = 0; i < buildingCards.length; i++)
-			buildingCards[i] = bCards[i].getImageResized();
-		for (int i = 0; i < ventureCards.length; i++)
-			ventureCards[i] = vCards[i].getImageResized();
+		territoryCards = new String[tCards.length];
+		characterCards = new String[cCards.length];
+		buildingCards = new String[bCards.length];
+		ventureCards = new String[vCards.length];
 		
-		territoryCardsBig = new String[4];
-		characterCardsBig = new String[4];
-		buildingCardsBig = new String[4];
-		ventureCardsBig = new String[4];
+		for (int i = 0; i < territoryCards.length; i++) {
+			if (tCards[i] != null)
+				territoryCards[i] = tCards[i].getImageResized();
+		}
+		for (int i = 0; i < characterCards.length; i++) {
+			if (cCards[i] != null)
+				characterCards[i] = cCards[i].getImageResized();
+		}
+		for (int i = 0; i < buildingCards.length; i++) {
+			if (bCards[i] != null)
+				buildingCards[i] = bCards[i].getImageResized();
+		}
+		for (int i = 0; i < ventureCards.length; i++) {
+			if (vCards[i] != null)
+				ventureCards[i] = vCards[i].getImageResized();
+		}
 		
-		for (int i = 0; i < territoryCardsBig.length; i++)
-			territoryCardsBig[i] = tCards[i].getImage();
-		for (int i = 0; i < characterCardsBig.length; i++)
-			characterCardsBig[i] = cCards[i].getImage();
-		for (int i = 0; i < buildingCardsBig.length; i++)
-			buildingCardsBig[i] = bCards[i].getImage();
-		for (int i = 0; i < ventureCardsBig.length; i++)
-			ventureCardsBig[i] = vCards[i].getImage();
+		territoryCardsBig = new String[tCards.length];
+		characterCardsBig = new String[cCards.length];
+		buildingCardsBig = new String[bCards.length];
+		ventureCardsBig = new String[vCards.length];
+		
+		for (int i = 0; i < territoryCardsBig.length; i++) {
+			if (tCards[i] != null)
+				territoryCardsBig[i] = tCards[i].getImage();
+		}
+		for (int i = 0; i < characterCardsBig.length; i++) {
+			if (cCards[i] != null)
+				characterCardsBig[i] = cCards[i].getImage();
+		}
+		for (int i = 0; i < buildingCardsBig.length; i++) {
+			if (bCards[i] != null)
+				buildingCardsBig[i] = bCards[i].getImage();
+		}
+		for (int i = 0; i < ventureCardsBig.length; i++) {
+			if (vCards[i] != null)
+				ventureCardsBig[i] = vCards[i].getImage();
+		}
 		
 		excommunicationTiles = new String[3];
 		
