@@ -6,7 +6,6 @@ import it.polimi.ingsw.GC_04.client.view.ClientRMIViewRemote;
 import it.polimi.ingsw.GC_04.server.controller.Controller;
 import it.polimi.ingsw.GC_04.server.model.Model;
 import it.polimi.ingsw.GC_04.server.model.Player;
-import it.polimi.ingsw.GC_04.server.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 
 public class StartGame implements Runnable {

@@ -175,7 +175,6 @@ public class MainServer {
 		// Create the RMI View, that will be shared with the client
 		ServerRMIView rmiView=new ServerRMIView(this);
 		// publish the view in the registry as a remote object
-		@SuppressWarnings("unused")
 		ServerRMIViewRemote viewRemote=(ServerRMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		this.serverStub=viewRemote;
 		System.out.println("Binding the serverRMIView to the registry");
@@ -237,7 +236,6 @@ public class MainServer {
 	private void rebindRMIServerView() throws AccessException, RemoteException{
 		ServerRMIView rmiView=new ServerRMIView(this);
 		
-		@SuppressWarnings("unused")
 		ServerRMIViewRemote viewRemote=(ServerRMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		this.serverStub=viewRemote;
 		System.out.println("Rebinding the serverRmiView implementation to the registry");

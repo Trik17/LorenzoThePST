@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
-import it.polimi.ingsw.GC_04.server.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 /*implements the metods of ClientRMIViewRemote interface 
  * 
