@@ -129,22 +129,22 @@ public class StateOfTheGameGUI implements Serializable{
 		int num = model.getPlayer(player).getCards(new TerritoryCard()).size();		
 		mainTCards = new String[num];
 		for (int i = 0; i < mainTCards.length; i++)
-			mainTCards[i] = ((DevelopmentCard) model.getPlayer(player).getCards(new TerritoryCard())).getImageResized();
+			mainTCards[i] = model.getPlayer(player).getCards(new TerritoryCard()).get(i).getImageResized();
 		
 		num = model.getPlayer(player).getCards(new CharacterCard()).size();
 		mainCCards = new String[num];
 		for (int i = 0; i < mainCCards.length; i++)
-			mainCCards[i] = ((DevelopmentCard) model.getPlayer(player).getCards(new CharacterCard())).getImageResized();
+			mainCCards[i] = model.getPlayer(player).getCards(new CharacterCard()).get(i).getImageResized();
 		
 		num = model.getPlayer(player).getCards(new BuildingCard()).size();
 		mainBCards = new String[num];
 		for (int i = 0; i < mainBCards.length; i++)
-			mainBCards[i] = ((DevelopmentCard) model.getPlayer(player).getCards(new BuildingCard())).getImageResized();
+			mainBCards[i] = model.getPlayer(player).getCards(new BuildingCard()).get(i).getImageResized();
 		
 		num = model.getPlayer(player).getCards(new VentureCard()).size();
 		mainVCards = new String[num];
 		for (int i = 0; i < mainVCards.length; i++)
-			mainVCards[i] = ((DevelopmentCard) model.getPlayer(player).getCards(new VentureCard())).getImageResized();
+			mainVCards[i] = model.getPlayer(player).getCards(new VentureCard()).get(i).getImageResized();
 		
 		mainResources = new String[4];
 		mainResources[0] = Integer.toString(model.getPlayer(player).getResource(new Coins()).getQuantity());
