@@ -20,7 +20,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import it.polimi.ingsw.GC_04.client.view.ViewGUI;
 import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
 import it.polimi.ingsw.GC_04.server.model.StateOfTheGameGUI;
@@ -709,6 +708,8 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 	
 
 	public void setState(StateOfTheGame stateOfTheGame) {
+		this.dispose();
+		this.setVisible(false);
 		
 		state=stateOfTheGame.getStateGUI();
 	
@@ -792,6 +793,9 @@ public class GameBoardGUI extends JFrame implements ActionListener{
 		gameBoard.add(orangeDiceValue);
 		orangeDiceValue.setBounds(345, 650, 25, 25);
 		orangeDiceValue.setBackground(Color.white);
-		orangeDiceValue.setVisible(true);		
+		orangeDiceValue.setVisible(true);	
+		
+
+		setVisible(true);
 	}			
 }
