@@ -124,6 +124,10 @@ public class InputActionInterpreter {
 
 		realCard = realTower.getCards()[card];
 
+		if (realCard == null) {
+			return;
+		}
+		
 		if (realCard.getCost1() == null && realCard.getCost2() == null)
 			realCost = null;
 		else if (realCard.getCost2() == null)

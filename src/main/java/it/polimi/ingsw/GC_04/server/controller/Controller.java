@@ -187,6 +187,11 @@ public class Controller implements Observer<String> {
 		
 		Action action = interpreter.getAction();
 	try{
+		if (action == null) {
+			views.get(player).print("You can't do this move");
+			chooseAction();
+			return;
+		}
 		if (action instanceof TakeACard) {
 			if (((TakeACard) action).getCard() == null){
 				views.get(player).print("You can't do this move");
