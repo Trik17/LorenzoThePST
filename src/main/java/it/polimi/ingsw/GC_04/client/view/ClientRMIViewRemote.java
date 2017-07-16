@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
 import it.polimi.ingsw.GC_04.server.model.effect.Effect;
 import it.polimi.ingsw.GC_04.server.model.resource.Resource;
+import it.polimi.ingsw.GC_04.server.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 
 
@@ -43,4 +44,6 @@ public interface ClientRMIViewRemote extends Remote {
 	public void usernameAlreadyUsed() throws RemoteException;
 
 	public void exit() throws RemoteException;
+
+	public void setServerStub(ServerRMIViewRemote serverStub) throws RemoteException;
 }
