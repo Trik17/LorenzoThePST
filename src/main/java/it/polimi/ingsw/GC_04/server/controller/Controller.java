@@ -130,7 +130,7 @@ public class Controller implements Observer<String> {
 			}
 				
 		}
-		return false;
+		return true;
 	}
 
 	public void setViews(Map<String, ClientRMIViewRemote> clients){
@@ -415,8 +415,9 @@ public class Controller implements Observer<String> {
 		
 	}
 
-	public void reconnect(String username) {
+	public void reconnect(String username, ClientRMIViewRemote clientStub) {
 		model.getPlayer(username).reConnect();
+		this.views.put(username, clientStub);
 
 		views.forEach((name,stub) -> {
 			try {

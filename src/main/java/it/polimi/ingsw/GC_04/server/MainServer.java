@@ -33,6 +33,7 @@ public class MainServer {
 	private List<String> disconnectedPlayers;
 	private Map<String,StartGame> games; //associations beetween games and players
 	private boolean timerStarted=false;
+	private ServerRMIViewRemote serverStub; 
 	public static final int SOCKET_PORT = 17000;
 	public static final int RMI_PORT = 12008;
 	public static final String NAME = "lorenzo";
@@ -104,7 +105,8 @@ public class MainServer {
 	public synchronized void addRMIClient(ClientRMIViewRemote clientStub, String username, ServerRMIView rmiView) throws RemoteException{
 		if(clients.containsKey(username)){
 			if(disconnectedPlayers.contains(username)){
-				games.get(username).reconnectPlayer(username);
+				games.get(username).reconnectPlayer(username, clientStub);
+				clientStub.setServerStub(games.get(username).getServerStub());
 				disconnectedPlayers.remove(username);
 				return;
 			}else{
@@ -152,7 +154,7 @@ public class MainServer {
 	//it starts the new game and creates a new controller and model for future clients
 	private synchronized void startGame(){
 		System.out.println("Starting a new game:");	
-		StartGame game=new StartGame(this.lastClients,this.currentModel,this.currentController);//va dato in pasto ad un thread
+		StartGame game=new StartGame(this.lastClients,this.currentModel,this.currentController, this.serverStub);//va dato in pasto ad un thread
 		executor.submit(game);
 		lastClients.forEach((username,stub) -> games.put(username, game));
 		this.lastClients=new HashMap<String,ClientRMIViewRemote>();
@@ -172,11 +174,10 @@ public class MainServer {
 
 		// Create the RMI View, that will be shared with the client
 		ServerRMIView rmiView=new ServerRMIView(this);
-				
 		// publish the view in the registry as a remote object
 		@SuppressWarnings("unused")
 		ServerRMIViewRemote viewRemote=(ServerRMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
-		
+		this.serverStub=viewRemote;
 		System.out.println("Binding the serverRMIView to the registry");
 		registry.bind(NAME, rmiView);
 		System.out.println("RMI is ready to accept clients");
@@ -235,10 +236,10 @@ public class MainServer {
 	
 	private void rebindRMIServerView() throws AccessException, RemoteException{
 		ServerRMIView rmiView=new ServerRMIView(this);
-				
+		
 		@SuppressWarnings("unused")
 		ServerRMIViewRemote viewRemote=(ServerRMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
-		
+		this.serverStub=viewRemote;
 		System.out.println("Rebinding the serverRmiView implementation to the registry");
 		registry.rebind(NAME, rmiView);
 	}

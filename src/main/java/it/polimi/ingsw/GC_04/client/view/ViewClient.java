@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_04.server.controller.JsonMapper;
 import it.polimi.ingsw.GC_04.server.model.StateOfTheGame;
+import it.polimi.ingsw.GC_04.server.view.ServerRMIView;
 import it.polimi.ingsw.GC_04.server.view.ServerRMIViewRemote;
 
 // Abstract class of the view extended from ViewCLI and ViewGUI
@@ -45,6 +46,9 @@ public abstract class ViewClient implements Serializable {
 
 	public void addServerstub(ServerRMIViewRemote serverStub){
 		this.serverStub=serverStub;
+	}
+	public void setServerStub(ServerRMIViewRemote serverStub2) {
+		this.serverStub=serverStub2;
 	}
 
 	
